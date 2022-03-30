@@ -13,7 +13,29 @@
   --marfil: #F5F8FA;
   --grisTitulos:#A4ABC2;
 }
+/* CUSTOM SCROLL BAR */
 
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--azulSecond);
+  border-radius: 5px;
+  transition: all 0.3s ease !important;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--azulMain);
+}
+
+::-webkit-scrollbar-corner {
+    border-radius: 5px;
+}
 body{
   background-image: url(../resources/fondo/pr1.png);
   background-color: var(--marfil);
@@ -24,7 +46,7 @@ body{
 
 @media (max-width: 991.98px){
   body {
-    background-size: 100% 200px;
+    background-size: 100% 300px;
   }
 }
 body button{
@@ -134,16 +156,23 @@ color: var(--blanco)!important;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border-radius: 15px;
 }
-table{
-  width: 100%;
-  border-width: 1px 0;
-}
+
 th{
   border-bottom: none!important;
 }
 .table-responsive{
-  overflow-y: hidden;
   padding-bottom: 20px;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+/*OCULTANDO SCROLL EN TABLA*/
+.table-responsive::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+table{
+  width: 100%!important;
+  border-width: 1px 0;
 }
 .pagination, .dataTables_length{
   padding-top: 25px;
@@ -327,7 +356,7 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  
+  vertical-align: middle;
 }
 .pedido-no, .categoria, .precio, .inventario, .estado-stock, .botones-table{
   text-align: center!important  ;
@@ -380,7 +409,7 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
   border-radius: 8px;
   font-weight: 500;
 }
-.bi-plus{
+.btn-añadir .bi-plus{
   font-size: 24px;
   font-weight: 700;
 }
@@ -480,6 +509,10 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
     position: absolute!important;
     inset: auto !important;
 }
+.dropdown-menu.show{
+  position: absolute!important;
+  z-index: 100!important;
+}
 /*Animación de dropdowns fin*/
 
 /*MODAL AGREGAR INICIO*/
@@ -489,6 +522,9 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
 .modal-agregar .modal-content{
   border-radius: 15px;
   border: none;
+}
+.modal-agregar .modal-body{
+  padding: 0 30px;
 }
 .modal-agregar input.nombre-producto{
   border: none;
@@ -512,7 +548,7 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
   padding: 0 20px;
 }
 .modal-agregar .col{
-  padding:0 20px;
+  padding:0 auto;
 }
 .modal-agregar input{
   height: 38px;
@@ -559,6 +595,28 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
 }
 /*MODAL AGREGAR FIN*/
 
+ /*MODAL ACTUALIZAR INICIO*/
+ .input-stock .col:first-child{
+    padding-right: 0;
+ }
+ .btn-stock{
+   font-size: 18px;
+ }
+ .col-btn-stock{
+  padding-right: 10px;
+}
+ @media (max-width: 768px) {
+  .input-stock .col{
+    width: 95%;
+  }
+  .col-btn-stock{
+    display: flex;
+    margin-top: 10px;
+    justify-content: space-evenly;
+    margin-right: 0;
+  }
+}
+ /*MODAL ACTUALIZAR FIN*/
 
 /*MODAL ELIMINAR INICIO*/
 .modal-eliminar .modal-header{
