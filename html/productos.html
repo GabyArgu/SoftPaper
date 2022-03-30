@@ -103,29 +103,41 @@
                                         </form>
                                     </div>
                                     <div class="dropdown">
-                                        <button class="btn-filtro btn-second" type="button" id="dropdownMenuButtonFilter"
-                                            data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                class="bi bi-funnel-fill"></i>Filtrar</button>
+                                        <button class="btn-filtro btn-second" type="button"
+                                            id="dropdownMenuButtonFilter" data-bs-toggle="dropdown"
+                                            aria-expanded="false"><i class="bi bi-funnel-fill"></i>Filtrar</button>
                                         <ul class="dropdown-menu dropdown-menu-end animate slideIn dropdown-filtro"
                                             aria-labelledby="dropdownMenuButtonFilter">
-                                            <li><h5 class="mt-3">Opciones de filtro</h5></li>
-                                            <li><hr class="dropdown-divider"></li>
-                                            <li><h6 class="mb-3">Categoría</h6></li>
-                                            <li><select class="form-select filtro-combo" aria-label="Default select example">
-                                                <option selected disabled>Seleccione una opción</option>
-                                                <option value="1">Lapiceros normales</option>
-                                                <option value="2">Lápices redondos</option>
-                                                <option value="3">Plumones delgados</option>
-                                            </select></li>
-                                            <li><h6 class="my-3">Estado</h6></li>
-                                            <li><select class="form-select filtro-combo" aria-label="Default select example">
-                                                <option selected disabled>Seleccione una opción</option>
-                                                <option value="1">En stock</option>
-                                                <option value="2">Por agotar</option>
-                                                <option value="3">Agotado</option>
-                                            </select></li>
-                                            <li class="d-flex justify-content-end"><button class="btn btn-main btn-aplicar-filtro mt-3" type="button" data-bs-target="#modal-agregar2"
-                                                data-bs-toggle="modal" data-bs-dismiss="modal">Aplicar</button></li>
+                                            <li>
+                                                <h5 class="mt-3">Opciones de filtro</h5>
+                                            </li>
+                                            <li>
+                                                <hr class="dropdown-divider">
+                                            </li>
+                                            <li>
+                                                <h6 class="mb-3">Categoría</h6>
+                                            </li>
+                                            <li><select class="form-select filtro-combo"
+                                                    aria-label="Default select example">
+                                                    <option selected disabled>Seleccione una opción</option>
+                                                    <option value="1">Lapiceros normales</option>
+                                                    <option value="2">Lápices redondos</option>
+                                                    <option value="3">Plumones delgados</option>
+                                                </select></li>
+                                            <li>
+                                                <h6 class="my-3">Estado</h6>
+                                            </li>
+                                            <li><select class="form-select filtro-combo"
+                                                    aria-label="Default select example">
+                                                    <option selected disabled>Seleccione una opción</option>
+                                                    <option value="1">En stock</option>
+                                                    <option value="2">Por agotar</option>
+                                                    <option value="3">Agotado</option>
+                                                </select></li>
+                                            <li class="d-flex justify-content-end"><button
+                                                    class="btn btn-main btn-aplicar-filtro mt-3" type="button"
+                                                    data-bs-target="#modal-agregar2" data-bs-toggle="modal"
+                                                    data-bs-dismiss="modal">Aplicar</button></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -134,10 +146,11 @@
                                     <button class="btn-añadir btn-main" type="button" data-bs-toggle="modal"
                                         data-bs-target="#modal-agregar"><i class="bi bi-plus"></i>Añadir
                                         producto</button>
-                                    <button class="btn-export btn-second" type="button"><i class="bi bi-box-arrow-up"></i></button>
+                                    <button class="btn-export btn-second" type="button"><i
+                                            class="bi bi-box-arrow-up"></i></button>
                                 </div>
                             </div>
-                            <div class="row my-3">
+                            <div class="row mt-3">
                                 <div class="col">
                                     <div class="table-responsive mt-3 scroll" id="no-more-tables">
                                         <table class="table table-hover" id="example">
@@ -147,43 +160,36 @@
                                                     <th>Categoría</th>
                                                     <th>Precio</th>
                                                     <th>Inventario</th>
+                                                    <th>Color</th>
+                                                    <th>Marca</th>
+                                                    <th>Proveedor</th>
+                                                    <th>Descripción</th>
                                                     <th>Estado</th>
                                                     <th>Acciones</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td data-title="PRODUCTO" class="col-table nombre-producto"><img
-                                                            src="../resources/productos/lapicero.png" alt="">Lapicero
-                                                        Faber Castell</td>
-                                                    <td data-title="CATEGORIA" class="categoria">Lapiceros</td>
-                                                    <td data-title="PRECIO" class="precio">$29.74</td>
-                                                    <td data-title="INVENTARIO" class="inventario">55</td>
-                                                    <td data-title="ESTADO" class="estado-stock"><span class="estado">En
-                                                            stock</span></td>
-                                                    <td data-title="Acciones" class="botones-table">
-                                                        <div class="dropdown">
-                                                            <button class=" btn-acciones  dropdown-toggle" type="button"
-                                                                id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                                                                aria-expanded="false">
-                                                                Acciones
-                                                            </button>
-                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
-                                                                aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" href="#">Ver</a></li>
-                                                                <li><a class="dropdown-item" href="#">Editar</a></li>
-                                                                <li><a class="dropdown-item" href="#">Eliminar</a></li>
-                                                            </ul>
+                                                    <td data-title="PRODUCTO" class="col-table">
+                                                        <div class="nombre-producto"><img
+                                                                src="../resources/productos/lapicero.png"
+                                                                alt="">Lapicero
+                                                            Faber Castell
                                                         </div>
                                                     </td>
-                                                </tr>
-                                                <tr>
-                                                    <td data-title="PRODUCTO" class="col-table nombre-producto"><img
-                                                            src="../resources/productos/lapicero.png" alt="">Lapicero
-                                                        Faber Castell</td>
                                                     <td data-title="CATEGORIA" class="categoria">Lapiceros</td>
                                                     <td data-title="PRECIO" class="precio">$29.74</td>
                                                     <td data-title="INVENTARIO" class="inventario">55</td>
+                                                    <td data-title="COLOR" class="color">Negro</td>
+                                                    <td data-title="MARCA" class="marca">Faber Castell</td>
+                                                    <td data-title="PROVEEDOR" class="proveedor">ARANDA</td>
+                                                    <td data-title="DESCRIPCION" class="descripcion">Lorem ipsum dolor
+                                                        sit amet
+                                                        consectetur adipisicing elit. Assumenda natus repellendus
+                                                        laborum veniam ipsa
+                                                        hic corporis possimus sed! Odit nihil rem alias unde officiis
+                                                        quos cum error
+                                                        dicta quisquam asperiores?</td>
                                                     <td data-title="ESTADO" class="estado-stock"><span class="estado">En
                                                             stock</span></td>
                                                     <td data-title="Acciones" class="botones-table">
@@ -195,8 +201,9 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" href="#">Ver</a></li>
-                                                                <li><a class="dropdown-item" href="#">Editar</a></li>
+                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-actualizar">Editar</a>
+                                                                </li>
                                                                 <li><a class="dropdown-item" type="button"
                                                                         data-bs-toggle="modal"
                                                                         data-bs-target="#modal-eliminar">Eliminar</a>
@@ -206,12 +213,26 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-title="PRODUCTO" class="col-table nombre-producto"><img
-                                                            src="../resources/productos/lapicero.png" alt="">Lapicero
-                                                        Faber Castell</td>
+                                                    <td data-title="PRODUCTO" class="col-table">
+                                                        <div class="nombre-producto"><img
+                                                                src="../resources/productos/lapicero.png"
+                                                                alt="">Lapicero
+                                                            Faber Castell
+                                                        </div>
+                                                    </td>
                                                     <td data-title="CATEGORIA" class="categoria">Lapiceros</td>
                                                     <td data-title="PRECIO" class="precio">$29.74</td>
                                                     <td data-title="INVENTARIO" class="inventario">55</td>
+                                                    <td data-title="COLOR" class="color">Negro</td>
+                                                    <td data-title="MARCA" class="marca">Faber Castell</td>
+                                                    <td data-title="PROVEEDOR" class="proveedor">ARANDA</td>
+                                                    <td data-title="DESCRIPCION" class="descripcion">Lorem ipsum dolor
+                                                        sit amet
+                                                        consectetur adipisicing elit. Assumenda natus repellendus
+                                                        laborum veniam ipsa
+                                                        hic corporis possimus sed! Odit nihil rem alias unde officiis
+                                                        quos cum error
+                                                        dicta quisquam asperiores?</td>
                                                     <td data-title="ESTADO" class="estado-stock"><span class="estado">En
                                                             stock</span></td>
                                                     <td data-title="Acciones" class="botones-table">
@@ -223,20 +244,38 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" href="#">Ver</a></li>
-                                                                <li><a class="dropdown-item" href="#">Editar</a></li>
-                                                                <li><a class="dropdown-item" href="#">Eliminar</a></li>
+                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-actualizar">Editar</a>
+                                                                </li>
+                                                                <li><a class="dropdown-item" type="button"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
+                                                                </li>
                                                             </ul>
                                                         </div>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-title="PRODUCTO" class="col-table nombre-producto"><img
-                                                            src="../resources/productos/lapicero.png" alt="">Lapicero
-                                                        Faber Castell</td>
+                                                    <td data-title="PRODUCTO" class="col-table">
+                                                        <div class="nombre-producto"><img
+                                                                src="../resources/productos/lapicero.png"
+                                                                alt="">Lapicero
+                                                            Faber Castell
+                                                        </div>
+                                                    </td>
                                                     <td data-title="CATEGORIA" class="categoria">Lapiceros</td>
                                                     <td data-title="PRECIO" class="precio">$29.74</td>
                                                     <td data-title="INVENTARIO" class="inventario">55</td>
+                                                    <td data-title="COLOR" class="color">Negro</td>
+                                                    <td data-title="MARCA" class="marca">Faber Castell</td>
+                                                    <td data-title="PROVEEDOR" class="proveedor">ARANDA</td>
+                                                    <td data-title="DESCRIPCION" class="descripcion">Lorem ipsum dolor
+                                                        sit amet
+                                                        consectetur adipisicing elit. Assumenda natus repellendus
+                                                        laborum veniam ipsa
+                                                        hic corporis possimus sed! Odit nihil rem alias unde officiis
+                                                        quos cum error
+                                                        dicta quisquam asperiores?</td>
                                                     <td data-title="ESTADO" class="estado-stock"><span class="estado">En
                                                             stock</span></td>
                                                     <td data-title="Acciones" class="botones-table">
@@ -248,20 +287,38 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" href="#">Ver</a></li>
-                                                                <li><a class="dropdown-item" href="#">Editar</a></li>
-                                                                <li><a class="dropdown-item" href="#">Eliminar</a></li>
+                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-actualizar">Editar</a>
+                                                                </li>
+                                                                <li><a class="dropdown-item" type="button"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
+                                                                </li>
                                                             </ul>
                                                         </div>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-title="PRODUCTO" class="col-table nombre-producto"><img
-                                                            src="../resources/productos/lapicero.png" alt="">Lapicero
-                                                        Faber Castell</td>
+                                                    <td data-title="PRODUCTO" class="col-table">
+                                                        <div class="nombre-producto"><img
+                                                                src="../resources/productos/lapicero.png"
+                                                                alt="">Lapicero
+                                                            Faber Castell
+                                                        </div>
+                                                    </td>
                                                     <td data-title="CATEGORIA" class="categoria">Lapiceros</td>
                                                     <td data-title="PRECIO" class="precio">$29.74</td>
                                                     <td data-title="INVENTARIO" class="inventario">55</td>
+                                                    <td data-title="COLOR" class="color">Negro</td>
+                                                    <td data-title="MARCA" class="marca">Faber Castell</td>
+                                                    <td data-title="PROVEEDOR" class="proveedor">ARANDA</td>
+                                                    <td data-title="DESCRIPCION" class="descripcion">Lorem ipsum dolor
+                                                        sit amet
+                                                        consectetur adipisicing elit. Assumenda natus repellendus
+                                                        laborum veniam ipsa
+                                                        hic corporis possimus sed! Odit nihil rem alias unde officiis
+                                                        quos cum error
+                                                        dicta quisquam asperiores?</td>
                                                     <td data-title="ESTADO" class="estado-stock"><span class="estado">En
                                                             stock</span></td>
                                                     <td data-title="Acciones" class="botones-table">
@@ -273,20 +330,38 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" href="#">Ver</a></li>
-                                                                <li><a class="dropdown-item" href="#">Editar</a></li>
-                                                                <li><a class="dropdown-item" href="#">Eliminar</a></li>
+                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-actualizar">Editar</a>
+                                                                </li>
+                                                                <li><a class="dropdown-item" type="button"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
+                                                                </li>
                                                             </ul>
                                                         </div>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-title="PRODUCTO" class="col-table nombre-producto"><img
-                                                            src="../resources/productos/lapicero.png" alt="">Lapicero
-                                                        Faber Castell</td>
+                                                    <td data-title="PRODUCTO" class="col-table">
+                                                        <div class="nombre-producto"><img
+                                                                src="../resources/productos/lapicero.png"
+                                                                alt="">Lapicero
+                                                            Faber Castell
+                                                        </div>
+                                                    </td>
                                                     <td data-title="CATEGORIA" class="categoria">Lapiceros</td>
                                                     <td data-title="PRECIO" class="precio">$29.74</td>
                                                     <td data-title="INVENTARIO" class="inventario">55</td>
+                                                    <td data-title="COLOR" class="color">Negro</td>
+                                                    <td data-title="MARCA" class="marca">Faber Castell</td>
+                                                    <td data-title="PROVEEDOR" class="proveedor">ARANDA</td>
+                                                    <td data-title="DESCRIPCION" class="descripcion">Lorem ipsum dolor
+                                                        sit amet
+                                                        consectetur adipisicing elit. Assumenda natus repellendus
+                                                        laborum veniam ipsa
+                                                        hic corporis possimus sed! Odit nihil rem alias unde officiis
+                                                        quos cum error
+                                                        dicta quisquam asperiores?</td>
                                                     <td data-title="ESTADO" class="estado-stock"><span class="estado">En
                                                             stock</span></td>
                                                     <td data-title="Acciones" class="botones-table">
@@ -298,20 +373,38 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" href="#">Ver</a></li>
-                                                                <li><a class="dropdown-item" href="#">Editar</a></li>
-                                                                <li><a class="dropdown-item" href="#">Eliminar</a></li>
+                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-actualizar">Editar</a>
+                                                                </li>
+                                                                <li><a class="dropdown-item" type="button"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
+                                                                </li>
                                                             </ul>
                                                         </div>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-title="PRODUCTO" class="col-table nombre-producto"><img
-                                                            src="../resources/productos/lapicero.png" alt="">Lapicero
-                                                        Faber Castell</td>
+                                                    <td data-title="PRODUCTO" class="col-table">
+                                                        <div class="nombre-producto"><img
+                                                                src="../resources/productos/lapicero.png"
+                                                                alt="">Lapicero
+                                                            Faber Castell
+                                                        </div>
+                                                    </td>
                                                     <td data-title="CATEGORIA" class="categoria">Lapiceros</td>
                                                     <td data-title="PRECIO" class="precio">$29.74</td>
                                                     <td data-title="INVENTARIO" class="inventario">55</td>
+                                                    <td data-title="COLOR" class="color">Negro</td>
+                                                    <td data-title="MARCA" class="marca">Faber Castell</td>
+                                                    <td data-title="PROVEEDOR" class="proveedor">ARANDA</td>
+                                                    <td data-title="DESCRIPCION" class="descripcion">Lorem ipsum dolor
+                                                        sit amet
+                                                        consectetur adipisicing elit. Assumenda natus repellendus
+                                                        laborum veniam ipsa
+                                                        hic corporis possimus sed! Odit nihil rem alias unde officiis
+                                                        quos cum error
+                                                        dicta quisquam asperiores?</td>
                                                     <td data-title="ESTADO" class="estado-stock"><span class="estado">En
                                                             stock</span></td>
                                                     <td data-title="Acciones" class="botones-table">
@@ -323,20 +416,38 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" href="#">Ver</a></li>
-                                                                <li><a class="dropdown-item" href="#">Editar</a></li>
-                                                                <li><a class="dropdown-item" href="#">Eliminar</a></li>
+                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-actualizar">Editar</a>
+                                                                </li>
+                                                                <li><a class="dropdown-item" type="button"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
+                                                                </li>
                                                             </ul>
                                                         </div>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-title="PRODUCTO" class="col-table nombre-producto"><img
-                                                            src="../resources/productos/lapicero.png" alt="">Lapicero
-                                                        Faber Castell</td>
+                                                    <td data-title="PRODUCTO" class="col-table">
+                                                        <div class="nombre-producto"><img
+                                                                src="../resources/productos/lapicero.png"
+                                                                alt="">Lapicero
+                                                            Faber Castell
+                                                        </div>
+                                                    </td>
                                                     <td data-title="CATEGORIA" class="categoria">Lapiceros</td>
                                                     <td data-title="PRECIO" class="precio">$29.74</td>
                                                     <td data-title="INVENTARIO" class="inventario">55</td>
+                                                    <td data-title="COLOR" class="color">Negro</td>
+                                                    <td data-title="MARCA" class="marca">Faber Castell</td>
+                                                    <td data-title="PROVEEDOR" class="proveedor">ARANDA</td>
+                                                    <td data-title="DESCRIPCION" class="descripcion">Lorem ipsum dolor
+                                                        sit amet
+                                                        consectetur adipisicing elit. Assumenda natus repellendus
+                                                        laborum veniam ipsa
+                                                        hic corporis possimus sed! Odit nihil rem alias unde officiis
+                                                        quos cum error
+                                                        dicta quisquam asperiores?</td>
                                                     <td data-title="ESTADO" class="estado-stock"><span class="estado">En
                                                             stock</span></td>
                                                     <td data-title="Acciones" class="botones-table">
@@ -348,20 +459,38 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" href="#">Ver</a></li>
-                                                                <li><a class="dropdown-item" href="#">Editar</a></li>
-                                                                <li><a class="dropdown-item" href="#">Eliminar</a></li>
+                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-actualizar">Editar</a>
+                                                                </li>
+                                                                <li><a class="dropdown-item" type="button"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
+                                                                </li>
                                                             </ul>
                                                         </div>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-title="PRODUCTO" class="col-table nombre-producto"><img
-                                                            src="../resources/productos/lapicero.png" alt="">Lapicero
-                                                        Faber Castell</td>
+                                                    <td data-title="PRODUCTO" class="col-table">
+                                                        <div class="nombre-producto"><img
+                                                                src="../resources/productos/lapicero.png"
+                                                                alt="">Lapicero
+                                                            Faber Castell
+                                                        </div>
+                                                    </td>
                                                     <td data-title="CATEGORIA" class="categoria">Lapiceros</td>
                                                     <td data-title="PRECIO" class="precio">$29.74</td>
                                                     <td data-title="INVENTARIO" class="inventario">55</td>
+                                                    <td data-title="COLOR" class="color">Negro</td>
+                                                    <td data-title="MARCA" class="marca">Faber Castell</td>
+                                                    <td data-title="PROVEEDOR" class="proveedor">ARANDA</td>
+                                                    <td data-title="DESCRIPCION" class="descripcion">Lorem ipsum dolor
+                                                        sit amet
+                                                        consectetur adipisicing elit. Assumenda natus repellendus
+                                                        laborum veniam ipsa
+                                                        hic corporis possimus sed! Odit nihil rem alias unde officiis
+                                                        quos cum error
+                                                        dicta quisquam asperiores?</td>
                                                     <td data-title="ESTADO" class="estado-stock"><span class="estado">En
                                                             stock</span></td>
                                                     <td data-title="Acciones" class="botones-table">
@@ -373,20 +502,38 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" href="#">Ver</a></li>
-                                                                <li><a class="dropdown-item" href="#">Editar</a></li>
-                                                                <li><a class="dropdown-item" href="#">Eliminar</a></li>
+                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-actualizar">Editar</a>
+                                                                </li>
+                                                                <li><a class="dropdown-item" type="button"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
+                                                                </li>
                                                             </ul>
                                                         </div>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-title="PRODUCTO" class="col-table nombre-producto"><img
-                                                            src="../resources/productos/lapicero.png" alt="">Lapicero
-                                                        Faber Castell</td>
+                                                    <td data-title="PRODUCTO" class="col-table">
+                                                        <div class="nombre-producto"><img
+                                                                src="../resources/productos/lapicero.png"
+                                                                alt="">Lapicero
+                                                            Faber Castell
+                                                        </div>
+                                                    </td>
                                                     <td data-title="CATEGORIA" class="categoria">Lapiceros</td>
                                                     <td data-title="PRECIO" class="precio">$29.74</td>
                                                     <td data-title="INVENTARIO" class="inventario">55</td>
+                                                    <td data-title="COLOR" class="color">Negro</td>
+                                                    <td data-title="MARCA" class="marca">Faber Castell</td>
+                                                    <td data-title="PROVEEDOR" class="proveedor">ARANDA</td>
+                                                    <td data-title="DESCRIPCION" class="descripcion">Lorem ipsum dolor
+                                                        sit amet
+                                                        consectetur adipisicing elit. Assumenda natus repellendus
+                                                        laborum veniam ipsa
+                                                        hic corporis possimus sed! Odit nihil rem alias unde officiis
+                                                        quos cum error
+                                                        dicta quisquam asperiores?</td>
                                                     <td data-title="ESTADO" class="estado-stock"><span class="estado">En
                                                             stock</span></td>
                                                     <td data-title="Acciones" class="botones-table">
@@ -398,20 +545,38 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" href="#">Ver</a></li>
-                                                                <li><a class="dropdown-item" href="#">Editar</a></li>
-                                                                <li><a class="dropdown-item" href="#">Eliminar</a></li>
+                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-actualizar">Editar</a>
+                                                                </li>
+                                                                <li><a class="dropdown-item" type="button"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
+                                                                </li>
                                                             </ul>
                                                         </div>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-title="PRODUCTO" class="col-table nombre-producto"><img
-                                                            src="../resources/productos/lapicero.png" alt="">Lapicero
-                                                        Faber Castell</td>
+                                                    <td data-title="PRODUCTO" class="col-table">
+                                                        <div class="nombre-producto"><img
+                                                                src="../resources/productos/lapicero.png"
+                                                                alt="">Lapicero
+                                                            Faber Castell
+                                                        </div>
+                                                    </td>
                                                     <td data-title="CATEGORIA" class="categoria">Lapiceros</td>
                                                     <td data-title="PRECIO" class="precio">$29.74</td>
                                                     <td data-title="INVENTARIO" class="inventario">55</td>
+                                                    <td data-title="COLOR" class="color">Negro</td>
+                                                    <td data-title="MARCA" class="marca">Faber Castell</td>
+                                                    <td data-title="PROVEEDOR" class="proveedor">ARANDA</td>
+                                                    <td data-title="DESCRIPCION" class="descripcion">Lorem ipsum dolor
+                                                        sit amet
+                                                        consectetur adipisicing elit. Assumenda natus repellendus
+                                                        laborum veniam ipsa
+                                                        hic corporis possimus sed! Odit nihil rem alias unde officiis
+                                                        quos cum error
+                                                        dicta quisquam asperiores?</td>
                                                     <td data-title="ESTADO" class="estado-stock"><span class="estado">En
                                                             stock</span></td>
                                                     <td data-title="Acciones" class="botones-table">
@@ -423,20 +588,38 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" href="#">Ver</a></li>
-                                                                <li><a class="dropdown-item" href="#">Editar</a></li>
-                                                                <li><a class="dropdown-item" href="#">Eliminar</a></li>
+                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-actualizar">Editar</a>
+                                                                </li>
+                                                                <li><a class="dropdown-item" type="button"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
+                                                                </li>
                                                             </ul>
                                                         </div>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-title="PRODUCTO" class="col-table nombre-producto"><img
-                                                            src="../resources/productos/lapicero.png" alt="">Lapicero
-                                                        Faber Castell</td>
+                                                    <td data-title="PRODUCTO" class="col-table">
+                                                        <div class="nombre-producto"><img
+                                                                src="../resources/productos/lapicero.png"
+                                                                alt="">Lapicero
+                                                            Faber Castell
+                                                        </div>
+                                                    </td>
                                                     <td data-title="CATEGORIA" class="categoria">Lapiceros</td>
                                                     <td data-title="PRECIO" class="precio">$29.74</td>
                                                     <td data-title="INVENTARIO" class="inventario">55</td>
+                                                    <td data-title="COLOR" class="color">Negro</td>
+                                                    <td data-title="MARCA" class="marca">Faber Castell</td>
+                                                    <td data-title="PROVEEDOR" class="proveedor">ARANDA</td>
+                                                    <td data-title="DESCRIPCION" class="descripcion">Lorem ipsum dolor
+                                                        sit amet
+                                                        consectetur adipisicing elit. Assumenda natus repellendus
+                                                        laborum veniam ipsa
+                                                        hic corporis possimus sed! Odit nihil rem alias unde officiis
+                                                        quos cum error
+                                                        dicta quisquam asperiores?</td>
                                                     <td data-title="ESTADO" class="estado-stock"><span class="estado">En
                                                             stock</span></td>
                                                     <td data-title="Acciones" class="botones-table">
@@ -448,20 +631,38 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" href="#">Ver</a></li>
-                                                                <li><a class="dropdown-item" href="#">Editar</a></li>
-                                                                <li><a class="dropdown-item" href="#">Eliminar</a></li>
+                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-actualizar">Editar</a>
+                                                                </li>
+                                                                <li><a class="dropdown-item" type="button"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
+                                                                </li>
                                                             </ul>
                                                         </div>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-title="PRODUCTO" class="col-table nombre-producto"><img
-                                                            src="../resources/productos/lapicero.png" alt="">Lapicero
-                                                        Faber Castell</td>
+                                                    <td data-title="PRODUCTO" class="col-table">
+                                                        <div class="nombre-producto"><img
+                                                                src="../resources/productos/lapicero.png"
+                                                                alt="">Lapicero
+                                                            Faber Castell
+                                                        </div>
+                                                    </td>
                                                     <td data-title="CATEGORIA" class="categoria">Lapiceros</td>
                                                     <td data-title="PRECIO" class="precio">$29.74</td>
                                                     <td data-title="INVENTARIO" class="inventario">55</td>
+                                                    <td data-title="COLOR" class="color">Negro</td>
+                                                    <td data-title="MARCA" class="marca">Faber Castell</td>
+                                                    <td data-title="PROVEEDOR" class="proveedor">ARANDA</td>
+                                                    <td data-title="DESCRIPCION" class="descripcion">Lorem ipsum dolor
+                                                        sit amet
+                                                        consectetur adipisicing elit. Assumenda natus repellendus
+                                                        laborum veniam ipsa
+                                                        hic corporis possimus sed! Odit nihil rem alias unde officiis
+                                                        quos cum error
+                                                        dicta quisquam asperiores?</td>
                                                     <td data-title="ESTADO" class="estado-stock"><span class="estado">En
                                                             stock</span></td>
                                                     <td data-title="Acciones" class="botones-table">
@@ -473,20 +674,38 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" href="#">Ver</a></li>
-                                                                <li><a class="dropdown-item" href="#">Editar</a></li>
-                                                                <li><a class="dropdown-item" href="#">Eliminar</a></li>
+                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-actualizar">Editar</a>
+                                                                </li>
+                                                                <li><a class="dropdown-item" type="button"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
+                                                                </li>
                                                             </ul>
                                                         </div>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-title="PRODUCTO" class="col-table nombre-producto"><img
-                                                            src="../resources/productos/lapicero.png" alt="">Lapicero
-                                                        Faber Castell</td>
+                                                    <td data-title="PRODUCTO" class="col-table">
+                                                        <div class="nombre-producto"><img
+                                                                src="../resources/productos/lapicero.png"
+                                                                alt="">Lapicero
+                                                            Faber Castell
+                                                        </div>
+                                                    </td>
                                                     <td data-title="CATEGORIA" class="categoria">Lapiceros</td>
                                                     <td data-title="PRECIO" class="precio">$29.74</td>
                                                     <td data-title="INVENTARIO" class="inventario">55</td>
+                                                    <td data-title="COLOR" class="color">Negro</td>
+                                                    <td data-title="MARCA" class="marca">Faber Castell</td>
+                                                    <td data-title="PROVEEDOR" class="proveedor">ARANDA</td>
+                                                    <td data-title="DESCRIPCION" class="descripcion">Lorem ipsum dolor
+                                                        sit amet
+                                                        consectetur adipisicing elit. Assumenda natus repellendus
+                                                        laborum veniam ipsa
+                                                        hic corporis possimus sed! Odit nihil rem alias unde officiis
+                                                        quos cum error
+                                                        dicta quisquam asperiores?</td>
                                                     <td data-title="ESTADO" class="estado-stock"><span class="estado">En
                                                             stock</span></td>
                                                     <td data-title="Acciones" class="botones-table">
@@ -498,45 +717,38 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" href="#">Ver</a></li>
-                                                                <li><a class="dropdown-item" href="#">Editar</a></li>
-                                                                <li><a class="dropdown-item" href="#">Eliminar</a></li>
+                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-actualizar">Editar</a>
+                                                                </li>
+                                                                <li><a class="dropdown-item" type="button"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
+                                                                </li>
                                                             </ul>
                                                         </div>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-title="PRODUCTO" class="col-table nombre-producto"><img
-                                                            src="../resources/productos/lapicero.png" alt="">Lapicero
-                                                        Faber Castell</td>
-                                                    <td data-title="CATEGORIA" class="categoria">Lapiceros</td>
-                                                    <td data-title="PRECIO" class="precio">$29.74</td>
-                                                    <td data-title="INVENTARIO" class="inventario">55</td>
-                                                    <td data-title="ESTADO" class="estado-stock"><span class="estado">En
-                                                            stock</span></td>
-                                                    <td data-title="Acciones" class="botones-table">
-                                                        <div class="dropdown">
-                                                            <button class=" btn-acciones dropdown-toggle" type="button"
-                                                                id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                                                                aria-expanded="false">
-                                                                Acciones
-                                                            </button>
-                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
-                                                                aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" href="#">Ver</a></li>
-                                                                <li><a class="dropdown-item" href="#">Editar</a></li>
-                                                                <li><a class="dropdown-item" href="#">Eliminar</a></li>
-                                                            </ul>
+                                                    <td data-title="PRODUCTO" class="col-table">
+                                                        <div class="nombre-producto"><img
+                                                                src="../resources/productos/lapicero.png"
+                                                                alt="">Lapicero
+                                                            Faber Castell
                                                         </div>
                                                     </td>
-                                                </tr>
-                                                <tr>
-                                                    <td data-title="PRODUCTO" class="col-table nombre-producto"><img
-                                                            src="../resources/productos/lapicero.png" alt="">Lapicero
-                                                        Faber Castell</td>
                                                     <td data-title="CATEGORIA" class="categoria">Lapiceros</td>
                                                     <td data-title="PRECIO" class="precio">$29.74</td>
                                                     <td data-title="INVENTARIO" class="inventario">55</td>
+                                                    <td data-title="COLOR" class="color">Negro</td>
+                                                    <td data-title="MARCA" class="marca">Faber Castell</td>
+                                                    <td data-title="PROVEEDOR" class="proveedor">ARANDA</td>
+                                                    <td data-title="DESCRIPCION" class="descripcion">Lorem ipsum dolor
+                                                        sit amet
+                                                        consectetur adipisicing elit. Assumenda natus repellendus
+                                                        laborum veniam ipsa
+                                                        hic corporis possimus sed! Odit nihil rem alias unde officiis
+                                                        quos cum error
+                                                        dicta quisquam asperiores?</td>
                                                     <td data-title="ESTADO" class="estado-stock"><span class="estado">En
                                                             stock</span></td>
                                                     <td data-title="Acciones" class="botones-table">
@@ -548,9 +760,13 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" href="#">Ver</a></li>
-                                                                <li><a class="dropdown-item" href="#">Editar</a></li>
-                                                                <li><a class="dropdown-item" href="#">Eliminar</a></li>
+                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-actualizar">Editar</a>
+                                                                </li>
+                                                                <li><a class="dropdown-item" type="button"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
+                                                                </li>
                                                             </ul>
                                                         </div>
                                                     </td>
@@ -558,6 +774,13 @@
                                             </tbody>
                                         </table>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3 ">
+                                <div class="d-flex justify-content-center">
+                                    <label>Mostrar todos los campos
+                                        <input type="checkbox" id="checkTabla" >
+                                    </label>
                                 </div>
                             </div>
                         </div>
@@ -660,7 +883,115 @@
         </div>
     </div>
     <!-- FIN MODAL AGREGAR -->
-
+    <!-- INICIO MODAL ACTUALIZAR -->
+    <div class="modal modal-agregar modal-actualizar fade" id="modal-actualizar" tabindex="-1"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row agregar-content">
+                            <div class="col">
+                                <div class="row mt-3">
+                                    <input class="form-control form-control-lg nombre-producto" type="text"
+                                        placeholder="Ingresar nombre del producto"
+                                        aria-label=".form-control-lg example">
+                                    <textarea class="form-control" placeholder="Ingresar descripción del producto"
+                                        id="exampleFormControlTextarea1" rows="2"></textarea>
+                                </div>
+                                <div class="row">
+                                    <div class="col col-6 mt-3">
+                                        <label for="cmb-subcategoría">Subcategoría</label>
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option selected disabled>Seleccione una opción</option>
+                                            <option value="1">Lapiceros normales</option>
+                                            <option value="2">Lápices redondos</option>
+                                            <option value="3">Plumones delgados</option>
+                                        </select>
+                                    </div>
+                                    <div class="col col-6 mt-3">
+                                        <label for="cmb-proveedor">Proveedor</label>
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option selected disabled>Seleccione una opción</option>
+                                            <option value="1">ACOSA</option>
+                                            <option value="2">ARANDA</option>
+                                            <option value="3">COPLASA</option>
+                                        </select>
+                                    </div>
+                                    <div class="col col-6 mt-3">
+                                        <label for="cmb-marca">Marca</label>
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option selected disabled>Seleccione una opción</option>
+                                            <option value="1">Studio</option>
+                                            <option value="2">Big</option>
+                                            <option value="3">Norma</option>
+                                        </select>
+                                    </div>
+                                    <div class="col col-6 mt-3">
+                                        <label for="cmb-precio">Precio</label>
+                                        <input class="form-control" type="text" placeholder=""
+                                            aria-label=".form-control example">
+                                    </div>
+                                    <div class="col col-6 mt-3">
+                                        <label for="">Color</label>
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option selected disabled>Seleccione una opción</option>
+                                            <option value="1">Rojo</option>
+                                            <option value="2">Verde</option>
+                                            <option value="3">Azul</option>
+                                        </select>
+                                    </div>
+                                    <div class="col col-6 mt-3">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <label for="">Cantidad actual</label>
+                                                <div class="stock-container">
+                                                    <div class="col col-12">
+                                                        <input type="text" class="form-control" id="stock-actual"
+                                                            value="" placeholder="10" disabled>
+                                                    </div>
+                                                    <div class="col col-12 px-0 mt-2">
+                                                        <div class="row input-stock mb-2">
+                                                            <div class="col col-6 mx-0">
+                                                                <input type="text" class="form-control" id="stock-nuevo"
+                                                                    value="" required>
+                                                            </div>
+                                                            <div
+                                                                class="col col-6 d-flex justify-content-evenly  col-btn-stock">
+                                                                <button class="btn btn-stock btn-main " type="button"><i
+                                                                        class="bi bi-dash"></i></button>
+                                                                <button class="btn btn-stock btn-main" type="button"><i
+                                                                        class="bi bi-plus"></i></button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col col-9 mx-auto my-5 color-producto text-center">
+                                        <label class="">Añadir imagen del producto</label>
+                                        <div class="drop-container">
+                                            <i class="bi bi-cloud-arrow-up-fill"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-between">
+                    <button class="btn btn-cancel btn-second" type="button" data-bs-target="" data-bs-toggle="modal"
+                        data-bs-dismiss="modal">Cancelar</button>
+                    <button class="btn btn-guardar" type="button" data-bs-target="#modal-agregar2"
+                        data-bs-toggle="modal" data-bs-dismiss="modal">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FIN MODAL ACTUALIZAR -->
     <!-- INICIO MODAL DELETE -->
     <div class="modal modal-eliminar fade" id="modal-eliminar" aria-hidden="true"
         aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
@@ -704,6 +1035,26 @@
         $(document).ready(function () {
             $('#example').DataTable({
                 "info": false,
+                "columnDefs": [
+                    {
+                        "targets": [4],
+                        "visible": false,
+                        "searchable": false
+                    },
+                    {
+                        "targets": [5],
+                        "visible": false
+                    },
+                    {
+                        "targets": [6],
+                        "visible": false
+                    }
+                    ,
+                    {
+                        "targets": [7],
+                        "visible": false
+                    }
+                ],
                 "searching": false,
                 "dom":
                     "<'row'<'col-sm-12'tr>>" +
@@ -715,9 +1066,13 @@
                         "previous": '<i class="bi bi-arrow-left-short"></i>'
                     }
                 },
-                "lengthMenu": [[10, 15, 10, -1], [10, 15, 20, "Todos"]]
+                "lengthMenu": [[10, 15, 20, -1], [10, 15, 20, "Todos"]]
             });
+            $('#checkTabla').change(function () {
+                $('#example').DataTable().columns([4, 5, 6, 7]).visible($(this).is(':checked'))
+            })
         });
+
     </script>
 </body>
 
