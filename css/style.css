@@ -414,9 +414,34 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
   font-weight: 700;
 }
 .estado{
+  font-size: 14px;
   color: #50CD89;
   background-color: #E8FFF3;
-  padding: 10px 10px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  white-space: nowrap;
+}
+.estado2{
+  font-size: 14px;
+  color: #CDC050;
+  background-color: #FDFFE8;
+  padding: 10px 3px;
+  border-radius: 8px;
+  white-space: nowrap;
+}
+.estado3{
+  font-size: 14px;
+  color: #CD5050;
+  background-color: #FFE8E8;
+  padding: 10px 3px;
+  border-radius: 8px;
+  white-space: nowrap;
+}
+.estado4{
+  font-size: 12.5px;
+  color: #363636;
+  background-color: var(--marfil);
+  padding: 10px 4px;
   border-radius: 8px;
   white-space: nowrap;
 }
@@ -658,3 +683,46 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
     width: 48% !important;
   }
 }
+
+/*PEDIDOS CONSUMIDOR INICIO*/
+#calendar-range{
+  border: none;
+  text-align: center;
+  color: var(--grisTitulos);
+  font-weight: 500;
+  background-color: var(--marfil);
+  border-radius: 8px;
+}
+#calendar-range::placeholder{
+  color: var(--grisTitulos);
+  font-weight: 500;
+}
+.pedidos-consumidor table td{
+  text-align: center;
+}
+.pedidos-consumidor .botones-table{
+  width: 15%;
+  text-align: center;
+}
+.pedidos-consumidor .fecha{
+  white-space: nowrap;
+}
+.pedidos-consumidor .npedido{
+ 
+}
+@media (max-width:992px){
+  .col-header-pre-table{
+    width: 100%;
+    margin-bottom: 15px!important;
+    justify-content: space-between!important;
+    flex-wrap: nowrap;
+  }
+  .buscador{
+    width: 100% !important;
+  }
+  #calendar-range{
+    width: 75%;
+  }
+}
+
+/*PEDIDOS CONSUMIDOR FIN*/
