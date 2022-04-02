@@ -726,3 +726,89 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
 }
 
 /*PEDIDOS CONSUMIDOR FIN*/
+
+/*********************LOGIN INICIO******************/
+@font-face {
+   font-family: 'T-login';
+   src: url('../resources/login-crear-recu/Sunday.ttf') format("truetype");
+   font-weight: normal;
+   font-style: normal;
+}
+
+.con-lo{
+  padding-top: 80px;
+}
+
+.login-fondo{
+  background-image: url(../resources/login-crear-recu/fondob.png) !important;
+  background-size: cover;
+  height: 100vh;
+  object-fit: cover;
+}
+
+.izquierdo-lo{
+  background-image: url(../resources/login-crear-recu/fondol.png);
+  background-size: cover;
+  height: 500px;
+}
+
+.derecho-lo{
+  background-color: white;
+  height: 500px;
+  
+}
+
+.log-l{
+  width: 260px;
+}
+
+.titu-l{
+  font-family: 'T-login';
+  font-size: 30px;
+  color:var(--azulOscuro);
+  text-align: center;
+  padding-top: 85px;
+}
+
+.derecho-lo input{
+  border-color: var(--azulMain);
+  border-radius: 18px;
+  font-size: 14px;
+}
+
+.derecho-lo input::placeholder{
+  color: var(--grisTitulos);
+}
+.modal-agregar label{
+  font-weight: 900;
+  margin: 0 0 5px 5px;
+}
+
+.l-inp{
+  padding-top: 15px;
+}
+
+.h5-lo{
+  text-align: end;
+  font-weight: 900;
+  font-size: 13px;
+  color: var(--azulMain);
+}
+
+.Aceptar{
+  border: none;
+  width: 100%;
+  font-size: 20px;
+  color: white;
+  background-color: #007EB0;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 18px;
+  }
+/**********************LOGIN FIN********************/
+@media (max-width: 767.98px) {
+  .log-l{
+    width: 200px;
+  }
+}
+
