@@ -12,6 +12,7 @@
   --blanco: #fff;
   --marfil: #F5F8FA;
   --grisTitulos:#A4ABC2;
+  --azulModal: #9CDEF9;
 }
 /* CUSTOM SCROLL BAR */
 
@@ -677,6 +678,7 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
 .modal-eliminar .modal-footer{
   border: none;
 }
+
 /*RESPONSIVE*/
 @media (min-width: 992px) {
   .chart-dashboard{
@@ -726,3 +728,138 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
 }
 
 /*PEDIDOS CONSUMIDOR FIN*/
+
+/*MODAL AGREGAR SUBCATEGORIA*/
+.addname{
+  border: none!important;
+  font-size: 30px!important;
+}
+
+.modal select{
+  border-radius: 15px;
+  border-color: var(--azulModal);
+}
+
+.modal .imagenmodal{
+  border-width: 1px;
+  border-color: var(--azulModal);
+  border-style: solid;
+  border-radius: 15px;
+}
+
+.modal .imagentext a{
+  color: var(--azulMain);
+}
+
+.modal .imagentext a:hover{
+  color: var(--azulOscuro);
+}
+
+.image{
+  width: 100%;
+}
+
+.modal b{
+  font-size: 75%;
+}
+
+.modal-footer .btn-continuaradd{
+  color: var(--blanco);
+  background-color: var(--azulMain);
+  border-radius: 20px;
+}
+
+.modal-footer .btn-continuaradd:hover{
+  color: var(--azulMain);
+  background-color: var(--azulSecond);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.modal-footer .btn-canceladd{
+  color: var(--azulMain);
+  background-color: transparent;
+  border: 1px;
+  border-style: solid;
+  border-radius: 20px;
+}
+
+.modal-footer .btn-canceladd:hover{
+  color: var(--azulSecond);
+  background-color: var(--azulOscuro);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.modal-agregarSub .modal-header{
+  border: none;
+}
+
+.modal-agregarSub .modal-footer{
+  border: none;
+}
+/*MODAL AGREGAR SUBCATEGORIA FIN*/
+
+/* MARCA_PROVEEDOR INICIO */
+.content-prov{
+  padding: 1px;
+  margin-left: -60px !important;
+}
+
+.content-marca{
+  padding: 1px;
+  margin-right: -60px !important;
+}
+
+.proveedor{
+  min-height: 901px;
+}
+
+.marca{
+  min-height: 902px;
+}
+
+.tituloMP{
+  font-size: 28px;
+}
+
+tbody .imgMP{
+  width: 41.5px;
+  height: 19px;
+}
+
+.btn-filtroMP{
+  color: var(--azulMain);
+  font-weight: 500;
+  font-size: 16px;
+  background-color: var(--azulSecond);
+  border: none;
+  border-radius: 8px;
+  padding: 0 15px;
+  transition: all 0.3s ease;
+}
+
+.btn-filtroMP:hover{
+  color: var(--marfil);
+  background-color: var(--azulMain);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.btn-añadirMP{
+  width: 160px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: var(--azulMain);
+  color: var(--blanco);
+  border: none;
+  padding-right: 5px;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-añadirMP:hover{
+  color: var(--azulMain);
+  background-color: var(--azulSecond);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+/* MARCA_PROVEEDOR FIN */
