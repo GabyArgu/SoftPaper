@@ -672,11 +672,28 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
   border-radius: 15px;
 }
 
-.modal-footer .btn-continuar{
-  border-radius: 15px;
-}
 .modal-eliminar .modal-footer{
   border: none;
+}
+
+.modal-footer .btn-continuar{
+  color: var(--azulSecond);
+  background-color: var(--azulMain);
+}
+.modal-footer .btn-continuar:hover{
+  color: var(--azulMain);
+  background-color: var(--azulSecond);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.modal-footer .btn-cancel{
+  color: var(--azulMain);
+  background-color: var(--azulSecond);
+}
+.modal-footer .btn-cancel:hover{
+  color: var(--azulSecond);
+  background-color: var(--azulMain);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 /*RESPONSIVE*/
@@ -736,6 +753,11 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
 }
 
 .modal select{
+  border-radius: 15px;
+  border-color: var(--azulModal);
+}
+
+.modal .inputP{
   border-radius: 15px;
   border-color: var(--azulModal);
 }
@@ -862,4 +884,29 @@ tbody .imgMP{
   background-color: var(--azulSecond);
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
+
+#modal-agregarP .modal-header, #modal-agregarP .modal-footer{
+  border: none;
+}
+
+#modal-agregarM .modal-header, #modal-agregarM .modal-footer{
+  border: none;
+}
+
 /* MARCA_PROVEEDOR FIN */
+
+/* RESPONSIVE */
+
+@media (max-width:992px){
+  #buscar-producto-mp::placeholder{
+    font-size: 100%;
+  }
+  
+  .content-prov{
+    margin-left: 0px !important;
+  }
+
+  .content-marca{
+    margin-right: 0px !important;
+  }
+}
