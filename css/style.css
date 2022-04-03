@@ -770,18 +770,19 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
   padding-top: 85px;
 }
 
-.derecho-lo input{
+.login-fondo input{
   border-color: var(--azulMain);
   border-radius: 18px;
   font-size: 14px;
 }
 
-.derecho-lo input::placeholder{
+.login-fondo input::placeholder{
   color: var(--grisTitulos);
 }
-.modal-agregar label{
-  font-weight: 900;
-  margin: 0 0 5px 5px;
+
+.login-fondo label{
+  font-weight: 600;
+  margin: 0 0 10px 10px;
 }
 
 .l-inp{
@@ -805,10 +806,91 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
   padding-bottom: 5px;
   border-radius: 18px;
   }
-/**********************LOGIN FIN********************/
+  
 @media (max-width: 767.98px) {
   .log-l{
     width: 200px;
   }
 }
 
+/**********************LOGIN FIN********************/
+
+/*********************RECU INICIO******************/
+
+.p-lo{
+  text-align: center;
+  font-weight: 200;
+  font-size: 15px;
+  color: var(--azulMain);
+}
+
+.R-inp{
+  padding-top: 5px;
+  padding-bottom: 7px;
+}
+
+.izquierdo-Re{
+  background-image: url(../resources/login-crear-recu/fondol.png);
+  background-size: cover;
+  height: 470px;
+}
+
+.derecho-Re{
+  background-color: white;
+  height: 470px;
+}
+
+.con-Re{
+  padding-top: 100px;
+}
+
+/**********************RECU FIN********************/
+
+/**********************REGISTRAR INICIO********************/
+
+.reg-fondo{
+  background-image: url(../resources/login-crear-recu/fondob.png) !important;
+  background-size: cover;
+  object-fit: cover;
+}
+
+.titu-R{
+  font-family: 'T-login';
+  font-size: 30px;
+  color:var(--azulOscuro);
+  text-align: center;
+  padding-top: 57px;
+}
+
+.con-rg{
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.izquierdo-Rg{
+  background-image: url(../resources/login-crear-recu/fondol.png);
+  background-size: cover;
+  height: 730px;
+}
+
+.derecho-Rg{
+  background-color: white;
+  height: 730px; 
+}
+
+.reg-fondo input{
+  border-color: var(--azulMain);
+  border-radius: 18px;
+  font-size: 14px;
+}
+
+.reg-fondo input::placeholder{
+  color: var(--grisTitulos);
+}
+
+.reg-fondo label{
+  font-weight: 600;
+  margin: 0 0 10px 10px;
+}
+
+/**********************REGISTRAR FIN********************/
