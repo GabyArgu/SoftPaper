@@ -703,6 +703,53 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
   }
 }
 /*AÑADIR VENTA(DETALLE) INICIO*/
+.detalle-venta .content-card{
+  width: 65%;
+}
+.detalle-venta .content-card:last-child{
+  width: 30%;
+}
+.content-detalle{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.detalle-venta .productos-detalle img{
+  width: 50px;
+  height: 50px;
+}
+.info-producto h5{
+  font-size: 14px;
+  font-weight: 500;
+}
+.productos-detalle .controls-producto{
+  width: 40%;
+}
+.productos-detalle .controls-producto .input-group{
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+}
+.productos-detalle .controls-producto .input-group .btn{
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-top-left-radius:unset !important;
+  border-bottom-left-radius:unset !important;
+  border-radius: 50%!important;
+  font-size: 18px;
+  transform: scale(0.8);
+}
+.productos-detalle .controls-producto .input-group input{
+  flex: none;
+  height: 40px;
+  width: 40px!important;
+  border: none!important;
+  padding: 0 0 !important;
+}
+.productos-detalle .producto-card::before{ /*Pendiente boton de quitar*/
+  content: '';
+}
 
 /*AÑADIR VENTA(DETALLE) FIN*/
 

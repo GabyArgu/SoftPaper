@@ -39,3 +39,6 @@ $(document).ready(function () {
         $('#example').DataTable().columns([1, 5, 6]).visible($(this).is(':checked'))
     })
 });
+
+var elemento = document.getElementsByClassName("btn-decrement");
+elemento.classList.add('btn-main');
