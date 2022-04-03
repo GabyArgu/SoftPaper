@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- BOOTSTRAP ICONS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+
+    <!-- DATATABLES -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" />
+
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoftPaper</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <!-- INICIA NAVBAR -->
+        <header>
+            <nav class="nav container-xxl" role='navigation'>
+                <div class="nav-logo">
+                    <a class="navbar-brand nav-item" href="#">
+                        <img src="../resources/logo/logo-default.png" alt="" class="d-inline-block align-text-top logo">
+                    </a>
+                    <a data-page="home" class="active nav-item menu-item" href="#">Inventario</a>
+                    <a data-page="about" href="#" class="nav-item menu-item">Ventas</a>
+                    <a data-page="clients" href="#" class="nav-item menu-item">Clientes</a>
+                    <a data-page="contact" href="#" class="nav-item menu-item">Empleados</a>
+                </div>
+                <div class="nav-options d-flex">
+                    <a href="" class="nav-item"><i class="bi bi-search"></i></a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <img src="../resources/avatares/a2.png" alt="" class="d-inline-block align-text-top user">
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end animate slideIn" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+                </div>
+            </nav>
+        </header>
+        <!-- FIN NAVBAR-->
+        <main class="container-xxl">
+            <div class="header-content my-5">
+                <h1>Proveedores y marcas</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                        <li class="breadcrumb-item"><a href="">Inventario</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"><a href="">Proveedores y marcas</a></li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="content content-productos">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="content content-prov">
+                                <div class="container content-card">
+                                    <div class="row">
+                                        <div class="col proveedor">
+                                            <div class="row">
+                                                <div class="col mt-3"><b class="tituloMP">Proveedores</b></div>
+                                            </div>
+                                            <div class="row my-4">
+                                                <div class="col col-lg-6 d-flex justify-content-start">
+                                                    <div class="buscador">
+                                                        <div class="row">
+                                                            <div class="col-1">
+                                                                <i class="bi bi-search px-2"></i>
+                                                            </div>
+                                                            <div class="col-9">
+                                                                <form class="d-none d-sm-inline-block me-auto ">
+                                                                    <input id="buscar-producto-mp"
+                                                                        class=" form-control form-control-lite barra-buscar"
+                                                                        type="text" placeholder="Buscar proveedor">
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <button class="btn-filtroMP" type="button"><i
+                                                            class="bi bi-funnel-fill"></i></button>
+                                                </div>
+                                                <div class="col col-lg-6 d-flex justify-content-end">
+                                                    <button class="btn-añadirMP" type="button" data-bs-toggle="modal"
+                                                        data-bs-target="#modal-agregarP"><i
+                                                            class="bi bi-plus"></i>Añadir
+                                                        proveedor</button>
+                                                </div>
+                                            </div>
+                                            <div class="row my-3">
+                                                <div class="col">
+                                                    <div class="table-responsive mt-3 scroll" id="no-more-tables">
+                                                        <table class="table table-hover" id="proveedor">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="th-1">Proveedor</th>
+                                                                    <th>Teléfono</th>
+                                                                    <th>Estado</th>
+                                                                    <th>Acciones</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td data-title="Marca" class="col-table "><img
+                                                                            src="../resources/marca_prov/vidri.png"
+                                                                            class="imgMP me-3" alt="">Vidri</td>
+                                                                    <td data-title="telefono" class="proveedores">
+                                                                        7777-7777</td>
+                                                                    <td data-title="estado" class="estado-stock"><span
+                                                                            class="estado">Activo</span></td>
+                                                                    <td data-title="Acciones" class="botones-table">
+                                                                        <div class="dropdown">
+                                                                            <button
+                                                                                class=" btn-acciones dropdown-toggle"
+                                                                                type="button" id="dropdownMenuButton1"
+                                                                                data-bs-toggle="dropdown"
+                                                                                aria-expanded="false">
+                                                                                Acciones
+                                                                            </button>
+                                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                                                aria-labelledby="dropdownMenuButton1">
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Editar</a></li>
+                                                                                <li><a class="dropdown-item" href="#"
+                                                                                        data-bs-toggle="modal"
+                                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td data-title="Marca" class="col-table "><img
+                                                                            src="../resources/marca_prov/vidri.png"
+                                                                            class="imgMP me-3" alt="">Vidri</td>
+                                                                    <td data-title="telefono" class="proveedores">
+                                                                        7777-7777</td>
+                                                                    <td data-title="estado" class="estado-stock"><span
+                                                                            class="estado">Activo</span></td>
+                                                                    <td data-title="Acciones" class="botones-table">
+                                                                        <div class="dropdown">
+                                                                            <button
+                                                                                class=" btn-acciones dropdown-toggle"
+                                                                                type="button" id="dropdownMenuButton1"
+                                                                                data-bs-toggle="dropdown"
+                                                                                aria-expanded="false">
+                                                                                Acciones
+                                                                            </button>
+                                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                                                aria-labelledby="dropdownMenuButton1">
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Editar</a></li>
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Eliminar</a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td data-title="Marca" class="col-table "><img
+                                                                            src="../resources/marca_prov/vidri.png"
+                                                                            class="imgMP me-3" alt="">Vidri</td>
+                                                                    <td data-title="telefono" class="proveedores">
+                                                                        7777-7777</td>
+                                                                    <td data-title="estado" class="estado-stock"><span
+                                                                            class="estado">Activo</span></td>
+                                                                    <td data-title="Acciones" class="botones-table">
+                                                                        <div class="dropdown">
+                                                                            <button
+                                                                                class=" btn-acciones dropdown-toggle"
+                                                                                type="button" id="dropdownMenuButton1"
+                                                                                data-bs-toggle="dropdown"
+                                                                                aria-expanded="false">
+                                                                                Acciones
+                                                                            </button>
+                                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                                                aria-labelledby="dropdownMenuButton1">
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Editar</a></li>
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Eliminar</a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td data-title="Marca" class="col-table "><img
+                                                                            src="../resources/marca_prov/vidri.png"
+                                                                            class="imgMP me-3" alt="">Vidri</td>
+                                                                    <td data-title="telefono" class="proveedores">
+                                                                        7777-7777</td>
+                                                                    <td data-title="estado" class="estado-stock"><span
+                                                                            class="estado">Activo</span></td>
+                                                                    <td data-title="Acciones" class="botones-table">
+                                                                        <div class="dropdown">
+                                                                            <button
+                                                                                class=" btn-acciones dropdown-toggle"
+                                                                                type="button" id="dropdownMenuButton1"
+                                                                                data-bs-toggle="dropdown"
+                                                                                aria-expanded="false">
+                                                                                Acciones
+                                                                            </button>
+                                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                                                aria-labelledby="dropdownMenuButton1">
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Editar</a></li>
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Eliminar</a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td data-title="Marca" class="col-table "><img
+                                                                            src="../resources/marca_prov/vidri.png"
+                                                                            class="imgMP me-3" alt="">Vidri</td>
+                                                                    <td data-title="telefono" class="proveedores">
+                                                                        7777-7777</td>
+                                                                    <td data-title="estado" class="estado-stock"><span
+                                                                            class="estado">Activo</span></td>
+                                                                    <td data-title="Acciones" class="botones-table">
+                                                                        <div class="dropdown">
+                                                                            <button
+                                                                                class=" btn-acciones dropdown-toggle"
+                                                                                type="button" id="dropdownMenuButton1"
+                                                                                data-bs-toggle="dropdown"
+                                                                                aria-expanded="false">
+                                                                                Acciones
+                                                                            </button>
+                                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                                                aria-labelledby="dropdownMenuButton1">
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Editar</a></li>
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Eliminar</a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td data-title="Marca" class="col-table "><img
+                                                                            src="../resources/marca_prov/vidri.png"
+                                                                            class="imgMP me-3" alt="">Vidri</td>
+                                                                    <td data-title="telefono" class="proveedores">
+                                                                        7777-7777</td>
+                                                                    <td data-title="estado" class="estado-stock"><span
+                                                                            class="estado">Activo</span></td>
+                                                                    <td data-title="Acciones" class="botones-table">
+                                                                        <div class="dropdown">
+                                                                            <button
+                                                                                class=" btn-acciones dropdown-toggle"
+                                                                                type="button" id="dropdownMenuButton1"
+                                                                                data-bs-toggle="dropdown"
+                                                                                aria-expanded="false">
+                                                                                Acciones
+                                                                            </button>
+                                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                                                aria-labelledby="dropdownMenuButton1">
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Editar</a></li>
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Eliminar</a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td data-title="Marca" class="col-table "><img
+                                                                            src="../resources/marca_prov/vidri.png"
+                                                                            class="imgMP me-3" alt="">Vidri</td>
+                                                                    <td data-title="telefono" class="proveedores">
+                                                                        7777-7777</td>
+                                                                    <td data-title="estado" class="estado-stock"><span
+                                                                            class="estado">Activo</span></td>
+                                                                    <td data-title="Acciones" class="botones-table">
+                                                                        <div class="dropdown">
+                                                                            <button
+                                                                                class=" btn-acciones dropdown-toggle"
+                                                                                type="button" id="dropdownMenuButton1"
+                                                                                data-bs-toggle="dropdown"
+                                                                                aria-expanded="false">
+                                                                                Acciones
+                                                                            </button>
+                                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                                                aria-labelledby="dropdownMenuButton1">
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Editar</a></li>
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Eliminar</a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td data-title="Marca" class="col-table "><img
+                                                                            src="../resources/marca_prov/vidri.png"
+                                                                            class="imgMP me-3" alt="">Vidri</td>
+                                                                    <td data-title="telefono" class="proveedores">
+                                                                        7777-7777</td>
+                                                                    <td data-title="estado" class="estado-stock"><span
+                                                                            class="estado">Activo</span></td>
+                                                                    <td data-title="Acciones" class="botones-table">
+                                                                        <div class="dropdown">
+                                                                            <button
+                                                                                class=" btn-acciones dropdown-toggle"
+                                                                                type="button" id="dropdownMenuButton1"
+                                                                                data-bs-toggle="dropdown"
+                                                                                aria-expanded="false">
+                                                                                Acciones
+                                                                            </button>
+                                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                                                aria-labelledby="dropdownMenuButton1">
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Editar</a></li>
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Eliminar</a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td data-title="Marca" class="col-table "><img
+                                                                            src="../resources/marca_prov/vidri.png"
+                                                                            class="imgMP me-3" alt="">Vidri</td>
+                                                                    <td data-title="telefono" class="proveedores">
+                                                                        7777-7777</td>
+                                                                    <td data-title="estado" class="estado-stock"><span
+                                                                            class="estado">Activo</span></td>
+                                                                    <td data-title="Acciones" class="botones-table">
+                                                                        <div class="dropdown">
+                                                                            <button
+                                                                                class=" btn-acciones dropdown-toggle"
+                                                                                type="button" id="dropdownMenuButton1"
+                                                                                data-bs-toggle="dropdown"
+                                                                                aria-expanded="false">
+                                                                                Acciones
+                                                                            </button>
+                                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                                                aria-labelledby="dropdownMenuButton1">
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Editar</a></li>
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Eliminar</a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td data-title="Marca" class="col-table "><img
+                                                                            src="../resources/marca_prov/vidri.png"
+                                                                            class="imgMP me-3" alt="">Vidri</td>
+                                                                    <td data-title="telefono" class="proveedores">
+                                                                        7777-7777</td>
+                                                                    <td data-title="estado" class="estado-stock"><span
+                                                                            class="estado">Activo</span></td>
+                                                                    <td data-title="Acciones" class="botones-table">
+                                                                        <div class="dropdown">
+                                                                            <button
+                                                                                class=" btn-acciones dropdown-toggle"
+                                                                                type="button" id="dropdownMenuButton1"
+                                                                                data-bs-toggle="dropdown"
+                                                                                aria-expanded="false">
+                                                                                Acciones
+                                                                            </button>
+                                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                                                aria-labelledby="dropdownMenuButton1">
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Editar</a></li>
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Eliminar</a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td data-title="Marca" class="col-table "><img
+                                                                            src="../resources/marca_prov/vidri.png"
+                                                                            class="imgMP me-3" alt="">Vidri</td>
+                                                                    <td data-title="telefono" class="proveedores">
+                                                                        7777-7777</td>
+                                                                    <td data-title="estado" class="estado-stock"><span
+                                                                            class="estado">Activo</span></td>
+                                                                    <td data-title="Acciones" class="botones-table">
+                                                                        <div class="dropdown">
+                                                                            <button
+                                                                                class=" btn-acciones dropdown-toggle"
+                                                                                type="button" id="dropdownMenuButton1"
+                                                                                data-bs-toggle="dropdown"
+                                                                                aria-expanded="false">
+                                                                                Acciones
+                                                                            </button>
+                                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                                                aria-labelledby="dropdownMenuButton1">
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Editar</a></li>
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Eliminar</a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td data-title="Marca" class="col-table "><img
+                                                                            src="../resources/marca_prov/vidri.png"
+                                                                            class="imgMP me-3" alt="">Vidri</td>
+                                                                    <td data-title="telefono" class="proveedores">
+                                                                        7777-7777</td>
+                                                                    <td data-title="estado" class="estado-stock"><span
+                                                                            class="estado">Activo</span></td>
+                                                                    <td data-title="Acciones" class="botones-table">
+                                                                        <div class="dropdown">
+                                                                            <button
+                                                                                class=" btn-acciones dropdown-toggle"
+                                                                                type="button" id="dropdownMenuButton1"
+                                                                                data-bs-toggle="dropdown"
+                                                                                aria-expanded="false">
+                                                                                Acciones
+                                                                            </button>
+                                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                                                aria-labelledby="dropdownMenuButton1">
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Editar</a></li>
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Eliminar</a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td data-title="Marca" class="col-table "><img
+                                                                            src="../resources/marca_prov/vidri.png"
+                                                                            class="imgMP me-3" alt="">Vidri</td>
+                                                                    <td data-title="telefono" class="proveedores">
+                                                                        7777-7777</td>
+                                                                    <td data-title="estado" class="estado-stock"><span
+                                                                            class="estado">Activo</span></td>
+                                                                    <td data-title="Acciones" class="botones-table">
+                                                                        <div class="dropdown">
+                                                                            <button
+                                                                                class=" btn-acciones dropdown-toggle"
+                                                                                type="button" id="dropdownMenuButton1"
+                                                                                data-bs-toggle="dropdown"
+                                                                                aria-expanded="false">
+                                                                                Acciones
+                                                                            </button>
+                                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                                                aria-labelledby="dropdownMenuButton1">
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Editar</a></li>
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Eliminar</a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td data-title="Marca" class="col-table "><img
+                                                                            src="../resources/marca_prov/vidri.png"
+                                                                            class="imgMP me-3" alt="">Vidri</td>
+                                                                    <td data-title="telefono" class="proveedores">
+                                                                        7777-7777</td>
+                                                                    <td data-title="estado" class="estado-stock"><span
+                                                                            class="estado">Activo</span></td>
+                                                                    <td data-title="Acciones" class="botones-table">
+                                                                        <div class="dropdown">
+                                                                            <button
+                                                                                class=" btn-acciones dropdown-toggle"
+                                                                                type="button" id="dropdownMenuButton1"
+                                                                                data-bs-toggle="dropdown"
+                                                                                aria-expanded="false">
+                                                                                Acciones
+                                                                            </button>
+                                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                                                aria-labelledby="dropdownMenuButton1">
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Editar</a></li>
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Eliminar</a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="content content-marca">
+                                <div class="container content-card">
+                                    <div class="row">
+                                        <div class="col marca">
+                                            <div class="row">
+                                                <div class="col mt-3"><b class="tituloMP">Marcas</b></div>
+                                            </div>
+                                            <div class="row my-4">
+                                                <div class="col col-lg-6 d-flex justify-content-start">
+                                                    <div class="buscador">
+                                                        <div class="row">
+                                                            <div class="col-1">
+                                                                <i class="bi bi-search px-2"></i>
+                                                            </div>
+                                                            <div class="col-9">
+                                                                <form class="d-none d-sm-inline-block me-auto ">
+                                                                    <input id="buscar-producto-mp"
+                                                                        class=" form-control form-control-lite barra-buscar"
+                                                                        type="text" placeholder="Buscar marca">
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <button class="btn-filtroMP" type="button"><i
+                                                            class="bi bi-funnel-fill"></i></button>
+                                                </div>
+                                                <div class="col col-lg-6 d-flex justify-content-end">
+                                                    <button class="btn-añadirMP" type="button" data-bs-toggle="modal"
+                                                        data-bs-target="#modal-agregarM"><i
+                                                            class="bi bi-plus"></i>Añadir
+                                                        marca</button>
+                                                </div>
+                                            </div>
+                                            <div class="row my-3">
+                                                <div class="col">
+                                                    <div class="table-responsive mt-3 scroll" id="no-more-tables">
+                                                        <table class="table table-hover" id="marca">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="th-1">Marcas</th>
+                                                                    <th>Acciones</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td data-title="SUBCATEGORÍA" class="col-table ">
+                                                                        <img src="../resources/marca_prov/norma.png"
+                                                                            class="imgMP me-3 mb-4" alt="">Norma
+                                                                    </td>
+                                                                    <td data-title="Acciones" class="botones-table">
+                                                                        <div class="dropdown">
+                                                                            <button
+                                                                                class=" btn-acciones dropdown-toggle"
+                                                                                type="button" id="dropdownMenuButton1"
+                                                                                data-bs-toggle="dropdown"
+                                                                                aria-expanded="false">
+                                                                                Acciones
+                                                                            </button>
+                                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                                                aria-labelledby="dropdownMenuButton1">
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Editar</a></li>
+                                                                                <li><a class="dropdown-item" href="#"
+                                                                                        data-bs-toggle="modal"
+                                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td data-title="SUBCATEGORÍA" class="col-table ">
+                                                                        <img src="../resources/marca_prov/norma.png"
+                                                                            class="imgMP me-3" alt="">Norma
+                                                                    </td>
+                                                                    <td data-title="Acciones" class="botones-table">
+                                                                        <div class="dropdown">
+                                                                            <button
+                                                                                class=" btn-acciones dropdown-toggle"
+                                                                                type="button" id="dropdownMenuButton1"
+                                                                                data-bs-toggle="dropdown"
+                                                                                aria-expanded="false">
+                                                                                Acciones
+                                                                            </button>
+                                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                                                aria-labelledby="dropdownMenuButton1">
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Editar</a></li>
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Eliminar</a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td data-title="SUBCATEGORÍA" class="col-table ">
+                                                                        <img src="../resources/marca_prov/norma.png"
+                                                                            class="imgMP me-3" alt="">Norma
+                                                                    </td>
+                                                                    <td data-title="Acciones" class="botones-table">
+                                                                        <div class="dropdown">
+                                                                            <button
+                                                                                class=" btn-acciones dropdown-toggle"
+                                                                                type="button" id="dropdownMenuButton1"
+                                                                                data-bs-toggle="dropdown"
+                                                                                aria-expanded="false">
+                                                                                Acciones
+                                                                            </button>
+                                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                                                aria-labelledby="dropdownMenuButton1">
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Editar</a></li>
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Eliminar</a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td data-title="SUBCATEGORÍA" class="col-table ">
+                                                                        <img src="../resources/marca_prov/norma.png"
+                                                                            class="imgMP me-3" alt="">Norma
+                                                                    </td>
+                                                                    <td data-title="Acciones" class="botones-table">
+                                                                        <div class="dropdown">
+                                                                            <button
+                                                                                class=" btn-acciones dropdown-toggle"
+                                                                                type="button" id="dropdownMenuButton1"
+                                                                                data-bs-toggle="dropdown"
+                                                                                aria-expanded="false">
+                                                                                Acciones
+                                                                            </button>
+                                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                                                aria-labelledby="dropdownMenuButton1">
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Editar</a></li>
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Eliminar</a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td data-title="SUBCATEGORÍA" class="col-table ">
+                                                                        <img src="../resources/marca_prov/norma.png"
+                                                                            class="imgMP me-3" alt="">Norma
+                                                                    </td>
+                                                                    <td data-title="Acciones" class="botones-table">
+                                                                        <div class="dropdown">
+                                                                            <button
+                                                                                class=" btn-acciones dropdown-toggle"
+                                                                                type="button" id="dropdownMenuButton1"
+                                                                                data-bs-toggle="dropdown"
+                                                                                aria-expanded="false">
+                                                                                Acciones
+                                                                            </button>
+                                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                                                aria-labelledby="dropdownMenuButton1">
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Editar</a></li>
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Eliminar</a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td data-title="SUBCATEGORÍA" class="col-table ">
+                                                                        <img src="../resources/marca_prov/norma.png"
+                                                                            class="imgMP me-3" alt="">Norma
+                                                                    </td>
+                                                                    <td data-title="Acciones" class="botones-table">
+                                                                        <div class="dropdown">
+                                                                            <button
+                                                                                class=" btn-acciones dropdown-toggle"
+                                                                                type="button" id="dropdownMenuButton1"
+                                                                                data-bs-toggle="dropdown"
+                                                                                aria-expanded="false">
+                                                                                Acciones
+                                                                            </button>
+                                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                                                aria-labelledby="dropdownMenuButton1">
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Editar</a></li>
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Eliminar</a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td data-title="SUBCATEGORÍA" class="col-table ">
+                                                                        <img src="../resources/marca_prov/norma.png"
+                                                                            class="imgMP me-3" alt="">Norma
+                                                                    </td>
+                                                                    <td data-title="Acciones" class="botones-table">
+                                                                        <div class="dropdown">
+                                                                            <button
+                                                                                class=" btn-acciones dropdown-toggle"
+                                                                                type="button" id="dropdownMenuButton1"
+                                                                                data-bs-toggle="dropdown"
+                                                                                aria-expanded="false">
+                                                                                Acciones
+                                                                            </button>
+                                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                                                aria-labelledby="dropdownMenuButton1">
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Editar</a></li>
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Eliminar</a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td data-title="SUBCATEGORÍA" class="col-table ">
+                                                                        <img src="../resources/marca_prov/norma.png"
+                                                                            class="imgMP me-3" alt="">Norma
+                                                                    </td>
+                                                                    <td data-title="Acciones" class="botones-table">
+                                                                        <div class="dropdown">
+                                                                            <button
+                                                                                class=" btn-acciones dropdown-toggle"
+                                                                                type="button" id="dropdownMenuButton1"
+                                                                                data-bs-toggle="dropdown"
+                                                                                aria-expanded="false">
+                                                                                Acciones
+                                                                            </button>
+                                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                                                aria-labelledby="dropdownMenuButton1">
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Editar</a></li>
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Eliminar</a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td data-title="SUBCATEGORÍA" class="col-table ">
+                                                                        <img src="../resources/marca_prov/norma.png"
+                                                                            class="imgMP me-3" alt="">Norma
+                                                                    </td>
+                                                                    <td data-title="Acciones" class="botones-table">
+                                                                        <div class="dropdown">
+                                                                            <button
+                                                                                class=" btn-acciones dropdown-toggle"
+                                                                                type="button" id="dropdownMenuButton1"
+                                                                                data-bs-toggle="dropdown"
+                                                                                aria-expanded="false">
+                                                                                Acciones
+                                                                            </button>
+                                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                                                aria-labelledby="dropdownMenuButton1">
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Editar</a></li>
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Eliminar</a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td data-title="SUBCATEGORÍA" class="col-table ">
+                                                                        <img src="../resources/marca_prov/norma.png"
+                                                                            class="imgMP me-3" alt="">Norma
+                                                                    </td>
+                                                                    <td data-title="Acciones" class="botones-table">
+                                                                        <div class="dropdown">
+                                                                            <button
+                                                                                class=" btn-acciones dropdown-toggle"
+                                                                                type="button" id="dropdownMenuButton1"
+                                                                                data-bs-toggle="dropdown"
+                                                                                aria-expanded="false">
+                                                                                Acciones
+                                                                            </button>
+                                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                                                aria-labelledby="dropdownMenuButton1">
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Editar</a></li>
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Eliminar</a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td data-title="SUBCATEGORÍA" class="col-table ">
+                                                                        <img src="../resources/marca_prov/norma.png"
+                                                                            class="imgMP me-3" alt="">Norma
+                                                                    </td>
+                                                                    <td data-title="Acciones" class="botones-table">
+                                                                        <div class="dropdown">
+                                                                            <button
+                                                                                class=" btn-acciones dropdown-toggle"
+                                                                                type="button" id="dropdownMenuButton1"
+                                                                                data-bs-toggle="dropdown"
+                                                                                aria-expanded="false">
+                                                                                Acciones
+                                                                            </button>
+                                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                                                aria-labelledby="dropdownMenuButton1">
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Editar</a></li>
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Eliminar</a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td data-title="SUBCATEGORÍA" class="col-table ">
+                                                                        <img src="../resources/marca_prov/norma.png"
+                                                                            class="imgMP me-3" alt="">Norma
+                                                                    </td>
+                                                                    <td data-title="Acciones" class="botones-table">
+                                                                        <div class="dropdown">
+                                                                            <button
+                                                                                class=" btn-acciones dropdown-toggle"
+                                                                                type="button" id="dropdownMenuButton1"
+                                                                                data-bs-toggle="dropdown"
+                                                                                aria-expanded="false">
+                                                                                Acciones
+                                                                            </button>
+                                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                                                aria-labelledby="dropdownMenuButton1">
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Editar</a></li>
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Eliminar</a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td data-title="SUBCATEGORÍA" class="col-table ">
+                                                                        <img src="../resources/marca_prov/norma.png"
+                                                                            class="imgMP me-3" alt="">Norma
+                                                                    </td>
+                                                                    <td data-title="Acciones" class="botones-table">
+                                                                        <div class="dropdown">
+                                                                            <button
+                                                                                class=" btn-acciones dropdown-toggle"
+                                                                                type="button" id="dropdownMenuButton1"
+                                                                                data-bs-toggle="dropdown"
+                                                                                aria-expanded="false">
+                                                                                Acciones
+                                                                            </button>
+                                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                                                aria-labelledby="dropdownMenuButton1">
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Editar</a></li>
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Eliminar</a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td data-title="SUBCATEGORÍA" class="col-table ">
+                                                                        <img src="../resources/marca_prov/norma.png"
+                                                                            class="imgMP me-3" alt="">Norma
+                                                                    </td>
+                                                                    <td data-title="Acciones" class="botones-table">
+                                                                        <div class="dropdown">
+                                                                            <button
+                                                                                class=" btn-acciones dropdown-toggle"
+                                                                                type="button" id="dropdownMenuButton1"
+                                                                                data-bs-toggle="dropdown"
+                                                                                aria-expanded="false">
+                                                                                Acciones
+                                                                            </button>
+                                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                                                aria-labelledby="dropdownMenuButton1">
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Editar</a></li>
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Eliminar</a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td data-title="SUBCATEGORÍA" class="col-table ">
+                                                                        <img src="../resources/marca_prov/norma.png"
+                                                                            class="imgMP me-3" alt="">Norma
+                                                                    </td>
+                                                                    <td data-title="Acciones" class="botones-table">
+                                                                        <div class="dropdown">
+                                                                            <button
+                                                                                class=" btn-acciones dropdown-toggle"
+                                                                                type="button" id="dropdownMenuButton1"
+                                                                                data-bs-toggle="dropdown"
+                                                                                aria-expanded="false">
+                                                                                Acciones
+                                                                            </button>
+                                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                                                aria-labelledby="dropdownMenuButton1">
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Editar</a></li>
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Eliminar</a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td data-title="SUBCATEGORÍA" class="col-table ">
+                                                                        <img src="../resources/marca_prov/norma.png"
+                                                                            class="imgMP me-3" alt="">Norma
+                                                                    </td>
+                                                                    <td data-title="Acciones" class="botones-table">
+                                                                        <div class="dropdown">
+                                                                            <button
+                                                                                class=" btn-acciones dropdown-toggle"
+                                                                                type="button" id="dropdownMenuButton1"
+                                                                                data-bs-toggle="dropdown"
+                                                                                aria-expanded="false">
+                                                                                Acciones
+                                                                            </button>
+                                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                                                aria-labelledby="dropdownMenuButton1">
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Editar</a></li>
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Eliminar</a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td data-title="SUBCATEGORÍA" class="col-table ">
+                                                                        <img src="../resources/marca_prov/norma.png"
+                                                                            class="imgMP me-3" alt="">Norma
+                                                                    </td>
+                                                                    <td data-title="Acciones" class="botones-table">
+                                                                        <div class="dropdown">
+                                                                            <button
+                                                                                class=" btn-acciones dropdown-toggle"
+                                                                                type="button" id="dropdownMenuButton1"
+                                                                                data-bs-toggle="dropdown"
+                                                                                aria-expanded="false">
+                                                                                Acciones
+                                                                            </button>
+                                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                                                aria-labelledby="dropdownMenuButton1">
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Editar</a></li>
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Eliminar</a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td data-title="SUBCATEGORÍA" class="col-table ">
+                                                                        <img src="../resources/marca_prov/norma.png"
+                                                                            class="imgMP me-3" alt="">Norma
+                                                                    </td>
+                                                                    <td data-title="Acciones" class="botones-table">
+                                                                        <div class="dropdown">
+                                                                            <button
+                                                                                class=" btn-acciones dropdown-toggle"
+                                                                                type="button" id="dropdownMenuButton1"
+                                                                                data-bs-toggle="dropdown"
+                                                                                aria-expanded="false">
+                                                                                Acciones
+                                                                            </button>
+                                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                                                aria-labelledby="dropdownMenuButton1">
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Editar</a></li>
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Eliminar</a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td data-title="SUBCATEGORÍA" class="col-table ">
+                                                                        <img src="../resources/marca_prov/norma.png"
+                                                                            class="imgMP me-3" alt="">Norma
+                                                                    </td>
+                                                                    <td data-title="Acciones" class="botones-table">
+                                                                        <div class="dropdown">
+                                                                            <button
+                                                                                class=" btn-acciones dropdown-toggle"
+                                                                                type="button" id="dropdownMenuButton1"
+                                                                                data-bs-toggle="dropdown"
+                                                                                aria-expanded="false">
+                                                                                Acciones
+                                                                            </button>
+                                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                                                aria-labelledby="dropdownMenuButton1">
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Editar</a></li>
+                                                                                <li><a class="dropdown-item"
+                                                                                        href="#">Eliminar</a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer>
+
+        </footer>
+    </div>
+    <!-- INICIO MODAL AGREGAR PROVEEDOR -->
+    <div class="modal fade" id="modal-agregarP" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <input type="text" class="form-control addname" id="validationDefault01"
+                        placeholder="Ingresar nombre de proveedor" value="" required>
+                    <button type="button" class="btn-close my" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row agregar-content">
+                            <div class="col">
+                                <div class="row">
+                                    <div class="col-6 mb-4">
+                                        <div class="text-start">
+                                            <label for="validationDefault02" class="form-label py-2">Teléfono</label>
+                                        </div>
+                                        <input class="form-control inputP" type="text" placeholder=""
+                                            aria-label=".form-control example">
+                                    </div>
+                                    <div class="col-6 mb-4">
+                                        <div class="text-start">
+                                            <label for="validationDefault02" class="form-label py-2">Estado</label>
+                                        </div>
+                                        <select class="form-select custom-form-select"
+                                            aria-label="Default select proveedor">
+                                            <option selected>Activo</option>
+                                            <option value="1">Inactivo</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-end">
+                    <button class="btn btn-continuaradd" type="button" data-bs-target="#modal-agregar2"
+                        data-bs-toggle="modal" data-bs-dismiss="modal">Guardar</button>
+                    <button class="btn btn-canceladd" type="button" data-bs-target="#modal-agregar2"
+                        data-bs-toggle="modal" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FIN MODAL AGREGAR PROVEEDOR -->
+
+    <!-- INICIO MODAL AGREGAR MARCA -->
+    <div class="modal fade" id="modal-agregarM" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <input type="text" class="form-control addname" id="validationDefault01"
+                        placeholder="Ingresar nombre de la marca" value="" required>
+                    <button type="button" class="btn-close my" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row agregar-content">
+                            <div class="col">
+                                <div class="row justify-content-center">
+                                    <div class="col-6 mb-4">
+                                        <div class="text-center">
+                                            <label for="validationDefault02" class="form-label py-2">Añadir imagen
+                                                marca</label>
+                                        </div>
+                                        <div class="container imagenmodal">
+                                            <div class="row">
+                                                <div class="col-5 align-self-center">
+                                                    <img src="../resources/marca_prov/vidri.png" class="image" alt=""
+                                                        id="img1">
+                                                </div>
+                                                <div class="col-7 mb-3">
+                                                    <p class="my-4">imagensubcat123.jpg</p>
+                                                    <div class="row imagentext">
+                                                        <div class="col-6">
+                                                            <a href="#">
+                                                                <i class="bi bi-eye-fill"></i>
+                                                                <b>Ver</b>
+                                                            </a>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <a href="#">
+                                                                <i class="bi bi-trash-fill"></i>
+                                                                <b>Eliminar</b>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-end">
+                    <button class="btn btn-continuaradd" type="button" data-bs-target="#modal-agregar2"
+                        data-bs-toggle="modal" data-bs-dismiss="modal">Guardar</button>
+                    <button class="btn btn-canceladd" type="button" data-bs-target="#modal-agregar2"
+                        data-bs-toggle="modal" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FIN MODAL AGREGAR PROVEEDOR -->
+
+    <!-- INICIO MODAL DELETE -->
+    <div class="modal modal-eliminar fade" id="modal-eliminar" aria-hidden="true"
+        aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container my-5">
+                        <div class="row">
+                            <div class="col eliminar-content">
+                                <i class="bi bi-exclamation-circle-fill"></i>
+                                <h2>¿Estás seguro?</h2>
+                                <span>El elemento se borrará de manera permanente</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex mx-2 justify-content-between">
+                    <button class="btn btn-cancel" type="button" data-bs-target="" data-bs-toggle="modal"
+                        data-bs-dismiss="modal">Cancelar</button>
+                    <button class="btn btn-continuar" type="button" data-bs-target="" data-bs-toggle="modal"
+                        data-bs-dismiss="modal">Continuar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FIN MODAL DELETE -->
+
+    <script src="../js/subcategoria.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+
+    <!-- DATATABLE JS -->
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#proveedor').DataTable({
+                "info": false,
+                "searching": false,
+                "dom":
+                    "<'row'<'col-sm-12'tr>>" +
+                    "<'row'<'col-sm-5'l><'col-sm-1'><'col-sm-6'p>>",
+                "language": {
+                    "lengthMenu": "Mostrando _MENU_ registros",
+                    "paginate": {
+                        "next": '<i class="bi bi-arrow-right-short"></i>',
+                        "previous": '<i class="bi bi-arrow-left-short"></i>'
+                    }
+                },
+                "lengthMenu": [[10, 15, 10, -1], [10, 15, 20, "Todos"]]
+            });
+        });
+
+        $(document).ready(function () {
+            $('#marca').DataTable({
+                "info": false,
+                "searching": false,
+                "dom":
+                    "<'row'<'col-sm-12'tr>>" +
+                    "<'row'<'col-sm-5'l><'col-sm-1'><'col-sm-6'p>>",
+                "language": {
+                    "lengthMenu": "Mostrando _MENU_ registros",
+                    "paginate": {
+                        "next": '<i class="bi bi-arrow-right-short"></i>',
+                        "previous": '<i class="bi bi-arrow-left-short"></i>'
+                    }
+                },
+                "lengthMenu": [[10, 15, 10, -1], [10, 15, 20, "Todos"]]
+            });
+        });
+    </script>
+</body>
+
+</html>
