@@ -18,6 +18,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
+    
+    <link rel="icon" type="icon/png" href="../resources/logo/ico.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SoftPaper</title>
 </head>
@@ -83,9 +85,10 @@
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <div class="row row-cols-1 row-cols-lg-2 border border-dashed rounded pt-2 pb-2 mb-5 overflow-auto productos-detalle">
-                                        <div class="col my-2 producto-card">
-                                            <div class="d-flex p-2 border border-dashed rounded justify-content-between">
+                                    <div class="row row-cols-1 row-cols-lg-2 border border-dashed rounded pt-2 pb-2 mb-5 productos-detalle">
+                                        <div class="col my-2">
+                                            <div
+                                                class="d-flex p-2 border border-dashed rounded justify-content-between producto-card">
                                                 <div class="imagen-producto d-flex align-items-center">
                                                     <img src="../resources/productos/lapicero.png" alt="">
                                                 </div>
@@ -94,12 +97,14 @@
                                                     <span>$29.74</span>
                                                 </div>
                                                 <div class="controls-producto d-flex flex-nowrap">
-                                                    <input type="number" value="1" min="1" max="100" step="1"/>
+                                                    <input type="number" value="1" min="1" max="100" step="1" />
                                                 </div>
+                                                <i class="bi bi-x"></i>
                                             </div>
                                         </div>
-                                        <div class="col my-2 producto-card">
-                                            <div class="d-flex p-2 border border-dashed rounded justify-content-between">
+                                        <div class="col my-2">
+                                            <div
+                                                class="d-flex p-2 border border-dashed rounded justify-content-between producto-card">
                                                 <div class="imagen-producto d-flex align-items-center">
                                                     <img src="../resources/productos/lapicero.png" alt="">
                                                 </div>
@@ -108,12 +113,14 @@
                                                     <span>$29.74</span>
                                                 </div>
                                                 <div class="controls-producto d-flex ">
-                                                    <input type="number" value="1" min="1" max="100" step="1"/>
+                                                    <input type="number" value="1" min="1" max="100" step="1" />
                                                 </div>
+                                                <i class="bi bi-x"></i>
                                             </div>
                                         </div>
-                                        <div class="col my-2 producto-card">
-                                            <div class="d-flex p-2 border border-dashed rounded justify-content-between">
+                                        <div class="col my-2">
+                                            <div
+                                                class="d-flex p-2 border border-dashed rounded justify-content-between producto-card">
                                                 <div class="imagen-producto d-flex align-items-center">
                                                     <img src="../resources/productos/lapicero.png" alt="">
                                                 </div>
@@ -122,780 +129,428 @@
                                                     <span>$29.74</span>
                                                 </div>
                                                 <div class="controls-producto d-flex">
-                                                    <input type="number" value="1" min="1" max="100" step="1"/>
+                                                    <input type="number" value="1" min="1" max="100" step="1" />
                                                 </div>
+                                                <i class="bi bi-x"></i>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
+                                <div class="col col-lg-10 col-buscador">
+                                    <div class="buscador">
+                                        <i class="bi bi-search px-2"></i>
+                                        <form class="d-none d-sm-inline-block me-auto">
+                                            <input id="buscar-producto"
+                                                class=" form-control form-control-lite barra-buscar " type="text"
+                                                placeholder="Buscar producto">
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-2  justify-content-center ">
+                                    <div class="dropdown">
+                                        <button class="btn-filtro btn-second" type="button"
+                                            id="dropdownMenuButtonFilter" data-bs-toggle="dropdown"
+                                            aria-expanded="false"><i class="bi bi-funnel-fill"></i>Filtrar</button>
+                                        <ul class="dropdown-menu dropdown-menu-end animate slideIn dropdown-filtro"
+                                            aria-labelledby="dropdownMenuButtonFilter">
+                                            <li>
+                                                <h5 class="mt-3">Opciones de filtro</h5>
+                                            </li>
+                                            <li>
+                                                <hr class="dropdown-divider">
+                                            </li>
+                                            <li>
+                                                <h6 class="mb-3">Categoría</h6>
+                                            </li>
+                                            <li><select class="form-select filtro-combo"
+                                                    aria-label="Default select example">
+                                                    <option selected disabled>Seleccione una opción</option>
+                                                    <option value="1">Lapiceros normales</option>
+                                                    <option value="2">Lápices redondos</option>
+                                                    <option value="3">Plumones delgados</option>
+                                                </select></li>
+                                            <li class="d-flex justify-content-end"><button
+                                                    class="btn btn-main btn-aplicar-filtro mt-3" type="button"
+                                                    data-bs-target="#" data-bs-toggle=""
+                                                    data-bs-dismiss="">Aplicar</button></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
                                 <div class="col">
-                                    <div class="table-responsive scroll" id="no-more-tables">
+                                    <div class="table-responsive mt-3 " id="no-more-tables">
                                         <table class="table table-hover" id="example">
                                             <thead>
                                                 <tr>
-                                                    <th class="th-1">N° Pedido</th>
-                                                    <th>Correlativo</th>
-                                                    <th>Cliente</th>
-                                                    <th>Fecha</th>
-                                                    <th>Monto</th>
-                                                    <th>Empleado</th>
-                                                    <th>Tipo pedido</th>
-                                                    <th>Estado</th>
-                                                    <th>Acciones</th>
+                                                    <th class="table-check"></th>
+                                                    <th class="th-1">Producto</th>
+                                                    <th>Stock</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td data-title="NPEDIDO" class="npedido">1</td>
-                                                    <td data-title="CORRELATIVO" class="correlativo">0552</td>
-                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares</td>
-                                                    <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
-                                                    <td data-title="MONTO" class="monto text-center">55.99</td>
-                                                    <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
-                                                    <td data-title="TIPO" class="tipo">Consumidor</td>
-                                                    <td data-title="ESTADO" class="estado-stock"><span class="estado">Pagado</span></td>
-                                                    <td data-title="Acciones" class="botones-table">
-                                                        <div class="dropdown">
-                                                            <button class=" btn-acciones dropdown-toggle" type="button"
-                                                                id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                                                                aria-expanded="false">
-                                                                Acciones
-                                                            </button>
-                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
-                                                                aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-actualizar">Editar</a>
-                                                                </li>
-                                                                <li><a class="dropdown-item" type="button"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
-                                                                </li>
-                                                            </ul>
+                                                    <td>
+                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                                    </td>
+                                                    <td data-title="PRODUCTO" class="col-table">
+                                                        <div class="nombre-producto"><img
+                                                                src="../resources/productos/lapicero.png"
+                                                                alt="">Lapicero
+                                                            Faber Castell
                                                         </div>
                                                     </td>
+                                                    <td data-title="INVENTARIO" class="inventario">55</td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-title="NPEDIDO" class="npedido">1</td>
-                                                    <td data-title="CORRELATIVO" class="correlativo">0552</td>
-                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares</td>
-                                                    <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
-                                                    <td data-title="MONTO" class="monto text-center">55.99</td>
-                                                    <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
-                                                    <td data-title="TIPO" class="tipo">Consumidor</td>
-                                                    <td data-title="ESTADO" class="estado-stock"><span class="estado2">En
-                                                            proceso</span></td>
-                                                    <td data-title="Acciones" class="botones-table">
-                                                        <div class="dropdown">
-                                                            <button class=" btn-acciones dropdown-toggle" type="button"
-                                                                id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                                                                aria-expanded="false">
-                                                                Acciones
-                                                            </button>
-                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
-                                                                aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-actualizar">Editar</a>
-                                                                </li>
-                                                                <li><a class="dropdown-item" type="button"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
-                                                                </li>
-                                                            </ul>
+                                                    <td>
+                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                                    </td>
+                                                    <td data-title="PRODUCTO" class="col-table">
+                                                        <div class="nombre-producto"><img
+                                                                src="../resources/productos/lapicero.png"
+                                                                alt="">Lapicero
+                                                            Faber Castell
                                                         </div>
                                                     </td>
+                                                    <td data-title="INVENTARIO" class="inventario">55</td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-title="NPEDIDO" class="npedido">1</td>
-                                                    <td data-title="CORRELATIVO" class="correlativo">0552</td>
-                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares</td>
-                                                    <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
-                                                    <td data-title="MONTO" class="monto text-center">55.99</td>
-                                                    <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
-                                                    <td data-title="TIPO" class="tipo">Consumidor</td>
-                                                    <td data-title="ESTADO" class="estado-stock"><span class="estado3">Cancelado</span></td>
-                                                    <td data-title="Acciones" class="botones-table">
-                                                        <div class="dropdown">
-                                                            <button class=" btn-acciones dropdown-toggle" type="button"
-                                                                id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                                                                aria-expanded="false">
-                                                                Acciones
-                                                            </button>
-                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
-                                                                aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-actualizar">Editar</a>
-                                                                </li>
-                                                                <li><a class="dropdown-item" type="button"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
-                                                                </li>
-                                                            </ul>
+                                                    <td>
+                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                                    </td>
+                                                    <td data-title="PRODUCTO" class="col-table">
+                                                        <div class="nombre-producto"><img
+                                                                src="../resources/productos/lapicero.png"
+                                                                alt="">Lapicero
+                                                            Faber Castell
                                                         </div>
                                                     </td>
+                                                    <td data-title="INVENTARIO" class="inventario">55</td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-title="NPEDIDO" class="npedido">1</td>
-                                                    <td data-title="CORRELATIVO" class="correlativo">0552</td>
-                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares</td>
-                                                    <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
-                                                    <td data-title="MONTO" class="monto text-center">55.99</td>
-                                                    <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
-                                                    <td data-title="TIPO" class="tipo">Consumidor</td>
-                                                    <td data-title="ESTADO" class="estado-stock"><span class="estado4">Inhabilitado</span></td>
-                                                    <td data-title="Acciones" class="botones-table">
-                                                        <div class="dropdown">
-                                                            <button class=" btn-acciones dropdown-toggle" type="button"
-                                                                id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                                                                aria-expanded="false">
-                                                                Acciones
-                                                            </button>
-                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
-                                                                aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-actualizar">Editar</a>
-                                                                </li>
-                                                                <li><a class="dropdown-item" type="button"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
-                                                                </li>
-                                                            </ul>
+                                                    <td>
+                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                                    </td>
+                                                    <td data-title="PRODUCTO" class="col-table">
+                                                        <div class="nombre-producto"><img
+                                                                src="../resources/productos/lapicero.png"
+                                                                alt="">Lapicero
+                                                            Faber Castell
                                                         </div>
                                                     </td>
+                                                    <td data-title="INVENTARIO" class="inventario">55</td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-title="NPEDIDO" class="npedido">1</td>
-                                                    <td data-title="CORRELATIVO" class="correlativo">0552</td>
-                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares</td>
-                                                    <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
-                                                    <td data-title="MONTO" class="monto text-center">55.99</td>
-                                                    <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
-                                                    <td data-title="TIPO" class="tipo">Consumidor</td>
-                                                    <td data-title="ESTADO" class="estado-stock"><span class="estado">Pagado</span></td>
-                                                    <td data-title="Acciones" class="botones-table">
-                                                        <div class="dropdown">
-                                                            <button class=" btn-acciones dropdown-toggle" type="button"
-                                                                id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                                                                aria-expanded="false">
-                                                                Acciones
-                                                            </button>
-                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
-                                                                aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-actualizar">Editar</a>
-                                                                </li>
-                                                                <li><a class="dropdown-item" type="button"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
-                                                                </li>
-                                                            </ul>
+                                                    <td>
+                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                                    </td>
+                                                    <td data-title="PRODUCTO" class="col-table">
+                                                        <div class="nombre-producto"><img
+                                                                src="../resources/productos/lapicero.png"
+                                                                alt="">Lapicero
+                                                            Faber Castell
                                                         </div>
                                                     </td>
+                                                    <td data-title="INVENTARIO" class="inventario">55</td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-title="NPEDIDO" class="npedido">1</td>
-                                                    <td data-title="CORRELATIVO" class="correlativo">0552</td>
-                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares</td>
-                                                    <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
-                                                    <td data-title="MONTO" class="monto text-center">55.99</td>
-                                                    <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
-                                                    <td data-title="TIPO" class="tipo">Consumidor</td>
-                                                    <td data-title="ESTADO" class="estado-stock"><span class="estado2">En
-                                                            proceso</span></td>
-                                                    <td data-title="Acciones" class="botones-table">
-                                                        <div class="dropdown">
-                                                            <button class=" btn-acciones dropdown-toggle" type="button"
-                                                                id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                                                                aria-expanded="false">
-                                                                Acciones
-                                                            </button>
-                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
-                                                                aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-actualizar">Editar</a>
-                                                                </li>
-                                                                <li><a class="dropdown-item" type="button"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
-                                                                </li>
-                                                            </ul>
+                                                    <td>
+                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                                    </td>
+                                                    <td data-title="PRODUCTO" class="col-table">
+                                                        <div class="nombre-producto"><img
+                                                                src="../resources/productos/lapicero.png"
+                                                                alt="">Lapicero
+                                                            Faber Castell
                                                         </div>
                                                     </td>
+                                                    <td data-title="INVENTARIO" class="inventario">55</td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-title="NPEDIDO" class="npedido">1</td>
-                                                    <td data-title="CORRELATIVO" class="correlativo">0552</td>
-                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares</td>
-                                                    <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
-                                                    <td data-title="MONTO" class="monto text-center">55.99</td>
-                                                    <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
-                                                    <td data-title="TIPO" class="tipo">Consumidor</td>
-                                                    <td data-title="ESTADO" class="estado-stock"><span class="estado3">Cancelado</span></td>
-                                                    <td data-title="Acciones" class="botones-table">
-                                                        <div class="dropdown">
-                                                            <button class=" btn-acciones dropdown-toggle" type="button"
-                                                                id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                                                                aria-expanded="false">
-                                                                Acciones
-                                                            </button>
-                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
-                                                                aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-actualizar">Editar</a>
-                                                                </li>
-                                                                <li><a class="dropdown-item" type="button"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
-                                                                </li>
-                                                            </ul>
+                                                    <td>
+                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                                    </td>
+                                                    <td data-title="PRODUCTO" class="col-table">
+                                                        <div class="nombre-producto"><img
+                                                                src="../resources/productos/lapicero.png"
+                                                                alt="">Lapicero
+                                                            Faber Castell
                                                         </div>
                                                     </td>
+                                                    <td data-title="INVENTARIO" class="inventario">55</td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-title="NPEDIDO" class="npedido">1</td>
-                                                    <td data-title="CORRELATIVO" class="correlativo">0552</td>
-                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares</td>
-                                                    <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
-                                                    <td data-title="MONTO" class="monto text-center">55.99</td>
-                                                    <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
-                                                    <td data-title="TIPO" class="tipo">Consumidor</td>
-                                                    <td data-title="ESTADO" class="estado-stock"><span class="estado4">Inhabilitado</span></td>
-                                                    <td data-title="Acciones" class="botones-table">
-                                                        <div class="dropdown">
-                                                            <button class=" btn-acciones dropdown-toggle" type="button"
-                                                                id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                                                                aria-expanded="false">
-                                                                Acciones
-                                                            </button>
-                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
-                                                                aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-actualizar">Editar</a>
-                                                                </li>
-                                                                <li><a class="dropdown-item" type="button"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
-                                                                </li>
-                                                            </ul>
+                                                    <td>
+                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                                    </td>
+                                                    <td data-title="PRODUCTO" class="col-table">
+                                                        <div class="nombre-producto"><img
+                                                                src="../resources/productos/lapicero.png"
+                                                                alt="">Lapicero
+                                                            Faber Castell
                                                         </div>
                                                     </td>
+                                                    <td data-title="INVENTARIO" class="inventario">55</td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-title="NPEDIDO" class="npedido">1</td>
-                                                    <td data-title="CORRELATIVO" class="correlativo">0552</td>
-                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares</td>
-                                                    <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
-                                                    <td data-title="MONTO" class="monto text-center">55.99</td>
-                                                    <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
-                                                    <td data-title="TIPO" class="tipo">Consumidor</td>
-                                                    <td data-title="ESTADO" class="estado-stock"><span class="estado">Pagado</span></td>
-                                                    <td data-title="Acciones" class="botones-table">
-                                                        <div class="dropdown">
-                                                            <button class=" btn-acciones dropdown-toggle" type="button"
-                                                                id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                                                                aria-expanded="false">
-                                                                Acciones
-                                                            </button>
-                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
-                                                                aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-actualizar">Editar</a>
-                                                                </li>
-                                                                <li><a class="dropdown-item" type="button"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
-                                                                </li>
-                                                            </ul>
+                                                    <td>
+                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                                    </td>
+                                                    <td data-title="PRODUCTO" class="col-table">
+                                                        <div class="nombre-producto"><img
+                                                                src="../resources/productos/lapicero.png"
+                                                                alt="">Lapicero
+                                                            Faber Castell
                                                         </div>
                                                     </td>
+                                                    <td data-title="INVENTARIO" class="inventario">55</td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-title="NPEDIDO" class="npedido">1</td>
-                                                    <td data-title="CORRELATIVO" class="correlativo">0552</td>
-                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares</td>
-                                                    <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
-                                                    <td data-title="MONTO" class="monto text-center">55.99</td>
-                                                    <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
-                                                    <td data-title="TIPO" class="tipo">Consumidor</td>
-                                                    <td data-title="ESTADO" class="estado-stock"><span class="estado2">En
-                                                            proceso</span></td>
-                                                    <td data-title="Acciones" class="botones-table">
-                                                        <div class="dropdown">
-                                                            <button class=" btn-acciones dropdown-toggle" type="button"
-                                                                id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                                                                aria-expanded="false">
-                                                                Acciones
-                                                            </button>
-                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
-                                                                aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-actualizar">Editar</a>
-                                                                </li>
-                                                                <li><a class="dropdown-item" type="button"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
-                                                                </li>
-                                                            </ul>
+                                                    <td>
+                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                                    </td>
+                                                    <td data-title="PRODUCTO" class="col-table">
+                                                        <div class="nombre-producto"><img
+                                                                src="../resources/productos/lapicero.png"
+                                                                alt="">Lapicero
+                                                            Faber Castell
                                                         </div>
                                                     </td>
+                                                    <td data-title="INVENTARIO" class="inventario">55</td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-title="NPEDIDO" class="npedido">1</td>
-                                                    <td data-title="CORRELATIVO" class="correlativo">0552</td>
-                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares</td>
-                                                    <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
-                                                    <td data-title="MONTO" class="monto text-center">55.99</td>
-                                                    <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
-                                                    <td data-title="TIPO" class="tipo">Consumidor</td>
-                                                    <td data-title="ESTADO" class="estado-stock"><span class="estado3">Cancelado</span></td>
-                                                    <td data-title="Acciones" class="botones-table">
-                                                        <div class="dropdown">
-                                                            <button class=" btn-acciones dropdown-toggle" type="button"
-                                                                id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                                                                aria-expanded="false">
-                                                                Acciones
-                                                            </button>
-                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
-                                                                aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-actualizar">Editar</a>
-                                                                </li>
-                                                                <li><a class="dropdown-item" type="button"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
-                                                                </li>
-                                                            </ul>
+                                                    <td>
+                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                                    </td>
+                                                    <td data-title="PRODUCTO" class="col-table">
+                                                        <div class="nombre-producto"><img
+                                                                src="../resources/productos/lapicero.png"
+                                                                alt="">Lapicero
+                                                            Faber Castell
                                                         </div>
                                                     </td>
+                                                    <td data-title="INVENTARIO" class="inventario">55</td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-title="NPEDIDO" class="npedido">1</td>
-                                                    <td data-title="CORRELATIVO" class="correlativo">0552</td>
-                                                    <td data-title="CLIENTE" class="cliente">Samuel Linares</td>
-                                                    <td data-title="FECHA" class="fecha">30-03-2022</td>
-                                                    <td data-title="MONTO" class="monto">55.99</td>
-                                                    <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
-                                                    <td data-title="TIPO" class="tipo">Consumidor</td>
-                                                    <td data-title="ESTADO" class="estado-stock"><span class="estado4">Inhabilitado</span></td>
-                                                    <td data-title="Acciones" class="botones-table">
-                                                        <div class="dropdown">
-                                                            <button class=" btn-acciones dropdown-toggle" type="button"
-                                                                id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                                                                aria-expanded="false">
-                                                                Acciones
-                                                            </button>
-                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
-                                                                aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-actualizar">Editar</a>
-                                                                </li>
-                                                                <li><a class="dropdown-item" type="button"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
-                                                                </li>
-                                                            </ul>
+                                                    <td>
+                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                                    </td>
+                                                    <td data-title="PRODUCTO" class="col-table">
+                                                        <div class="nombre-producto"><img
+                                                                src="../resources/productos/lapicero.png"
+                                                                alt="">Lapicero
+                                                            Faber Castell
                                                         </div>
                                                     </td>
+                                                    <td data-title="INVENTARIO" class="inventario">55</td>
                                                 </tr>
+                                                <tr>
+                                                    <td>
+                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                                    </td>
+                                                    <td data-title="PRODUCTO" class="col-table">
+                                                        <div class="nombre-producto"><img
+                                                                src="../resources/productos/lapicero.png"
+                                                                alt="">Lapicero
+                                                            Faber Castell
+                                                        </div>
+                                                    </td>
+                                                    <td data-title="INVENTARIO" class="inventario">55</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                                    </td>
+                                                    <td data-title="PRODUCTO" class="col-table">
+                                                        <div class="nombre-producto"><img
+                                                                src="../resources/productos/lapicero.png"
+                                                                alt="">Lapicero
+                                                            Faber Castell
+                                                        </div>
+                                                    </td>
+                                                    <td data-title="INVENTARIO" class="inventario">55</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                                    </td>
+                                                    <td data-title="PRODUCTO" class="col-table">
+                                                        <div class="nombre-producto"><img
+                                                                src="../resources/productos/lapicero.png"
+                                                                alt="">Lapicero
+                                                            Faber Castell
+                                                        </div>
+                                                    </td>
+                                                    <td data-title="INVENTARIO" class="inventario">55</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                                    </td>
+                                                    <td data-title="PRODUCTO" class="col-table">
+                                                        <div class="nombre-producto"><img
+                                                                src="../resources/productos/lapicero.png"
+                                                                alt="">Lapicero
+                                                            Faber Castell
+                                                        </div>
+                                                    </td>
+                                                    <td data-title="INVENTARIO" class="inventario">55</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                                    </td>
+                                                    <td data-title="PRODUCTO" class="col-table">
+                                                        <div class="nombre-producto"><img
+                                                                src="../resources/productos/lapicero.png"
+                                                                alt="">Lapicero
+                                                            Faber Castell
+                                                        </div>
+                                                    </td>
+                                                    <td data-title="INVENTARIO" class="inventario">55</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                                    </td>
+                                                    <td data-title="PRODUCTO" class="col-table">
+                                                        <div class="nombre-producto"><img
+                                                                src="../resources/productos/lapicero.png"
+                                                                alt="">Lapicero
+                                                            Faber Castell
+                                                        </div>
+                                                    </td>
+                                                    <td data-title="INVENTARIO" class="inventario">55</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                                    </td>
+                                                    <td data-title="PRODUCTO" class="col-table">
+                                                        <div class="nombre-producto"><img
+                                                                src="../resources/productos/lapicero.png"
+                                                                alt="">Lapicero
+                                                            Faber Castell
+                                                        </div>
+                                                    </td>
+                                                    <td data-title="INVENTARIO" class="inventario">55</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                                    </td>
+                                                    <td data-title="PRODUCTO" class="col-table">
+                                                        <div class="nombre-producto"><img
+                                                                src="../resources/productos/lapicero.png"
+                                                                alt="">Lapicero
+                                                            Faber Castell
+                                                        </div>
+                                                    </td>
+                                                    <td data-title="INVENTARIO" class="inventario">55</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                                    </td>
+                                                    <td data-title="PRODUCTO" class="col-table">
+                                                        <div class="nombre-producto"><img
+                                                                src="../resources/productos/lapicero.png"
+                                                                alt="">Lapicero
+                                                            Faber Castell
+                                                        </div>
+                                                    </td>
+                                                    <td data-title="INVENTARIO" class="inventario">55</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                                    </td>
+                                                    <td data-title="PRODUCTO" class="col-table">
+                                                        <div class="nombre-producto"><img
+                                                                src="../resources/productos/lapicero.png"
+                                                                alt="">Lapicero
+                                                            Faber Castell
+                                                        </div>
+                                                    </td>
+                                                    <td data-title="INVENTARIO" class="inventario">55</td>
+                                                </tr>
+
                                             </tbody>
                                         </table>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="row mb-3 ">
-                                <div class="d-flex justify-content-center">
-                                    <label>Mostrar todos los campos
-                                        <input type="checkbox" id="checkTabla">
-                                    </label>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="container content-card">
+                <div class="container content-card detalle d-flex">
                     <div class="row">
-                        <div class="col">
-                            <div class="row mt-3">
-                                <div class="col">
-                                    <div class="table-responsive mt-3 scroll" id="no-more-tables">
-                                        <table class="table table-hover" id="example">
-                                            <thead>
-                                                <tr>
-                                                    <th class="th-1">N° Pedido</th>
-                                                    <th>Correlativo</th>
-                                                    <th>Cliente</th>
-                                                    <th>Fecha</th>
-                                                    <th>Monto</th>
-                                                    <th>Empleado</th>
-                                                    <th>Tipo pedido</th>
-                                                    <th>Estado</th>
-                                                    <th>Acciones</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td data-title="NPEDIDO" class="npedido">1</td>
-                                                    <td data-title="CORRELATIVO" class="correlativo">0552</td>
-                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares</td>
-                                                    <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
-                                                    <td data-title="MONTO" class="monto text-center">55.99</td>
-                                                    <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
-                                                    <td data-title="TIPO" class="tipo">Consumidor</td>
-                                                    <td data-title="ESTADO" class="estado-stock"><span class="estado">Pagado</span></td>
-                                                    <td data-title="Acciones" class="botones-table">
-                                                        <div class="dropdown">
-                                                            <button class=" btn-acciones dropdown-toggle" type="button"
-                                                                id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                                                                aria-expanded="false">
-                                                                Acciones
-                                                            </button>
-                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
-                                                                aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-actualizar">Editar</a>
-                                                                </li>
-                                                                <li><a class="dropdown-item" type="button"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td data-title="NPEDIDO" class="npedido">1</td>
-                                                    <td data-title="CORRELATIVO" class="correlativo">0552</td>
-                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares</td>
-                                                    <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
-                                                    <td data-title="MONTO" class="monto text-center">55.99</td>
-                                                    <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
-                                                    <td data-title="TIPO" class="tipo">Consumidor</td>
-                                                    <td data-title="ESTADO" class="estado-stock"><span class="estado2">En
-                                                            proceso</span></td>
-                                                    <td data-title="Acciones" class="botones-table">
-                                                        <div class="dropdown">
-                                                            <button class=" btn-acciones dropdown-toggle" type="button"
-                                                                id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                                                                aria-expanded="false">
-                                                                Acciones
-                                                            </button>
-                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
-                                                                aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-actualizar">Editar</a>
-                                                                </li>
-                                                                <li><a class="dropdown-item" type="button"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td data-title="NPEDIDO" class="npedido">1</td>
-                                                    <td data-title="CORRELATIVO" class="correlativo">0552</td>
-                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares</td>
-                                                    <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
-                                                    <td data-title="MONTO" class="monto text-center">55.99</td>
-                                                    <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
-                                                    <td data-title="TIPO" class="tipo">Consumidor</td>
-                                                    <td data-title="ESTADO" class="estado-stock"><span class="estado3">Cancelado</span></td>
-                                                    <td data-title="Acciones" class="botones-table">
-                                                        <div class="dropdown">
-                                                            <button class=" btn-acciones dropdown-toggle" type="button"
-                                                                id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                                                                aria-expanded="false">
-                                                                Acciones
-                                                            </button>
-                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
-                                                                aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-actualizar">Editar</a>
-                                                                </li>
-                                                                <li><a class="dropdown-item" type="button"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td data-title="NPEDIDO" class="npedido">1</td>
-                                                    <td data-title="CORRELATIVO" class="correlativo">0552</td>
-                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares</td>
-                                                    <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
-                                                    <td data-title="MONTO" class="monto text-center">55.99</td>
-                                                    <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
-                                                    <td data-title="TIPO" class="tipo">Consumidor</td>
-                                                    <td data-title="ESTADO" class="estado-stock"><span class="estado4">Inhabilitado</span></td>
-                                                    <td data-title="Acciones" class="botones-table">
-                                                        <div class="dropdown">
-                                                            <button class=" btn-acciones dropdown-toggle" type="button"
-                                                                id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                                                                aria-expanded="false">
-                                                                Acciones
-                                                            </button>
-                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
-                                                                aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-actualizar">Editar</a>
-                                                                </li>
-                                                                <li><a class="dropdown-item" type="button"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td data-title="NPEDIDO" class="npedido">1</td>
-                                                    <td data-title="CORRELATIVO" class="correlativo">0552</td>
-                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares</td>
-                                                    <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
-                                                    <td data-title="MONTO" class="monto text-center">55.99</td>
-                                                    <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
-                                                    <td data-title="TIPO" class="tipo">Consumidor</td>
-                                                    <td data-title="ESTADO" class="estado-stock"><span class="estado">Pagado</span></td>
-                                                    <td data-title="Acciones" class="botones-table">
-                                                        <div class="dropdown">
-                                                            <button class=" btn-acciones dropdown-toggle" type="button"
-                                                                id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                                                                aria-expanded="false">
-                                                                Acciones
-                                                            </button>
-                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
-                                                                aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-actualizar">Editar</a>
-                                                                </li>
-                                                                <li><a class="dropdown-item" type="button"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td data-title="NPEDIDO" class="npedido">1</td>
-                                                    <td data-title="CORRELATIVO" class="correlativo">0552</td>
-                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares</td>
-                                                    <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
-                                                    <td data-title="MONTO" class="monto text-center">55.99</td>
-                                                    <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
-                                                    <td data-title="TIPO" class="tipo">Consumidor</td>
-                                                    <td data-title="ESTADO" class="estado-stock"><span class="estado2">En
-                                                            proceso</span></td>
-                                                    <td data-title="Acciones" class="botones-table">
-                                                        <div class="dropdown">
-                                                            <button class=" btn-acciones dropdown-toggle" type="button"
-                                                                id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                                                                aria-expanded="false">
-                                                                Acciones
-                                                            </button>
-                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
-                                                                aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-actualizar">Editar</a>
-                                                                </li>
-                                                                <li><a class="dropdown-item" type="button"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td data-title="NPEDIDO" class="npedido">1</td>
-                                                    <td data-title="CORRELATIVO" class="correlativo">0552</td>
-                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares</td>
-                                                    <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
-                                                    <td data-title="MONTO" class="monto text-center">55.99</td>
-                                                    <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
-                                                    <td data-title="TIPO" class="tipo">Consumidor</td>
-                                                    <td data-title="ESTADO" class="estado-stock"><span class="estado3">Cancelado</span></td>
-                                                    <td data-title="Acciones" class="botones-table">
-                                                        <div class="dropdown">
-                                                            <button class=" btn-acciones dropdown-toggle" type="button"
-                                                                id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                                                                aria-expanded="false">
-                                                                Acciones
-                                                            </button>
-                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
-                                                                aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-actualizar">Editar</a>
-                                                                </li>
-                                                                <li><a class="dropdown-item" type="button"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td data-title="NPEDIDO" class="npedido">1</td>
-                                                    <td data-title="CORRELATIVO" class="correlativo">0552</td>
-                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares</td>
-                                                    <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
-                                                    <td data-title="MONTO" class="monto text-center">55.99</td>
-                                                    <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
-                                                    <td data-title="TIPO" class="tipo">Consumidor</td>
-                                                    <td data-title="ESTADO" class="estado-stock"><span class="estado4">Inhabilitado</span></td>
-                                                    <td data-title="Acciones" class="botones-table">
-                                                        <div class="dropdown">
-                                                            <button class=" btn-acciones dropdown-toggle" type="button"
-                                                                id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                                                                aria-expanded="false">
-                                                                Acciones
-                                                            </button>
-                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
-                                                                aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-actualizar">Editar</a>
-                                                                </li>
-                                                                <li><a class="dropdown-item" type="button"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td data-title="NPEDIDO" class="npedido">1</td>
-                                                    <td data-title="CORRELATIVO" class="correlativo">0552</td>
-                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares</td>
-                                                    <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
-                                                    <td data-title="MONTO" class="monto text-center">55.99</td>
-                                                    <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
-                                                    <td data-title="TIPO" class="tipo">Consumidor</td>
-                                                    <td data-title="ESTADO" class="estado-stock"><span class="estado">Pagado</span></td>
-                                                    <td data-title="Acciones" class="botones-table">
-                                                        <div class="dropdown">
-                                                            <button class=" btn-acciones dropdown-toggle" type="button"
-                                                                id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                                                                aria-expanded="false">
-                                                                Acciones
-                                                            </button>
-                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
-                                                                aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-actualizar">Editar</a>
-                                                                </li>
-                                                                <li><a class="dropdown-item" type="button"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td data-title="NPEDIDO" class="npedido">1</td>
-                                                    <td data-title="CORRELATIVO" class="correlativo">0552</td>
-                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares</td>
-                                                    <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
-                                                    <td data-title="MONTO" class="monto text-center">55.99</td>
-                                                    <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
-                                                    <td data-title="TIPO" class="tipo">Consumidor</td>
-                                                    <td data-title="ESTADO" class="estado-stock"><span class="estado2">En
-                                                            proceso</span></td>
-                                                    <td data-title="Acciones" class="botones-table">
-                                                        <div class="dropdown">
-                                                            <button class=" btn-acciones dropdown-toggle" type="button"
-                                                                id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                                                                aria-expanded="false">
-                                                                Acciones
-                                                            </button>
-                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
-                                                                aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-actualizar">Editar</a>
-                                                                </li>
-                                                                <li><a class="dropdown-item" type="button"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td data-title="NPEDIDO" class="npedido">1</td>
-                                                    <td data-title="CORRELATIVO" class="correlativo">0552</td>
-                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares</td>
-                                                    <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
-                                                    <td data-title="MONTO" class="monto text-center">55.99</td>
-                                                    <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
-                                                    <td data-title="TIPO" class="tipo">Consumidor</td>
-                                                    <td data-title="ESTADO" class="estado-stock"><span class="estado3">Cancelado</span></td>
-                                                    <td data-title="Acciones" class="botones-table">
-                                                        <div class="dropdown">
-                                                            <button class=" btn-acciones dropdown-toggle" type="button"
-                                                                id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                                                                aria-expanded="false">
-                                                                Acciones
-                                                            </button>
-                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
-                                                                aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-actualizar">Editar</a>
-                                                                </li>
-                                                                <li><a class="dropdown-item" type="button"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td data-title="NPEDIDO" class="npedido">1</td>
-                                                    <td data-title="CORRELATIVO" class="correlativo">0552</td>
-                                                    <td data-title="CLIENTE" class="cliente">Samuel Linares</td>
-                                                    <td data-title="FECHA" class="fecha">30-03-2022</td>
-                                                    <td data-title="MONTO" class="monto">55.99</td>
-                                                    <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
-                                                    <td data-title="TIPO" class="tipo">Consumidor</td>
-                                                    <td data-title="ESTADO" class="estado-stock"><span class="estado4">Inhabilitado</span></td>
-                                                    <td data-title="Acciones" class="botones-table">
-                                                        <div class="dropdown">
-                                                            <button class=" btn-acciones dropdown-toggle" type="button"
-                                                                id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                                                                aria-expanded="false">
-                                                                Acciones
-                                                            </button>
-                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
-                                                                aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-actualizar">Editar</a>
-                                                                </li>
-                                                                <li><a class="dropdown-item" type="button"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
+                        <div class="col-12 p-4 col-flex-detalle">
+                            <div class="row">
+                                <div class="col mb-3">
+                                    <h2>Detalles de la venta</h2>
                                 </div>
                             </div>
-                            <div class="row mb-3 ">
-                                <div class="d-flex justify-content-center">
-                                    <label>Mostrar todos los campos
-                                        <input type="checkbox" id="checkTabla">
-                                    </label>
+                            <div class="row">
+                                <div class="col-12 mt-3">
+                                    <button class="btn-anadir-cliente btn-second">Añadir cliente</button>
                                 </div>
+                                <div class="col-12 mt-3">
+                                    <label for="">Tipo venta</label>
+                                        <select class="form-select mt-2" aria-label="Default select example" id="tipo-venta" onChange="pagoOnChange(this)"  b>
+                                            <option selected disabled>Seleccione una opción</option>
+                                            <option value="fiscal">Credito fiscal</option>
+                                            <option value="consumidor">Consumidor final</option>
+                                        </select>
+                                </div>
+                                <div class="col-12 mt-3 hide-cmb" id="tipo-venta-div">
+                                    <label for="" value="2">Tipo consumidor</label> <!-- MOSTRAR SOLO EN CASO QUE SEA CONSUMIDOR FINAL EL CMB DE ARRIBA -->
+                                        <select class="form-select mt-2" value="2" aria-label="Default select example">
+                                            <option selected disabled>Seleccione una opción</option>
+                                            <option value="1">Factura</option>
+                                            <option value="2">Ticket</option>
+                                        </select>
+                                </div>
+                                <div class="col-12 mt-3">
+                                    <label for="" class="d-block">Fecha</label>
+                                    <input type="text" id="calendar" placeholder="Seleccione una fecha" class="filtro-fecha w-100 mt-2">
+                                </div>
+                            </div>
+                            <hr class="my-5">
+                            <div class="row my-auto">
+                                <div class="col-12 col-md-6 factura-info">
+                                    <span>ID</span>
+                                </div>
+                                <div class="col-12 col-md-6 text-end factura-info">
+                                    <h6>0452</h6>
+                                </div>
+                                <div class="col-12 col-md-6 factura-info">
+                                    <span>Sub total</span>
+                                </div>
+                                <div class="col-12 col-md-6 text-end factura-info">
+                                    <h6>$200.00</h6>
+                                </div>
+                                <div class="col-12 col-md-6 factura-info">
+                                    <span>IVA</span>
+                                </div>
+                                <div class="col-12 col-md-6 text-end factura-info">
+                                    <h6 id="iva">$2</h6>
+                                </div>
+                            </div>
+                            <div class="row my-auto">
+                                <div class="col-12 col-md-6 factura-info">
+                                    <span>Total</span>
+                                </div>
+                                <div class="col-12 col-md-6 text-end factura-info">
+                                    <h4>$202.00</h4>
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col col-6"><button class="btn btn-cancel" type="button" >Cancelar</button></div>
+                                <div class="col col-6 d-flex justify-content-end"><button class="btn btn-main" type="button" >Guardar</button></div>
                             </div>
                         </div>
                     </div>
@@ -908,233 +563,6 @@
         </footer>
     </div>
 
-    <!-- INICIO MODAL AGREGAR-->
-    <div class="modal modal-agregar fade" id="modal-agregar" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-xl">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="container">
-                        <div class="row agregar-content">
-                            <div class="col">
-                                <div class="row mt-3">
-                                    <input class="form-control form-control-lg nombre-producto" type="text"
-                                        placeholder="Ingresar nombre del producto"
-                                        aria-label=".form-control-lg example">
-                                    <textarea class="form-control" placeholder="Ingresar descripción del producto"
-                                        id="exampleFormControlTextarea1" rows="2"></textarea>
-                                </div>
-                                <div class="row">
-                                    <div class="col col-6 mt-3">
-                                        <label for="cmb-subcategoría">Subcategoría</label>
-                                        <select class="form-select" aria-label="Default select example">
-                                            <option selected disabled>Seleccione una opción</option>
-                                            <option value="1">Lapiceros normales</option>
-                                            <option value="2">Lápices redondos</option>
-                                            <option value="3">Plumones delgados</option>
-                                        </select>
-                                    </div>
-                                    <div class="col col-6 mt-3">
-                                        <label for="cmb-proveedor">Proveedor</label>
-                                        <select class="form-select" aria-label="Default select example">
-                                            <option selected disabled>Seleccione una opción</option>
-                                            <option value="1">ACOSA</option>
-                                            <option value="2">ARANDA</option>
-                                            <option value="3">COPLASA</option>
-                                        </select>
-                                    </div>
-                                    <div class="col col-6 mt-3">
-                                        <label for="cmb-marca">Marca</label>
-                                        <select class="form-select" aria-label="Default select example">
-                                            <option selected disabled>Seleccione una opción</option>
-                                            <option value="1">Studio</option>
-                                            <option value="2">Big</option>
-                                            <option value="3">Norma</option>
-                                        </select>
-                                    </div>
-                                    <div class="col col-6 mt-3">
-                                        <label for="cmb-precio">Precio</label>
-                                        <input class="form-control" type="text" placeholder=""
-                                            aria-label=".form-control example">
-                                    </div>
-                                    <div class="col col-6 mt-3">
-                                        <label for="">Color</label>
-                                        <select class="form-select" aria-label="Default select example">
-                                            <option selected disabled>Seleccione una opción</option>
-                                            <option value="1">Rojo</option>
-                                            <option value="2">Verde</option>
-                                            <option value="3">Azul</option>
-                                        </select>
-                                    </div>
-                                    <div class="col col-6 mt-3">
-                                        <label for="">Cantidad</label>
-                                        <input class="form-control" type="text" placeholder=""
-                                            aria-label=".form-control example">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col col-9 mx-auto my-5 color-producto text-center">
-                                        <label class="">Añadir imagen del producto</label>
-                                        <div class="drop-container">
-                                            <i class="bi bi-cloud-arrow-up-fill"></i>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer d-flex justify-content-between">
-                    <button class="btn btn-cancel btn-second" type="button" data-bs-target="" data-bs-toggle="modal"
-                        data-bs-dismiss="modal">Cancelar</button>
-                    <button class="btn btn-guardar" type="button" data-bs-target="#modal-agregar2"
-                        data-bs-toggle="modal" data-bs-dismiss="modal">Guardar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- FIN MODAL AGREGAR -->
-    <!-- INICIO MODAL ACTUALIZAR -->
-    <div class="modal modal-agregar modal-actualizar fade" id="modal-actualizar" tabindex="-1"
-        aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-xl">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="container">
-                        <div class="row agregar-content">
-                            <div class="col">
-                                <div class="row mt-3">
-                                    <input class="form-control form-control-lg nombre-producto" type="text"
-                                        placeholder="Ingresar nombre del producto"
-                                        aria-label=".form-control-lg example">
-                                    <textarea class="form-control" placeholder="Ingresar descripción del producto"
-                                        id="exampleFormControlTextarea1" rows="2"></textarea>
-                                </div>
-                                <div class="row">
-                                    <div class="col col-6 mt-3">
-                                        <label for="cmb-subcategoría">Subcategoría</label>
-                                        <select class="form-select" aria-label="Default select example">
-                                            <option selected disabled>Seleccione una opción</option>
-                                            <option value="1">Lapiceros normales</option>
-                                            <option value="2">Lápices redondos</option>
-                                            <option value="3">Plumones delgados</option>
-                                        </select>
-                                    </div>
-                                    <div class="col col-6 mt-3">
-                                        <label for="cmb-proveedor">Proveedor</label>
-                                        <select class="form-select" aria-label="Default select example">
-                                            <option selected disabled>Seleccione una opción</option>
-                                            <option value="1">ACOSA</option>
-                                            <option value="2">ARANDA</option>
-                                            <option value="3">COPLASA</option>
-                                        </select>
-                                    </div>
-                                    <div class="col col-6 mt-3">
-                                        <label for="cmb-marca">Marca</label>
-                                        <select class="form-select" aria-label="Default select example">
-                                            <option selected disabled>Seleccione una opción</option>
-                                            <option value="1">Studio</option>
-                                            <option value="2">Big</option>
-                                            <option value="3">Norma</option>
-                                        </select>
-                                    </div>
-                                    <div class="col col-6 mt-3">
-                                        <label for="cmb-precio">Precio</label>
-                                        <input class="form-control" type="text" placeholder=""
-                                            aria-label=".form-control example">
-                                    </div>
-                                    <div class="col col-6 mt-3">
-                                        <label for="">Color</label>
-                                        <select class="form-select" aria-label="Default select example">
-                                            <option selected disabled>Seleccione una opción</option>
-                                            <option value="1">Rojo</option>
-                                            <option value="2">Verde</option>
-                                            <option value="3">Azul</option>
-                                        </select>
-                                    </div>
-                                    <div class="col col-6 mt-3">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <label for="">Cantidad actual</label>
-                                                <div class="stock-container">
-                                                    <div class="col col-12">
-                                                        <input type="text" class="form-control" id="stock-actual"
-                                                            value="" placeholder="10" disabled>
-                                                    </div>
-                                                    <div class="col col-12 px-0 mt-2">
-                                                        <div class="row input-stock mb-2">
-                                                            <div class="col col-6 mx-0">
-                                                                <input type="text" class="form-control" id="stock-nuevo"
-                                                                    value="" required>
-                                                            </div>
-                                                            <div
-                                                                class="col col-6 d-flex justify-content-evenly  col-btn-stock">
-                                                                <button class="btn btn-stock btn-main " type="button"><i
-                                                                        class="bi bi-dash"></i></button>
-                                                                <button class="btn btn-stock btn-main" type="button"><i
-                                                                        class="bi bi-plus"></i></button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col col-9 mx-auto my-5 color-producto text-center">
-                                        <label class="">Añadir imagen del producto</label>
-                                        <div class="drop-container">
-                                            <i class="bi bi-cloud-arrow-up-fill"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer d-flex justify-content-between">
-                    <button class="btn btn-cancel btn-second" type="button" data-bs-target="" data-bs-toggle="modal"
-                        data-bs-dismiss="modal">Cancelar</button>
-                    <button class="btn btn-guardar" type="button" data-bs-target="#modal-agregar2"
-                        data-bs-toggle="modal" data-bs-dismiss="modal">Guardar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- FIN MODAL ACTUALIZAR -->
-    <!-- INICIO MODAL DELETE -->
-    <div class="modal modal-eliminar fade" id="modal-eliminar" aria-hidden="true"
-        aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered modal-xl">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="container my-5">
-                        <div class="row">
-                            <div class="col eliminar-content">
-                                <i class="bi bi-exclamation-circle-fill"></i>
-                                <h2>¿Estás seguro?</h2>
-                                <span>El elemento se borrará de manera permanente</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer d-flex mx-2 justify-content-between">
-                    <button class="btn btn-cancel btn-second" type="button" data-bs-target="" data-bs-toggle="modal"
-                        data-bs-dismiss="modal">Cancelar</button>
-                    <button class="btn btn-continuar btn-main" type="button" data-bs-target="" data-bs-toggle="modal"
-                        data-bs-dismiss="modal">Continuar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- FIN MODAL DELETE -->
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
@@ -1147,6 +575,10 @@
 
     <!-- INPUT SPINNER (+ y - input)-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-input-spinner@3.1.10/src/bootstrap-input-spinner.min.js"></script>
+
+    <!-- DATE FLATPICKR  -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
     <script src="../js/detalle_venta.js">
     </script>

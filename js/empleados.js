@@ -1,25 +1,12 @@
-flatpickr('#calendar-range', {
-    "mode": "range"
-});
 /*Inicializando y configurando tabla*/
 $(document).ready(function () {
     $('#example').DataTable({
         "info": false,
         "columnDefs": [
             {
-                "targets": [1],
-                "visible": false,
-                "searchable": false
-            },
-            {
-                "targets": [5],
-                "visible": false
-            },
-            {
-                "targets": [6],
+                "targets": [3],
                 "visible": false
             }
-            ,
         ],
         "searching": false,
         "dom":
@@ -36,6 +23,6 @@ $(document).ready(function () {
     });
     /*Función para mostrar y ocultar campos de la tabla*/
     $('#checkTabla').change(function () {
-        $('#example').DataTable().columns([1, 5, 6]).visible($(this).is(':checked'))
+        $('#example').DataTable().columns([3]).visible($(this).is(':checked'))
     })
 });

@@ -353,10 +353,15 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
 .content-productos button{
   font-size: 14px;
 }
+
+.col-table {
+  text-align: center !important;
+}
+
 .nombre-producto{
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-around;
   vertical-align: middle;
 }
 .pedido-no, .categoria, .precio, .inventario, .estado-stock, .botones-table{
@@ -409,6 +414,7 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
   padding-right: 5px;
   border-radius: 8px;
   font-weight: 500;
+  font-size: 14px;
 }
 .btn-añadir .bi-plus{
   font-size: 24px;
@@ -426,7 +432,7 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
   font-size: 14px;
   color: #CDC050;
   background-color: #FDFFE8;
-  padding: 10px 3px;
+  padding: 10px 14px;
   border-radius: 8px;
   white-space: nowrap;
 }
@@ -434,7 +440,7 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
   font-size: 14px;
   color: #CD5050;
   background-color: #FFE8E8;
-  padding: 10px 3px;
+  padding: 10px 14px;
   border-radius: 8px;
   white-space: nowrap;
 }
@@ -542,6 +548,14 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
 /*Animación de dropdowns fin*/
 
 /*MODAL AGREGAR INICIO*/
+
+.modal-agregarEmpl .foto-empleado img {
+  width: 200px;
+  height: 200px;
+  justify-content: center;
+  align-items: center;
+}
+
 .modal-agregar .modal-dialog{
   max-width: 550px;
 }
@@ -583,7 +597,8 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
   font-weight: 500;
   margin: 0 0 5px 5px;
 }
-.modal-agregar input, .modal-agregar select{
+.modal-agregar input, .modal-agregar select,
+.modal-agregarEmpl input{
   border-color: var(--azulMain);
   border-radius: 18px;
   font-size: 14px;
@@ -702,12 +717,83 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
     width: 48% !important;
   }
 }
+
+/*PEDIDOS CONSUMIDOR INICIO*/
+#calendar-range{
+  border: none;
+  text-align: center;
+  color: var(--grisTitulos);
+  font-weight: 500;
+  background-color: var(--marfil);
+  border-radius: 8px;
+}
+#calendar-range::placeholder{
+  color: var(--grisTitulos);
+  font-weight: 500;
+}
+.pedidos-consumidor table td{
+  text-align: center;
+}
+.pedidos-consumidor .botones-table{
+  width: 15%;
+  text-align: center;
+}
+.pedidos-consumidor .fecha{
+  white-space: nowrap;
+}
+@media (max-width:992px){
+  .col-header-pre-table{
+    width: 100%;
+    margin-bottom: 15px!important;
+    justify-content: space-between!important;
+    flex-wrap: nowrap;
+  }
+  .buscador{
+    width: 100% !important;
+  }
+  #calendar-range{
+    width: 75%;
+  }
+}
+
+/*PEDIDOS CONSUMIDOR FIN*/
+
 /*AÑADIR VENTA(DETALLE) INICIO*/
 .detalle-venta .content-card{
   width: 65%;
+  max-height: 1125px;
+  overflow-x: hidden;
+}
+.detalle-venta .table-responsive{
+  max-height: 500px;
+  overflow: auto;
+}
+/*OCULTANDO SCROLLBAR*/
+.detalle-venta .table-responsive::-webkit-scrollbar{
+  display: none!important;
 }
 .detalle-venta .content-card:last-child{
   width: 30%;
+}
+.detalle-venta h2{
+  font-weight: 700;
+  font-size: 28px;
+}
+.detalle-venta span{
+  font-weight: 500;
+  font-size: 18px;
+}
+.detalle-venta label{
+  font-weight: 500;
+  font-size: 18px;
+}
+.detalle-venta h6{
+  font-weight: 700;
+  font-size: 20px;
+}
+.detalle-venta h4{
+  font-weight: 700;
+  font-size: 28px;
 }
 .content-detalle{
   display: flex;
@@ -747,54 +833,138 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
   border: none!important;
   padding: 0 0 !important;
 }
-.productos-detalle .producto-card::before{ /*Pendiente boton de quitar*/
-  content: '';
+
+.productos-detalle .producto-card{
+  position: relative;
 }
 
-/*AÑADIR VENTA(DETALLE) FIN*/
+.productos-detalle .producto-card .bi-x{
+  position: absolute;
+  top: -15%;
+  right: -3%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  color: #CD5050;
+  background-color: #FFE8E8;
+  border-radius: 50%;
+  filter: opacity(0);
+  transform: scale(0.5);
+  transition: all 0.5s ease;
+}
+.producto-card:hover .bi-x{
+  transition-delay: 0.1s;
+  filter: opacity(1);
+  transform: scale(1);
+  cursor: pointer;
+}
+.detalle-venta .btn-filtro{
+  white-space: nowrap;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width:99%;
+  height: 38px;
+  padding: 0;
+}
+.detalle-venta .buscador form{
+  width: 92%;
+}
+@media (max-width:992px){
+  .col-buscador{
+    width: 100%;
+  }
+  .detalle-venta .btn-filtro{
+    margin-top: 8px;
+    width:100%;
+  }
+  .detalle-venta .buscador{
+    height: 35px;
+  }
+}
+.detalle-venta .table-check{
+  width: 2%;
+}
 
-/*PEDIDOS CONSUMIDOR INICIO*/
-#calendar-range{
+.col-flex-detalle{
+  display: flex;
+  flex-direction: column;
+}
+
+
+.btn-anadir-cliente {
   border: none;
+  border-radius: 8px;
+  width: 100%;
+  height: 38px;
+  font-weight: 500;
+}
+.detalle-venta .content-card select{
+  text-align: center;
+  border-radius: 8px;
+  border: 1px solid var(--azulMain); 
+  height: 38px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.detalle-venta .content-card.detalle input{
+  border: none;
+  height: 38px;
   text-align: center;
   color: var(--grisTitulos);
   font-weight: 500;
   background-color: var(--marfil);
   border-radius: 8px;
 }
-#calendar-range::placeholder{
+#calendar::placeholder{
   color: var(--grisTitulos);
   font-weight: 500;
 }
-.pedidos-consumidor table td{
-  text-align: center;
+.detalle-venta .btn-cancel{
+  color: var(--azulMain);
+  background-color: transparent;
+  border: 1px solid var(--azulMain);
+  transition: all 0.3s ease;
 }
-.pedidos-consumidor .botones-table{
-  width: 15%;
-  text-align: center;
+.detalle-venta .btn-cancel:hover{
+  color: var(--blanco);
+  background-color: var(--azulMain);
 }
-.pedidos-consumidor .fecha{
-  white-space: nowrap;
+.content-card.detalle hr{
+  color: var(--grisTitulos);
 }
-.pedidos-consumidor .npedido{
- 
-}
-@media (max-width:992px){
-  .col-header-pre-table{
+@media (max-width:768px){
+
+  .content-detalle{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .detalle-venta .content-card{
+    width: 100%!important;
+  }
+  .productos-detalle .producto-card .bi-x{
+    top: -15%;
+    right: -2%;
+  }
+  .col-flex-detalle{
     width: 100%;
-    margin-bottom: 15px!important;
-    justify-content: space-between!important;
-    flex-wrap: nowrap;
   }
-  .buscador{
-    width: 100% !important;
-  }
-  #calendar-range{
-    width: 75%;
+  .content-card.detalle{
+    display: block!important;
   }
 }
 
-/*PEDIDOS CONSUMIDOR FIN*/
+
+.hide-cmb{
+  display: none;
+}
+#tipo-venta-div{
+  display: none;
+}
+/*AÑADIR VENTA(DETALLE) FIN*/
 
 /*MODAL AGREGAR SUBCATEGORIA*/
 .addname{
@@ -993,6 +1163,7 @@ tbody .imgMP{
 
 .log-l{
   width: 260px;
+  
 }
 
 .titu-l{
@@ -1000,7 +1171,7 @@ tbody .imgMP{
   font-size: 30px;
   color:var(--azulOscuro);
   text-align: center;
-  padding-top: 85px;
+  padding-top: 80px;
 }
 
 .login-fondo input{
