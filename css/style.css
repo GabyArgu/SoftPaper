@@ -1149,6 +1149,7 @@ tbody .imgMP{
 
 .log-l{
   width: 260px;
+  
 }
 
 .titu-l{
@@ -1156,7 +1157,7 @@ tbody .imgMP{
   font-size: 30px;
   color:var(--azulOscuro);
   text-align: center;
-  padding-top: 85px;
+  padding-top: 80px;
 }
 
 .login-fondo input{
