@@ -409,6 +409,7 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
   padding-right: 5px;
   border-radius: 8px;
   font-weight: 500;
+  font-size: 14px;
 }
 .btn-añadir .bi-plus{
   font-size: 24px;
@@ -702,9 +703,6 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
     width: 48% !important;
   }
 }
-/*AÑADIR VENTA(DETALLE) INICIO*/
-
-/*AÑADIR VENTA(DETALLE) FIN*/
 
 /*PEDIDOS CONSUMIDOR INICIO*/
 #calendar-range{
@@ -729,9 +727,6 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
 .pedidos-consumidor .fecha{
   white-space: nowrap;
 }
-.pedidos-consumidor .npedido{
- 
-}
 @media (max-width:992px){
   .col-header-pre-table{
     width: 100%;
@@ -748,6 +743,214 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
 }
 
 /*PEDIDOS CONSUMIDOR FIN*/
+
+/*AÑADIR VENTA(DETALLE) INICIO*/
+.detalle-venta .content-card{
+  width: 65%;
+  max-height: 1125px;
+  overflow-x: hidden;
+}
+.detalle-venta .table-responsive{
+  max-height: 500px;
+  overflow: auto;
+}
+/*OCULTANDO SCROLLBAR*/
+.detalle-venta .table-responsive::-webkit-scrollbar{
+  display: none!important;
+}
+.detalle-venta .content-card:last-child{
+  width: 30%;
+}
+.detalle-venta h2{
+  font-weight: 700;
+  font-size: 28px;
+}
+.detalle-venta span{
+  font-weight: 500;
+  font-size: 18px;
+}
+.detalle-venta label{
+  font-weight: 500;
+  font-size: 18px;
+}
+.detalle-venta h6{
+  font-weight: 700;
+  font-size: 20px;
+}
+.detalle-venta h4{
+  font-weight: 700;
+  font-size: 28px;
+}
+.content-detalle{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.detalle-venta .productos-detalle img{
+  width: 50px;
+  height: 50px;
+}
+.info-producto h5{
+  font-size: 14px;
+  font-weight: 500;
+}
+.productos-detalle .controls-producto{
+  width: 40%;
+}
+.productos-detalle .controls-producto .input-group{
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+}
+.productos-detalle .controls-producto .input-group .btn{
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-top-left-radius:unset !important;
+  border-bottom-left-radius:unset !important;
+  border-radius: 50%!important;
+  font-size: 18px;
+  transform: scale(0.8);
+}
+.productos-detalle .controls-producto .input-group input{
+  flex: none;
+  height: 40px;
+  width: 40px!important;
+  border: none!important;
+  padding: 0 0 !important;
+}
+
+.productos-detalle .producto-card{
+  position: relative;
+}
+
+.productos-detalle .producto-card .bi-x{
+  position: absolute;
+  top: -15%;
+  right: -3%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  color: #CD5050;
+  background-color: #FFE8E8;
+  border-radius: 50%;
+  filter: opacity(0);
+  transform: scale(0.5);
+  transition: all 0.5s ease;
+}
+.producto-card:hover .bi-x{
+  transition-delay: 0.1s;
+  filter: opacity(1);
+  transform: scale(1);
+  cursor: pointer;
+}
+.detalle-venta .btn-filtro{
+  white-space: nowrap;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width:99%;
+  height: 38px;
+  padding: 0;
+}
+.detalle-venta .buscador form{
+  width: 92%;
+}
+@media (max-width:992px){
+  .col-buscador{
+    width: 100%;
+  }
+  .detalle-venta .btn-filtro{
+    margin-top: 8px;
+    width:100%;
+  }
+  .detalle-venta .buscador{
+    height: 35px;
+  }
+}
+.detalle-venta .table-check{
+  width: 2%;
+}
+
+.col-flex-detalle{
+  display: flex;
+  flex-direction: column;
+}
+
+
+.btn-anadir-cliente {
+  border: none;
+  border-radius: 8px;
+  width: 100%;
+  height: 38px;
+  font-weight: 500;
+}
+.detalle-venta .content-card select{
+  text-align: center;
+  border-radius: 8px;
+  border: 1px solid var(--azulMain); 
+  height: 38px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.detalle-venta .content-card.detalle input{
+  border: none;
+  height: 38px;
+  text-align: center;
+  color: var(--grisTitulos);
+  font-weight: 500;
+  background-color: var(--marfil);
+  border-radius: 8px;
+}
+#calendar::placeholder{
+  color: var(--grisTitulos);
+  font-weight: 500;
+}
+.detalle-venta .btn-cancel{
+  color: var(--azulMain);
+  background-color: transparent;
+  border: 1px solid var(--azulMain);
+  transition: all 0.3s ease;
+}
+.detalle-venta .btn-cancel:hover{
+  color: var(--blanco);
+  background-color: var(--azulMain);
+}
+.content-card.detalle hr{
+  color: var(--grisTitulos);
+}
+@media (max-width:768px){
+
+  .content-detalle{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .detalle-venta .content-card{
+    width: 100%!important;
+  }
+  .productos-detalle .producto-card .bi-x{
+    top: -15%;
+    right: -2%;
+  }
+  .col-flex-detalle{
+    width: 100%;
+  }
+  .content-card.detalle{
+    display: block!important;
+  }
+}
+
+
+.hide-cmb{
+  display: none;
+}
+#tipo-venta-div{
+  display: none;
+}
+/*AÑADIR VENTA(DETALLE) FIN*/
 
 /*MODAL AGREGAR SUBCATEGORIA*/
 .addname{
