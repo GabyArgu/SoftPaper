@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -83,8 +83,33 @@
                                                 placeholder="Buscar cliente">
                                         </form>
                                     </div>
-                                    <button class="btn-filtroMP" type="button"><i
-                                            class="bi bi-funnel-fill"></i>Filtrar</button>
+                                    <div class="dropdown">
+                                        <button class="btn-filtro btn-second" type="button"
+                                            id="dropdownMenuButtonFilter" data-bs-toggle="dropdown"
+                                            aria-expanded="false"><i class="bi bi-funnel-fill"></i>Filtrar</button>
+                                        <ul class="dropdown-menu dropdown-menu-end animate slideIn dropdown-filtro"
+                                            aria-labelledby="dropdownMenuButtonFilter">
+                                            <li>
+                                                <h5 class="mt-3">Opciones de filtro</h5>
+                                            </li>
+                                            <li>
+                                                <hr class="dropdown-divider">
+                                            </li>
+                                            <li>
+                                                <h6 class="mb-3">Estado</h6>
+                                            </li>
+                                            <li><select class="form-select filtro-combo"
+                                                    aria-label="Default select example">
+                                                    <option selected disabled>Seleccione una opción</option>
+                                                    <option value="1">Activo</option>
+                                                    <option value="2">Inactivo</option>
+                                                </select></li>
+                                            <li class="d-flex justify-content-end"><button
+                                                    class="btn btn-main btn-aplicar-filtro mt-3" type="button"
+                                                    data-bs-target="#modal-agregar2" data-bs-toggle="modal"
+                                                    data-bs-dismiss="modal">Aplicar</button></li>
+                                        </ul>
+                                    </div>
                                 </div>
                                 <div class="col col-lg-6 d-flex justify-content-end px-5">
                                     <button class="btn-añadirMP" type="button" data-bs-toggle="modal"
@@ -102,21 +127,28 @@
                                                 <tr>
                                                     <th>Nombre</th>
                                                     <th>Dirección</th>
+                                                    <th>Municipio</th>
+                                                    <th>Registro No.</th>
                                                     <th>Documento</th>
+                                                    <th>Teléfono</th>
+                                                    <th>Giro</th>
                                                     <th>Estado</th>
                                                     <th>Acciones</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td data-title="NOMBRE" class="col-table text-center">Herbert
+                                                    <td class="col-table text-center">Herbert
                                                         Cornejo</td>
-                                                    <td data-title="DIRECCIÓN" class="text-center">Avenida Aguilares 218
+                                                    <td class="text-center">Avenida Aguilares 218
                                                         San Salvador </td>
-                                                    <td data-title="DOCUMENTO" class="text-center">00000000-0</td>
-                                                    <td data-title="ESTADO" class="estado-stock"><span class="estado">En
-                                                            stock</span></td>
-                                                    <td data-title="Acciones" class="botones-table">
+                                                    <td class="text-center">San Salvador</td>
+                                                    <td class="text-center">258790-4</td>
+                                                    <td class="text-center">00000000-0</td>
+                                                    <td class="text-center">7668-4927</td>
+                                                    <td class="text-center">Particular</td>
+                                                    <td class="estado-stock"><span class="estado">Activo</span></td>
+                                                    <td class="botones-table">
                                                         <div class="dropdown">
                                                             <button class=" btn-acciones dropdown-toggle" type="button"
                                                                 id="dropdownMenuButton1" data-bs-toggle="dropdown"
@@ -125,25 +157,29 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" href="#">Ver</a></li>
-                                                                <li><a class="dropdown-item" href="#">Editar</a></li>
                                                                 <li><a class="dropdown-item" type="button"
-                                                                    data-bs-toggle="modal"
-                                                                    data-bs-target="#modal-eliminar">Eliminar</a>
-                                                            </li>
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-agregar">Editar</a></li>
+                                                                <li><a class="dropdown-item" type="button"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
+                                                                </li>
                                                             </ul>
                                                         </div>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-title="NOMBRE" class="col-table text-center">Herbert
+                                                    <td class="col-table text-center">Herbert
                                                         Cornejo</td>
-                                                    <td data-title="DIRECCIÓN" class="text-center">Avenida Aguilares 218
+                                                    <td class="text-center">Avenida Aguilares 218
                                                         San Salvador </td>
-                                                    <td data-title="DOCUMENTO" class="text-center">00000000-0</td>
-                                                    <td data-title="ESTADO" class="estado-stock"><span class="estado">En
-                                                            stock</span></td>
-                                                    <td data-title="Acciones" class="botones-table">
+                                                    <td class="text-center">San Salvador</td>
+                                                    <td class="text-center">258790-4</td>
+                                                    <td class="text-center">00000000-0</td>
+                                                    <td class="text-center">7668-4927</td>
+                                                    <td class="text-center">Particular</td>
+                                                    <td class="estado-stock"><span class="estado">Activo</span></td>
+                                                    <td class="botones-table">
                                                         <div class="dropdown">
                                                             <button class=" btn-acciones dropdown-toggle" type="button"
                                                                 id="dropdownMenuButton1" data-bs-toggle="dropdown"
@@ -152,25 +188,29 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" href="#">Ver</a></li>
-                                                                <li><a class="dropdown-item" href="#">Editar</a></li>
                                                                 <li><a class="dropdown-item" type="button"
-                                                                    data-bs-toggle="modal"
-                                                                    data-bs-target="#modal-eliminar">Eliminar</a>
-                                                            </li>
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-agregar">Editar</a></li>
+                                                                <li><a class="dropdown-item" type="button"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
+                                                                </li>
                                                             </ul>
                                                         </div>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-title="NOMBRE" class="col-table text-center">Herbert
+                                                    <td class="col-table text-center">Herbert
                                                         Cornejo</td>
-                                                    <td data-title="DIRECCIÓN" class="text-center">Avenida Aguilares 218
+                                                    <td class="text-center">Avenida Aguilares 218
                                                         San Salvador </td>
-                                                    <td data-title="DOCUMENTO" class="text-center">00000000-0</td>
-                                                    <td data-title="ESTADO" class="estado-stock"><span class="estado">En
-                                                            stock</span></td>
-                                                    <td data-title="Acciones" class="botones-table">
+                                                    <td class="text-center">San Salvador</td>
+                                                    <td class="text-center">258790-4</td>
+                                                    <td class="text-center">00000000-0</td>
+                                                    <td class="text-center">7668-4927</td>
+                                                    <td class="text-center">Particular</td>
+                                                    <td class="estado-stock"><span class="estado">Activo</span></td>
+                                                    <td class="botones-table">
                                                         <div class="dropdown">
                                                             <button class=" btn-acciones dropdown-toggle" type="button"
                                                                 id="dropdownMenuButton1" data-bs-toggle="dropdown"
@@ -179,25 +219,29 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" href="#">Ver</a></li>
-                                                                <li><a class="dropdown-item" href="#">Editar</a></li>
                                                                 <li><a class="dropdown-item" type="button"
-                                                                    data-bs-toggle="modal"
-                                                                    data-bs-target="#modal-eliminar">Eliminar</a>
-                                                            </li>
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-agregar">Editar</a></li>
+                                                                <li><a class="dropdown-item" type="button"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
+                                                                </li>
                                                             </ul>
                                                         </div>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-title="NOMBRE" class="col-table text-center">Herbert
+                                                    <td class="col-table text-center">Herbert
                                                         Cornejo</td>
-                                                    <td data-title="DIRECCIÓN" class="text-center">Avenida Aguilares 218
+                                                    <td class="text-center">Avenida Aguilares 218
                                                         San Salvador </td>
-                                                    <td data-title="DOCUMENTO" class="text-center">00000000-0</td>
-                                                    <td data-title="ESTADO" class="estado-stock"><span class="estado">En
-                                                            stock</span></td>
-                                                    <td data-title="Acciones" class="botones-table">
+                                                    <td class="text-center">San Salvador</td>
+                                                    <td class="text-center">258790-4</td>
+                                                    <td class="text-center">00000000-0</td>
+                                                    <td class="text-center">7668-4927</td>
+                                                    <td class="text-center">Particular</td>
+                                                    <td class="estado-stock"><span class="estado">Activo</span></td>
+                                                    <td class="botones-table">
                                                         <div class="dropdown">
                                                             <button class=" btn-acciones dropdown-toggle" type="button"
                                                                 id="dropdownMenuButton1" data-bs-toggle="dropdown"
@@ -206,25 +250,29 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" href="#">Ver</a></li>
-                                                                <li><a class="dropdown-item" href="#">Editar</a></li>
                                                                 <li><a class="dropdown-item" type="button"
-                                                                    data-bs-toggle="modal"
-                                                                    data-bs-target="#modal-eliminar">Eliminar</a>
-                                                            </li>
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-agregar">Editar</a></li>
+                                                                <li><a class="dropdown-item" type="button"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
+                                                                </li>
                                                             </ul>
                                                         </div>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-title="NOMBRE" class="col-table text-center">Herbert
+                                                    <td class="col-table text-center">Herbert
                                                         Cornejo</td>
-                                                    <td data-title="DIRECCIÓN" class="text-center">Avenida Aguilares 218
+                                                    <td class="text-center">Avenida Aguilares 218
                                                         San Salvador </td>
-                                                    <td data-title="DOCUMENTO" class="text-center">00000000-0</td>
-                                                    <td data-title="ESTADO" class="estado-stock"><span class="estado">En
-                                                            stock</span></td>
-                                                    <td data-title="Acciones" class="botones-table">
+                                                    <td class="text-center">San Salvador</td>
+                                                    <td class="text-center">258790-4</td>
+                                                    <td class="text-center">00000000-0</td>
+                                                    <td class="text-center">7668-4927</td>
+                                                    <td class="text-center">Particular</td>
+                                                    <td class="estado-stock"><span class="estado">Activo</span></td>
+                                                    <td class="botones-table">
                                                         <div class="dropdown">
                                                             <button class=" btn-acciones dropdown-toggle" type="button"
                                                                 id="dropdownMenuButton1" data-bs-toggle="dropdown"
@@ -233,12 +281,323 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" href="#">Ver</a></li>
-                                                                <li><a class="dropdown-item" href="#">Editar</a></li>
                                                                 <li><a class="dropdown-item" type="button"
-                                                                    data-bs-toggle="modal"
-                                                                    data-bs-target="#modal-eliminar">Eliminar</a>
-                                                            </li>
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-agregar">Editar</a></li>
+                                                                <li><a class="dropdown-item" type="button"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-table text-center">Herbert
+                                                        Cornejo</td>
+                                                    <td class="text-center">Avenida Aguilares 218
+                                                        San Salvador </td>
+                                                    <td class="text-center">San Salvador</td>
+                                                    <td class="text-center">258790-4</td>
+                                                    <td class="text-center">00000000-0</td>
+                                                    <td class="text-center">7668-4927</td>
+                                                    <td class="text-center">Particular</td>
+                                                    <td class="estado-stock"><span class="estado">Activo</span></td>
+                                                    <td class="botones-table">
+                                                        <div class="dropdown">
+                                                            <button class=" btn-acciones dropdown-toggle" type="button"
+                                                                id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                                                aria-expanded="false">
+                                                                Acciones
+                                                            </button>
+                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                                aria-labelledby="dropdownMenuButton1">
+                                                                <li><a class="dropdown-item" type="button"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-agregar">Editar</a></li>
+                                                                <li><a class="dropdown-item" type="button"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-table text-center">Herbert
+                                                        Cornejo</td>
+                                                    <td class="text-center">Avenida Aguilares 218
+                                                        San Salvador </td>
+                                                    <td class="text-center">San Salvador</td>
+                                                    <td class="text-center">258790-4</td>
+                                                    <td class="text-center">00000000-0</td>
+                                                    <td class="text-center">7668-4927</td>
+                                                    <td class="text-center">Particular</td>
+                                                    <td class="estado-stock"><span class="estado">Activo</span></td>
+                                                    <td class="botones-table">
+                                                        <div class="dropdown">
+                                                            <button class=" btn-acciones dropdown-toggle" type="button"
+                                                                id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                                                aria-expanded="false">
+                                                                Acciones
+                                                            </button>
+                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                                aria-labelledby="dropdownMenuButton1">
+                                                                <li><a class="dropdown-item" type="button"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-agregar">Editar</a></li>
+                                                                <li><a class="dropdown-item" type="button"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-table text-center">Herbert
+                                                        Cornejo</td>
+                                                    <td class="text-center">Avenida Aguilares 218
+                                                        San Salvador </td>
+                                                    <td class="text-center">San Salvador</td>
+                                                    <td class="text-center">258790-4</td>
+                                                    <td class="text-center">00000000-0</td>
+                                                    <td class="text-center">7668-4927</td>
+                                                    <td class="text-center">Particular</td>
+                                                    <td class="estado-stock"><span class="estado">Activo</span></td>
+                                                    <td class="botones-table">
+                                                        <div class="dropdown">
+                                                            <button class=" btn-acciones dropdown-toggle" type="button"
+                                                                id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                                                aria-expanded="false">
+                                                                Acciones
+                                                            </button>
+                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                                aria-labelledby="dropdownMenuButton1">
+                                                                <li><a class="dropdown-item" type="button"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-agregar">Editar</a></li>
+                                                                <li><a class="dropdown-item" type="button"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-table text-center">Herbert
+                                                        Cornejo</td>
+                                                    <td class="text-center">Avenida Aguilares 218
+                                                        San Salvador </td>
+                                                    <td class="text-center">San Salvador</td>
+                                                    <td class="text-center">258790-4</td>
+                                                    <td class="text-center">00000000-0</td>
+                                                    <td class="text-center">7668-4927</td>
+                                                    <td class="text-center">Particular</td>
+                                                    <td class="estado-stock"><span class="estado">Activo</span></td>
+                                                    <td class="botones-table">
+                                                        <div class="dropdown">
+                                                            <button class=" btn-acciones dropdown-toggle" type="button"
+                                                                id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                                                aria-expanded="false">
+                                                                Acciones
+                                                            </button>
+                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                                aria-labelledby="dropdownMenuButton1">
+                                                                <li><a class="dropdown-item" type="button"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-agregar">Editar</a></li>
+                                                                <li><a class="dropdown-item" type="button"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-table text-center">Herbert
+                                                        Cornejo</td>
+                                                    <td class="text-center">Avenida Aguilares 218
+                                                        San Salvador </td>
+                                                    <td class="text-center">San Salvador</td>
+                                                    <td class="text-center">258790-4</td>
+                                                    <td class="text-center">00000000-0</td>
+                                                    <td class="text-center">7668-4927</td>
+                                                    <td class="text-center">Particular</td>
+                                                    <td class="estado-stock"><span class="estado">Activo</span></td>
+                                                    <td class="botones-table">
+                                                        <div class="dropdown">
+                                                            <button class=" btn-acciones dropdown-toggle" type="button"
+                                                                id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                                                aria-expanded="false">
+                                                                Acciones
+                                                            </button>
+                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                                aria-labelledby="dropdownMenuButton1">
+                                                                <li><a class="dropdown-item" type="button"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-agregar">Editar</a></li>
+                                                                <li><a class="dropdown-item" type="button"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-table text-center">Herbert
+                                                        Cornejo</td>
+                                                    <td class="text-center">Avenida Aguilares 218
+                                                        San Salvador </td>
+                                                    <td class="text-center">San Salvador</td>
+                                                    <td class="text-center">258790-4</td>
+                                                    <td class="text-center">00000000-0</td>
+                                                    <td class="text-center">7668-4927</td>
+                                                    <td class="text-center">Particular</td>
+                                                    <td class="estado-stock"><span class="estado">Activo</span></td>
+                                                    <td class="botones-table">
+                                                        <div class="dropdown">
+                                                            <button class=" btn-acciones dropdown-toggle" type="button"
+                                                                id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                                                aria-expanded="false">
+                                                                Acciones
+                                                            </button>
+                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                                aria-labelledby="dropdownMenuButton1">
+                                                                <li><a class="dropdown-item" type="button"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-agregar">Editar</a></li>
+                                                                <li><a class="dropdown-item" type="button"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-table text-center">Herbert
+                                                        Cornejo</td>
+                                                    <td class="text-center">Avenida Aguilares 218
+                                                        San Salvador </td>
+                                                    <td class="text-center">San Salvador</td>
+                                                    <td class="text-center">258790-4</td>
+                                                    <td class="text-center">00000000-0</td>
+                                                    <td class="text-center">7668-4927</td>
+                                                    <td class="text-center">Particular</td>
+                                                    <td class="estado-stock"><span class="estado">Activo</span></td>
+                                                    <td class="botones-table">
+                                                        <div class="dropdown">
+                                                            <button class=" btn-acciones dropdown-toggle" type="button"
+                                                                id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                                                aria-expanded="false">
+                                                                Acciones
+                                                            </button>
+                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                                aria-labelledby="dropdownMenuButton1">
+                                                                <li><a class="dropdown-item" type="button"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-agregar">Editar</a></li>
+                                                                <li><a class="dropdown-item" type="button"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-table text-center">Herbert
+                                                        Cornejo</td>
+                                                    <td class="text-center">Avenida Aguilares 218
+                                                        San Salvador </td>
+                                                    <td class="text-center">San Salvador</td>
+                                                    <td class="text-center">258790-4</td>
+                                                    <td class="text-center">00000000-0</td>
+                                                    <td class="text-center">7668-4927</td>
+                                                    <td class="text-center">Particular</td>
+                                                    <td class="estado-stock"><span class="estado">Activo</span></td>
+                                                    <td class="botones-table">
+                                                        <div class="dropdown">
+                                                            <button class=" btn-acciones dropdown-toggle" type="button"
+                                                                id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                                                aria-expanded="false">
+                                                                Acciones
+                                                            </button>
+                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                                aria-labelledby="dropdownMenuButton1">
+                                                                <li><a class="dropdown-item" type="button"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-agregar">Editar</a></li>
+                                                                <li><a class="dropdown-item" type="button"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-table text-center">Herbert
+                                                        Cornejo</td>
+                                                    <td class="text-center">Avenida Aguilares 218
+                                                        San Salvador </td>
+                                                    <td class="text-center">San Salvador</td>
+                                                    <td class="text-center">258790-4</td>
+                                                    <td class="text-center">00000000-0</td>
+                                                    <td class="text-center">7668-4927</td>
+                                                    <td class="text-center">Particular</td>
+                                                    <td class="estado-stock"><span class="estado">Activo</span></td>
+                                                    <td class="botones-table">
+                                                        <div class="dropdown">
+                                                            <button class=" btn-acciones dropdown-toggle" type="button"
+                                                                id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                                                aria-expanded="false">
+                                                                Acciones
+                                                            </button>
+                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                                aria-labelledby="dropdownMenuButton1">
+                                                                <li><a class="dropdown-item" type="button"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-agregar">Editar</a></li>
+                                                                <li><a class="dropdown-item" type="button"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-table text-center">Herbert
+                                                        Cornejo</td>
+                                                    <td class="text-center">Avenida Aguilares 218
+                                                        San Salvador </td>
+                                                    <td class="text-center">San Salvador</td>
+                                                    <td class="text-center">258790-4</td>
+                                                    <td class="text-center">00000000-0</td>
+                                                    <td class="text-center">7668-4927</td>
+                                                    <td class="text-center">Particular</td>
+                                                    <td class="estado-stock"><span class="estado">Activo</span></td>
+                                                    <td class="botones-table">
+                                                        <div class="dropdown">
+                                                            <button class=" btn-acciones dropdown-toggle" type="button"
+                                                                id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                                                aria-expanded="false">
+                                                                Acciones
+                                                            </button>
+                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                                aria-labelledby="dropdownMenuButton1">
+                                                                <li><a class="dropdown-item" type="button"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-agregar">Editar</a></li>
+                                                                <li><a class="dropdown-item" type="button"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
+                                                                </li>
                                                             </ul>
                                                         </div>
                                                     </td>
@@ -246,6 +605,13 @@
                                             </tbody>
                                         </table>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3 ">
+                                <div class="d-flex justify-content-center">
+                                    <label>Mostrar todos los campos
+                                        <input type="checkbox" id="checkTabla">
+                                    </label>
                                 </div>
                             </div>
                         </div>
@@ -300,9 +666,11 @@
                                         <label>Giro</label>
                                         <select class="form-select" aria-label="Default select example">
                                             <option selected disabled>Seleccione una opción</option>
-                                            <option value="1">Comida</option>
-                                            <option value="2">Electrodomésticos</option>
-                                            <option value="3">Servicios básicos</option>
+                                            <option value="1">Particular</option>
+                                            <option value="2">Comida</option>
+                                            <option value="3">Medicina</option>
+                                            <option value="3">Escolar</option>
+                                            <option value="3">Otros</option>
                                         </select>
                                     </div>
                                     <div class="col col-6 mt-3">
@@ -320,7 +688,6 @@
                                             <option selected disabled>Seleccione una opción</option>
                                             <option value="1">Activo</option>
                                             <option value="2">Inactivo</option>
-                                            <option value="3">Inhabilitado</option>
                                         </select>
                                     </div>
                                 </div>
@@ -329,7 +696,7 @@
                     </div>
                 </div>
                 <div class="modal-footer d-flex justify-content-end mt-4">
-                    <button class="btn btn-guardar" type="button" data-bs-target=""
+                    <button class="btn btn-guardar" type="button" data-bs-target="#modal-agregar2"
                         data-bs-toggle="modal" data-bs-dismiss="modal">Guardar</button>
                     <button class="btn btn-cancel btn-second" type="button" data-bs-target="" data-bs-toggle="modal"
                         data-bs-dismiss="modal">Cancelar</button>
@@ -382,25 +749,7 @@
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
 
-    <script>
-        $(document).ready(function () {
-            $('#example').DataTable({
-                "info": false,
-                "searching": false,
-                "dom":
-                    "<'row'<'col-sm-12'tr>>" +
-                    "<'row'<'col-sm-2'l><'col-sm-10'p>>",
-                "language": {
-                    "lengthMenu": "Mostrando _MENU_ registros",
-                    "paginate": {
-                        "next": '<i class="bi bi-arrow-right-short"></i>',
-                        "previous": '<i class="bi bi-arrow-left-short"></i>'
-                    }
-                },
-                "lengthMenu": [[10, 15, 10, -1], [10, 15, 20, "Todos"]]
-            });
-        });
-    </script>
+    <script src="/js/clientes.js"></script>
 </body>
 
 </html>
