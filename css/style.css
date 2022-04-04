@@ -38,6 +38,7 @@
     border-radius: 5px;
 }
 body{
+  position: relative;
   background-image: url(../resources/fondo/pr1.png);
   background-color: var(--marfil);
   background-size: 100% 350px;
@@ -535,11 +536,13 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
 .dropdown-menu{
     position: absolute!important;
     inset: auto !important;
+    z-index: 9999!important;
 }
 .dropdown-menu.show{
-  position: absolute!important;
-  z-index: 100!important;
+  position: relative; /* <-- Added */
+  z-index: 9999; /* <-- Added */
 }
+
 /*Animación de dropdowns fin*/
 
 /*MODAL AGREGAR INICIO*/
@@ -585,9 +588,10 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
   margin: 0 0 5px 5px;
 }
 .modal-agregar input, .modal-agregar select{
-  border-color: var(--azulMain);
+  border-color: var(--azulMain)!important;
   border-radius: 18px;
   font-size: 14px;
+  height: 36px;
 }
 .drop-container{
   width: 100%;
@@ -750,6 +754,9 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
   max-height: 1125px;
   overflow-x: hidden;
 }
+.content-detalle, .detalle-venta .content-card{
+  position: relative;
+}
 .detalle-venta .table-responsive{
   max-height: 500px;
   overflow: auto;
@@ -848,7 +855,6 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
 }
 .detalle-venta .btn-filtro{
   white-space: nowrap;
-  
   display: flex;
   justify-content: center;
   align-items: center;
@@ -859,20 +865,9 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
 .detalle-venta .buscador form{
   width: 92%;
 }
-@media (max-width:992px){
-  .col-buscador{
-    width: 100%;
-  }
-  .detalle-venta .btn-filtro{
-    margin-top: 8px;
-    width:100%;
-  }
-  .detalle-venta .buscador{
-    height: 35px;
-  }
-}
+
 .detalle-venta .table-check{
-  width: 2%;
+  width: 2%!important;
 }
 
 .col-flex-detalle{
@@ -918,11 +913,47 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
 .detalle-venta .btn-cancel:hover{
   color: var(--blanco);
   background-color: var(--azulMain);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
 }
 .content-card.detalle hr{
   color: var(--grisTitulos);
 }
-@media (max-width:768px){
+@keyframes slideIn1 {
+  0% {
+    transform: translate(-8.5rem, 1rem);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translate(-8.5rem, 0rem);
+    opacity: 1;
+  }
+
+  0% {
+    
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes slideIn1 {
+  0% {
+    -webkit-transform: transform;
+    -webkit-opacity: 0;
+  }
+
+  100% {
+    -webkit-transform: translate(0rem, -1rem);
+    -webkit-opacity: 1;
+  }
+
+  0% {
+    -webkit-transform: translateY(0rem);
+    -webkit-opacity: 0;
+  }
+}
+
+@media (max-width:778px){
 
   .content-detalle{
     display: flex;
@@ -942,8 +973,57 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
     display: block!important;
   }
 }
+@media (max-width:992px){
+  .col-buscador{
+    width: 100%;
+  }
+  .detalle-venta .btn-filtro{
+    margin-top: 8px;
+    width:100%;
+  }
+  .detalle-venta .buscador{
+    height: 35px;
+  }
+  @keyframes slideIn1 {
+    0% {
+      transform: translate(10rem, 1rem);
+      opacity: 0;
+    }
+  
+    100% {
+      transform: translate(10rem, 0rem);
+      opacity: 1;
+    }
+  
+    0% {
+      
+      opacity: 0;
+    }
+  }
+  
+  @-webkit-keyframes slideIn1 {
+    0% {
+      -webkit-transform: transform;
+      -webkit-opacity: 0;
+    }
+  
+    100% {
+      -webkit-transform: translate(11rem, -1rem);
+      -webkit-opacity: 1;
+    }
+  
+    0% {
+      -webkit-transform: translateY(0 rem);
+      -webkit-opacity: 0;
+    }
+  }
+}
 
 
+.slideIn1 {
+  -webkit-animation-name: slideIn1;
+  animation-name: slideIn1;
+}
 .hide-cmb{
   display: none;
 }
