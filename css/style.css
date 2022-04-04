@@ -919,6 +919,9 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
   color: var(--blanco);
   background-color: var(--azulMain);
 }
+.content-card.detalle hr{
+  color: var(--grisTitulos);
+}
 @media (max-width:768px){
 
   .content-detalle{
@@ -931,6 +934,12 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
   .productos-detalle .producto-card .bi-x{
     top: -15%;
     right: -2%;
+  }
+  .col-flex-detalle{
+    width: 100%;
+  }
+  .content-card.detalle{
+    display: block!important;
   }
 }
 
