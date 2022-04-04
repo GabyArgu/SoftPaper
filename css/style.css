@@ -760,6 +760,7 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
 
 .log-l{
   width: 260px;
+  
 }
 
 .titu-l{
@@ -767,7 +768,7 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
   font-size: 30px;
   color:var(--azulOscuro);
   text-align: center;
-  padding-top: 85px;
+  padding-top: 80px;
 }
 
 .login-fondo input{
