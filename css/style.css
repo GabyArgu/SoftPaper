@@ -409,6 +409,7 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
   padding-right: 5px;
   border-radius: 8px;
   font-weight: 500;
+  font-size: 14px;
 }
 .btn-añadir .bi-plus{
   font-size: 24px;
@@ -747,7 +748,7 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
 .detalle-venta .content-card{
   width: 65%;
   max-height: 1125px;
-  
+  overflow-x: hidden;
 }
 .detalle-venta .table-responsive{
   max-height: 500px;
@@ -824,7 +825,6 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
 }
 
 .productos-detalle .producto-card .bi-x{
-  
   position: absolute;
   top: -15%;
   right: -3%;
@@ -919,6 +919,31 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
   color: var(--blanco);
   background-color: var(--azulMain);
 }
+.content-card.detalle hr{
+  color: var(--grisTitulos);
+}
+@media (max-width:768px){
+
+  .content-detalle{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .detalle-venta .content-card{
+    width: 100%!important;
+  }
+  .productos-detalle .producto-card .bi-x{
+    top: -15%;
+    right: -2%;
+  }
+  .col-flex-detalle{
+    width: 100%;
+  }
+  .content-card.detalle{
+    display: block!important;
+  }
+}
+
+
 .hide-cmb{
   display: none;
 }
