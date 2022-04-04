@@ -617,7 +617,7 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
 }
 
 .modal-footer{
-  border: none;
+  border: none !important;
 }
 /*MODAL AGREGAR FIN*/
 
