@@ -138,7 +138,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col col-lg-10 col-buscador">
+                                <div class="col-12 col-lg-10 col-buscador">
                                     <div class="buscador">
                                         <i class="bi bi-search px-2"></i>
                                         <form class="d-none d-sm-inline-block me-auto">
@@ -148,12 +148,12 @@
                                         </form>
                                     </div>
                                 </div>
-                                <div class="col-12 col-lg-2  justify-content-center ">
+                                <div class="col-12 col-lg-2  justify-content-center">
                                     <div class="dropdown">
                                         <button class="btn-filtro btn-second" type="button"
                                             id="dropdownMenuButtonFilter" data-bs-toggle="dropdown"
                                             aria-expanded="false"><i class="bi bi-funnel-fill"></i>Filtrar</button>
-                                        <ul class="dropdown-menu dropdown-menu-end animate slideIn dropdown-filtro"
+                                        <ul class="dropdown-menu dropdown-menu-end animate slideIn1 dropdown-filtro"
                                             aria-labelledby="dropdownMenuButtonFilter">
                                             <li>
                                                 <h5 class="mt-3">Opciones de filtro</h5>
@@ -173,8 +173,8 @@
                                                 </select></li>
                                             <li class="d-flex justify-content-end"><button
                                                     class="btn btn-main btn-aplicar-filtro mt-3" type="button"
-                                                    data-bs-target="#" data-bs-toggle=""
-                                                    data-bs-dismiss="">Aplicar</button></li>
+                                                    data-bs-target="#modal-agregar2" data-bs-toggle="modal"
+                                                    data-bs-dismiss="modal">Aplicar</button></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -496,7 +496,8 @@
                             </div>
                             <div class="row">
                                 <div class="col-12 mt-3">
-                                    <button class="btn-anadir-cliente btn-second">Añadir cliente</button>
+                                    <button class="btn-anadir-cliente btn-second" data-bs-toggle="modal"
+                                    data-bs-target="#modal-cliente">Añadir cliente</button>
                                 </div>
                                 <div class="col-12 mt-3">
                                     <label for="">Tipo venta</label>
@@ -561,6 +562,89 @@
         <footer>
 
         </footer>
+        <div class="modal modal-agregar fade" id="modal-cliente" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row agregar-content">
+                            <div class="col">
+                                <div class="row mt-5">
+                                    <h2>Seleccionar cliente</h2>
+                                </div>
+                                <div class="row">
+                                    <div class="col col-6 mt-3">
+                                        <label for="cmb-subcategoría">Subcategoría</label>
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option selected disabled>Seleccione una opción</option>
+                                            <option value="1">Lapiceros normales</option>
+                                            <option value="2">Lápices redondos</option>
+                                            <option value="3">Plumones delgados</option>
+                                        </select>
+                                    </div>
+                                    <div class="col col-6 mt-3">
+                                        <label for="cmb-proveedor">Proveedor</label>
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option selected disabled>Seleccione una opción</option>
+                                            <option value="1">ACOSA</option>
+                                            <option value="2">ARANDA</option>
+                                            <option value="3">COPLASA</option>
+                                        </select>
+                                    </div>
+                                    <div class="col col-6 mt-3">
+                                        <label for="cmb-marca">Marca</label>
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option selected disabled>Seleccione una opción</option>
+                                            <option value="1">Studio</option>
+                                            <option value="2">Big</option>
+                                            <option value="3">Norma</option>
+                                        </select>
+                                    </div>
+                                    <div class="col col-6 mt-3">
+                                        <label for="cmb-precio">Precio</label>
+                                        <input class="form-control" type="text" placeholder=""
+                                            aria-label=".form-control example">
+                                    </div>
+                                    <div class="col col-6 mt-3">
+                                        <label for="">Color</label>
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option selected disabled>Seleccione una opción</option>
+                                            <option value="1">Rojo</option>
+                                            <option value="2">Verde</option>
+                                            <option value="3">Azul</option>
+                                        </select>
+                                    </div>
+                                    <div class="col col-6 mt-3">
+                                        <label for="">Cantidad</label>
+                                        <input class="form-control" type="text" placeholder=""
+                                            aria-label=".form-control example">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col col-9 mx-auto my-5 color-producto text-center">
+                                        <label class="">Añadir imagen del producto</label>
+                                        <div class="drop-container">
+                                            <i class="bi bi-cloud-arrow-up-fill"></i>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-between">
+                    <button class="btn btn-cancel btn-second" type="button" data-bs-target="" data-bs-toggle="modal"
+                        data-bs-dismiss="modal">Cancelar</button>
+                    <button class="btn btn-guardar" type="button" data-bs-target="#modal-agregar2"
+                        data-bs-toggle="modal" data-bs-dismiss="modal">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
     </div>
 
 
