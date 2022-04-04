@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -86,8 +86,34 @@
                                                 placeholder="Buscar producto">
                                         </form>
                                     </div>
-                                    <button class="btn-filtroMP" type="button"><i
-                                            class="bi bi-funnel-fill"></i>Filtrar</button>
+                                    <div class="dropdown">
+                                        <button class="btn-filtro btn-second" type="button"
+                                            id="dropdownMenuButtonFilter" data-bs-toggle="dropdown"
+                                            aria-expanded="false"><i class="bi bi-funnel-fill"></i>Filtrar</button>
+                                        <ul class="dropdown-menu dropdown-menu-end animate slideIn dropdown-filtro"
+                                            aria-labelledby="dropdownMenuButtonFilter">
+                                            <li>
+                                                <h5 class="mt-3">Opciones de filtro</h5>
+                                            </li>
+                                            <li>
+                                                <hr class="dropdown-divider">
+                                            </li>
+                                            <li>
+                                                <h6 class="mb-3">Categoría</h6>
+                                            </li>
+                                            <li><select class="form-select filtro-combo"
+                                                    aria-label="Default select example">
+                                                    <option selected disabled>Seleccione una opción</option>
+                                                    <option value="1">Papelería General</option>
+                                                    <option value="2">Tecnología</option>
+                                                    <option value="3">Juguetería</option>
+                                                </select></li>
+                                            <li class="d-flex justify-content-end"><button
+                                                    class="btn btn-main btn-aplicar-filtro mt-3" type="button"
+                                                    data-bs-target="#modal-agregar2" data-bs-toggle="modal"
+                                                    data-bs-dismiss="modal">Aplicar</button></li>
+                                        </ul>
+                                    </div>
                                 </div>
                                 <div class="col col-lg-6 d-flex justify-content-end px-5">
                                     <button class="btn-añadirMP" type="button" data-bs-toggle="modal"

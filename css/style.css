@@ -1130,6 +1130,37 @@ tbody .imgMP{
     margin-right: 0px !important;
   }
 }
+
+@media (max-width:1200px){
+  #buscar-producto-mp::placeholder{
+    font-size: 100%;
+  }
+  
+  .content-prov{
+    margin-left: 0px !important;
+  }
+
+  .content-marca{
+    margin-right: 0px !important;
+  }
+}
+
+@media (max-width:1252px){
+  #buscar-producto-mp::placeholder{
+    font-size: 80%;
+  }
+  
+  .content-prov{
+    width: 100%;
+    margin-left: 0px !important;
+  }
+
+  .content-marca{
+    width: 100%;
+    margin-right: 0px !important;
+  }
+}
+
 /*********************LOGIN INICIO******************/
 @font-face {
    font-family: 'T-login';
