@@ -194,14 +194,14 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
 /*EFECTO BOTONES GLOBALES*/
 
 .btn-main{
-  background-color: var(--azulMain);
-  color: var(--blanco);
-  transition: all 0.3s ease;
+  background-color: var(--azulMain) !important;
+  color: var(--blanco) !important;
+  transition: all 0.3s ease !important;
 }
 .btn-main:hover{
-  color: var(--azulMain);
-  background-color: var(--azulSecond);
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  color: var(--azulMain) !important;
+  background-color: var(--azulSecond) !important;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px !important;
 }
 .btn-second{
   color: var(--azulMain);
@@ -605,20 +605,20 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
   color: var(--azulMain);
 }
 .btn-guardar{
-  color: var(--blanco);
-  background-color: var(--azulMain);
-  transition: all 0.3s ease;
-  border-radius: 15px;
+  color: var(--blanco) !important;
+  background-color: var(--azulMain) !important;
+  transition: all 0.3s ease !important;
+  border-radius: 15px !important;
 }
 
 .btn-guardar:hover{
-  color: var(--azulMain);
-  background-color: var(--azulSecond);
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  color: var(--azulMain) !important;
+  background-color: var(--azulSecond) !important;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px !important;
 }
 
 .modal-footer{
-  border: none;
+  border: none !important;
 }
 /*MODAL AGREGAR FIN*/
 
