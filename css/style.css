@@ -886,11 +886,18 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
   width: 2%!important;
 }
 
+.detalle-venta .table.dataTable tbody td.select-checkbox:before, table.dataTable tbody th.select-checkbox:before,
+.detalle-venta .table.dataTable tbody td.select-checkbox:after, table.dataTable tbody th.select-checkbox:after{
+  top: 50%!important;
+}
+table.dataTable tbody>tr.selected, table.dataTable tbody>tr>.selected{
+  background-color: var(--marfil)!important;
+}
+
 .col-flex-detalle{
   display: flex;
   flex-direction: column;
 }
-
 
 .btn-anadir-cliente {
   border: none;

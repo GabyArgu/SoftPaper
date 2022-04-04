@@ -12,6 +12,7 @@
 
     <!-- DATATABLES -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.3.4/css/select.dataTables.min.css" />
 
     <!-- GOOGLE FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -574,73 +575,139 @@
                                     <h2>Seleccionar cliente</h2>
                                 </div>
                                 <div class="row">
-                                    <div class="col col-6 mt-3">
-                                        <label for="cmb-subcategoría">Subcategoría</label>
-                                        <select class="form-select" aria-label="Default select example">
-                                            <option selected disabled>Seleccione una opción</option>
-                                            <option value="1">Lapiceros normales</option>
-                                            <option value="2">Lápices redondos</option>
-                                            <option value="3">Plumones delgados</option>
-                                        </select>
-                                    </div>
-                                    <div class="col col-6 mt-3">
-                                        <label for="cmb-proveedor">Proveedor</label>
-                                        <select class="form-select" aria-label="Default select example">
-                                            <option selected disabled>Seleccione una opción</option>
-                                            <option value="1">ACOSA</option>
-                                            <option value="2">ARANDA</option>
-                                            <option value="3">COPLASA</option>
-                                        </select>
-                                    </div>
-                                    <div class="col col-6 mt-3">
-                                        <label for="cmb-marca">Marca</label>
-                                        <select class="form-select" aria-label="Default select example">
-                                            <option selected disabled>Seleccione una opción</option>
-                                            <option value="1">Studio</option>
-                                            <option value="2">Big</option>
-                                            <option value="3">Norma</option>
-                                        </select>
-                                    </div>
-                                    <div class="col col-6 mt-3">
-                                        <label for="cmb-precio">Precio</label>
-                                        <input class="form-control" type="text" placeholder=""
-                                            aria-label=".form-control example">
-                                    </div>
-                                    <div class="col col-6 mt-3">
-                                        <label for="">Color</label>
-                                        <select class="form-select" aria-label="Default select example">
-                                            <option selected disabled>Seleccione una opción</option>
-                                            <option value="1">Rojo</option>
-                                            <option value="2">Verde</option>
-                                            <option value="3">Azul</option>
-                                        </select>
-                                    </div>
-                                    <div class="col col-6 mt-3">
-                                        <label for="">Cantidad</label>
-                                        <input class="form-control" type="text" placeholder=""
-                                            aria-label=".form-control example">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col col-9 mx-auto my-5 color-producto text-center">
-                                        <label class="">Añadir imagen del producto</label>
-                                        <div class="drop-container">
-                                            <i class="bi bi-cloud-arrow-up-fill"></i>
+                                    <div class="col">
+                                        <div class="table-responsive mt-3 scroll" id="no-more-tables">
+                                            <table class="table table-hover" id="example1">
+                                                <thead>
+                                                    <tr>
+                                                        <th></th>
+                                                        <th>Nombre</th>
+                                                        <th>Documento</th>
+                                                        <th>Estado</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="table-check-cliente"></td>
+                                                        <td class="col-table text-center">Herbert
+                                                            Cornejo</td>
+                                                        <td class="text-center">00000000-0</td>
+                                                        <td class="estado-stock"><span class="estado">Activo</span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="table-check-cliente"></td>
+                                                        <td class="col-table text-center">Herbert
+                                                            Cornejo</td>
+                                                        <td class="text-center">00000000-0</td>
+                                                        <td class="estado-stock"><span class="estado">Activo</span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="table-check-cliente"></td>
+                                                        <td class="col-table text-center">Herbert
+                                                            Cornejo</td>
+                                                        <td class="text-center">00000000-0</td>
+                                                        <td class="estado-stock"><span class="estado">Activo</span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="table-check-cliente"></td>
+                                                        <td class="col-table text-center">Herbert
+                                                            Cornejo</td>
+                                                        <td class="text-center">00000000-0</td>
+                                                        <td class="estado-stock"><span class="estado">Activo</span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="table-check-cliente"></td>
+                                                        <td class="col-table text-center">Herbert
+                                                            Cornejo</td>
+                                                        <td class="text-center">00000000-0</td>
+                                                        <td class="estado-stock"><span class="estado">Activo</span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="table-check-cliente"></td>
+                                                        <td class="col-table text-center">Herbert
+                                                            Cornejo</td>
+                                                        <td class="text-center">00000000-0</td>
+                                                        <td class="estado-stock"><span class="estado">Activo</span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="table-check-cliente"></td>
+                                                        <td class="col-table text-center">Herbert
+                                                            Cornejo</td>
+                                                        <td class="text-center">00000000-0</td>
+                                                        <td class="estado-stock"><span class="estado">Activo</span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="table-check-cliente"></td>
+                                                        <td class="col-table text-center">Herbert
+                                                            Cornejo</td>
+                                                        <td class="text-center">00000000-0</td>
+                                                        <td class="estado-stock"><span class="estado">Activo</span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="table-check-cliente"></td>
+                                                        <td class="col-table text-center">Herbert
+                                                            Cornejo</td>
+                                                        <td class="text-center">00000000-0</td>
+                                                        <td class="estado-stock"><span class="estado">Activo</span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="table-check-cliente"></td>
+                                                        <td class="col-table text-center">Herbert
+                                                            Cornejo</td>
+                                                        <td class="text-center">00000000-0</td>
+                                                        <td class="estado-stock"><span class="estado">Activo</span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="table-check-cliente"></td>
+                                                        <td class="col-table text-center">Herbert
+                                                            Cornejo</td>
+                                                        <td class="text-center">00000000-0</td>
+                                                        <td class="estado-stock"><span class="estado">Activo</span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="table-check-cliente"></td>
+                                                        <td class="col-table text-center">Herbert
+                                                            Cornejo</td>
+                                                        <td class="text-center">00000000-0</td>
+                                                        <td class="estado-stock"><span class="estado">Activo</span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="table-check-cliente"></td>
+                                                        <td class="col-table text-center">Herbert
+                                                            Cornejo</td>
+                                                        <td class="text-center">00000000-0</td>
+                                                        <td class="estado-stock"><span class="estado">Activo</span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="table-check-cliente"></td>
+                                                        <td class="col-table text-center">Herbert
+                                                            Cornejo</td>
+                                                        <td class="text-center">00000000-0</td>
+                                                        <td class="estado-stock"><span class="estado">Activo</span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="table-check-cliente"></td>
+                                                        <td class="col-table text-center">Herbert
+                                                            Cornejo</td>
+                                                        <td class="text-center">00000000-0</td>
+                                                        <td class="estado-stock"><span class="estado">Activo</span></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
 
 
-                        </div>
+                        </d iv>
                     </div>
                 </div>
                 <div class="modal-footer d-flex justify-content-between">
                     <button class="btn btn-cancel btn-second" type="button" data-bs-target="" data-bs-toggle="modal"
                         data-bs-dismiss="modal">Cancelar</button>
                     <button class="btn btn-guardar" type="button" data-bs-target="#modal-agregar2"
-                        data-bs-toggle="modal" data-bs-dismiss="modal">Guardar</button>
+                        data-bs-toggle="modal" data-bs-dismiss="modal">Seleccionar</button>
                 </div>
             </div>
         </div>
@@ -656,7 +723,7 @@
     <!-- DATATABLE JS -->
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
-
+    <script src="https://cdn.datatables.net/select/1.3.4/js/dataTables.select.min.js"></script>
     <!-- INPUT SPINNER (+ y - input)-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-input-spinner@3.1.10/src/bootstrap-input-spinner.min.js"></script>
 

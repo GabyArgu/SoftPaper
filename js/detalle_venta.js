@@ -26,6 +26,26 @@ $(document).ready(function () {
         $('#example').DataTable().columns([4, 5, 6, 7]).visible($(this).is(':checked'))
     })
 });
+
+$(document).ready(function() {
+    $('#example1').DataTable( {
+        "info": false,
+        "searching": false,
+        "scrollCollapse": true,
+        "paging":         false,
+        "lengthMenu": [[10, 15, 20, -1], [10, 15, 20, "Todos"]],
+        columnDefs: [ {
+            orderable: false,
+            className: 'select-checkbox',
+            targets:   0
+        } ],
+        select: {
+            style:    'os',
+            selector: 'td:first-child'
+        },
+        order: [[ 1, 'asc' ]]
+    } );
+} );
 flatpickr('#calendar', {
 });
 
