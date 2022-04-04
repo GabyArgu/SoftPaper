@@ -195,14 +195,14 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
 /*EFECTO BOTONES GLOBALES*/
 
 .btn-main{
-  background-color: var(--azulMain);
-  color: var(--blanco);
-  transition: all 0.3s ease;
+  background-color: var(--azulMain) !important;
+  color: var(--blanco) !important;
+  transition: all 0.3s ease !important;
 }
 .btn-main:hover{
-  color: var(--azulMain);
-  background-color: var(--azulSecond);
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  color: var(--azulMain) !important;
+  background-color: var(--azulSecond) !important;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px !important;
 }
 .btn-second{
   color: var(--azulMain);
@@ -354,10 +354,15 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
 .content-productos button{
   font-size: 14px;
 }
+
+.col-table {
+  text-align: center !important;
+}
+
 .nombre-producto{
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-around;
   vertical-align: middle;
 }
 .pedido-no, .categoria, .precio, .inventario, .estado-stock, .botones-table{
@@ -428,7 +433,7 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
   font-size: 14px;
   color: #CDC050;
   background-color: #FDFFE8;
-  padding: 10px 3px;
+  padding: 10px 14px;
   border-radius: 8px;
   white-space: nowrap;
 }
@@ -436,7 +441,7 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
   font-size: 14px;
   color: #CD5050;
   background-color: #FFE8E8;
-  padding: 10px 3px;
+  padding: 10px 14px;
   border-radius: 8px;
   white-space: nowrap;
 }
@@ -546,6 +551,14 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
 /*Animación de dropdowns fin*/
 
 /*MODAL AGREGAR INICIO*/
+
+.modal-agregarEmpl .foto-empleado img {
+  width: 200px;
+  height: 200px;
+  justify-content: center;
+  align-items: center;
+}
+
 .modal-agregar .modal-dialog{
   max-width: 550px;
 }
@@ -587,8 +600,11 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
   font-weight: 500;
   margin: 0 0 5px 5px;
 }
-.modal-agregar input, .modal-agregar select{
+
+.modal-agregar input, .modal-agregar select,
+.modal-agregarEmpl input{
   border-color: var(--azulMain)!important;
+
   border-radius: 18px;
   font-size: 14px;
   height: 36px;
@@ -609,20 +625,20 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
   color: var(--azulMain);
 }
 .btn-guardar{
-  color: var(--blanco);
-  background-color: var(--azulMain);
-  transition: all 0.3s ease;
-  border-radius: 15px;
+  color: var(--blanco) !important;
+  background-color: var(--azulMain) !important;
+  transition: all 0.3s ease !important;
+  border-radius: 15px !important;
 }
 
 .btn-guardar:hover{
-  color: var(--azulMain);
-  background-color: var(--azulSecond);
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  color: var(--azulMain) !important;
+  background-color: var(--azulSecond) !important;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px !important;
 }
 
 .modal-footer{
-  border: none;
+  border: none !important;
 }
 /*MODAL AGREGAR FIN*/
 
@@ -1229,6 +1245,7 @@ tbody .imgMP{
 
 .log-l{
   width: 260px;
+  
 }
 
 .titu-l{
@@ -1236,7 +1253,7 @@ tbody .imgMP{
   font-size: 30px;
   color:var(--azulOscuro);
   text-align: center;
-  padding-top: 85px;
+  padding-top: 80px;
 }
 
 .login-fondo input{
