@@ -1339,10 +1339,10 @@ tbody .imgMP{
 
 /*********************LOGIN INICIO******************/
 @font-face {
-   font-family: 'T-login';
-   src: url('../resources/login-crear-recu/Sunday.ttf') format("truetype");
-   font-weight: normal;
-   font-style: normal;
+  font-family: 'T-login';
+  src: url('../resources/tipografias/sunday.ttf') format("truetype");
+  font-weight: normal;
+  font-style: normal;
 }
 
 .con-lo{
@@ -1733,3 +1733,14 @@ tbody .imgMP{
 
 /* Editar Perfil Fin */
 
+
+/* Diseño footer Inicio */
+.footerSP{
+  background-color: var(--azulOscuro);
+}
+
+.footerH6{
+  color: var(--blanco);
+}
+
+/* Diseño footer fin */
