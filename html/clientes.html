@@ -27,8 +27,11 @@
 
 <body>
     <div class="wrapper">
-        <!-- INICIA NAVBAR -->
+
+        <!-- INICIA HEADER -->
         <header>
+
+            <!-- INICIA NAVBAR -->
             <nav class="nav container-xxl" role='navigation'>
                 <div class="nav-logo">
                     <a class="navbar-brand nav-item" href="dashboard.html">
@@ -57,9 +60,15 @@
                     </li>
                 </div>
             </nav>
+            <!-- FIN NAVBAR -->
+
         </header>
-        <!-- FIN NAVBAR-->
+        <!-- FIN HEADER-->
+
+        <!-- INICIA MAIN -->
         <main class="container-xxl">
+
+            <!-- TÍTULO PÁGINA -->
             <div class="header-content my-5">
                 <h1>Clientes</h1>
                 <nav aria-label="breadcrumb">
@@ -69,20 +78,27 @@
                     </ol>
                 </nav>
             </div>
+
             <div class="content content-productos">
                 <div class="container content-card">
                     <div class="row">
                         <div class="col">
-                            <div class="row my-4">
-                                <div class="col col-lg-6 d-flex justify-content-start">
-                                    <div class="buscador mx-3">
+
+                            <!-- CONTROLES CRUD -->
+                            <div class="row mt-4 pt-1">
+                                <div class="col col-lg-6 col-sm-12 d-flex justify-content-start col-header-pre-table">
+
+                                    <!-- BUSCADOR-->
+                                    <div class="buscador">
                                         <i class="bi bi-search px-2"></i>
-                                        <form class="d-none d-sm-inline-block me-auto ">
+                                        <form class="d-none d-sm-inline-block me-auto buscador2">
                                             <input id="buscar-producto"
                                                 class=" form-control form-control-lite barra-buscar" type="text"
                                                 placeholder="Buscar cliente">
                                         </form>
                                     </div>
+
+                                    <!-- FILTROS -->
                                     <div class="dropdown">
                                         <button class="btn-filtro btn-second" type="button"
                                             id="dropdownMenuButtonFilter" data-bs-toggle="dropdown"
@@ -96,31 +112,53 @@
                                                 <hr class="dropdown-divider">
                                             </li>
                                             <li>
-                                                <h6 class="mb-3">Estado</h6>
+                                                <h6 class="mb-3">Giro</h6>
+                                            </li>
+                                            <li><select class="form-select filtro-combo"
+                                                    aria-label="Default select example">
+                                                    <option selected disabled>Seleccione una opción</option>
+                                                    <option value="1">Particular</option>
+                                                    <option value="2">Comida</option>
+                                                    <option value="3">Medicina</option>
+                                                    <option value="3">Escolar</option>
+                                                    <option value="3">Otros</option>
+                                                </select></li>
+                                            <li>
+                                                <h6 class="my-3">Estado</h6>
                                             </li>
                                             <li><select class="form-select filtro-combo"
                                                     aria-label="Default select example">
                                                     <option selected disabled>Seleccione una opción</option>
                                                     <option value="1">Activo</option>
                                                     <option value="2">Inactivo</option>
+                                                    <option value="2">Inhabilitado</option>
                                                 </select></li>
                                             <li class="d-flex justify-content-end"><button
                                                     class="btn btn-main btn-aplicar-filtro mt-3" type="button"
                                                     data-bs-target="#modal-agregar2" data-bs-toggle="modal"
                                                     data-bs-dismiss="modal">Aplicar</button></li>
                                         </ul>
+
                                     </div>
+
                                 </div>
-                                <div class="col col-lg-6 d-flex justify-content-end px-5">
-                                    <button class="btn-añadirMP" type="button" data-bs-toggle="modal"
+
+                                <!-- AÑADIR REGISTRO Y EXPORTAR -->
+                                <div class="col col-lg-6 col-sm-12 d-flex justify-content-end col-header-pre-table">
+                                    <a class="btn-añadir btn-main" type="button" data-bs-toggle="modal"
                                         data-bs-target="#modal-agregar"><i class="bi bi-plus"></i>Añadir
-                                        cliente</button>
+                                        cliente</a>
                                     <button class="btn-export btn-second" type="button"><i
                                             class="bi bi-box-arrow-up"></i></button>
                                 </div>
+
                             </div>
+
                             <div class="row my-3">
+
                                 <div class="col">
+
+                                    <!-- TABLA -->
                                     <div class="table-responsive mt-3 scroll" id="no-more-tables">
                                         <table class="table table-hover" id="example">
                                             <thead>
@@ -605,8 +643,12 @@
                                             </tbody>
                                         </table>
                                     </div>
+
                                 </div>
+
                             </div>
+
+                            <!-- CHECKBOX TODOS LOS CAMPOS -->
                             <div class="row mb-3 ">
                                 <div class="d-flex justify-content-center">
                                     <label>Mostrar todos los campos
@@ -614,16 +656,23 @@
                                     </label>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
             </div>
         </main>
+        <!-- FIN MAIN -->
+
+        <!-- INICIA FOOTER -->
         <footer>
 
         </footer>
+        <!-- FIN FOOTER -->
     </div>
-    <!-- INICIO MODAL AGREGAR-->
+
+    <!-- INICIO MODAL AGREGAR CLIENTE-->
+
     <div class="modal modal-agregar fade" id="modal-agregar" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -704,10 +753,10 @@
             </div>
         </div>
     </div>
-    <!-- FIN MODAL AGREGAR -->
+    <!-- FIN MODAL AGREGAR CLIENTE-->
 
 
-    <!-- INICIO MODAL DELETE -->
+    <!-- INICIO MODAL DELETE CLIENTE-->
     <div class="modal modal-eliminar fade" id="modal-eliminar" aria-hidden="true"
         aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered modal-xl">
@@ -735,7 +784,7 @@
             </div>
         </div>
     </div>
-    <!-- FIN MODAL DELETE -->
+    <!-- FIN MODAL DELETE CLIENTE-->
 
     <script src="../js/subcategoria.js"></script>
 
