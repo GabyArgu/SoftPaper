@@ -855,7 +855,7 @@
                                     <input class="form-control form-control-lg nombre-producto" type="text"
                                         placeholder="Ingresar nombre del producto"
                                         aria-label=".form-control-lg example">
-                                    <textarea class="form-control" placeholder="Ingresar descripción del producto"
+                                    <textarea class="form-control w-100" placeholder="Ingresar descripción del producto"
                                         id="exampleFormControlTextarea1" rows="2"></textarea>
                                 </div>
                                 <div class="row">
@@ -888,7 +888,7 @@
                                     </div>
                                     <div class="col col-6 mt-3">
                                         <label for="cmb-precio">Precio</label>
-                                        <input class="form-control" type="text" placeholder=""
+                                        <input class="form-control w-100" type="number" placeholder="" min="0.01" max="999.99"
                                             aria-label=".form-control example">
                                     </div>
                                     <div class="col col-6 mt-3">
@@ -902,7 +902,7 @@
                                     </div>
                                     <div class="col col-6 mt-3">
                                         <label for="">Cantidad</label>
-                                        <input class="form-control" type="text" placeholder=""
+                                        <input class="form-control w-100" type="number" placeholder=""
                                             aria-label=".form-control example">
                                     </div>
                                 </div>
@@ -944,7 +944,7 @@
                                     <input class="form-control form-control-lg nombre-producto" type="text"
                                         placeholder="Ingresar nombre del producto"
                                         aria-label=".form-control-lg example">
-                                    <textarea class="form-control" placeholder="Ingresar descripción del producto"
+                                    <textarea class="form-control w-100" placeholder="Ingresar descripción del producto"
                                         id="exampleFormControlTextarea1" rows="2"></textarea>
                                 </div>
                                 <div class="row">
@@ -977,7 +977,7 @@
                                     </div>
                                     <div class="col col-6 mt-3">
                                         <label for="cmb-precio">Precio</label>
-                                        <input class="form-control" type="text" placeholder=""
+                                        <input class="form-control w-100" type="text" placeholder=""
                                             aria-label=".form-control example">
                                     </div>
                                     <div class="col col-6 mt-3">
@@ -995,14 +995,15 @@
                                                 <label for="">Cantidad actual</label>
                                                 <div class="stock-container">
                                                     <div class="col col-12">
-                                                        <input type="text" class="form-control" id="stock-actual"
+                                                        <input type="text" class="form-control w-100" id="stock-actual"
                                                             value="" placeholder="10" disabled>
                                                     </div>
                                                     <div class="col col-12 px-0 mt-2">
                                                         <div class="row input-stock mb-2">
                                                             <div class="col col-6 mx-0">
-                                                                <input type="text" class="form-control" id="stock-nuevo"
-                                                                    value="" required>
+                                                                <div class="controls-producto d-flex ">
+                                                                    <input class="w-100 ps-3" type="number" value="1" min="1" max="100" step="1" />
+                                                                </div>
                                                             </div>
                                                             <div
                                                                 class="col col-6 d-flex justify-content-evenly  col-btn-stock">
