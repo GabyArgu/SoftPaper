@@ -18,7 +18,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
-    
+
     <link rel="icon" type="icon/png" href="../resources/logo/ico.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SoftPaper</title>
@@ -29,38 +29,66 @@
 
         <!-- INICIA NAVBAR -->
         <header>
-            <nav class="nav container-xxl" role='navigation'>
-                <div class="nav-logo">
-                    <a class="navbar-brand nav-item" href="dashboard.html">
-                        <img src="../resources/logo/logo-default.png" alt="" class="d-inline-block align-text-top logo">
-                    </a>
-                    <a data-page="home" class="active nav-item menu-item" href="#">Inventario</a>
-                    <a data-page="about" href="#" class="nav-item menu-item">Ventas</a>
-                    <a data-page="clients" href="#" class="nav-item menu-item">Clientes</a>
-                    <a data-page="contact" href="#" class="nav-item menu-item">Empleados</a>
-                </div>
-                <div class="nav-options d-flex">
-                    <a href="" class="nav-item"><i class="bi bi-search"></i></a>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            <img src="../resources/avatares/a2.png" alt="" class="d-inline-block align-text-top user">
+            <nav class="navbar navbar-expand-lg " id="navbar-dashboard">
+                <div class="container">
+                    <div class="nav-logo">
+                        <a class="navbar-brand nav-item" href="dashboard.html">
+                            <img src="../resources/logo/logo-default.png" alt=""
+                                class="d-inline-block align-text-top logo">
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-end animate slideIn" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
+                    </div>
+                    <button class="navbar-toggler collapsed d-flex d-lg-none flex-column justify-content-around"
+                        type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="toggler-icon top-bar"></span>
+                        <span class="toggler-icon middle-bar"></span>
+                        <span class="toggler-icon bottom-bar"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarText">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="active nav-item menu-item">
+                                <a class="nav-link active" href="productos.html">Inventario</a>
                             </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+
+                            <li class="active nav-item menu-item">
+                                <a class="nav-link active" aria-current="page" href="clientes.html">Venta</a>
+                            </li>
+
+                            <li class="active nav-item menu-item">
+                                <a class="nav-link active" aria-current="page" href="clientes.html">Clientes</a>
+                            </li>
+
+                            <li class="active nav-item menu-item">
+                                <a class="nav-link" href="empleados.html">Empleados</a>
+                            </li>
                         </ul>
-                    </li>
+                        <div class="nav-options d-flex">
+                            <a href="" class="nav-item"><i class="bi bi-search"></i></a>
+
+                            <li class="active nav-item menu-item">
+
+                                <a class="nav-link dropdown" href="categoria.html" id="navbarDropdownMenuLink"
+                                    role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="../resources/avatares/a2.png" alt=""
+                                        class="d-inline-block align-text-top user">
+                                </a>
+                                <ul class="dropdown-menu slideInNav animate" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+
+                            </li>
+                        </div>
+                    </div>
                 </div>
             </nav>
         </header>
-
         <!-- FIN NAVBAR-->
-
+        <!-- INICIO CONTENIDO -->
         <main class="container-xxl">
             <div class="header-content my-5">
                 <h1>Ventas</h1>
@@ -126,13 +154,15 @@
                                     </div>
                                 </div>
                                 <div class="col col-lg-6 col-sm-12 d-flex justify-content-end col-header-pre-table">
-                                    <input type="text" id="calendar-range" placeholder="Rango de fechas">
-                                    <a class="btn-añadir btn-main" href="detalle_venta.html" type="button"><i class="bi bi-plus"></i>Añadir
-                                        pedido</a>
+                                    <input class="me-1" type="text" id="calendar-range" placeholder="Rango de fechas" >
+                                    <a class="btn-añadir btn-main ms-2" href="detalle_venta.html" type="button"><i
+                                            class="bi bi-plus"></i>Añadir
+                                        venta</a>
                                     <button class="btn-export btn-second" type="button"><i
                                             class="bi bi-box-arrow-up"></i></button>
                                 </div>
                             </div>
+                            <!-- INICIO TABLA VENTAS -->
                             <div class="row mt-3">
                                 <div class="col">
                                     <div class="table-responsive mt-3 scroll" id="no-more-tables">
@@ -154,12 +184,14 @@
                                                 <tr>
                                                     <td data-title="NPEDIDO" class="npedido">1</td>
                                                     <td data-title="CORRELATIVO" class="correlativo">0552</td>
-                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares</td>
+                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares
+                                                    </td>
                                                     <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
                                                     <td data-title="MONTO" class="monto text-center">55.99</td>
                                                     <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
                                                     <td data-title="TIPO" class="tipo">Consumidor</td>
-                                                    <td data-title="ESTADO" class="estado-stock"><span class="estado">Pagado</span></td>
+                                                    <td data-title="ESTADO" class="estado-stock"><span
+                                                            class="estado">Pagado</span></td>
                                                     <td data-title="Acciones" class="botones-table">
                                                         <div class="dropdown">
                                                             <button class=" btn-acciones dropdown-toggle" type="button"
@@ -169,8 +201,7 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-actualizar">Editar</a>
+                                                                <li><a class="dropdown-item" href="detalle_venta.html" type="button" >Editar</a>
                                                                 </li>
                                                                 <li><a class="dropdown-item" type="button"
                                                                         data-bs-toggle="modal"
@@ -183,13 +214,14 @@
                                                 <tr>
                                                     <td data-title="NPEDIDO" class="npedido">1</td>
                                                     <td data-title="CORRELATIVO" class="correlativo">0552</td>
-                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares</td>
+                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares
+                                                    </td>
                                                     <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
                                                     <td data-title="MONTO" class="monto text-center">55.99</td>
                                                     <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
                                                     <td data-title="TIPO" class="tipo">Consumidor</td>
-                                                    <td data-title="ESTADO" class="estado-stock"><span class="estado2">En
-                                                            proceso</span></td>
+                                                    <td data-title="ESTADO" class="estado-stock"><span
+                                                            class="estado">Pagado</span></td>
                                                     <td data-title="Acciones" class="botones-table">
                                                         <div class="dropdown">
                                                             <button class=" btn-acciones dropdown-toggle" type="button"
@@ -199,8 +231,7 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-actualizar">Editar</a>
+                                                                <li><a class="dropdown-item" href="detalle_venta.html" type="button" >Editar</a>
                                                                 </li>
                                                                 <li><a class="dropdown-item" type="button"
                                                                         data-bs-toggle="modal"
@@ -213,12 +244,14 @@
                                                 <tr>
                                                     <td data-title="NPEDIDO" class="npedido">1</td>
                                                     <td data-title="CORRELATIVO" class="correlativo">0552</td>
-                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares</td>
+                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares
+                                                    </td>
                                                     <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
                                                     <td data-title="MONTO" class="monto text-center">55.99</td>
                                                     <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
                                                     <td data-title="TIPO" class="tipo">Consumidor</td>
-                                                    <td data-title="ESTADO" class="estado-stock"><span class="estado3">Cancelado</span></td>
+                                                    <td data-title="ESTADO" class="estado-stock"><span
+                                                            class="estado">Pagado</span></td>
                                                     <td data-title="Acciones" class="botones-table">
                                                         <div class="dropdown">
                                                             <button class=" btn-acciones dropdown-toggle" type="button"
@@ -228,8 +261,7 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-actualizar">Editar</a>
+                                                                <li><a class="dropdown-item" href="detalle_venta.html" type="button" >Editar</a>
                                                                 </li>
                                                                 <li><a class="dropdown-item" type="button"
                                                                         data-bs-toggle="modal"
@@ -242,12 +274,14 @@
                                                 <tr>
                                                     <td data-title="NPEDIDO" class="npedido">1</td>
                                                     <td data-title="CORRELATIVO" class="correlativo">0552</td>
-                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares</td>
+                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares
+                                                    </td>
                                                     <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
                                                     <td data-title="MONTO" class="monto text-center">55.99</td>
                                                     <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
                                                     <td data-title="TIPO" class="tipo">Consumidor</td>
-                                                    <td data-title="ESTADO" class="estado-stock"><span class="estado4">Inhabilitado</span></td>
+                                                    <td data-title="ESTADO" class="estado-stock"><span
+                                                            class="estado">Pagado</span></td>
                                                     <td data-title="Acciones" class="botones-table">
                                                         <div class="dropdown">
                                                             <button class=" btn-acciones dropdown-toggle" type="button"
@@ -257,8 +291,7 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-actualizar">Editar</a>
+                                                                <li><a class="dropdown-item" href="detalle_venta.html" type="button" >Editar</a>
                                                                 </li>
                                                                 <li><a class="dropdown-item" type="button"
                                                                         data-bs-toggle="modal"
@@ -271,12 +304,14 @@
                                                 <tr>
                                                     <td data-title="NPEDIDO" class="npedido">1</td>
                                                     <td data-title="CORRELATIVO" class="correlativo">0552</td>
-                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares</td>
+                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares
+                                                    </td>
                                                     <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
                                                     <td data-title="MONTO" class="monto text-center">55.99</td>
                                                     <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
                                                     <td data-title="TIPO" class="tipo">Consumidor</td>
-                                                    <td data-title="ESTADO" class="estado-stock"><span class="estado">Pagado</span></td>
+                                                    <td data-title="ESTADO" class="estado-stock"><span
+                                                            class="estado">Pagado</span></td>
                                                     <td data-title="Acciones" class="botones-table">
                                                         <div class="dropdown">
                                                             <button class=" btn-acciones dropdown-toggle" type="button"
@@ -286,8 +321,7 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-actualizar">Editar</a>
+                                                                <li><a class="dropdown-item" href="detalle_venta.html" type="button" >Editar</a>
                                                                 </li>
                                                                 <li><a class="dropdown-item" type="button"
                                                                         data-bs-toggle="modal"
@@ -300,13 +334,14 @@
                                                 <tr>
                                                     <td data-title="NPEDIDO" class="npedido">1</td>
                                                     <td data-title="CORRELATIVO" class="correlativo">0552</td>
-                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares</td>
+                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares
+                                                    </td>
                                                     <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
                                                     <td data-title="MONTO" class="monto text-center">55.99</td>
                                                     <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
                                                     <td data-title="TIPO" class="tipo">Consumidor</td>
-                                                    <td data-title="ESTADO" class="estado-stock"><span class="estado2">En
-                                                            proceso</span></td>
+                                                    <td data-title="ESTADO" class="estado-stock"><span
+                                                            class="estado">Pagado</span></td>
                                                     <td data-title="Acciones" class="botones-table">
                                                         <div class="dropdown">
                                                             <button class=" btn-acciones dropdown-toggle" type="button"
@@ -316,8 +351,36 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-actualizar">Editar</a>
+                                                                <li><a class="dropdown-item" href="detalle_venta.html" type="button" >Editar</a>
+                                                                </li>
+                                                                <li><a class="dropdown-item" type="button"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>                                                <tr>
+                                                    <td data-title="NPEDIDO" class="npedido">1</td>
+                                                    <td data-title="CORRELATIVO" class="correlativo">0552</td>
+                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares
+                                                    </td>
+                                                    <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
+                                                    <td data-title="MONTO" class="monto text-center">55.99</td>
+                                                    <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
+                                                    <td data-title="TIPO" class="tipo">Consumidor</td>
+                                                    <td data-title="ESTADO" class="estado-stock"><span
+                                                            class="estado">Pagado</span></td>
+                                                    <td data-title="Acciones" class="botones-table">
+                                                        <div class="dropdown">
+                                                            <button class=" btn-acciones dropdown-toggle" type="button"
+                                                                id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                                                aria-expanded="false">
+                                                                Acciones
+                                                            </button>
+                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                                aria-labelledby="dropdownMenuButton1">
+                                                                <li><a class="dropdown-item" href="detalle_venta.html" type="button" >Editar</a>
                                                                 </li>
                                                                 <li><a class="dropdown-item" type="button"
                                                                         data-bs-toggle="modal"
@@ -330,12 +393,14 @@
                                                 <tr>
                                                     <td data-title="NPEDIDO" class="npedido">1</td>
                                                     <td data-title="CORRELATIVO" class="correlativo">0552</td>
-                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares</td>
+                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares
+                                                    </td>
                                                     <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
                                                     <td data-title="MONTO" class="monto text-center">55.99</td>
                                                     <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
                                                     <td data-title="TIPO" class="tipo">Consumidor</td>
-                                                    <td data-title="ESTADO" class="estado-stock"><span class="estado3">Cancelado</span></td>
+                                                    <td data-title="ESTADO" class="estado-stock"><span
+                                                            class="estado">Pagado</span></td>
                                                     <td data-title="Acciones" class="botones-table">
                                                         <div class="dropdown">
                                                             <button class=" btn-acciones dropdown-toggle" type="button"
@@ -345,8 +410,7 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-actualizar">Editar</a>
+                                                                <li><a class="dropdown-item" href="detalle_venta.html" type="button" >Editar</a>
                                                                 </li>
                                                                 <li><a class="dropdown-item" type="button"
                                                                         data-bs-toggle="modal"
@@ -359,12 +423,14 @@
                                                 <tr>
                                                     <td data-title="NPEDIDO" class="npedido">1</td>
                                                     <td data-title="CORRELATIVO" class="correlativo">0552</td>
-                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares</td>
+                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares
+                                                    </td>
                                                     <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
                                                     <td data-title="MONTO" class="monto text-center">55.99</td>
                                                     <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
                                                     <td data-title="TIPO" class="tipo">Consumidor</td>
-                                                    <td data-title="ESTADO" class="estado-stock"><span class="estado4">Inhabilitado</span></td>
+                                                    <td data-title="ESTADO" class="estado-stock"><span
+                                                            class="estado">Pagado</span></td>
                                                     <td data-title="Acciones" class="botones-table">
                                                         <div class="dropdown">
                                                             <button class=" btn-acciones dropdown-toggle" type="button"
@@ -374,8 +440,36 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-actualizar">Editar</a>
+                                                                <li><a class="dropdown-item" href="detalle_venta.html" type="button" >Editar</a>
+                                                                </li>
+                                                                <li><a class="dropdown-item" type="button"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>                                                <tr>
+                                                    <td data-title="NPEDIDO" class="npedido">1</td>
+                                                    <td data-title="CORRELATIVO" class="correlativo">0552</td>
+                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares
+                                                    </td>
+                                                    <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
+                                                    <td data-title="MONTO" class="monto text-center">55.99</td>
+                                                    <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
+                                                    <td data-title="TIPO" class="tipo">Consumidor</td>
+                                                    <td data-title="ESTADO" class="estado-stock"><span
+                                                            class="estado">Pagado</span></td>
+                                                    <td data-title="Acciones" class="botones-table">
+                                                        <div class="dropdown">
+                                                            <button class=" btn-acciones dropdown-toggle" type="button"
+                                                                id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                                                aria-expanded="false">
+                                                                Acciones
+                                                            </button>
+                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                                aria-labelledby="dropdownMenuButton1">
+                                                                <li><a class="dropdown-item" href="detalle_venta.html" type="button" >Editar</a>
                                                                 </li>
                                                                 <li><a class="dropdown-item" type="button"
                                                                         data-bs-toggle="modal"
@@ -388,12 +482,14 @@
                                                 <tr>
                                                     <td data-title="NPEDIDO" class="npedido">1</td>
                                                     <td data-title="CORRELATIVO" class="correlativo">0552</td>
-                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares</td>
+                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares
+                                                    </td>
                                                     <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
                                                     <td data-title="MONTO" class="monto text-center">55.99</td>
                                                     <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
                                                     <td data-title="TIPO" class="tipo">Consumidor</td>
-                                                    <td data-title="ESTADO" class="estado-stock"><span class="estado">Pagado</span></td>
+                                                    <td data-title="ESTADO" class="estado-stock"><span
+                                                            class="estado">Pagado</span></td>
                                                     <td data-title="Acciones" class="botones-table">
                                                         <div class="dropdown">
                                                             <button class=" btn-acciones dropdown-toggle" type="button"
@@ -403,8 +499,7 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-actualizar">Editar</a>
+                                                                <li><a class="dropdown-item" href="detalle_venta.html" type="button" >Editar</a>
                                                                 </li>
                                                                 <li><a class="dropdown-item" type="button"
                                                                         data-bs-toggle="modal"
@@ -417,13 +512,14 @@
                                                 <tr>
                                                     <td data-title="NPEDIDO" class="npedido">1</td>
                                                     <td data-title="CORRELATIVO" class="correlativo">0552</td>
-                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares</td>
+                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares
+                                                    </td>
                                                     <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
                                                     <td data-title="MONTO" class="monto text-center">55.99</td>
                                                     <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
                                                     <td data-title="TIPO" class="tipo">Consumidor</td>
-                                                    <td data-title="ESTADO" class="estado-stock"><span class="estado2">En
-                                                            proceso</span></td>
+                                                    <td data-title="ESTADO" class="estado-stock"><span
+                                                            class="estado">Pagado</span></td>
                                                     <td data-title="Acciones" class="botones-table">
                                                         <div class="dropdown">
                                                             <button class=" btn-acciones dropdown-toggle" type="button"
@@ -433,8 +529,36 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-actualizar">Editar</a>
+                                                                <li><a class="dropdown-item" href="detalle_venta.html" type="button" >Editar</a>
+                                                                </li>
+                                                                <li><a class="dropdown-item" type="button"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>                                                <tr>
+                                                    <td data-title="NPEDIDO" class="npedido">1</td>
+                                                    <td data-title="CORRELATIVO" class="correlativo">0552</td>
+                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares
+                                                    </td>
+                                                    <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
+                                                    <td data-title="MONTO" class="monto text-center">55.99</td>
+                                                    <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
+                                                    <td data-title="TIPO" class="tipo">Consumidor</td>
+                                                    <td data-title="ESTADO" class="estado-stock"><span
+                                                            class="estado">Pagado</span></td>
+                                                    <td data-title="Acciones" class="botones-table">
+                                                        <div class="dropdown">
+                                                            <button class=" btn-acciones dropdown-toggle" type="button"
+                                                                id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                                                aria-expanded="false">
+                                                                Acciones
+                                                            </button>
+                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                                aria-labelledby="dropdownMenuButton1">
+                                                                <li><a class="dropdown-item" href="detalle_venta.html" type="button" >Editar</a>
                                                                 </li>
                                                                 <li><a class="dropdown-item" type="button"
                                                                         data-bs-toggle="modal"
@@ -447,12 +571,14 @@
                                                 <tr>
                                                     <td data-title="NPEDIDO" class="npedido">1</td>
                                                     <td data-title="CORRELATIVO" class="correlativo">0552</td>
-                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares</td>
+                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares
+                                                    </td>
                                                     <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
                                                     <td data-title="MONTO" class="monto text-center">55.99</td>
                                                     <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
                                                     <td data-title="TIPO" class="tipo">Consumidor</td>
-                                                    <td data-title="ESTADO" class="estado-stock"><span class="estado3">Cancelado</span></td>
+                                                    <td data-title="ESTADO" class="estado-stock"><span
+                                                            class="estado">Pagado</span></td>
                                                     <td data-title="Acciones" class="botones-table">
                                                         <div class="dropdown">
                                                             <button class=" btn-acciones dropdown-toggle" type="button"
@@ -462,8 +588,7 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-actualizar">Editar</a>
+                                                                <li><a class="dropdown-item" href="detalle_venta.html" type="button" >Editar</a>
                                                                 </li>
                                                                 <li><a class="dropdown-item" type="button"
                                                                         data-bs-toggle="modal"
@@ -476,12 +601,14 @@
                                                 <tr>
                                                     <td data-title="NPEDIDO" class="npedido">1</td>
                                                     <td data-title="CORRELATIVO" class="correlativo">0552</td>
-                                                    <td data-title="CLIENTE" class="cliente">Samuel Linares</td>
-                                                    <td data-title="FECHA" class="fecha">30-03-2022</td>
-                                                    <td data-title="MONTO" class="monto">55.99</td>
+                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares
+                                                    </td>
+                                                    <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
+                                                    <td data-title="MONTO" class="monto text-center">55.99</td>
                                                     <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
                                                     <td data-title="TIPO" class="tipo">Consumidor</td>
-                                                    <td data-title="ESTADO" class="estado-stock"><span class="estado4">Inhabilitado</span></td>
+                                                    <td data-title="ESTADO" class="estado-stock"><span
+                                                            class="estado">Pagado</span></td>
                                                     <td data-title="Acciones" class="botones-table">
                                                         <div class="dropdown">
                                                             <button class=" btn-acciones dropdown-toggle" type="button"
@@ -491,8 +618,96 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-actualizar">Editar</a>
+                                                                <li><a class="dropdown-item" href="detalle_venta.html" type="button" >Editar</a>
+                                                                </li>
+                                                                <li><a class="dropdown-item" type="button"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>                                                <tr>
+                                                    <td data-title="NPEDIDO" class="npedido">1</td>
+                                                    <td data-title="CORRELATIVO" class="correlativo">0552</td>
+                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares
+                                                    </td>
+                                                    <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
+                                                    <td data-title="MONTO" class="monto text-center">55.99</td>
+                                                    <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
+                                                    <td data-title="TIPO" class="tipo">Consumidor</td>
+                                                    <td data-title="ESTADO" class="estado-stock"><span
+                                                            class="estado">Pagado</span></td>
+                                                    <td data-title="Acciones" class="botones-table">
+                                                        <div class="dropdown">
+                                                            <button class=" btn-acciones dropdown-toggle" type="button"
+                                                                id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                                                aria-expanded="false">
+                                                                Acciones
+                                                            </button>
+                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                                aria-labelledby="dropdownMenuButton1">
+                                                                <li><a class="dropdown-item" href="detalle_venta.html" type="button" >Editar</a>
+                                                                </li>
+                                                                <li><a class="dropdown-item" type="button"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td data-title="NPEDIDO" class="npedido">1</td>
+                                                    <td data-title="CORRELATIVO" class="correlativo">0552</td>
+                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares
+                                                    </td>
+                                                    <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
+                                                    <td data-title="MONTO" class="monto text-center">55.99</td>
+                                                    <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
+                                                    <td data-title="TIPO" class="tipo">Consumidor</td>
+                                                    <td data-title="ESTADO" class="estado-stock"><span
+                                                            class="estado">Pagado</span></td>
+                                                    <td data-title="Acciones" class="botones-table">
+                                                        <div class="dropdown">
+                                                            <button class=" btn-acciones dropdown-toggle" type="button"
+                                                                id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                                                aria-expanded="false">
+                                                                Acciones
+                                                            </button>
+                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                                aria-labelledby="dropdownMenuButton1">
+                                                                <li><a class="dropdown-item" href="detalle_venta.html" type="button" >Editar</a>
+                                                                </li>
+                                                                <li><a class="dropdown-item" type="button"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td data-title="NPEDIDO" class="npedido">1</td>
+                                                    <td data-title="CORRELATIVO" class="correlativo">0552</td>
+                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares
+                                                    </td>
+                                                    <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
+                                                    <td data-title="MONTO" class="monto text-center">55.99</td>
+                                                    <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
+                                                    <td data-title="TIPO" class="tipo">Consumidor</td>
+                                                    <td data-title="ESTADO" class="estado-stock"><span
+                                                            class="estado">Pagado</span></td>
+                                                    <td data-title="Acciones" class="botones-table">
+                                                        <div class="dropdown">
+                                                            <button class=" btn-acciones dropdown-toggle" type="button"
+                                                                id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                                                aria-expanded="false">
+                                                                Acciones
+                                                            </button>
+                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                                aria-labelledby="dropdownMenuButton1">
+                                                                <li><a class="dropdown-item" href="detalle_venta.html" type="button" >Editar</a>
                                                                 </li>
                                                                 <li><a class="dropdown-item" type="button"
                                                                         data-bs-toggle="modal"
@@ -507,6 +722,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- FIN TABLA VENTAS -->
                             <div class="row mb-3 ">
                                 <div class="d-flex justify-content-center">
                                     <label>Mostrar todos los campos
@@ -519,210 +735,15 @@
                 </div>
             </div>
         </main>
-
+        <!-- FIN CONTENIDO -->
+        <!-- INICIO FOOTER -->
         <footer>
 
         </footer>
+        <!-- FIN FOOTER -->
     </div>
 
-    <!-- INICIO MODAL AGREGAR-->
-    <div class="modal modal-agregar fade" id="modal-agregar" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-xl">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="container">
-                        <div class="row agregar-content">
-                            <div class="col">
-                                <div class="row mt-3">
-                                    <input class="form-control form-control-lg nombre-producto" type="text"
-                                        placeholder="Ingresar nombre del producto"
-                                        aria-label=".form-control-lg example">
-                                    <textarea class="form-control" placeholder="Ingresar descripción del producto"
-                                        id="exampleFormControlTextarea1" rows="2"></textarea>
-                                </div>
-                                <div class="row">
-                                    <div class="col col-6 mt-3">
-                                        <label for="cmb-subcategoría">Subcategoría</label>
-                                        <select class="form-select" aria-label="Default select example">
-                                            <option selected disabled>Seleccione una opción</option>
-                                            <option value="1">Lapiceros normales</option>
-                                            <option value="2">Lápices redondos</option>
-                                            <option value="3">Plumones delgados</option>
-                                        </select>
-                                    </div>
-                                    <div class="col col-6 mt-3">
-                                        <label for="cmb-proveedor">Proveedor</label>
-                                        <select class="form-select" aria-label="Default select example">
-                                            <option selected disabled>Seleccione una opción</option>
-                                            <option value="1">ACOSA</option>
-                                            <option value="2">ARANDA</option>
-                                            <option value="3">COPLASA</option>
-                                        </select>
-                                    </div>
-                                    <div class="col col-6 mt-3">
-                                        <label for="cmb-marca">Marca</label>
-                                        <select class="form-select" aria-label="Default select example">
-                                            <option selected disabled>Seleccione una opción</option>
-                                            <option value="1">Studio</option>
-                                            <option value="2">Big</option>
-                                            <option value="3">Norma</option>
-                                        </select>
-                                    </div>
-                                    <div class="col col-6 mt-3">
-                                        <label for="cmb-precio">Precio</label>
-                                        <input class="form-control" type="text" placeholder=""
-                                            aria-label=".form-control example">
-                                    </div>
-                                    <div class="col col-6 mt-3">
-                                        <label for="">Color</label>
-                                        <select class="form-select" aria-label="Default select example">
-                                            <option selected disabled>Seleccione una opción</option>
-                                            <option value="1">Rojo</option>
-                                            <option value="2">Verde</option>
-                                            <option value="3">Azul</option>
-                                        </select>
-                                    </div>
-                                    <div class="col col-6 mt-3">
-                                        <label for="">Cantidad</label>
-                                        <input class="form-control" type="text" placeholder=""
-                                            aria-label=".form-control example">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col col-9 mx-auto my-5 color-producto text-center">
-                                        <label class="">Añadir imagen del producto</label>
-                                        <div class="drop-container">
-                                            <i class="bi bi-cloud-arrow-up-fill"></i>
-                                        </div>
-                                    </div>
 
-                                </div>
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer d-flex justify-content-between">
-                    <button class="btn btn-cancel btn-second" type="button" data-bs-target="" data-bs-toggle="modal"
-                        data-bs-dismiss="modal">Cancelar</button>
-                    <button class="btn btn-guardar" type="button" data-bs-target="#modal-agregar2"
-                        data-bs-toggle="modal" data-bs-dismiss="modal">Guardar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- FIN MODAL AGREGAR -->
-    <!-- INICIO MODAL ACTUALIZAR -->
-    <div class="modal modal-agregar modal-actualizar fade" id="modal-actualizar" tabindex="-1"
-        aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-xl">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="container">
-                        <div class="row agregar-content">
-                            <div class="col">
-                                <div class="row mt-3">
-                                    <input class="form-control form-control-lg nombre-producto" type="text"
-                                        placeholder="Ingresar nombre del producto"
-                                        aria-label=".form-control-lg example">
-                                    <textarea class="form-control" placeholder="Ingresar descripción del producto"
-                                        id="exampleFormControlTextarea1" rows="2"></textarea>
-                                </div>
-                                <div class="row">
-                                    <div class="col col-6 mt-3">
-                                        <label for="cmb-subcategoría">Subcategoría</label>
-                                        <select class="form-select" aria-label="Default select example">
-                                            <option selected disabled>Seleccione una opción</option>
-                                            <option value="1">Lapiceros normales</option>
-                                            <option value="2">Lápices redondos</option>
-                                            <option value="3">Plumones delgados</option>
-                                        </select>
-                                    </div>
-                                    <div class="col col-6 mt-3">
-                                        <label for="cmb-proveedor">Proveedor</label>
-                                        <select class="form-select" aria-label="Default select example">
-                                            <option selected disabled>Seleccione una opción</option>
-                                            <option value="1">ACOSA</option>
-                                            <option value="2">ARANDA</option>
-                                            <option value="3">COPLASA</option>
-                                        </select>
-                                    </div>
-                                    <div class="col col-6 mt-3">
-                                        <label for="cmb-marca">Marca</label>
-                                        <select class="form-select" aria-label="Default select example">
-                                            <option selected disabled>Seleccione una opción</option>
-                                            <option value="1">Studio</option>
-                                            <option value="2">Big</option>
-                                            <option value="3">Norma</option>
-                                        </select>
-                                    </div>
-                                    <div class="col col-6 mt-3">
-                                        <label for="cmb-precio">Precio</label>
-                                        <input class="form-control" type="text" placeholder=""
-                                            aria-label=".form-control example">
-                                    </div>
-                                    <div class="col col-6 mt-3">
-                                        <label for="">Color</label>
-                                        <select class="form-select" aria-label="Default select example">
-                                            <option selected disabled>Seleccione una opción</option>
-                                            <option value="1">Rojo</option>
-                                            <option value="2">Verde</option>
-                                            <option value="3">Azul</option>
-                                        </select>
-                                    </div>
-                                    <div class="col col-6 mt-3">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <label for="">Cantidad actual</label>
-                                                <div class="stock-container">
-                                                    <div class="col col-12">
-                                                        <input type="text" class="form-control" id="stock-actual"
-                                                            value="" placeholder="10" disabled>
-                                                    </div>
-                                                    <div class="col col-12 px-0 mt-2">
-                                                        <div class="row input-stock mb-2">
-                                                            <div class="col col-6 mx-0">
-                                                                <input type="text" class="form-control" id="stock-nuevo"
-                                                                    value="" required>
-                                                            </div>
-                                                            <div
-                                                                class="col col-6 d-flex justify-content-evenly  col-btn-stock">
-                                                                <button class="btn btn-stock btn-main " type="button"><i
-                                                                        class="bi bi-dash"></i></button>
-                                                                <button class="btn btn-stock btn-main" type="button"><i
-                                                                        class="bi bi-plus"></i></button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col col-9 mx-auto my-5 color-producto text-center">
-                                        <label class="">Añadir imagen del producto</label>
-                                        <div class="drop-container">
-                                            <i class="bi bi-cloud-arrow-up-fill"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer d-flex justify-content-between">
-                    <button class="btn btn-cancel btn-second" type="button" data-bs-target="" data-bs-toggle="modal"
-                        data-bs-dismiss="modal">Cancelar</button>
-                    <button class="btn btn-guardar" type="button" data-bs-target="#modal-agregar2"
-                        data-bs-toggle="modal" data-bs-dismiss="modal">Guardar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- FIN MODAL ACTUALIZAR -->
     <!-- INICIO MODAL DELETE -->
     <div class="modal modal-eliminar fade" id="modal-eliminar" aria-hidden="true"
         aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
@@ -768,6 +789,7 @@
 
     <script src="../js/consumidor.js">
     </script>
+    <script src="/js/dashboard.js"></script>
 </body>
 
 </html>
