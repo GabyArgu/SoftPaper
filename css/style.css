@@ -1503,7 +1503,7 @@ tbody .imgMP {
 /*********************LOGIN INICIO******************/
 @font-face {
   font-family: 'T-login';
-  src: url('../resources/login-crear-recu/Sunday.ttf') format("truetype");
+  src: url('../resources/tipografias/sunday.ttf') format("truetype");
   font-weight: normal;
   font-style: normal;
 }
