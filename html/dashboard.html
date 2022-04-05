@@ -28,39 +28,64 @@
 
         <!-- INICIA NAVBAR -->
         <header>
-            <nav class="nav container-xxl" role='navigation'>
-                <div class="nav-logo">
-                    <a class="navbar-brand nav-item" href="dashboard.html">
-                        <img src="../resources/logo/logo-default.png" alt="" class="d-inline-block align-text-top logo">
-                    </a>
-                    <a data-page="home" class="active nav-item menu-item" href="productos.html">Inventario</a>
-                    <a data-page="about" href="#" class="nav-item menu-item">Ventas</a>
-                    <a data-page="clients" href="#" class="nav-item menu-item">Clientes</a>
-                    <a data-page="contact" href="#" class="nav-item menu-item">Empleados</a>
-                </div>
-                <div class="nav-options d-flex">
-                    <a href="" class="nav-item"><i class="bi bi-search"></i></a>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            <img src="../resources/avatares/a2.png" alt="" class="d-inline-block align-text-top user">
+            <nav class="navbar navbar-expand-lg " id="navbar-dashboard">
+                <div class="container">
+                    <div class="nav-logo">
+                        <a class="navbar-brand nav-item" href="dashboard.html">
+                            <img src="../resources/logo/logo-default.png" alt=""
+                                class="d-inline-block align-text-top logo">
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-end animate slideIn" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
+                    </div>
+                    <button class="navbar-toggler collapsed d-flex d-lg-none flex-column justify-content-around"
+                        type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="toggler-icon top-bar"></span>
+                        <span class="toggler-icon middle-bar"></span>
+                        <span class="toggler-icon bottom-bar"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarText">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="active nav-item menu-item">
+                                <a class="nav-link active" href="productos.html">Inventario</a>
                             </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+
+                            <li class="active nav-item menu-item">
+                                <a class="nav-link active" aria-current="page" href="venta.html">Venta</a>
+                            </li>
+
+                            <li class="active nav-item menu-item">
+                                <a class="nav-link active" aria-current="page" href="clientes.html">Clientes</a>
+                            </li>
+
+                            <li class="active nav-item menu-item">
+                                <a class="nav-link" href="empleados.html">Empleados</a>
+                            </li>
                         </ul>
-                    </li>
+                        <div class="nav-options d-flex">
+                            <a href="" class="nav-item"><i class="bi bi-search"></i></a>
+
+                            <li class="active nav-item menu-item">
+
+                                <a class="nav-link dropdown" href="categoria.html" id="navbarDropdownMenuLink"
+                                    role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="../resources/avatares/a2.png" alt=""
+                                        class="d-inline-block align-text-top user">
+                                </a>
+                                <ul class="dropdown-menu slideInNav animate" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="perfil_usuario.html">Ir a perfil</a></li>
+                                    <li><a class="dropdown-item" href="index.html">Cerrar sesión</a></li>
+                                </ul>
+
+                            </li>
+                        </div>
+                    </div>
                 </div>
             </nav>
         </header>
         <!-- FIN NAVBAR-->
 
         <main class="container-xl">
-            <div class="header-content my-5">
+            <div class="header-content">
                 <h1>Inicio</h1>
             </div>
             <div class="content content-dashboard">
@@ -154,6 +179,322 @@
                                             </div>
                                         </td>
                                     </tr>
+                                    <tr>
+                                        <td data-title="PRODUCTO" class="pedido-no">0001</td>
+                                        <td data-title="CATEGORIA" class="categoria">Herbert Cornejo</td>
+                                        <td data-title="PRECIO" class="precio">29/03/2022</td>
+                                        <td data-title="INVENTARIO" class="inventario">$29.75</td>
+                                        <td data-title="ESTADO" class="estado-stock"><span class="estado">Pagado</span>
+                                        </td>
+                                        <td data-title="Acciones" class="botones-table">
+                                            <div class="dropdown">
+                                                <button class=" btn-acciones dropdown-toggle" type="button"
+                                                    id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                                    aria-expanded="false">
+                                                    Acciones
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                    aria-labelledby="dropdownMenuButton1">
+                                                    <li><a class="dropdown-item" href="#">Ver</a></li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-title="PRODUCTO" class="pedido-no">0001</td>
+                                        <td data-title="CATEGORIA" class="categoria">Herbert Cornejo</td>
+                                        <td data-title="PRECIO" class="precio">29/03/2022</td>
+                                        <td data-title="INVENTARIO" class="inventario">$29.75</td>
+                                        <td data-title="ESTADO" class="estado-stock"><span class="estado">Pagado</span>
+                                        </td>
+                                        <td data-title="Acciones" class="botones-table">
+                                            <div class="dropdown">
+                                                <button class=" btn-acciones dropdown-toggle" type="button"
+                                                    id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                                    aria-expanded="false">
+                                                    Acciones
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                    aria-labelledby="dropdownMenuButton1">
+                                                    <li><a class="dropdown-item" href="#">Ver</a></li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-title="PRODUCTO" class="pedido-no">0001</td>
+                                        <td data-title="CATEGORIA" class="categoria">Herbert Cornejo</td>
+                                        <td data-title="PRECIO" class="precio">29/03/2022</td>
+                                        <td data-title="INVENTARIO" class="inventario">$29.75</td>
+                                        <td data-title="ESTADO" class="estado-stock"><span class="estado">Pagado</span>
+                                        </td>
+                                        <td data-title="Acciones" class="botones-table">
+                                            <div class="dropdown">
+                                                <button class=" btn-acciones dropdown-toggle" type="button"
+                                                    id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                                    aria-expanded="false">
+                                                    Acciones
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                    aria-labelledby="dropdownMenuButton1">
+                                                    <li><a class="dropdown-item" href="#">Ver</a></li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-title="PRODUCTO" class="pedido-no">0001</td>
+                                        <td data-title="CATEGORIA" class="categoria">Herbert Cornejo</td>
+                                        <td data-title="PRECIO" class="precio">29/03/2022</td>
+                                        <td data-title="INVENTARIO" class="inventario">$29.75</td>
+                                        <td data-title="ESTADO" class="estado-stock"><span class="estado">Pagado</span>
+                                        </td>
+                                        <td data-title="Acciones" class="botones-table">
+                                            <div class="dropdown">
+                                                <button class=" btn-acciones dropdown-toggle" type="button"
+                                                    id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                                    aria-expanded="false">
+                                                    Acciones
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                    aria-labelledby="dropdownMenuButton1">
+                                                    <li><a class="dropdown-item" href="#">Ver</a></li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-title="PRODUCTO" class="pedido-no">0001</td>
+                                        <td data-title="CATEGORIA" class="categoria">Herbert Cornejo</td>
+                                        <td data-title="PRECIO" class="precio">29/03/2022</td>
+                                        <td data-title="INVENTARIO" class="inventario">$29.75</td>
+                                        <td data-title="ESTADO" class="estado-stock"><span class="estado">Pagado</span>
+                                        </td>
+                                        <td data-title="Acciones" class="botones-table">
+                                            <div class="dropdown">
+                                                <button class=" btn-acciones dropdown-toggle" type="button"
+                                                    id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                                    aria-expanded="false">
+                                                    Acciones
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                    aria-labelledby="dropdownMenuButton1">
+                                                    <li><a class="dropdown-item" href="#">Ver</a></li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-title="PRODUCTO" class="pedido-no">0001</td>
+                                        <td data-title="CATEGORIA" class="categoria">Herbert Cornejo</td>
+                                        <td data-title="PRECIO" class="precio">29/03/2022</td>
+                                        <td data-title="INVENTARIO" class="inventario">$29.75</td>
+                                        <td data-title="ESTADO" class="estado-stock"><span class="estado">Pagado</span>
+                                        </td>
+                                        <td data-title="Acciones" class="botones-table">
+                                            <div class="dropdown">
+                                                <button class=" btn-acciones dropdown-toggle" type="button"
+                                                    id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                                    aria-expanded="false">
+                                                    Acciones
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                    aria-labelledby="dropdownMenuButton1">
+                                                    <li><a class="dropdown-item" href="#">Ver</a></li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-title="PRODUCTO" class="pedido-no">0001</td>
+                                        <td data-title="CATEGORIA" class="categoria">Herbert Cornejo</td>
+                                        <td data-title="PRECIO" class="precio">29/03/2022</td>
+                                        <td data-title="INVENTARIO" class="inventario">$29.75</td>
+                                        <td data-title="ESTADO" class="estado-stock"><span class="estado">Pagado</span>
+                                        </td>
+                                        <td data-title="Acciones" class="botones-table">
+                                            <div class="dropdown">
+                                                <button class=" btn-acciones dropdown-toggle" type="button"
+                                                    id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                                    aria-expanded="false">
+                                                    Acciones
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                    aria-labelledby="dropdownMenuButton1">
+                                                    <li><a class="dropdown-item" href="#">Ver</a></li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-title="PRODUCTO" class="pedido-no">0001</td>
+                                        <td data-title="CATEGORIA" class="categoria">Herbert Cornejo</td>
+                                        <td data-title="PRECIO" class="precio">29/03/2022</td>
+                                        <td data-title="INVENTARIO" class="inventario">$29.75</td>
+                                        <td data-title="ESTADO" class="estado-stock"><span class="estado">Pagado</span>
+                                        </td>
+                                        <td data-title="Acciones" class="botones-table">
+                                            <div class="dropdown">
+                                                <button class=" btn-acciones dropdown-toggle" type="button"
+                                                    id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                                    aria-expanded="false">
+                                                    Acciones
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                    aria-labelledby="dropdownMenuButton1">
+                                                    <li><a class="dropdown-item" href="#">Ver</a></li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-title="PRODUCTO" class="pedido-no">0001</td>
+                                        <td data-title="CATEGORIA" class="categoria">Herbert Cornejo</td>
+                                        <td data-title="PRECIO" class="precio">29/03/2022</td>
+                                        <td data-title="INVENTARIO" class="inventario">$29.75</td>
+                                        <td data-title="ESTADO" class="estado-stock"><span class="estado">Pagado</span>
+                                        </td>
+                                        <td data-title="Acciones" class="botones-table">
+                                            <div class="dropdown">
+                                                <button class=" btn-acciones dropdown-toggle" type="button"
+                                                    id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                                    aria-expanded="false">
+                                                    Acciones
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                    aria-labelledby="dropdownMenuButton1">
+                                                    <li><a class="dropdown-item" href="#">Ver</a></li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-title="PRODUCTO" class="pedido-no">0001</td>
+                                        <td data-title="CATEGORIA" class="categoria">Herbert Cornejo</td>
+                                        <td data-title="PRECIO" class="precio">29/03/2022</td>
+                                        <td data-title="INVENTARIO" class="inventario">$29.75</td>
+                                        <td data-title="ESTADO" class="estado-stock"><span class="estado">Pagado</span>
+                                        </td>
+                                        <td data-title="Acciones" class="botones-table">
+                                            <div class="dropdown">
+                                                <button class=" btn-acciones dropdown-toggle" type="button"
+                                                    id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                                    aria-expanded="false">
+                                                    Acciones
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                    aria-labelledby="dropdownMenuButton1">
+                                                    <li><a class="dropdown-item" href="#">Ver</a></li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-title="PRODUCTO" class="pedido-no">0001</td>
+                                        <td data-title="CATEGORIA" class="categoria">Herbert Cornejo</td>
+                                        <td data-title="PRECIO" class="precio">29/03/2022</td>
+                                        <td data-title="INVENTARIO" class="inventario">$29.75</td>
+                                        <td data-title="ESTADO" class="estado-stock"><span class="estado">Pagado</span>
+                                        </td>
+                                        <td data-title="Acciones" class="botones-table">
+                                            <div class="dropdown">
+                                                <button class=" btn-acciones dropdown-toggle" type="button"
+                                                    id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                                    aria-expanded="false">
+                                                    Acciones
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                    aria-labelledby="dropdownMenuButton1">
+                                                    <li><a class="dropdown-item" href="#">Ver</a></li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-title="PRODUCTO" class="pedido-no">0001</td>
+                                        <td data-title="CATEGORIA" class="categoria">Herbert Cornejo</td>
+                                        <td data-title="PRECIO" class="precio">29/03/2022</td>
+                                        <td data-title="INVENTARIO" class="inventario">$29.75</td>
+                                        <td data-title="ESTADO" class="estado-stock"><span class="estado">Pagado</span>
+                                        </td>
+                                        <td data-title="Acciones" class="botones-table">
+                                            <div class="dropdown">
+                                                <button class=" btn-acciones dropdown-toggle" type="button"
+                                                    id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                                    aria-expanded="false">
+                                                    Acciones
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                    aria-labelledby="dropdownMenuButton1">
+                                                    <li><a class="dropdown-item" href="#">Ver</a></li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-title="PRODUCTO" class="pedido-no">0001</td>
+                                        <td data-title="CATEGORIA" class="categoria">Herbert Cornejo</td>
+                                        <td data-title="PRECIO" class="precio">29/03/2022</td>
+                                        <td data-title="INVENTARIO" class="inventario">$29.75</td>
+                                        <td data-title="ESTADO" class="estado-stock"><span class="estado">Pagado</span>
+                                        </td>
+                                        <td data-title="Acciones" class="botones-table">
+                                            <div class="dropdown">
+                                                <button class=" btn-acciones dropdown-toggle" type="button"
+                                                    id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                                    aria-expanded="false">
+                                                    Acciones
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                    aria-labelledby="dropdownMenuButton1">
+                                                    <li><a class="dropdown-item" href="#">Ver</a></li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-title="PRODUCTO" class="pedido-no">0001</td>
+                                        <td data-title="CATEGORIA" class="categoria">Herbert Cornejo</td>
+                                        <td data-title="PRECIO" class="precio">29/03/2022</td>
+                                        <td data-title="INVENTARIO" class="inventario">$29.75</td>
+                                        <td data-title="ESTADO" class="estado-stock"><span class="estado">Pagado</span>
+                                        </td>
+                                        <td data-title="Acciones" class="botones-table">
+                                            <div class="dropdown">
+                                                <button class=" btn-acciones dropdown-toggle" type="button"
+                                                    id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                                    aria-expanded="false">
+                                                    Acciones
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                    aria-labelledby="dropdownMenuButton1">
+                                                    <li><a class="dropdown-item" href="#">Ver</a></li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-title="PRODUCTO" class="pedido-no">0001</td>
+                                        <td data-title="CATEGORIA" class="categoria">Herbert Cornejo</td>
+                                        <td data-title="PRECIO" class="precio">29/03/2022</td>
+                                        <td data-title="INVENTARIO" class="inventario">$29.75</td>
+                                        <td data-title="ESTADO" class="estado-stock"><span class="estado">Pagado</span>
+                                        </td>
+                                        <td data-title="Acciones" class="botones-table">
+                                            <div class="dropdown">
+                                                <button class=" btn-acciones dropdown-toggle" type="button"
+                                                    id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                                    aria-expanded="false">
+                                                    Acciones
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                    aria-labelledby="dropdownMenuButton1">
+                                                    <li><a class="dropdown-item" href="#">Ver</a></li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+
                                 </tbody>
                             </table>
                         </div>
@@ -181,6 +522,7 @@
         integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha"
         crossorigin="anonymous"></script>
     <script src="../js/charts.js"></script>
+    <script src="/js/dashboard.js"></script>
 </body>
 
 </html>
