@@ -1647,7 +1647,12 @@ tbody .imgMP{
     }
   }
 }
-/* Perfil Usuario */
+
+.avatar{
+  width: 250px;
+}
+
+/* Perfil Usuario*/
 .t-texto{
   font-size: 30px;
   color: black;
@@ -1655,16 +1660,6 @@ tbody .imgMP{
   margin-bottom: 50px;
 }
 
-
-.avatar{
-  width: 250px;
-  margin-top: 60px;
-  padding-right: 30px;
-}
-
-.perfil-usuario .justify-content-end {
-  padding-left: 900px;
-}
 
 .btn-editar {
   width: 120px;
@@ -1678,13 +1673,13 @@ tbody .imgMP{
   font-weight: 500;
 }
 
-.td,.text1{
+.text1{
   color: var(--grisTitulos);
   font-size: 20px;
   padding-bottom: 70px;
 }
 
-.td,.text2{
+.text2{
   color: #3F4254;
   font-size: 20PX;
   padding-bottom: 70px;
@@ -1731,8 +1726,18 @@ tbody .imgMP{
 .sept{
   padding-top: 50px;
 }
-/* Perfil Usuario Fin */
 
+@media (max-width:1200px){
+  .col-avatar{
+    display: flex;
+    justify-content: center;
+  }
+  .perfil-usuario .content-card h2{
+    text-align: center;
+    margin-top: 20px;
+  }
+}
+/* Editar Perfil Fin */
 /* Editar Perfil */
 .s-texto{
   font-size: 50px;
@@ -1823,7 +1828,6 @@ tbody .imgMP{
 }
 /* Editar Perfil Fin */
 
-
 /* Diseño footer Inicio */
 .footerSP{
   background-color: var(--azulOscuro);
@@ -1832,7 +1836,4 @@ tbody .imgMP{
 .footerH6{
   color: var(--blanco);
 }
-
-
 /* Diseño footer fin */
-
