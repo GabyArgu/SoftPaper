@@ -2,7 +2,7 @@
 navbar = document.getElementById('navbar-dashboard');
 
 window.addEventListener('scroll', function () {
-    if (window.pageYOffset > 300) {
+    if (window.pageYOffset > 230) {
         navbar.classList.add('nav-fixed', 'shadow', 'fixed-top');
     } else {
         navbar.classList.remove('nav-fixed', 'shadow', 'fixed-top');
