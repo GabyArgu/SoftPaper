@@ -691,7 +691,7 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
 
 .modal-agregar input, .modal-agregar select,
 .modal-agregarEmpl input {
-  border-color: var(--azulMain);
+  border-color: var(--azulMain)!important;
   border-radius: 18px;
   font-size: 14px;
   height: 36px;
@@ -1593,7 +1593,7 @@ tbody .imgMP{
   padding-right: 30px;
 }
 
-.justify-content-end {
+.perfil-usuario .justify-content-end {
   padding-left: 900px;
 }
 
