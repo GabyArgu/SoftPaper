@@ -52,9 +52,9 @@
   
     var data = {
       labels: [
-        "Cocina",
-        "Utensilios",
-        "Recetas"
+        "Cuadernos",
+        "Lapiceros",
+        "Plumones"
       ],
       datasets: [
         {
