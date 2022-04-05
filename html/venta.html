@@ -46,29 +46,39 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarText">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="active nav-item menu-item">
-                                <a class="nav-link active" href="productos.html">Inventario</a>
+
+                            <li class="active nav-item menu-item" type="button">
+
+                                <a class="nav-link dropdown" id="navbarDropdownMenuLink" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false"> Inventario
+                                </a>
+                                <ul class="dropdown-menu dropdown-inventario slideInNav animate" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="productos.html">Productos</a></li>
+                                    <li><a class="dropdown-item" href="subcategoria.html">Subcategorías</a></li>
+                                    <li><a class="dropdown-item" href="marca_proveedor.html">Proveedores y marcas</a></li>
+                                </ul>
+
                             </li>
 
-                            <li class="active nav-item menu-item">
+                            <li class="active nav-item menu-item" type="button">
                                 <a class="nav-link active" aria-current="page" href="venta.html">Venta</a>
                             </li>
 
-                            <li class="active nav-item menu-item">
+                            <li class="active nav-item menu-item" type="button">
                                 <a class="nav-link active" aria-current="page" href="clientes.html">Clientes</a>
                             </li>
 
-                            <li class="active nav-item menu-item">
+                            <li class="active nav-item menu-item" type="button">
                                 <a class="nav-link" href="empleados.html">Empleados</a>
                             </li>
                         </ul>
                         <div class="nav-options d-flex">
-                            <a href="" class="nav-item"><i class="bi bi-search"></i></a>
+                            <a href="" class="nav-item"><i class="bi bi-search"  type="button"></i></a>
 
-                            <li class="active nav-item menu-item">
+                            <li class="active nav-item menu-item"  type="button">
 
-                                <a class="nav-link dropdown" href="categoria.html" id="navbarDropdownMenuLink"
-                                    role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="nav-link dropdown" id="navbarDropdownMenuLink" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
                                     <img src="../resources/avatares/a2.png" alt=""
                                         class="d-inline-block align-text-top user">
                                 </a>
@@ -84,6 +94,7 @@
             </nav>
         </header>
         <!-- FIN NAVBAR-->
+        
         <!-- INICIO CONTENIDO -->
         <main class="container-xxl">
             <div class="header-content my-5">
