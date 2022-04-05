@@ -1678,5 +1678,16 @@ tbody .imgMP{
   
 }
 
+@media (max-width: 992px){
+  .row.avatars {
+    display: flex;
+    justify-content: space-around;
+  }
+  .perfil-usuario .content-card{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+}
 
 /* Editar Perfil Fin */
