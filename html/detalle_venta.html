@@ -12,14 +12,15 @@
 
     <!-- DATATABLES -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" />
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.3.4/css/select.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/select/1.3.4/css/select.dataTables.min.css" />
 
     <!-- GOOGLE FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
-    
+
     <link rel="icon" type="icon/png" href="../resources/logo/ico.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SoftPaper</title>
@@ -27,41 +28,69 @@
 
 <body class="detalle-venta">
     <div class="wrapper">
-
         <!-- INICIA NAVBAR -->
         <header>
-            <nav class="nav container-xxl" role='navigation'>
-                <div class="nav-logo">
-                    <a class="navbar-brand nav-item" href="dashboard.html">
-                        <img src="../resources/logo/logo-default.png" alt="" class="d-inline-block align-text-top logo">
-                    </a>
-                    <a data-page="home" class="active nav-item menu-item" href="#">Inventario</a>
-                    <a data-page="about" href="#" class="nav-item menu-item">Ventas</a>
-                    <a data-page="clients" href="#" class="nav-item menu-item">Clientes</a>
-                    <a data-page="contact" href="#" class="nav-item menu-item">Empleados</a>
-                </div>
-                <div class="nav-options d-flex">
-                    <a href="" class="nav-item"><i class="bi bi-search"></i></a>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            <img src="../resources/avatares/a2.png" alt="" class="d-inline-block align-text-top user">
+            <nav class="navbar navbar-expand-lg " id="navbar-dashboard">
+                <div class="container">
+                    <div class="nav-logo">
+                        <a class="navbar-brand nav-item" href="dashboard.html">
+                            <img src="../resources/logo/logo-default.png" alt=""
+                                class="d-inline-block align-text-top logo">
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-end animate slideIn" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
+                    </div>
+                    <button class="navbar-toggler collapsed d-flex d-lg-none flex-column justify-content-around"
+                        type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="toggler-icon top-bar"></span>
+                        <span class="toggler-icon middle-bar"></span>
+                        <span class="toggler-icon bottom-bar"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarText">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="active nav-item menu-item">
+                                <a class="nav-link active" href="productos.html">Inventario</a>
                             </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+
+                            <li class="active nav-item menu-item">
+                                <a class="nav-link active" aria-current="page" href="clientes.html">Venta</a>
+                            </li>
+
+                            <li class="active nav-item menu-item">
+                                <a class="nav-link active" aria-current="page" href="clientes.html">Clientes</a>
+                            </li>
+
+                            <li class="active nav-item menu-item">
+                                <a class="nav-link" href="empleados.html">Empleados</a>
+                            </li>
                         </ul>
-                    </li>
+                        <div class="nav-options d-flex">
+                            <a href="" class="nav-item"><i class="bi bi-search"></i></a>
+
+                            <li class="active nav-item menu-item">
+
+                                <a class="nav-link dropdown" href="categoria.html" id="navbarDropdownMenuLink"
+                                    role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="../resources/avatares/a2.png" alt=""
+                                        class="d-inline-block align-text-top user">
+                                </a>
+                                <ul class="dropdown-menu slideInNav animate" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+
+                            </li>
+                        </div>
+                    </div>
                 </div>
             </nav>
         </header>
-
         <!-- FIN NAVBAR-->
 
+        <!-- INICIO DEL CONTENIDO -->
         <main class="container-xxl">
             <div class="header-content my-5">
                 <h1>Añadir venta</h1>
@@ -75,6 +104,7 @@
                 </nav>
             </div>
             <div class="content content-detalle">
+                <!-- INICIO TARJETA SELECCIONAR PRODUCTOS -->
                 <div class="container content-card">
                     <div class="row">
                         <div class="col p-4">
@@ -84,9 +114,11 @@
                                     <span>Añade productos a la venta</span>
                                 </div>
                             </div>
+                            <!-- INICIO ESPACIO PARA PRODUCTOS-->
                             <div class="row">
                                 <div class="col">
-                                    <div class="row row-cols-1 row-cols-lg-2 border border-dashed rounded pt-2 pb-2 mb-5 productos-detalle">
+                                    <div
+                                        class="row row-cols-1 row-cols-lg-2 border border-dashed rounded pt-2 pb-2 mb-5 productos-detalle">
                                         <div class="col my-2">
                                             <div
                                                 class="d-flex p-2 border border-dashed rounded justify-content-between producto-card">
@@ -138,6 +170,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- FIN ESPACIO PARA PRODUCTOS-->
                             <div class="row">
                                 <div class="col-12 col-lg-10 col-buscador">
                                     <div class="buscador">
@@ -180,6 +213,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- INICIO TABLA PRODUCTOS-->
                             <div class="row mt-3">
                                 <div class="col">
                                     <div class="table-responsive mt-3 " id="no-more-tables">
@@ -194,7 +228,8 @@
                                             <tbody>
                                                 <tr>
                                                     <td>
-                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckChecked">
                                                     </td>
                                                     <td data-title="PRODUCTO" class="col-table">
                                                         <div class="nombre-producto"><img
@@ -207,7 +242,8 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckChecked">
                                                     </td>
                                                     <td data-title="PRODUCTO" class="col-table">
                                                         <div class="nombre-producto"><img
@@ -220,7 +256,8 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckChecked">
                                                     </td>
                                                     <td data-title="PRODUCTO" class="col-table">
                                                         <div class="nombre-producto"><img
@@ -233,7 +270,8 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckChecked">
                                                     </td>
                                                     <td data-title="PRODUCTO" class="col-table">
                                                         <div class="nombre-producto"><img
@@ -246,7 +284,8 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckChecked">
                                                     </td>
                                                     <td data-title="PRODUCTO" class="col-table">
                                                         <div class="nombre-producto"><img
@@ -259,7 +298,8 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckChecked">
                                                     </td>
                                                     <td data-title="PRODUCTO" class="col-table">
                                                         <div class="nombre-producto"><img
@@ -272,7 +312,8 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckChecked">
                                                     </td>
                                                     <td data-title="PRODUCTO" class="col-table">
                                                         <div class="nombre-producto"><img
@@ -285,7 +326,8 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckChecked">
                                                     </td>
                                                     <td data-title="PRODUCTO" class="col-table">
                                                         <div class="nombre-producto"><img
@@ -298,7 +340,8 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckChecked">
                                                     </td>
                                                     <td data-title="PRODUCTO" class="col-table">
                                                         <div class="nombre-producto"><img
@@ -311,7 +354,8 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckChecked">
                                                     </td>
                                                     <td data-title="PRODUCTO" class="col-table">
                                                         <div class="nombre-producto"><img
@@ -324,7 +368,8 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckChecked">
                                                     </td>
                                                     <td data-title="PRODUCTO" class="col-table">
                                                         <div class="nombre-producto"><img
@@ -337,7 +382,8 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckChecked">
                                                     </td>
                                                     <td data-title="PRODUCTO" class="col-table">
                                                         <div class="nombre-producto"><img
@@ -350,7 +396,8 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckChecked">
                                                     </td>
                                                     <td data-title="PRODUCTO" class="col-table">
                                                         <div class="nombre-producto"><img
@@ -363,7 +410,8 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckChecked">
                                                     </td>
                                                     <td data-title="PRODUCTO" class="col-table">
                                                         <div class="nombre-producto"><img
@@ -376,7 +424,8 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckChecked">
                                                     </td>
                                                     <td data-title="PRODUCTO" class="col-table">
                                                         <div class="nombre-producto"><img
@@ -389,7 +438,8 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckChecked">
                                                     </td>
                                                     <td data-title="PRODUCTO" class="col-table">
                                                         <div class="nombre-producto"><img
@@ -402,7 +452,8 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckChecked">
                                                     </td>
                                                     <td data-title="PRODUCTO" class="col-table">
                                                         <div class="nombre-producto"><img
@@ -415,7 +466,8 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckChecked">
                                                     </td>
                                                     <td data-title="PRODUCTO" class="col-table">
                                                         <div class="nombre-producto"><img
@@ -428,7 +480,8 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckChecked">
                                                     </td>
                                                     <td data-title="PRODUCTO" class="col-table">
                                                         <div class="nombre-producto"><img
@@ -441,7 +494,8 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckChecked">
                                                     </td>
                                                     <td data-title="PRODUCTO" class="col-table">
                                                         <div class="nombre-producto"><img
@@ -454,7 +508,8 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckChecked">
                                                     </td>
                                                     <td data-title="PRODUCTO" class="col-table">
                                                         <div class="nombre-producto"><img
@@ -467,7 +522,8 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckChecked">
                                                     </td>
                                                     <td data-title="PRODUCTO" class="col-table">
                                                         <div class="nombre-producto"><img
@@ -478,15 +534,17 @@
                                                     </td>
                                                     <td data-title="INVENTARIO" class="inventario">55</td>
                                                 </tr>
-
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
                             </div>
+                            <!-- FIN TABLA PRODUCTOS-->
                         </div>
                     </div>
                 </div>
+                <!-- FIN TARJETA SELECCIONAR PRODUCTOS -->
+                <!-- INICIO TARJETA DETALLE-->
                 <div class="container content-card detalle d-flex">
                     <div class="row">
                         <div class="col-12 p-4 col-flex-detalle">
@@ -498,27 +556,30 @@
                             <div class="row">
                                 <div class="col-12 mt-3">
                                     <button class="btn-anadir-cliente btn-second" data-bs-toggle="modal"
-                                    data-bs-target="#modal-cliente">Añadir cliente</button>
+                                        data-bs-target="#modal-cliente">Añadir cliente</button>
                                 </div>
                                 <div class="col-12 mt-3">
                                     <label for="">Tipo venta</label>
-                                        <select class="form-select mt-2" aria-label="Default select example" id="tipo-venta" onChange="pagoOnChange(this)"  b>
-                                            <option selected disabled>Seleccione una opción</option>
-                                            <option value="fiscal">Credito fiscal</option>
-                                            <option value="consumidor">Consumidor final</option>
-                                        </select>
+                                    <select class="form-select mt-2" aria-label="Default select example" id="tipo-venta"
+                                        onChange="pagoOnChange(this)" b>
+                                        <option selected disabled>Seleccione una opción</option>
+                                        <option value="fiscal">Credito fiscal</option>
+                                        <option value="consumidor">Consumidor final</option>
+                                    </select>
                                 </div>
                                 <div class="col-12 mt-3 hide-cmb" id="tipo-venta-div">
-                                    <label for="" value="2">Tipo consumidor</label> <!-- MOSTRAR SOLO EN CASO QUE SEA CONSUMIDOR FINAL EL CMB DE ARRIBA -->
-                                        <select class="form-select mt-2" value="2" aria-label="Default select example">
-                                            <option selected disabled>Seleccione una opción</option>
-                                            <option value="1">Factura</option>
-                                            <option value="2">Ticket</option>
-                                        </select>
+                                    <label for="" value="2">Tipo consumidor</label>
+                                    <!-- MOSTRAR SOLO EN CASO QUE SEA CONSUMIDOR FINAL -->
+                                    <select class="form-select mt-2" value="2" aria-label="Default select example">
+                                        <option selected disabled>Seleccione una opción</option>
+                                        <option value="1">Factura</option>
+                                        <option value="2">Ticket</option>
+                                    </select>
                                 </div>
                                 <div class="col-12 mt-3">
                                     <label for="" class="d-block">Fecha</label>
-                                    <input type="text" id="calendar" placeholder="Seleccione una fecha" class="filtro-fecha w-100 mt-2">
+                                    <input type="text" id="calendar" placeholder="Seleccione una fecha"
+                                        class="filtro-fecha w-100 mt-2">
                                 </div>
                             </div>
                             <hr class="my-5">
@@ -551,188 +612,216 @@
                                 </div>
                             </div>
                             <div class="row ">
-                                <div class="col col-6"><button class="btn btn-cancel" type="button" >Cancelar</button></div>
-                                <div class="col col-6 d-flex justify-content-end"><button class="btn btn-main" type="button" >Guardar</button></div>
+                                <div class="col col-6"><button class="btn btn-cancel" type="button">Cancelar</button>
+                                </div>
+                                <div class="col col-6 d-flex justify-content-end"><button class="btn btn-main"
+                                        type="button">Guardar</button></div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <!-- FIN TARJETA DETALLE-->
             </div>
         </main>
-
+        <!-- FIN DEL CONTENIDO -->
+        <!-- INICIO DEL FOOTER -->
         <footer>
 
         </footer>
+        <!-- FIN DEL FOOTER -->
+
+        <!-- INICIO MODAL SELECCIONAR CLIENTE-->
         <div class="modal modal-agregar fade" id="modal-cliente" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-xl">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="container">
-                        <div class="row agregar-content">
-                            <div class="col">
-                                <div class="row mt-5">
-                                    <h2>Seleccionar cliente</h2>
-                                </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="table-responsive mt-3 scroll" id="no-more-tables">
-                                            <table class="table table-hover" id="example1">
-                                                <thead>
-                                                    <tr>
-                                                        <th></th>
-                                                        <th>Nombre</th>
-                                                        <th>Documento</th>
-                                                        <th>Estado</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="table-check-cliente"></td>
-                                                        <td class="col-table text-center">Herbert
-                                                            Cornejo</td>
-                                                        <td class="text-center">00000000-0</td>
-                                                        <td class="estado-stock"><span class="estado">Activo</span></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="table-check-cliente"></td>
-                                                        <td class="col-table text-center">Herbert
-                                                            Cornejo</td>
-                                                        <td class="text-center">00000000-0</td>
-                                                        <td class="estado-stock"><span class="estado">Activo</span></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="table-check-cliente"></td>
-                                                        <td class="col-table text-center">Herbert
-                                                            Cornejo</td>
-                                                        <td class="text-center">00000000-0</td>
-                                                        <td class="estado-stock"><span class="estado">Activo</span></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="table-check-cliente"></td>
-                                                        <td class="col-table text-center">Herbert
-                                                            Cornejo</td>
-                                                        <td class="text-center">00000000-0</td>
-                                                        <td class="estado-stock"><span class="estado">Activo</span></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="table-check-cliente"></td>
-                                                        <td class="col-table text-center">Herbert
-                                                            Cornejo</td>
-                                                        <td class="text-center">00000000-0</td>
-                                                        <td class="estado-stock"><span class="estado">Activo</span></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="table-check-cliente"></td>
-                                                        <td class="col-table text-center">Herbert
-                                                            Cornejo</td>
-                                                        <td class="text-center">00000000-0</td>
-                                                        <td class="estado-stock"><span class="estado">Activo</span></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="table-check-cliente"></td>
-                                                        <td class="col-table text-center">Herbert
-                                                            Cornejo</td>
-                                                        <td class="text-center">00000000-0</td>
-                                                        <td class="estado-stock"><span class="estado">Activo</span></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="table-check-cliente"></td>
-                                                        <td class="col-table text-center">Herbert
-                                                            Cornejo</td>
-                                                        <td class="text-center">00000000-0</td>
-                                                        <td class="estado-stock"><span class="estado">Activo</span></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="table-check-cliente"></td>
-                                                        <td class="col-table text-center">Herbert
-                                                            Cornejo</td>
-                                                        <td class="text-center">00000000-0</td>
-                                                        <td class="estado-stock"><span class="estado">Activo</span></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="table-check-cliente"></td>
-                                                        <td class="col-table text-center">Herbert
-                                                            Cornejo</td>
-                                                        <td class="text-center">00000000-0</td>
-                                                        <td class="estado-stock"><span class="estado">Activo</span></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="table-check-cliente"></td>
-                                                        <td class="col-table text-center">Herbert
-                                                            Cornejo</td>
-                                                        <td class="text-center">00000000-0</td>
-                                                        <td class="estado-stock"><span class="estado">Activo</span></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="table-check-cliente"></td>
-                                                        <td class="col-table text-center">Herbert
-                                                            Cornejo</td>
-                                                        <td class="text-center">00000000-0</td>
-                                                        <td class="estado-stock"><span class="estado">Activo</span></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="table-check-cliente"></td>
-                                                        <td class="col-table text-center">Herbert
-                                                            Cornejo</td>
-                                                        <td class="text-center">00000000-0</td>
-                                                        <td class="estado-stock"><span class="estado">Activo</span></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="table-check-cliente"></td>
-                                                        <td class="col-table text-center">Herbert
-                                                            Cornejo</td>
-                                                        <td class="text-center">00000000-0</td>
-                                                        <td class="estado-stock"><span class="estado">Activo</span></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="table-check-cliente"></td>
-                                                        <td class="col-table text-center">Herbert
-                                                            Cornejo</td>
-                                                        <td class="text-center">00000000-0</td>
-                                                        <td class="estado-stock"><span class="estado">Activo</span></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-xl">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="row agregar-content">
+                                <div class="col">
+                                    <div class="row mt-5">
+                                        <h2>Seleccionar cliente</h2>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="table-responsive mt-3 scroll" id="no-more-tables">
+                                                <table class="table table-hover" id="example1">
+                                                    <thead>
+                                                        <tr>
+                                                            <th></th>
+                                                            <th>Nombre</th>
+                                                            <th>Documento</th>
+                                                            <th>Estado</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="table-check-cliente"></td>
+                                                            <td class="col-table text-center">Herbert
+                                                                Cornejo</td>
+                                                            <td class="text-center">00000000-0</td>
+                                                            <td class="estado-stock"><span class="estado">Activo</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="table-check-cliente"></td>
+                                                            <td class="col-table text-center">Herbert
+                                                                Cornejo</td>
+                                                            <td class="text-center">00000000-0</td>
+                                                            <td class="estado-stock"><span class="estado">Activo</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="table-check-cliente"></td>
+                                                            <td class="col-table text-center">Herbert
+                                                                Cornejo</td>
+                                                            <td class="text-center">00000000-0</td>
+                                                            <td class="estado-stock"><span class="estado">Activo</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="table-check-cliente"></td>
+                                                            <td class="col-table text-center">Herbert
+                                                                Cornejo</td>
+                                                            <td class="text-center">00000000-0</td>
+                                                            <td class="estado-stock"><span class="estado">Activo</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="table-check-cliente"></td>
+                                                            <td class="col-table text-center">Herbert
+                                                                Cornejo</td>
+                                                            <td class="text-center">00000000-0</td>
+                                                            <td class="estado-stock"><span class="estado">Activo</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="table-check-cliente"></td>
+                                                            <td class="col-table text-center">Herbert
+                                                                Cornejo</td>
+                                                            <td class="text-center">00000000-0</td>
+                                                            <td class="estado-stock"><span class="estado">Activo</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="table-check-cliente"></td>
+                                                            <td class="col-table text-center">Herbert
+                                                                Cornejo</td>
+                                                            <td class="text-center">00000000-0</td>
+                                                            <td class="estado-stock"><span class="estado">Activo</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="table-check-cliente"></td>
+                                                            <td class="col-table text-center">Herbert
+                                                                Cornejo</td>
+                                                            <td class="text-center">00000000-0</td>
+                                                            <td class="estado-stock"><span class="estado">Activo</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="table-check-cliente"></td>
+                                                            <td class="col-table text-center">Herbert
+                                                                Cornejo</td>
+                                                            <td class="text-center">00000000-0</td>
+                                                            <td class="estado-stock"><span class="estado">Activo</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="table-check-cliente"></td>
+                                                            <td class="col-table text-center">Herbert
+                                                                Cornejo</td>
+                                                            <td class="text-center">00000000-0</td>
+                                                            <td class="estado-stock"><span class="estado">Activo</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="table-check-cliente"></td>
+                                                            <td class="col-table text-center">Herbert
+                                                                Cornejo</td>
+                                                            <td class="text-center">00000000-0</td>
+                                                            <td class="estado-stock"><span class="estado">Activo</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="table-check-cliente"></td>
+                                                            <td class="col-table text-center">Herbert
+                                                                Cornejo</td>
+                                                            <td class="text-center">00000000-0</td>
+                                                            <td class="estado-stock"><span class="estado">Activo</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="table-check-cliente"></td>
+                                                            <td class="col-table text-center">Herbert
+                                                                Cornejo</td>
+                                                            <td class="text-center">00000000-0</td>
+                                                            <td class="estado-stock"><span class="estado">Activo</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="table-check-cliente"></td>
+                                                            <td class="col-table text-center">Herbert
+                                                                Cornejo</td>
+                                                            <td class="text-center">00000000-0</td>
+                                                            <td class="estado-stock"><span class="estado">Activo</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="table-check-cliente"></td>
+                                                            <td class="col-table text-center">Herbert
+                                                                Cornejo</td>
+                                                            <td class="text-center">00000000-0</td>
+                                                            <td class="estado-stock"><span class="estado">Activo</span>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+
+
+                                </d iv>
                             </div>
-
-
-                        </d iv>
+                        </div>
+                        <div class="modal-footer d-flex justify-content-between">
+                            <button class="btn btn-cancel btn-second" type="button" data-bs-target=""
+                                data-bs-toggle="modal" data-bs-dismiss="modal">Cancelar</button>
+                            <button class="btn btn-guardar" type="button" data-bs-target="#modal-agregar2"
+                                data-bs-toggle="modal" data-bs-dismiss="modal">Seleccionar</button>
+                        </div>
                     </div>
-                </div>
-                <div class="modal-footer d-flex justify-content-between">
-                    <button class="btn btn-cancel btn-second" type="button" data-bs-target="" data-bs-toggle="modal"
-                        data-bs-dismiss="modal">Cancelar</button>
-                    <button class="btn btn-guardar" type="button" data-bs-target="#modal-agregar2"
-                        data-bs-toggle="modal" data-bs-dismiss="modal">Seleccionar</button>
                 </div>
             </div>
         </div>
-    </div>
-    </div>
+        <!-- FIN MODAL SELECCIONAR CLIENTE-->
 
 
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
+        <!-- SCRIPTS BOOTSRAP-->
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
 
-    <!-- DATATABLE JS -->
-    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
-    <script src="https://cdn.datatables.net/select/1.3.4/js/dataTables.select.min.js"></script>
-    <!-- INPUT SPINNER (+ y - input)-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-input-spinner@3.1.10/src/bootstrap-input-spinner.min.js"></script>
+        <!-- DATATABLE JS -->
+        <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+        <script src="https://cdn.datatables.net/select/1.3.4/js/dataTables.select.min.js"></script>
 
-    <!-- DATE FLATPICKR  -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+        <!-- INPUT SPINNER (+ y - input)-->
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap-input-spinner@3.1.10/src/bootstrap-input-spinner.min.js"></script>
 
-    <script src="../js/detalle_venta.js">
-    </script>
+        <!-- DATE FLATPICKR  -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+        <!-- SCRIPT PROPIO-->
+        <script src="../js/detalle_venta.js">
+        </script>
+        <script src="/js/dashboard.js"></script>
 </body>
 
 </html>
