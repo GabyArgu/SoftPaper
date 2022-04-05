@@ -1652,6 +1652,7 @@ tbody .imgMP{
   width: 250px;
 }
 
+<<<<<<< Updated upstream
 /* Perfil Usuario*/
 .t-texto{
   font-size: 30px;
@@ -1672,6 +1673,8 @@ tbody .imgMP{
   padding-right: 5px;
   border-radius: 8px;
   font-weight: 500;
+  float: right;
+  margin-top: -4%
 }
 
 .text1{
@@ -1728,6 +1731,7 @@ tbody .imgMP{
   padding-top: 50px;
 }
 
+<<<<<<< Updated upstream
 @media (max-width:1200px){
   .col-avatar{
     display: flex;
@@ -1739,6 +1743,12 @@ tbody .imgMP{
   }
 }
 /* Editar Perfil Fin */
+=======
+
+
+/* Perfil Usuario Fin*/
+
+>>>>>>> Stashed changes
 /* Editar Perfil */
 .s-texto{
   font-size: 50px;
@@ -1768,7 +1778,11 @@ tbody .imgMP{
 .avatar1{
   width: 250px;
   margin-top: 60px;
+<<<<<<< Updated upstream
   margin-left: 360px;
+=======
+  margin-left: 305px;
+>>>>>>> Stashed changes
   padding-right: 30px;
 }
 
@@ -1812,6 +1826,7 @@ tbody .imgMP{
   
 }
 
+<<<<<<< Updated upstream
 .btn.btn-icon:not(.btn-outline):not(.btn-dashed):not(.border-hover):not(.border-active):not(.btn-flush) {
   border: 0;
 }
@@ -1827,6 +1842,9 @@ tbody .imgMP{
   margin-bottom: 100px;
   margin-left: -55px;
 }
+=======
+
+>>>>>>> Stashed changes
 /* Editar Perfil Fin */
 
 /* Diseño footer Inicio */
