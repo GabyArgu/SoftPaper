@@ -617,7 +617,7 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
 /*FIN PRODUCTOS*/
 
 /*Animación de dropdowns*/
-@media (min-width: 768px) {
+
   .animate {
     animation-duration: 0.3s;
     -webkit-animation-duration: 0.3s;
@@ -625,7 +625,7 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
     -webkit-animation-fill-mode: both;
   }
 
-}
+
 
 .dropdown-menu{
     position: absolute!important;
@@ -1679,14 +1679,11 @@ tbody .imgMP{
 .text1{
   color: var(--grisTitulos);
   font-size: 20px;
-  padding-bottom: 70px;
 }
 
 .text2{
   color: #3F4254;
   font-size: 20PX;
-  padding-bottom: 70px;
-  padding-right: 80px;
 }
 
 .td,.move{
@@ -1702,11 +1699,9 @@ tbody .imgMP{
   font-size: 22px;
   color: var(--grisTitulos);
   font-weight: 700;
-  padding-left: 40px;
 }
 
 .card-header {
-  padding: 0.5rem 1rem;
   margin-bottom: 0;
   background-color: #fff;; 
   border-bottom: 2px solid rgba(0, 0, 0, 0.055);
@@ -1718,17 +1713,9 @@ tbody .imgMP{
   align-items: stretch;
   flex-wrap: wrap;
   min-height: 70px;
-  padding: 0 2.25rem;
-  
 }
 
-.fw-bolder{
-  padding-top: 70px;
-}
 
-.sept{
-  padding-top: 50px;
-}
 
 @media (max-width:1200px){
   .col-avatar{
@@ -1748,29 +1735,24 @@ tbody .imgMP{
 
 /* Editar Perfil */
 .s-texto{
-  font-size: 50px;
+  font-size: 18px;
   color: black;
   font-weight: 700;
-  
-}
-
-.c-text{
-  color: #3F4254;
-  font-size: 20PX;
-  padding-bottom: 210px;
-  padding-left: 30px;
-}
-
-.avatars{
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  vertical-align: middle;
+  justify-content: center;
 }
 
-.txt-d{
-  padding-top: 40px;
+@media (max-width:768px){
+  .s-texto{
+    justify-content: start;
+  }
 }
+
+
+
+
+
 
 .avatar1{
   width: 250px;
@@ -1786,6 +1768,31 @@ tbody .imgMP{
   text-align: center;
   margin-top: 15px;
 }
+.imagen-iconos{
+  position: relative;
+}
+.btn-editar-foto{
+  position: absolute;
+  right: 25px;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn-borrar-foto{
+  position: absolute;
+  right: 25px;
+  bottom: 5px;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
 
 .form-control.form-control-solid {
   background-color: #F5F8FA;
@@ -1794,17 +1801,10 @@ tbody .imgMP{
   transition: color 0.2s ease, background-color 0.2s ease;
 }
 
-.form-control {
-  width: 50%
-}
 
 
-.td,.text3{
-  color: #3F4254;
-  font-size: 20PX;
-  padding-bottom: 70px;
-  
-}
+
+
 
 .btn-editar1 {
   width: 120px;
@@ -1823,18 +1823,7 @@ tbody .imgMP{
 .btn.btn-icon:not(.btn-outline):not(.btn-dashed):not(.border-hover):not(.border-active):not(.btn-flush) {
   border: 0;
 }
-.btn.btn-icon.btn-circle {
-  border-radius: 50%;
-  margin-top: 190px;
-  margin-left: -90px;
-}
 
-.btn.btn-icon1.btn-circle1 {
-  border-radius: 50%;
-  padding: 17px;
-  margin-bottom: 100px;
-  margin-left: -55px;
-}
 
 /* Editar Perfil Fin */
 
