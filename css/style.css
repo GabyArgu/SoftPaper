@@ -1837,3 +1837,15 @@ tbody .imgMP {
 }
 
 /* Editar Perfil Fin */
+
+/* Diseño footer Inicio */
+
+.footerSP{
+  background-color: var(--azulOscuro);
+}
+
+.footerH6{
+  color: var(--blanco);
+}
+
+/* Diseño footer fin */
