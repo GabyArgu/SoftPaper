@@ -40,3 +40,15 @@ $(document).ready(function () {
         $('#example').DataTable().columns([2, 3, 5, 6]).visible($(this).is(':checked'))
     })
 });
+
+/*Función para mostrar y ocultar cmbs según departamento seleccionado*/
+function pagoOnChange(sel) {
+    if (sel.value == "san salvador") {
+        divC = document.getElementById("municipio");
+        divC.style.display = "block";
+
+    } else {
+        divC = document.getElementById("municipio");
+        divC.style.display = "none";
+    }
+}

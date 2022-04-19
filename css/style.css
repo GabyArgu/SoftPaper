@@ -323,6 +323,13 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
+/*QUITANDO FLECHAS DE INPUT TYPE NUMBER*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 /*------------------------------------CSS GLOBAL FIN------------------------------------*/
 /*PAGINATION CUSTOM*/
 
@@ -692,7 +699,7 @@ input:focus, select:focus, select, input.form-control:focus, textarea.form-contr
 }
 
 .modal-agregar input, .modal-agregar select,
-.modal-agregarEmpl input {
+.modal-agregarEmpl input, .modal-agregarEmpl select{
   border: 1px solid var(--azulMain);
   border-radius: 18px;
   font-size: 14px;
@@ -1143,12 +1150,17 @@ table.dataTable tbody>tr.selected, table.dataTable tbody>tr>.selected{
 #tipo-venta-div{
   display: none;
 }
+#municipio{
+  display: none;
+}
 /*AÑADIR VENTA(DETALLE) FIN*/
 
 /*MODAL AGREGAR SUBCATEGORIA*/
 .addname{
   border: none!important;
-  font-size: 30px!important;
+  font-size: 28px!important;
+  font-weight: 500;
+  color: var(--grisTitulos);
 }
 
 .subcategoria .modal select{
@@ -1291,7 +1303,13 @@ tbody .imgMP{
 #modal-agregarM .modal-header, #modal-agregarM .modal-footer{
   border: none;
 }
-
+#modal-agregarP select{
+  border-radius: 15px;
+  border-color: var(--azulModal);
+}
+#modal-agregarP h2, #modal-agregarM h2{
+  color: var(--azulOscuro);
+}
 /* MARCA_PROVEEDOR FIN */
 
 /* RESPONSIVE */
@@ -1353,14 +1371,14 @@ tbody .imgMP{
 }
 
 .login-fondo{
-  background-image: url(../resources/login-crear-recu/fondob.png) !important;
+  background-image: url(../resources/login_crear_recu/fondob.png) !important;
   background-size: cover;
   height: 100vh;
   object-fit: cover;
 }
 
 .izquierdo-lo{
-  background-image: url(../resources/login-crear-recu/fondol.png);
+  background-image: url(../resources/login_crear_recu/fondol.png);
   background-size: cover;
   height: 500px;
 }
@@ -1444,7 +1462,7 @@ tbody .imgMP{
 }
 
 .izquierdo-Re{
-  background-image: url(../resources/login-crear-recu/fondol.png);
+  background-image: url(../resources/login_crear_recu/fondol.png);
   background-size: cover;
   height: 470px;
 }
@@ -1463,7 +1481,7 @@ tbody .imgMP{
 /**********************REGISTRAR INICIO********************/
 
 .reg-fondo{
-  background-image: url(../resources/login-crear-recu/fondob.png) !important;
+  background-image: url(../resources/login_crear_recu/fondob.png) !important;
   background-size: cover;
   object-fit: cover;
 }
@@ -1482,7 +1500,7 @@ tbody .imgMP{
 }
 
 .izquierdo-Rg{
-  background-image: url(../resources/login-crear-recu/fondol.png);
+  background-image: url(../resources/login_crear_recu/fondol.png);
   background-size: cover;
   height: 730px;
 }

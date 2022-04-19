@@ -19,48 +19,48 @@ $(document).ready(function () {
         "info": false,
         "searching": false,
         "scrollCollapse": true,
-        "paging":         false,
+        "paging": false,
         "lengthMenu": [[10, 15, 20, -1], [10, 15, 20, "Todos"]]
     });
 });
 /*Inicializando y configurando tabla de clientes*/
-$(document).ready(function() {
-    $('#example1').DataTable( {
+$(document).ready(function () {
+    $('#example1').DataTable({
         "info": false,
         "searching": false,
         "scrollCollapse": true,
-        "paging":         false,
+        "paging": false,
         "lengthMenu": [[10, 15, 20, -1], [10, 15, 20, "Todos"]],
-        columnDefs: [ {
+        columnDefs: [{
             orderable: false,
             className: 'select-checkbox',
-            targets:   0
-        } ],
+            targets: 0
+        }],
         select: {
-            style:    'os',
+            style: 'os',
             selector: 'td:first-child'
         },
-        order: [[ 1, 'asc' ]]
-    } );
-} );
+        order: [[1, 'asc']]
+    });
+});
 
-/*Inicializando y configurando componente de calendario*/ 
+/*Inicializando y configurando componente de calendario*/
 flatpickr('#calendar', {
 });
 
 /*Función para mostrar y ocultar cmbs según tipo de venta seleccionado*/
 function pagoOnChange(sel) {
-    if (sel.value=="consumidor"){
-         divC = document.getElementById("tipo-venta-div");
-         divC.style.display = "block";
-         iva = document.getElementById("iva");
-         iva.textContent = "$0";
+    if (sel.value == "consumidor") {
+        divC = document.getElementById("tipo-venta-div");
+        divC.style.display = "block";
+        iva = document.getElementById("iva");
+        iva.textContent = "$0";
 
-    }else{
+    } else {
 
-         divC = document.getElementById("tipo-venta-div");
-         divC.style.display="none";
-         iva = document.getElementById("iva");
-         iva.textContent = "$2";
+        divC = document.getElementById("tipo-venta-div");
+        divC.style.display = "none";
+        iva = document.getElementById("iva");
+        iva.textContent = "$2";
     }
 }

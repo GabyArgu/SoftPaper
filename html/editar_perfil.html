@@ -26,14 +26,13 @@
 
 <body class="productos">
     <div class="wrapper">
-
         <!-- INICIA NAVBAR -->
         <header>
             <nav class="navbar navbar-expand-lg " id="navbar-dashboard">
                 <div class="container">
                     <div class="nav-logo">
                         <a class="navbar-brand nav-item" href="dashboard.html">
-                            <img src="../resources/logo/logo-default.png" alt=""
+                            <img src="../resources/logo/logo_default.png" alt=""
                                 class="d-inline-block align-text-top logo">
                         </a>
                     </div>
@@ -176,9 +175,13 @@
                                             <span>Cargo</span>
                                         </div>
                                         <div class="col-8 col-md-3 d-flex align-items-center">
-                                            <input type="text reset" name="fname" class="w-100 form-control 
-                                        form-control-lg form-control-solid " placeholder="Seleccione un Cargo"
-                                                value="">
+                                            <select class="w-100 form-control 
+                                                form-control-lg form-control-solid "
+                                                aria-label="Default select example">
+                                                <option selected disabled>Seleccione una opción</option>
+                                                <option value="1">Administrador</option>
+                                                <option value="2">Empleado</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="row row-md-my-4">
@@ -193,8 +196,14 @@
                                             <span>Estado</span>
                                         </div>
                                         <div class="col-8 col-md-3 d-flex align-items-center">
-                                            <input type="text reset" name="fname" class="w-100 form-control 
-                                        form-control-lg form-control-solid" placeholder="Seleccione Estado" value="">
+                                        <select class="w-100 form-control 
+                                        form-control-lg form-control-solid"
+                                                    aria-label="Default select example">
+                                                    <option selected disabled>Seleccione una opción</option>
+                                                    <option value="1">Activo</option>
+                                                    <option value="2">Inactivo</option>
+                                                    <option value="3">Inhabilitado</option>
+                                                </select>
                                         </div>
                                     </div>
                                     <div class="row">
