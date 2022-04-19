@@ -35,7 +35,7 @@
                 <div class="container">
                     <div class="nav-logo">
                         <a class="navbar-brand nav-item" href="dashboard.html">
-                            <img src="../resources/logo/logo-default.png" alt=""
+                            <img src="../resources/logo/logo_default.png" alt=""
                                 class="d-inline-block align-text-top logo">
                         </a>
                     </div>
@@ -54,10 +54,12 @@
                                 <a class="nav-link dropdown" id="navbarDropdownMenuLink" role="button"
                                     data-bs-toggle="dropdown" aria-expanded="false"> Inventario
                                 </a>
-                                <ul class="dropdown-menu dropdown-inventario slideInNav animate" aria-labelledby="navbarDropdown">
+                                <ul class="dropdown-menu dropdown-inventario slideInNav animate"
+                                    aria-labelledby="navbarDropdown">
                                     <li><a class="dropdown-item" href="productos.html">Productos</a></li>
                                     <li><a class="dropdown-item" href="subcategoria.html">Subcategorías</a></li>
-                                    <li><a class="dropdown-item" href="marca_proveedor.html">Proveedores y marcas</a></li>
+                                    <li><a class="dropdown-item" href="marca_proveedor.html">Proveedores y marcas</a>
+                                    </li>
                                 </ul>
 
                             </li>
@@ -75,16 +77,17 @@
                             </li>
                         </ul>
                         <div class="nav-options d-flex">
-                            <a href="" class="nav-item"><i class="bi bi-search"  type="button"></i></a>
+                            <a href="" class="nav-item"><i class="bi bi-search" type="button"></i></a>
 
-                            <li class="active nav-item menu-item"  type="button">
+                            <li class="active nav-item menu-item" type="button">
 
                                 <a class="nav-link dropdown" id="navbarDropdownMenuLink" role="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">
                                     <img src="../resources/avatares/a2.png" alt=""
                                         class="d-inline-block align-text-top user">
                                 </a>
-                                <ul class="dropdown-menu slideInNav1 slideInNav  animate" aria-labelledby="navbarDropdown">
+                                <ul class="dropdown-menu slideInNav1 slideInNav  animate"
+                                    aria-labelledby="navbarDropdown">
                                     <li><a class="dropdown-item" href="perfil_usuario.html">Ir a perfil</a></li>
                                     <li><a class="dropdown-item" href="index.html">Cerrar sesión</a></li>
                                 </ul>
@@ -1145,12 +1148,17 @@
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <input type="text" class="form-control addname" id="validationDefault01"
-                        placeholder="Ingresar nombre de proveedor" value="" required>
-                    <button type="button" class="btn-close my" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h2 class="ps-3 pt-2">Ingresar proveedor</h2>
+                    <button type="button" class="btn-close mb-3" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body pt-0">
                     <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <input type="text" class="addname px-0 w-100" id="validationDefault01"
+                                    placeholder="Ingresar nombre de proveedor" value="" required>
+                            </div>
+                        </div>
                         <div class="row agregar-content">
                             <div class="col">
                                 <div class="row">
@@ -1177,9 +1185,9 @@
                     </div>
                 </div>
                 <div class="modal-footer d-flex justify-content-end">
-                    <button class="btn btn-continuaradd" type="button" data-bs-target="#modal-agregar2"
+                    <button class="btn btn-guardar" type="button" data-bs-target="#modal-agregar2"
                         data-bs-toggle="modal" data-bs-dismiss="modal">Guardar</button>
-                    <button class="btn btn-canceladd" type="button" data-bs-target="#modal-agregar2"
+                    <button class="btn btn-cancel" type="button" data-bs-target="#modal-agregar2"
                         data-bs-toggle="modal" data-bs-dismiss="modal">Cancelar</button>
                 </div>
             </div>
@@ -1192,16 +1200,21 @@
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <input type="text" class="form-control addname" id="validationDefault01"
-                        placeholder="Ingresar nombre de la marca" value="" required>
-                    <button type="button" class="btn-close my" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h2 class="ps-3 pt-2">Ingresar marca</h2>
+                    <button type="button" class="btn-close mb-3" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body pt-0">
                     <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <input type="text" class="addname px-0 w-100" id="validationDefault01"
+                                    placeholder="Ingresar nombre de marca" value="" required>
+                            </div>
+                        </div>
                         <div class="row agregar-content">
                             <div class="col">
                                 <div class="row justify-content-center">
-                                    <div class="col-6 mb-4">
+                                    <div class="col-6 mb-4 mt-2">
                                         <div class="text-center">
                                             <label for="validationDefault02" class="form-label py-2">Añadir imagen
                                                 marca</label>
@@ -1238,9 +1251,9 @@
                     </div>
                 </div>
                 <div class="modal-footer d-flex justify-content-end">
-                    <button class="btn btn-continuaradd" type="button" data-bs-target="#modal-agregar2"
+                    <button class="btn btn-guardar" type="button" data-bs-target="#modal-agregar2"
                         data-bs-toggle="modal" data-bs-dismiss="modal">Guardar</button>
-                    <button class="btn btn-canceladd" type="button" data-bs-target="#modal-agregar2"
+                    <button class="btn btn-cancel" type="button" data-bs-target="#modal-agregar2"
                         data-bs-toggle="modal" data-bs-dismiss="modal">Cancelar</button>
                 </div>
             </div>

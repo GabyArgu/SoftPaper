@@ -35,7 +35,7 @@
                 <div class="container">
                     <div class="nav-logo">
                         <a class="navbar-brand nav-item" href="dashboard.html">
-                            <img src="../resources/logo/logo-default.png" alt=""
+                            <img src="../resources/logo/logo_default.png" alt=""
                                 class="d-inline-block align-text-top logo">
                         </a>
                     </div>
@@ -726,12 +726,12 @@
                                 <div class="row">
                                     <div class="col col-6 mt-3">
                                         <label>DUI</label>
-                                        <input class="form-control pl-dui" type="text" placeholder=""
+                                        <input class="form-control pl-dui" type="text" placeholder="00000000-0"
                                             aria-label=".form-control example">
                                     </div>
                                     <div class="col col-6 mt-3">
                                         <label>NIT</label>
-                                        <input class="form-control" type="text" placeholder=""
+                                        <input class="form-control" type="text" placeholder="0000-000000-000-0"
                                             aria-label=".form-control example">
                                     </div>
                                     <div class="col col-6 mt-3">
@@ -741,12 +741,12 @@
                                     </div>
                                     <div class="col col-6 mt-3">
                                         <label>Teléfono</label>
-                                        <input class="form-control" type="text" placeholder=""
+                                        <input class="form-control" type="text" placeholder="0000-0000"
                                             aria-label=".form-control example">
                                     </div>
                                     <div class="col col-6 mt-3">
                                         <label>Registro No.</label>
-                                        <input class="form-control" type="text" placeholder=""
+                                        <input class="form-control" type="text" placeholder="0000000-0"
                                             aria-label=".form-control example">
                                     </div>
                                     <div class="col col-6 mt-3">
@@ -761,12 +761,23 @@
                                         </select>
                                     </div>
                                     <div class="col col-6 mt-3">
+                                        <label>Departamento</label>
+                                        <select class="form-select" aria-label="Default select example" onChange="pagoOnChange(this)">
+                                            <option selected disabled>Seleccione una opción</option>
+                                            <option value="san salvador">San Salvador</option>
+                                            <option value="san miguel">San Miguel</option>
+                                            <option value="santa ana">Santa Ana</option>
+                                            
+                                        </select>
+                                    </div>
+                                    <div class="col col-6 mt-3" id="municipio">
                                         <label>Municipio</label>
                                         <select class="form-select" aria-label="Default select example">
                                             <option selected disabled>Seleccione una opción</option>
                                             <option value="1">San Salvador</option>
                                             <option value="2">Apopa</option>
                                             <option value="3">Mejicanos</option>
+                                            
                                         </select>
                                     </div>
                                     <div class="col col-6 mt-3">
