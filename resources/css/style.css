@@ -39,7 +39,7 @@
 }
 body{
   position: relative;
-  background-image: url(../resources/fondo/pr1.png);
+  background-image: url(../../resources/img/fondo/pr1.png);
   background-color: var(--marfil);
   background-size: 100% 350px;
   background-repeat: no-repeat;
@@ -1361,7 +1361,7 @@ tbody .imgMP{
 /*********************LOGIN INICIO******************/
 @font-face {
   font-family: 'T-login';
-  src: url('../resources/tipografias/sunday.ttf') format("truetype");
+  src: url('../../resources/tipografias/sunday.ttf') format("truetype");
   font-weight: normal;
   font-style: normal;
 }
@@ -1371,14 +1371,14 @@ tbody .imgMP{
 }
 
 .login-fondo{
-  background-image: url(../resources/login_crear_recu/fondob.png) !important;
+  background-image: url(../../resources/img/login_crear_recu/fondob.png) !important;
   background-size: cover;
   height: 100vh;
   object-fit: cover;
 }
 
 .izquierdo-lo{
-  background-image: url(../resources/login_crear_recu/fondol.png);
+  background-image: url(../../resources/img/login_crear_recu/fondol.png);
   background-size: cover;
   height: 500px;
 }
@@ -1462,7 +1462,7 @@ tbody .imgMP{
 }
 
 .izquierdo-Re{
-  background-image: url(../resources/login_crear_recu/fondol.png);
+  background-image: url(../../resources/img/login_crear_recu/fondol.png);
   background-size: cover;
   height: 470px;
 }
@@ -1481,7 +1481,7 @@ tbody .imgMP{
 /**********************REGISTRAR INICIO********************/
 
 .reg-fondo{
-  background-image: url(../resources/login_crear_recu/fondob.png) !important;
+  background-image: url(../../resources/img/login_crear_recu/fondob.png) !important;
   background-size: cover;
   object-fit: cover;
 }
@@ -1500,7 +1500,7 @@ tbody .imgMP{
 }
 
 .izquierdo-Rg{
-  background-image: url(../resources/login_crear_recu/fondol.png);
+  background-image: url(../../resources/img/login_crear_recu/fondol.png);
   background-size: cover;
   height: 730px;
 }

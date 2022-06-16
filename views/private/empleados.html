@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
-
+    <link rel="stylesheet" href="../../resources/css/style.css">
     <!-- BOOTSTRAP -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -17,14 +17,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/style.css">
 
-    <link rel="icon" type="icon/png" href="../resources/logo/ico.png">
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <link rel="icon" type="icon/png" href="../../resources/img/logo/ico.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SoftPaper</title>
 </head>
 
-<body class="pedidos-consumidor">
+<body>
     <div class="wrapper">
 
         <!-- INICIA NAVBAR -->
@@ -33,7 +35,7 @@
                 <div class="container">
                     <div class="nav-logo">
                         <a class="navbar-brand nav-item" href="dashboard.html">
-                            <img src="../resources/logo/logo_default.png" alt=""
+                            <img src="../../resources/img/logo/logo_default.png" alt=""
                                 class="d-inline-block align-text-top logo">
                         </a>
                     </div>
@@ -52,10 +54,12 @@
                                 <a class="nav-link dropdown" id="navbarDropdownMenuLink" role="button"
                                     data-bs-toggle="dropdown" aria-expanded="false"> Inventario
                                 </a>
-                                <ul class="dropdown-menu dropdown-inventario slideInNav animate" aria-labelledby="navbarDropdown">
+                                <ul class="dropdown-menu dropdown-inventario slideInNav animate"
+                                    aria-labelledby="navbarDropdown">
                                     <li><a class="dropdown-item" href="productos.html">Productos</a></li>
                                     <li><a class="dropdown-item" href="subcategoria.html">Subcategorías</a></li>
-                                    <li><a class="dropdown-item" href="marca_proveedor.html">Proveedores y marcas</a></li>
+                                    <li><a class="dropdown-item" href="marca_proveedor.html">Proveedores y marcas</a>
+                                    </li>
                                 </ul>
 
                             </li>
@@ -73,16 +77,17 @@
                             </li>
                         </ul>
                         <div class="nav-options d-flex">
-                            <a href="" class="nav-item"><i class="bi bi-search"  type="button"></i></a>
+                            <a href="" class="nav-item"><i class="bi bi-search" type="button"></i></a>
 
-                            <li class="active nav-item menu-item"  type="button">
+                            <li class="active nav-item menu-item" type="button">
 
                                 <a class="nav-link dropdown" id="navbarDropdownMenuLink" role="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="../resources/avatares/a2.png" alt=""
+                                    <img src="../../api/images/avatares/a2.png" alt=""
                                         class="d-inline-block align-text-top user">
                                 </a>
-                                <ul class="dropdown-menu slideInNav1 slideInNav  animate" aria-labelledby="navbarDropdown">
+                                <ul class="dropdown-menu slideInNav1 slideInNav  animate"
+                                    aria-labelledby="navbarDropdown">
                                     <li><a class="dropdown-item" href="perfil_usuario.html">Ir a perfil</a></li>
                                     <li><a class="dropdown-item" href="index.html">Cerrar sesión</a></li>
                                 </ul>
@@ -95,32 +100,40 @@
         </header>
         <!-- FIN NAVBAR-->
 
-        <!-- INICIO CONTENIDO -->
+        <!--INICIA MAIN-->
         <main class="container-xxl">
+
+            <!--TÍTULO PÁGINA-->
             <div class="header-content my-5">
-                <h1>Ventas</h1>
+                <h1>Empleados</h1>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="dashboard.html">Inicio</a></li>
-                        <li class="breadcrumb-item"><a href="venta.html">Venta</a></li>
-                        </li>
+                        <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                        <li class="breadcrumb-item"><a href="">Empleados</a></li>
                     </ol>
                 </nav>
             </div>
+
             <div class="content content-productos">
                 <div class="container content-card">
                     <div class="row">
                         <div class="col">
-                            <div class="row mt-4 pt-1">
-                                <div class="col col-lg-6 col-sm-12 d-flex justify-content-start col-header-pre-table">
-                                    <div class="buscador">
+
+                            <!-- CONTROLES CRUD -->
+                            <div class="row my-4">
+                                <div class="col col-lg-6 d-flex justify-content-start">
+
+                                    <!-- BUSCADOR-->
+                                    <div class="buscador mx-3">
                                         <i class="bi bi-search px-2"></i>
-                                        <form class="d-none d-sm-inline-block me-auto buscador2">
+                                        <form class="d-none d-sm-inline-block me-auto ">
                                             <input id="buscar-producto"
                                                 class=" form-control form-control-lite barra-buscar" type="text"
-                                                placeholder="Buscar pedido">
+                                                placeholder="Buscar empleado">
                                         </form>
                                     </div>
+
+                                    <!-- FILTROS -->
                                     <div class="dropdown">
                                         <button class="btn-filtro btn-second" type="button"
                                             id="dropdownMenuButtonFilter" data-bs-toggle="dropdown"
@@ -134,25 +147,29 @@
                                                 <hr class="dropdown-divider">
                                             </li>
                                             <li>
-                                                <h6 class="mb-3">Categoría</h6>
+                                                <h6 class="mb-3">Cargo</h6>
                                             </li>
                                             <li><select class="form-select filtro-combo"
                                                     aria-label="Default select example">
                                                     <option selected disabled>Seleccione una opción</option>
-                                                    <option value="1">Lapiceros normales</option>
-                                                    <option value="2">Lápices redondos</option>
-                                                    <option value="3">Plumones delgados</option>
-                                                </select></li>
+                                                    <option value="1">Administrador</option>
+                                                    <option value="2">Empleado</option>
+                                                </select>
+                                            </li>
                                             <li>
-                                                <h6 class="my-3">Estado</h6>
+                                                <hr class="dropdown-divider">
+                                            </li>
+                                            <li>
+                                                <h6 class="mb-3">Estado</h6>
                                             </li>
                                             <li><select class="form-select filtro-combo"
                                                     aria-label="Default select example">
                                                     <option selected disabled>Seleccione una opción</option>
-                                                    <option value="1">En stock</option>
-                                                    <option value="2">Por agotar</option>
-                                                    <option value="3">Agotado</option>
-                                                </select></li>
+                                                    <option value="1">Activo</option>
+                                                    <option value="2">Inactivo</option>
+                                                    <option value="3">Inhabilitado</option>
+                                                </select>
+                                            </li>
                                             <li class="d-flex justify-content-end"><button
                                                     class="btn btn-main btn-aplicar-filtro mt-3" type="button"
                                                     data-bs-target="#modal-agregar2" data-bs-toggle="modal"
@@ -160,45 +177,50 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="col col-lg-6 col-sm-12 d-flex justify-content-end col-header-pre-table">
-                                    <input class="me-1" type="text" id="calendar-range" placeholder="Rango de fechas">
-                                    <a class="btn-añadir btn-main ms-2" href="detalle_venta.html" type="button"><i
-                                            class="bi bi-plus"></i>Añadir
-                                        venta</a>
+
+                                <!-- AÑADIR REGISTRO Y EXPORTAR -->
+                                <div class="col col-lg-6 d-flex justify-content-end px-5">
+                                    <button class="btn-añadirMP" type="button" data-bs-toggle="modal"
+                                        data-bs-target="#modal-agregarEmpl"><i class="bi bi-plus"></i>Añadir
+                                        empleado</button>
                                     <button class="btn-export btn-second" type="button"><i
                                             class="bi bi-box-arrow-up"></i></button>
                                 </div>
+
                             </div>
-                            <!-- INICIO TABLA VENTAS -->
+
                             <div class="row mt-3">
+
                                 <div class="col">
+
+                                    <!-- TABLA -->
                                     <div class="table-responsive mt-3 scroll" id="no-more-tables">
                                         <table class="table table-hover" id="example">
                                             <thead>
                                                 <tr>
-                                                    <th class="th-1">N° Pedido</th>
-                                                    <th>Correlativo</th>
-                                                    <th>Cliente</th>
-                                                    <th>Fecha</th>
-                                                    <th>Monto</th>
-                                                    <th>Empleado</th>
-                                                    <th>Tipo pedido</th>
+                                                    <th>Nombres</th>
+                                                    <th>Apellidos</th>
+                                                    <th>Alias</th>
+                                                    <th>Correo</th>
+                                                    <th>Cargo</th>
                                                     <th>Estado</th>
                                                     <th>Acciones</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td data-title="NPEDIDO" class="npedido">1</td>
-                                                    <td data-title="CORRELATIVO" class="correlativo">0552</td>
-                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares
+                                                    <td class="col-table">
+                                                        <div class="nombre-producto"><img
+                                                                src="../../api/images/avatares/a1.png" alt="">Oscar
+                                                            Alejandro
+                                                        </div>
                                                     </td>
-                                                    <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
-                                                    <td data-title="MONTO" class="monto text-center">55.99</td>
-                                                    <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
-                                                    <td data-title="TIPO" class="tipo">Consumidor</td>
+                                                    <td class="text-center">Orellana Morán</td>
+                                                    <td class="text-center">oorellana28</td>
+                                                    <td class="text-center">oscarore284@gmail.com</td>
+                                                    <td class="text-center">Administrador</td>
                                                     <td data-title="ESTADO" class="estado-stock"><span
-                                                            class="estado">Pagado</span></td>
+                                                            class="estado">Activo</span></td>
                                                     <td data-title="Acciones" class="botones-table">
                                                         <div class="dropdown">
                                                             <button class=" btn-acciones dropdown-toggle" type="button"
@@ -208,8 +230,9 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" href="detalle_venta.html"
-                                                                        type="button">Editar</a>
+                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
+                                                                        type="button"
+                                                                        data-bs-target="#modal-agregarEmpl">Editar</a>
                                                                 </li>
                                                                 <li><a class="dropdown-item" type="button"
                                                                         data-bs-toggle="modal"
@@ -220,16 +243,18 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-title="NPEDIDO" class="npedido">1</td>
-                                                    <td data-title="CORRELATIVO" class="correlativo">0552</td>
-                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares
+                                                    <td class="col-table">
+                                                        <div class="nombre-producto"><img
+                                                                src="../../api/images/avatares/a1.png" alt="">Oscar
+                                                            Alejandro
+                                                        </div>
                                                     </td>
-                                                    <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
-                                                    <td data-title="MONTO" class="monto text-center">55.99</td>
-                                                    <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
-                                                    <td data-title="TIPO" class="tipo">Consumidor</td>
+                                                    <td class="text-center">Orellana Morán</td>
+                                                    <td class="text-center">oorellana28</td>
+                                                    <td class="text-center">oscarore284@gmail.com</td>
+                                                    <td class="text-center">Administrador</td>
                                                     <td data-title="ESTADO" class="estado-stock"><span
-                                                            class="estado">Pagado</span></td>
+                                                            class="estado3">Inactivo</span></td>
                                                     <td data-title="Acciones" class="botones-table">
                                                         <div class="dropdown">
                                                             <button class=" btn-acciones dropdown-toggle" type="button"
@@ -239,8 +264,9 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" href="detalle_venta.html"
-                                                                        type="button">Editar</a>
+                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
+                                                                        type="button"
+                                                                        data-bs-target="#modal-agregarEmpl">Editar</a>
                                                                 </li>
                                                                 <li><a class="dropdown-item" type="button"
                                                                         data-bs-toggle="modal"
@@ -251,16 +277,18 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-title="NPEDIDO" class="npedido">1</td>
-                                                    <td data-title="CORRELATIVO" class="correlativo">0552</td>
-                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares
+                                                    <td class="col-table">
+                                                        <div class="nombre-producto"><img
+                                                                src="../../api/images/avatares/a1.png" alt="">Oscar
+                                                            Alejandro
+                                                        </div>
                                                     </td>
-                                                    <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
-                                                    <td data-title="MONTO" class="monto text-center">55.99</td>
-                                                    <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
-                                                    <td data-title="TIPO" class="tipo">Consumidor</td>
+                                                    <td class="text-center">Orellana Morán</td>
+                                                    <td class="text-center">oorellana28</td>
+                                                    <td class="text-center">oscarore284@gmail.com</td>
+                                                    <td class="text-center">Administrador</td>
                                                     <td data-title="ESTADO" class="estado-stock"><span
-                                                            class="estado">Pagado</span></td>
+                                                            class="estado">Activo</span></td>
                                                     <td data-title="Acciones" class="botones-table">
                                                         <div class="dropdown">
                                                             <button class=" btn-acciones dropdown-toggle" type="button"
@@ -270,8 +298,9 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" href="detalle_venta.html"
-                                                                        type="button">Editar</a>
+                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
+                                                                        type="button"
+                                                                        data-bs-target="#modal-agregarEmpl">Editar</a>
                                                                 </li>
                                                                 <li><a class="dropdown-item" type="button"
                                                                         data-bs-toggle="modal"
@@ -282,16 +311,18 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-title="NPEDIDO" class="npedido">1</td>
-                                                    <td data-title="CORRELATIVO" class="correlativo">0552</td>
-                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares
+                                                    <td class="col-table">
+                                                        <div class="nombre-producto"><img
+                                                                src="../../api/images/avatares/a1.png" alt="">Oscar
+                                                            Alejandro
+                                                        </div>
                                                     </td>
-                                                    <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
-                                                    <td data-title="MONTO" class="monto text-center">55.99</td>
-                                                    <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
-                                                    <td data-title="TIPO" class="tipo">Consumidor</td>
+                                                    <td class="text-center">Orellana Morán</td>
+                                                    <td class="text-center">oorellana28</td>
+                                                    <td class="text-center">oscarore284@gmail.com</td>
+                                                    <td class="text-center">Administrador</td>
                                                     <td data-title="ESTADO" class="estado-stock"><span
-                                                            class="estado">Pagado</span></td>
+                                                            class="estado3">Inactivo</span></td>
                                                     <td data-title="Acciones" class="botones-table">
                                                         <div class="dropdown">
                                                             <button class=" btn-acciones dropdown-toggle" type="button"
@@ -301,8 +332,9 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" href="detalle_venta.html"
-                                                                        type="button">Editar</a>
+                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
+                                                                        type="button"
+                                                                        data-bs-target="#modal-agregarEmpl">Editar</a>
                                                                 </li>
                                                                 <li><a class="dropdown-item" type="button"
                                                                         data-bs-toggle="modal"
@@ -313,16 +345,18 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-title="NPEDIDO" class="npedido">1</td>
-                                                    <td data-title="CORRELATIVO" class="correlativo">0552</td>
-                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares
+                                                    <td class="col-table">
+                                                        <div class="nombre-producto"><img
+                                                                src="../../api/images/avatares/a1.png" alt="">Oscar
+                                                            Alejandro
+                                                        </div>
                                                     </td>
-                                                    <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
-                                                    <td data-title="MONTO" class="monto text-center">55.99</td>
-                                                    <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
-                                                    <td data-title="TIPO" class="tipo">Consumidor</td>
+                                                    <td class="text-center">Orellana Morán</td>
+                                                    <td class="text-center">oorellana28</td>
+                                                    <td class="text-center">oscarore284@gmail.com</td>
+                                                    <td class="text-center">Administrador</td>
                                                     <td data-title="ESTADO" class="estado-stock"><span
-                                                            class="estado">Pagado</span></td>
+                                                            class="estado">Activo</span></td>
                                                     <td data-title="Acciones" class="botones-table">
                                                         <div class="dropdown">
                                                             <button class=" btn-acciones dropdown-toggle" type="button"
@@ -332,8 +366,9 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" href="detalle_venta.html"
-                                                                        type="button">Editar</a>
+                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
+                                                                        type="button"
+                                                                        data-bs-target="#modal-agregarEmpl">Editar</a>
                                                                 </li>
                                                                 <li><a class="dropdown-item" type="button"
                                                                         data-bs-toggle="modal"
@@ -344,16 +379,18 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-title="NPEDIDO" class="npedido">1</td>
-                                                    <td data-title="CORRELATIVO" class="correlativo">0552</td>
-                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares
+                                                    <td class="col-table">
+                                                        <div class="nombre-producto"><img
+                                                                src="../../api/images/avatares/a1.png" alt="">Oscar
+                                                            Alejandro
+                                                        </div>
                                                     </td>
-                                                    <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
-                                                    <td data-title="MONTO" class="monto text-center">55.99</td>
-                                                    <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
-                                                    <td data-title="TIPO" class="tipo">Consumidor</td>
+                                                    <td class="text-center">Orellana Morán</td>
+                                                    <td class="text-center">oorellana28</td>
+                                                    <td class="text-center">oscarore284@gmail.com</td>
+                                                    <td class="text-center">Administrador</td>
                                                     <td data-title="ESTADO" class="estado-stock"><span
-                                                            class="estado">Pagado</span></td>
+                                                            class="estado3">Inactivo</span></td>
                                                     <td data-title="Acciones" class="botones-table">
                                                         <div class="dropdown">
                                                             <button class=" btn-acciones dropdown-toggle" type="button"
@@ -363,8 +400,9 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" href="detalle_venta.html"
-                                                                        type="button">Editar</a>
+                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
+                                                                        type="button"
+                                                                        data-bs-target="#modal-agregarEmpl">Editar</a>
                                                                 </li>
                                                                 <li><a class="dropdown-item" type="button"
                                                                         data-bs-toggle="modal"
@@ -375,16 +413,18 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-title="NPEDIDO" class="npedido">1</td>
-                                                    <td data-title="CORRELATIVO" class="correlativo">0552</td>
-                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares
+                                                    <td class="col-table">
+                                                        <div class="nombre-producto"><img
+                                                                src="../../api/images/avatares/a1.png" alt="">Oscar
+                                                            Alejandro
+                                                        </div>
                                                     </td>
-                                                    <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
-                                                    <td data-title="MONTO" class="monto text-center">55.99</td>
-                                                    <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
-                                                    <td data-title="TIPO" class="tipo">Consumidor</td>
+                                                    <td class="text-center">Orellana Morán</td>
+                                                    <td class="text-center">oorellana28</td>
+                                                    <td class="text-center">oscarore284@gmail.com</td>
+                                                    <td class="text-center">Administrador</td>
                                                     <td data-title="ESTADO" class="estado-stock"><span
-                                                            class="estado">Pagado</span></td>
+                                                            class="estado">Activo</span></td>
                                                     <td data-title="Acciones" class="botones-table">
                                                         <div class="dropdown">
                                                             <button class=" btn-acciones dropdown-toggle" type="button"
@@ -394,8 +434,9 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" href="detalle_venta.html"
-                                                                        type="button">Editar</a>
+                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
+                                                                        type="button"
+                                                                        data-bs-target="#modal-agregarEmpl">Editar</a>
                                                                 </li>
                                                                 <li><a class="dropdown-item" type="button"
                                                                         data-bs-toggle="modal"
@@ -406,16 +447,18 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-title="NPEDIDO" class="npedido">1</td>
-                                                    <td data-title="CORRELATIVO" class="correlativo">0552</td>
-                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares
+                                                    <td class="col-table">
+                                                        <div class="nombre-producto"><img
+                                                                src="../../api/images/avatares/a1.png" alt="">Oscar
+                                                            Alejandro
+                                                        </div>
                                                     </td>
-                                                    <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
-                                                    <td data-title="MONTO" class="monto text-center">55.99</td>
-                                                    <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
-                                                    <td data-title="TIPO" class="tipo">Consumidor</td>
+                                                    <td class="text-center">Orellana Morán</td>
+                                                    <td class="text-center">oorellana28</td>
+                                                    <td class="text-center">oscarore284@gmail.com</td>
+                                                    <td class="text-center">Administrador</td>
                                                     <td data-title="ESTADO" class="estado-stock"><span
-                                                            class="estado">Pagado</span></td>
+                                                            class="estado3">Inactivo</span></td>
                                                     <td data-title="Acciones" class="botones-table">
                                                         <div class="dropdown">
                                                             <button class=" btn-acciones dropdown-toggle" type="button"
@@ -425,8 +468,9 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" href="detalle_venta.html"
-                                                                        type="button">Editar</a>
+                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
+                                                                        type="button"
+                                                                        data-bs-target="#modal-agregarEmpl">Editar</a>
                                                                 </li>
                                                                 <li><a class="dropdown-item" type="button"
                                                                         data-bs-toggle="modal"
@@ -437,16 +481,18 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-title="NPEDIDO" class="npedido">1</td>
-                                                    <td data-title="CORRELATIVO" class="correlativo">0552</td>
-                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares
+                                                    <td class="col-table">
+                                                        <div class="nombre-producto"><img
+                                                                src="../../api/images/avatares/a1.png" alt="">Oscar
+                                                            Alejandro
+                                                        </div>
                                                     </td>
-                                                    <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
-                                                    <td data-title="MONTO" class="monto text-center">55.99</td>
-                                                    <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
-                                                    <td data-title="TIPO" class="tipo">Consumidor</td>
+                                                    <td class="text-center">Orellana Morán</td>
+                                                    <td class="text-center">oorellana28</td>
+                                                    <td class="text-center">oscarore284@gmail.com</td>
+                                                    <td class="text-center">Administrador</td>
                                                     <td data-title="ESTADO" class="estado-stock"><span
-                                                            class="estado">Pagado</span></td>
+                                                            class="estado">Activo</span></td>
                                                     <td data-title="Acciones" class="botones-table">
                                                         <div class="dropdown">
                                                             <button class=" btn-acciones dropdown-toggle" type="button"
@@ -456,8 +502,9 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" href="detalle_venta.html"
-                                                                        type="button">Editar</a>
+                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
+                                                                        type="button"
+                                                                        data-bs-target="#modal-agregarEmpl">Editar</a>
                                                                 </li>
                                                                 <li><a class="dropdown-item" type="button"
                                                                         data-bs-toggle="modal"
@@ -468,16 +515,18 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-title="NPEDIDO" class="npedido">1</td>
-                                                    <td data-title="CORRELATIVO" class="correlativo">0552</td>
-                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares
+                                                    <td class="col-table">
+                                                        <div class="nombre-producto"><img
+                                                                src="../../api/images/avatares/a1.png" alt="">Oscar
+                                                            Alejandro
+                                                        </div>
                                                     </td>
-                                                    <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
-                                                    <td data-title="MONTO" class="monto text-center">55.99</td>
-                                                    <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
-                                                    <td data-title="TIPO" class="tipo">Consumidor</td>
+                                                    <td class="text-center">Orellana Morán</td>
+                                                    <td class="text-center">oorellana28</td>
+                                                    <td class="text-center">oscarore284@gmail.com</td>
+                                                    <td class="text-center">Administrador</td>
                                                     <td data-title="ESTADO" class="estado-stock"><span
-                                                            class="estado">Pagado</span></td>
+                                                            class="estado3">Inactivo</span></td>
                                                     <td data-title="Acciones" class="botones-table">
                                                         <div class="dropdown">
                                                             <button class=" btn-acciones dropdown-toggle" type="button"
@@ -487,8 +536,9 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" href="detalle_venta.html"
-                                                                        type="button">Editar</a>
+                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
+                                                                        type="button"
+                                                                        data-bs-target="#modal-agregarEmpl">Editar</a>
                                                                 </li>
                                                                 <li><a class="dropdown-item" type="button"
                                                                         data-bs-toggle="modal"
@@ -499,16 +549,18 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-title="NPEDIDO" class="npedido">1</td>
-                                                    <td data-title="CORRELATIVO" class="correlativo">0552</td>
-                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares
+                                                    <td class="col-table">
+                                                        <div class="nombre-producto"><img
+                                                                src="../../api/images/avatares/a1.png" alt="">Oscar
+                                                            Alejandro
+                                                        </div>
                                                     </td>
-                                                    <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
-                                                    <td data-title="MONTO" class="monto text-center">55.99</td>
-                                                    <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
-                                                    <td data-title="TIPO" class="tipo">Consumidor</td>
+                                                    <td class="text-center">Orellana Morán</td>
+                                                    <td class="text-center">oorellana28</td>
+                                                    <td class="text-center">oscarore284@gmail.com</td>
+                                                    <td class="text-center">Administrador</td>
                                                     <td data-title="ESTADO" class="estado-stock"><span
-                                                            class="estado">Pagado</span></td>
+                                                            class="estado">Activo</span></td>
                                                     <td data-title="Acciones" class="botones-table">
                                                         <div class="dropdown">
                                                             <button class=" btn-acciones dropdown-toggle" type="button"
@@ -518,8 +570,9 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" href="detalle_venta.html"
-                                                                        type="button">Editar</a>
+                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
+                                                                        type="button"
+                                                                        data-bs-target="#modal-agregarEmpl">Editar</a>
                                                                 </li>
                                                                 <li><a class="dropdown-item" type="button"
                                                                         data-bs-toggle="modal"
@@ -530,16 +583,18 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-title="NPEDIDO" class="npedido">1</td>
-                                                    <td data-title="CORRELATIVO" class="correlativo">0552</td>
-                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares
+                                                    <td class="col-table">
+                                                        <div class="nombre-producto"><img
+                                                                src="../../api/images/avatares/a1.png" alt="">Oscar
+                                                            Alejandro
+                                                        </div>
                                                     </td>
-                                                    <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
-                                                    <td data-title="MONTO" class="monto text-center">55.99</td>
-                                                    <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
-                                                    <td data-title="TIPO" class="tipo">Consumidor</td>
+                                                    <td class="text-center">Orellana Morán</td>
+                                                    <td class="text-center">oorellana28</td>
+                                                    <td class="text-center">oscarore284@gmail.com</td>
+                                                    <td class="text-center">Administrador</td>
                                                     <td data-title="ESTADO" class="estado-stock"><span
-                                                            class="estado">Pagado</span></td>
+                                                            class="estado3">Inactivo</span></td>
                                                     <td data-title="Acciones" class="botones-table">
                                                         <div class="dropdown">
                                                             <button class=" btn-acciones dropdown-toggle" type="button"
@@ -549,8 +604,9 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" href="detalle_venta.html"
-                                                                        type="button">Editar</a>
+                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
+                                                                        type="button"
+                                                                        data-bs-target="#modal-agregarEmpl">Editar</a>
                                                                 </li>
                                                                 <li><a class="dropdown-item" type="button"
                                                                         data-bs-toggle="modal"
@@ -561,16 +617,18 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-title="NPEDIDO" class="npedido">1</td>
-                                                    <td data-title="CORRELATIVO" class="correlativo">0552</td>
-                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares
+                                                    <td class="col-table">
+                                                        <div class="nombre-producto"><img
+                                                                src="../../api/images/avatares/a1.png" alt="">Oscar
+                                                            Alejandro
+                                                        </div>
                                                     </td>
-                                                    <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
-                                                    <td data-title="MONTO" class="monto text-center">55.99</td>
-                                                    <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
-                                                    <td data-title="TIPO" class="tipo">Consumidor</td>
+                                                    <td class="text-center">Orellana Morán</td>
+                                                    <td class="text-center">oorellana28</td>
+                                                    <td class="text-center">oscarore284@gmail.com</td>
+                                                    <td class="text-center">Administrador</td>
                                                     <td data-title="ESTADO" class="estado-stock"><span
-                                                            class="estado">Pagado</span></td>
+                                                            class="estado">Activo</span></td>
                                                     <td data-title="Acciones" class="botones-table">
                                                         <div class="dropdown">
                                                             <button class=" btn-acciones dropdown-toggle" type="button"
@@ -580,8 +638,9 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" href="detalle_venta.html"
-                                                                        type="button">Editar</a>
+                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
+                                                                        type="button"
+                                                                        data-bs-target="#modal-agregarEmpl">Editar</a>
                                                                 </li>
                                                                 <li><a class="dropdown-item" type="button"
                                                                         data-bs-toggle="modal"
@@ -592,47 +651,18 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-title="NPEDIDO" class="npedido">1</td>
-                                                    <td data-title="CORRELATIVO" class="correlativo">0552</td>
-                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares
-                                                    </td>
-                                                    <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
-                                                    <td data-title="MONTO" class="monto text-center">55.99</td>
-                                                    <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
-                                                    <td data-title="TIPO" class="tipo">Consumidor</td>
-                                                    <td data-title="ESTADO" class="estado-stock"><span
-                                                            class="estado">Pagado</span></td>
-                                                    <td data-title="Acciones" class="botones-table">
-                                                        <div class="dropdown">
-                                                            <button class=" btn-acciones dropdown-toggle" type="button"
-                                                                id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                                                                aria-expanded="false">
-                                                                Acciones
-                                                            </button>
-                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
-                                                                aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" href="detalle_venta.html"
-                                                                        type="button">Editar</a>
-                                                                </li>
-                                                                <li><a class="dropdown-item" type="button"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
-                                                                </li>
-                                                            </ul>
+                                                    <td class="col-table">
+                                                        <div class="nombre-producto"><img
+                                                                src="../../api/images/avatares/a1.png" alt="">Oscar
+                                                            Alejandro
                                                         </div>
                                                     </td>
-                                                </tr>
-                                                <tr>
-                                                    <td data-title="NPEDIDO" class="npedido">1</td>
-                                                    <td data-title="CORRELATIVO" class="correlativo">0552</td>
-                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares
-                                                    </td>
-                                                    <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
-                                                    <td data-title="MONTO" class="monto text-center">55.99</td>
-                                                    <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
-                                                    <td data-title="TIPO" class="tipo">Consumidor</td>
+                                                    <td class="text-center">Orellana Morán</td>
+                                                    <td class="text-center">oorellana28</td>
+                                                    <td class="text-center">oscarore284@gmail.com</td>
+                                                    <td class="text-center">Administrador</td>
                                                     <td data-title="ESTADO" class="estado-stock"><span
-                                                            class="estado">Pagado</span></td>
+                                                            class="estado3">Inactivo</span></td>
                                                     <td data-title="Acciones" class="botones-table">
                                                         <div class="dropdown">
                                                             <button class=" btn-acciones dropdown-toggle" type="button"
@@ -642,101 +672,9 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" href="detalle_venta.html"
-                                                                        type="button">Editar</a>
-                                                                </li>
-                                                                <li><a class="dropdown-item" type="button"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td data-title="NPEDIDO" class="npedido">1</td>
-                                                    <td data-title="CORRELATIVO" class="correlativo">0552</td>
-                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares
-                                                    </td>
-                                                    <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
-                                                    <td data-title="MONTO" class="monto text-center">55.99</td>
-                                                    <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
-                                                    <td data-title="TIPO" class="tipo">Consumidor</td>
-                                                    <td data-title="ESTADO" class="estado-stock"><span
-                                                            class="estado">Pagado</span></td>
-                                                    <td data-title="Acciones" class="botones-table">
-                                                        <div class="dropdown">
-                                                            <button class=" btn-acciones dropdown-toggle" type="button"
-                                                                id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                                                                aria-expanded="false">
-                                                                Acciones
-                                                            </button>
-                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
-                                                                aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" href="detalle_venta.html"
-                                                                        type="button">Editar</a>
-                                                                </li>
-                                                                <li><a class="dropdown-item" type="button"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td data-title="NPEDIDO" class="npedido">1</td>
-                                                    <td data-title="CORRELATIVO" class="correlativo">0552</td>
-                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares
-                                                    </td>
-                                                    <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
-                                                    <td data-title="MONTO" class="monto text-center">55.99</td>
-                                                    <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
-                                                    <td data-title="TIPO" class="tipo">Consumidor</td>
-                                                    <td data-title="ESTADO" class="estado-stock"><span
-                                                            class="estado">Pagado</span></td>
-                                                    <td data-title="Acciones" class="botones-table">
-                                                        <div class="dropdown">
-                                                            <button class=" btn-acciones dropdown-toggle" type="button"
-                                                                id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                                                                aria-expanded="false">
-                                                                Acciones
-                                                            </button>
-                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
-                                                                aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" href="detalle_venta.html"
-                                                                        type="button">Editar</a>
-                                                                </li>
-                                                                <li><a class="dropdown-item" type="button"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td data-title="NPEDIDO" class="npedido">1</td>
-                                                    <td data-title="CORRELATIVO" class="correlativo">0552</td>
-                                                    <td data-title="CLIENTE" class="cliente text-center">Samuel Linares
-                                                    </td>
-                                                    <td data-title="FECHA" class="fecha text-center">30-03-2022</td>
-                                                    <td data-title="MONTO" class="monto text-center">55.99</td>
-                                                    <td data-title="EMPLEADO" class="empleado">Oscar Orellana</td>
-                                                    <td data-title="TIPO" class="tipo">Consumidor</td>
-                                                    <td data-title="ESTADO" class="estado-stock"><span
-                                                            class="estado">Pagado</span></td>
-                                                    <td data-title="Acciones" class="botones-table">
-                                                        <div class="dropdown">
-                                                            <button class=" btn-acciones dropdown-toggle" type="button"
-                                                                id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                                                                aria-expanded="false">
-                                                                Acciones
-                                                            </button>
-                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
-                                                                aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" href="detalle_venta.html"
-                                                                        type="button">Editar</a>
+                                                                <li><a class="dropdown-item" data-bs-toggle="modal"
+                                                                        type="button"
+                                                                        data-bs-target="#modal-agregarEmpl">Editar</a>
                                                                 </li>
                                                                 <li><a class="dropdown-item" type="button"
                                                                         data-bs-toggle="modal"
@@ -749,23 +687,28 @@
                                             </tbody>
                                         </table>
                                     </div>
+
                                 </div>
+
                             </div>
-                            <!-- FIN TABLA VENTAS -->
-                            <div class="row mb-3 ">
+
+                            <!-- CHECKBOX TODOS LOS CAMPOS -->
+                            <div class="row mb-3">
                                 <div class="d-flex justify-content-center">
                                     <label>Mostrar todos los campos
                                         <input type="checkbox" id="checkTabla">
                                     </label>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
             </div>
         </main>
-        <!-- FIN CONTENIDO -->
-        <!-- INICIO FOOTER -->
+        <!--FIN MAIN-->
+
+        <!-- INICIA FOOTER -->
         <footer class='footerSP'>
             <div class="section">
                 <div class="row justify-content-center">
@@ -776,10 +719,97 @@
             </div>
         </footer>
         <!-- FIN FOOTER -->
+
     </div>
 
+    <!-- INICIO MODAL AGREGAR EMPLEADO -->
+    <div class="modal modal-agregarEmpl fade" id="modal-agregarEmpl" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row agregar-content">
+                            <div class="col">
+                                <div class="row">
+                                    <div class="col-lg-4 d-flex flex-column justify-content-center align-items-center">
+                                        <div class="text-center">
+                                            <label for="validationDefault02" class="form-label py-2">Elegir
+                                                avatar</label>
+                                        </div>
+                                        <div class="foto-empleado d-flex justify-content-center align-items-center">
+                                            <img src../../api/images/avatares/a1.png" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <div class="row">
+                                            <div class="col col-6 mt-3">
+                                                <label>Nombres</label>
+                                                <input class="form-control pl-dui" type="text" placeholder=""
+                                                    aria-label=".form-control example">
+                                            </div>
+                                            <div class="col col-6 mt-3">
+                                                <label>Apellidos</label>
+                                                <input class="form-control" type="text" placeholder=""
+                                                    aria-label=".form-control example">
+                                            </div>
+                                            <div class="col col-6 mt-4">
+                                                <label>Cargo</label>
+                                                <select class="form-select" aria-label="Default select example">
+                                                    <option selected disabled>Seleccione una opción</option>
+                                                    <option value="1">Administrador</option>
+                                                    <option value="2">Empleado</option>
+                                                </select>
+                                            </div>
+                                            <div class="col col-6 mt-4">
+                                                <label>Estado</label>
+                                                <select class="form-select" aria-label="Default select example">
+                                                    <option selected disabled>Seleccione una opción</option>
+                                                    <option value="1">Activo</option>
+                                                    <option value="2">Inactivo</option>
+                                                    <option value="3">Inhabilitado</option>
+                                                </select>
+                                            </div>
+                                            <div class="col col-6 mt-4">
+                                                <label>Correo</label>
+                                                <input class="form-control" type="email" placeholder=""
+                                                    aria-label=".form-control example">
+                                            </div>
+                                            <div class="col col-6 mt-4">
+                                                <label>Nombre de usuario</label>
+                                                <input class="form-control" type="text" placeholder=""
+                                                    aria-label=".form-control example">
+                                            </div>
+                                            <div class="col-12 mt-4">
+                                                <label>Contraseña</label>
+                                                <input class="form-control" type="password" placeholder=""
+                                                    aria-label=".form-control example">
+                                            </div>
+                                            <div class="col-12 mt-4">
+                                                <label>Confirmar contraseña</label>
+                                                <input class="form-control" type="password" placeholder=""
+                                                    aria-label=".form-control example">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-end">
+                    <button class="btn btn-guardar" type="button" data-bs-target="#modal-agregar2"
+                        data-bs-toggle="modal" data-bs-dismiss="modal">Guardar</button>
+                    <button class="btn btn-cancel btn-second" type="button" data-bs-target="" data-bs-toggle="modal"
+                        data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FIN MODAL AGREGAR EMPLEADO -->
 
-    <!-- INICIO MODAL DELETE -->
+
+    <!-- INICIO MODAL DELETE EMPLEADO -->
     <div class="modal modal-eliminar fade" id="modal-eliminar" aria-hidden="true"
         aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered modal-xl">
@@ -799,32 +829,28 @@
                     </div>
                 </div>
                 <div class="modal-footer d-flex mx-2 justify-content-between">
-                    <button class="btn btn-cancel btn-second" type="button" data-bs-target="" data-bs-toggle="modal"
+                    <button class="btn btn-cancel" type="button" data-bs-target="" data-bs-toggle="modal"
                         data-bs-dismiss="modal">Cancelar</button>
-                    <button class="btn btn-continuar btn-main" type="button" data-bs-target="" data-bs-toggle="modal"
+                    <button class="btn btn-continuar" type="button" data-bs-target="" data-bs-toggle="modal"
                         data-bs-dismiss="modal">Continuar</button>
                 </div>
             </div>
         </div>
     </div>
-    <!-- FIN MODAL DELETE -->
+    <!-- FIN MODAL DELETE EMPLEADO -->
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
 
+
     <!-- DATATABLE JS -->
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
 
-    <!-- DATE FLATPICKR  -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-
-    <script src="../js/consumidor.js">
-    </script>
-    <script src="/js/dashboard.js"></script>
+    <script src="../../controllers/private/empleados.js"></script>
+    <script src="../../controllers/private/dashboard.js"></script>
 </body>
 
 </html>

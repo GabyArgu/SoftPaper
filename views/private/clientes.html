@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../../resources/css/style.css">
     <!-- BOOTSTRAP -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -21,12 +21,12 @@
     <!-- FONT AWESOME -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-    <link rel="icon" type="icon/png" href="../resources/logo/ico.png">
+    <link rel="icon" type="icon/png" href="../../resources/img/logo/ico.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SoftPaper</title>
 </head>
 
-<body class="subcategoria">
+<body>
     <div class="wrapper">
 
         <!-- INICIA NAVBAR -->
@@ -35,7 +35,7 @@
                 <div class="container">
                     <div class="nav-logo">
                         <a class="navbar-brand nav-item" href="dashboard.html">
-                            <img src="../resources/logo/logo_default.png" alt=""
+                            <img src="../../resources/img/logo/logo_default.png" alt=""
                                 class="d-inline-block align-text-top logo">
                         </a>
                     </div>
@@ -81,7 +81,7 @@
 
                                 <a class="nav-link dropdown" id="navbarDropdownMenuLink" role="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="../resources/avatares/a2.png" alt=""
+                                    <img src="../../api/images/avatares/a2.png" alt=""
                                         class="d-inline-block align-text-top user">
                                 </a>
                                 <ul class="dropdown-menu slideInNav1 slideInNav  animate" aria-labelledby="navbarDropdown">
@@ -97,33 +97,40 @@
         </header>
         <!-- FIN NAVBAR-->
 
+        <!-- INICIA MAIN -->
         <main class="container-xxl">
+
+            <!-- TÍTULO PÁGINA -->
             <div class="header-content my-5">
-                <h1>SubCategoría</h1>
+                <h1>Clientes</h1>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                        <li class="breadcrumb-item"><a href="">Inventario</a></li>
-                        <li class="breadcrumb-item"><a href="">Productos</a></li>
-                        <li class="breadcrumb-item active" aria-current="page"><a href="">Subcategoría</a></li>
+                        <li class="breadcrumb-item"><a href="">Clientes</a></li>
                     </ol>
                 </nav>
             </div>
+
             <div class="content content-productos">
                 <div class="container content-card">
                     <div class="row">
                         <div class="col">
-                            <div class="row my-4">
-                                <div class="col col-lg-6 d-flex justify-content-start">
-                                    <div class="buscador mx-3">
+
+                            <!-- CONTROLES CRUD -->
+                            <div class="row mt-4 pt-1">
+                                <div class="col col-lg-6 col-sm-12 d-flex justify-content-start col-header-pre-table">
+
+                                    <!-- BUSCADOR-->
+                                    <div class="buscador">
                                         <i class="bi bi-search px-2"></i>
-                                        <form class="d-none d-sm-inline-block me-auto ">
+                                        <form class="d-none d-sm-inline-block me-auto buscador2">
                                             <input id="buscar-producto"
                                                 class=" form-control form-control-lite barra-buscar" type="text"
-                                                placeholder="Buscar producto">
+                                                placeholder="Buscar cliente">
                                         </form>
                                     </div>
-                                    <!-- DROPDOWN -->
+
+                                    <!-- FILTROS -->
                                     <div class="dropdown">
                                         <button class="btn-filtro btn-second" type="button"
                                             id="dropdownMenuButtonFilter" data-bs-toggle="dropdown"
@@ -137,47 +144,81 @@
                                                 <hr class="dropdown-divider">
                                             </li>
                                             <li>
-                                                <h6 class="mb-3">Categoría</h6>
+                                                <h6 class="mb-3">Giro</h6>
                                             </li>
                                             <li><select class="form-select filtro-combo"
                                                     aria-label="Default select example">
                                                     <option selected disabled>Seleccione una opción</option>
-                                                    <option value="1">Papelería General</option>
-                                                    <option value="2">Tecnología</option>
-                                                    <option value="3">Juguetería</option>
+                                                    <option value="1">Particular</option>
+                                                    <option value="2">Comida</option>
+                                                    <option value="3">Medicina</option>
+                                                    <option value="3">Escolar</option>
+                                                    <option value="3">Otros</option>
+                                                </select></li>
+                                            <li>
+                                                <h6 class="my-3">Estado</h6>
+                                            </li>
+                                            <li><select class="form-select filtro-combo"
+                                                    aria-label="Default select example">
+                                                    <option selected disabled>Seleccione una opción</option>
+                                                    <option value="1">Activo</option>
+                                                    <option value="2">Inactivo</option>
+                                                    <option value="2">Inhabilitado</option>
                                                 </select></li>
                                             <li class="d-flex justify-content-end"><button
                                                     class="btn btn-main btn-aplicar-filtro mt-3" type="button"
                                                     data-bs-target="#modal-agregar2" data-bs-toggle="modal"
                                                     data-bs-dismiss="modal">Aplicar</button></li>
                                         </ul>
+
                                     </div>
+
                                 </div>
-                                <!-- BOTÓN AÑADIR SUBCATEGORIA -->
-                                <div class="col col-lg-6 d-flex justify-content-end px-5">
-                                    <button class="btn-añadirMP" type="button" data-bs-toggle="modal"
-                                        data-bs-target="#modal-agregarSub"><i class="bi bi-plus"></i>Añadir
-                                        subcategoría</button>
+
+                                <!-- AÑADIR REGISTRO Y EXPORTAR -->
+                                <div class="col col-lg-6 col-sm-12 d-flex justify-content-end col-header-pre-table">
+                                    <a class="btn-añadir btn-main" type="button" data-bs-toggle="modal"
+                                        data-bs-target="#modal-agregar"><i class="bi bi-plus"></i>Añadir
+                                        cliente</a>
+                                    <button class="btn-export btn-second" type="button"><i
+                                            class="bi bi-box-arrow-up"></i></button>
                                 </div>
+
                             </div>
+
                             <div class="row my-3">
+
                                 <div class="col">
+
+                                    <!-- TABLA -->
                                     <div class="table-responsive mt-3 scroll" id="no-more-tables">
                                         <table class="table table-hover" id="example">
                                             <thead>
                                                 <tr>
-                                                    <th class="th-1">Subcategoría</th>
-                                                    <th>Categoría</th>
+                                                    <th>Nombre</th>
+                                                    <th>Dirección</th>
+                                                    <th>Municipio</th>
+                                                    <th>Registro No.</th>
+                                                    <th>Documento</th>
+                                                    <th>Teléfono</th>
+                                                    <th>Giro</th>
+                                                    <th>Estado</th>
                                                     <th>Acciones</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td data-title="SUBCATEGORÍA" class="col-table nombre-producto"><img
-                                                            src="../resources/subcategoria/cuaderno.png"
-                                                            alt="">Cuadernos</td>
-                                                    <td data-title="CATEGORIA" class="categoria">Papelería General</td>
-                                                    <td data-title="Acciones" class="botones-table">
+                                                    <td class="col-table text-center">Herbert
+                                                        Cornejo</td>
+                                                    <td class="text-center">Avenida Aguilares 218
+                                                        San Salvador </td>
+                                                    <td class="text-center">San Salvador</td>
+                                                    <td class="text-center">258790-4</td>
+                                                    <td class="text-center">00000000-0</td>
+                                                    <td class="text-center">7668-4927</td>
+                                                    <td class="text-center">Particular</td>
+                                                    <td class="estado-stock"><span class="estado">Activo</span></td>
+                                                    <td class="botones-table">
                                                         <div class="dropdown">
                                                             <button class=" btn-acciones dropdown-toggle" type="button"
                                                                 id="dropdownMenuButton1" data-bs-toggle="dropdown"
@@ -186,11 +227,10 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" href="#"
+                                                                <li><a class="dropdown-item" type="button"
                                                                         data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-agregarSub">Editar</a>
-                                                                </li>
-                                                                <li><a class="dropdown-item" href="#"
+                                                                        data-bs-target="#modal-agregar">Editar</a></li>
+                                                                <li><a class="dropdown-item" type="button"
                                                                         data-bs-toggle="modal"
                                                                         data-bs-target="#modal-eliminar">Eliminar</a>
                                                                 </li>
@@ -199,11 +239,17 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-title="SUBCATEGORÍA" class="col-table nombre-producto"><img
-                                                            src="../resources/subcategoria/cuaderno.png"
-                                                            alt="">Cuadernos</td>
-                                                    <td data-title="CATEGORIA" class="categoria">Papelería General</td>
-                                                    <td data-title="Acciones" class="botones-table">
+                                                    <td class="col-table text-center">Herbert
+                                                        Cornejo</td>
+                                                    <td class="text-center">Avenida Aguilares 218
+                                                        San Salvador </td>
+                                                    <td class="text-center">San Salvador</td>
+                                                    <td class="text-center">258790-4</td>
+                                                    <td class="text-center">00000000-0</td>
+                                                    <td class="text-center">7668-4927</td>
+                                                    <td class="text-center">Particular</td>
+                                                    <td class="estado-stock"><span class="estado">Activo</span></td>
+                                                    <td class="botones-table">
                                                         <div class="dropdown">
                                                             <button class=" btn-acciones dropdown-toggle" type="button"
                                                                 id="dropdownMenuButton1" data-bs-toggle="dropdown"
@@ -212,11 +258,10 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" href="#"
+                                                                <li><a class="dropdown-item" type="button"
                                                                         data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-agregarSub">Editar</a>
-                                                                </li>
-                                                                <li><a class="dropdown-item" href="#"
+                                                                        data-bs-target="#modal-agregar">Editar</a></li>
+                                                                <li><a class="dropdown-item" type="button"
                                                                         data-bs-toggle="modal"
                                                                         data-bs-target="#modal-eliminar">Eliminar</a>
                                                                 </li>
@@ -225,11 +270,17 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-title="SUBCATEGORÍA" class="col-table nombre-producto"><img
-                                                            src="../resources/subcategoria/cuaderno.png"
-                                                            alt="">Cuadernos</td>
-                                                    <td data-title="CATEGORIA" class="categoria">Papelería General</td>
-                                                    <td data-title="Acciones" class="botones-table">
+                                                    <td class="col-table text-center">Herbert
+                                                        Cornejo</td>
+                                                    <td class="text-center">Avenida Aguilares 218
+                                                        San Salvador </td>
+                                                    <td class="text-center">San Salvador</td>
+                                                    <td class="text-center">258790-4</td>
+                                                    <td class="text-center">00000000-0</td>
+                                                    <td class="text-center">7668-4927</td>
+                                                    <td class="text-center">Particular</td>
+                                                    <td class="estado-stock"><span class="estado">Activo</span></td>
+                                                    <td class="botones-table">
                                                         <div class="dropdown">
                                                             <button class=" btn-acciones dropdown-toggle" type="button"
                                                                 id="dropdownMenuButton1" data-bs-toggle="dropdown"
@@ -238,11 +289,10 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" href="#"
+                                                                <li><a class="dropdown-item" type="button"
                                                                         data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-agregarSub">Editar</a>
-                                                                </li>
-                                                                <li><a class="dropdown-item" href="#"
+                                                                        data-bs-target="#modal-agregar">Editar</a></li>
+                                                                <li><a class="dropdown-item" type="button"
                                                                         data-bs-toggle="modal"
                                                                         data-bs-target="#modal-eliminar">Eliminar</a>
                                                                 </li>
@@ -251,11 +301,17 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-title="SUBCATEGORÍA" class="col-table nombre-producto"><img
-                                                            src="../resources/subcategoria/cuaderno.png"
-                                                            alt="">Cuadernos</td>
-                                                    <td data-title="CATEGORIA" class="categoria">Papelería General</td>
-                                                    <td data-title="Acciones" class="botones-table">
+                                                    <td class="col-table text-center">Herbert
+                                                        Cornejo</td>
+                                                    <td class="text-center">Avenida Aguilares 218
+                                                        San Salvador </td>
+                                                    <td class="text-center">San Salvador</td>
+                                                    <td class="text-center">258790-4</td>
+                                                    <td class="text-center">00000000-0</td>
+                                                    <td class="text-center">7668-4927</td>
+                                                    <td class="text-center">Particular</td>
+                                                    <td class="estado-stock"><span class="estado">Activo</span></td>
+                                                    <td class="botones-table">
                                                         <div class="dropdown">
                                                             <button class=" btn-acciones dropdown-toggle" type="button"
                                                                 id="dropdownMenuButton1" data-bs-toggle="dropdown"
@@ -264,11 +320,10 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" href="#"
+                                                                <li><a class="dropdown-item" type="button"
                                                                         data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-agregarSub">Editar</a>
-                                                                </li>
-                                                                <li><a class="dropdown-item" href="#"
+                                                                        data-bs-target="#modal-agregar">Editar</a></li>
+                                                                <li><a class="dropdown-item" type="button"
                                                                         data-bs-toggle="modal"
                                                                         data-bs-target="#modal-eliminar">Eliminar</a>
                                                                 </li>
@@ -277,11 +332,17 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-title="SUBCATEGORÍA" class="col-table nombre-producto"><img
-                                                            src="../resources/subcategoria/cuaderno.png"
-                                                            alt="">Cuadernos</td>
-                                                    <td data-title="CATEGORIA" class="categoria">Papelería General</td>
-                                                    <td data-title="Acciones" class="botones-table">
+                                                    <td class="col-table text-center">Herbert
+                                                        Cornejo</td>
+                                                    <td class="text-center">Avenida Aguilares 218
+                                                        San Salvador </td>
+                                                    <td class="text-center">San Salvador</td>
+                                                    <td class="text-center">258790-4</td>
+                                                    <td class="text-center">00000000-0</td>
+                                                    <td class="text-center">7668-4927</td>
+                                                    <td class="text-center">Particular</td>
+                                                    <td class="estado-stock"><span class="estado">Activo</span></td>
+                                                    <td class="botones-table">
                                                         <div class="dropdown">
                                                             <button class=" btn-acciones dropdown-toggle" type="button"
                                                                 id="dropdownMenuButton1" data-bs-toggle="dropdown"
@@ -290,11 +351,10 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" href="#"
+                                                                <li><a class="dropdown-item" type="button"
                                                                         data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-agregarSub">Editar</a>
-                                                                </li>
-                                                                <li><a class="dropdown-item" href="#"
+                                                                        data-bs-target="#modal-agregar">Editar</a></li>
+                                                                <li><a class="dropdown-item" type="button"
                                                                         data-bs-toggle="modal"
                                                                         data-bs-target="#modal-eliminar">Eliminar</a>
                                                                 </li>
@@ -303,11 +363,17 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-title="SUBCATEGORÍA" class="col-table nombre-producto"><img
-                                                            src="../resources/subcategoria/cuaderno.png"
-                                                            alt="">Cuadernos</td>
-                                                    <td data-title="CATEGORIA" class="categoria">Papelería General</td>
-                                                    <td data-title="Acciones" class="botones-table">
+                                                    <td class="col-table text-center">Herbert
+                                                        Cornejo</td>
+                                                    <td class="text-center">Avenida Aguilares 218
+                                                        San Salvador </td>
+                                                    <td class="text-center">San Salvador</td>
+                                                    <td class="text-center">258790-4</td>
+                                                    <td class="text-center">00000000-0</td>
+                                                    <td class="text-center">7668-4927</td>
+                                                    <td class="text-center">Particular</td>
+                                                    <td class="estado-stock"><span class="estado">Activo</span></td>
+                                                    <td class="botones-table">
                                                         <div class="dropdown">
                                                             <button class=" btn-acciones dropdown-toggle" type="button"
                                                                 id="dropdownMenuButton1" data-bs-toggle="dropdown"
@@ -316,11 +382,10 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" href="#"
+                                                                <li><a class="dropdown-item" type="button"
                                                                         data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-agregarSub">Editar</a>
-                                                                </li>
-                                                                <li><a class="dropdown-item" href="#"
+                                                                        data-bs-target="#modal-agregar">Editar</a></li>
+                                                                <li><a class="dropdown-item" type="button"
                                                                         data-bs-toggle="modal"
                                                                         data-bs-target="#modal-eliminar">Eliminar</a>
                                                                 </li>
@@ -329,11 +394,17 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-title="SUBCATEGORÍA" class="col-table nombre-producto"><img
-                                                            src="../resources/subcategoria/cuaderno.png"
-                                                            alt="">Cuadernos</td>
-                                                    <td data-title="CATEGORIA" class="categoria">Papelería General</td>
-                                                    <td data-title="Acciones" class="botones-table">
+                                                    <td class="col-table text-center">Herbert
+                                                        Cornejo</td>
+                                                    <td class="text-center">Avenida Aguilares 218
+                                                        San Salvador </td>
+                                                    <td class="text-center">San Salvador</td>
+                                                    <td class="text-center">258790-4</td>
+                                                    <td class="text-center">00000000-0</td>
+                                                    <td class="text-center">7668-4927</td>
+                                                    <td class="text-center">Particular</td>
+                                                    <td class="estado-stock"><span class="estado">Activo</span></td>
+                                                    <td class="botones-table">
                                                         <div class="dropdown">
                                                             <button class=" btn-acciones dropdown-toggle" type="button"
                                                                 id="dropdownMenuButton1" data-bs-toggle="dropdown"
@@ -342,11 +413,10 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" href="#"
+                                                                <li><a class="dropdown-item" type="button"
                                                                         data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-agregarSub">Editar</a>
-                                                                </li>
-                                                                <li><a class="dropdown-item" href="#"
+                                                                        data-bs-target="#modal-agregar">Editar</a></li>
+                                                                <li><a class="dropdown-item" type="button"
                                                                         data-bs-toggle="modal"
                                                                         data-bs-target="#modal-eliminar">Eliminar</a>
                                                                 </li>
@@ -355,11 +425,17 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-title="SUBCATEGORÍA" class="col-table nombre-producto"><img
-                                                            src="../resources/subcategoria/cuaderno.png"
-                                                            alt="">Cuadernos</td>
-                                                    <td data-title="CATEGORIA" class="categoria">Papelería General</td>
-                                                    <td data-title="Acciones" class="botones-table">
+                                                    <td class="col-table text-center">Herbert
+                                                        Cornejo</td>
+                                                    <td class="text-center">Avenida Aguilares 218
+                                                        San Salvador </td>
+                                                    <td class="text-center">San Salvador</td>
+                                                    <td class="text-center">258790-4</td>
+                                                    <td class="text-center">00000000-0</td>
+                                                    <td class="text-center">7668-4927</td>
+                                                    <td class="text-center">Particular</td>
+                                                    <td class="estado-stock"><span class="estado">Activo</span></td>
+                                                    <td class="botones-table">
                                                         <div class="dropdown">
                                                             <button class=" btn-acciones dropdown-toggle" type="button"
                                                                 id="dropdownMenuButton1" data-bs-toggle="dropdown"
@@ -368,11 +444,10 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" href="#"
+                                                                <li><a class="dropdown-item" type="button"
                                                                         data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-agregarSub">Editar</a>
-                                                                </li>
-                                                                <li><a class="dropdown-item" href="#"
+                                                                        data-bs-target="#modal-agregar">Editar</a></li>
+                                                                <li><a class="dropdown-item" type="button"
                                                                         data-bs-toggle="modal"
                                                                         data-bs-target="#modal-eliminar">Eliminar</a>
                                                                 </li>
@@ -381,11 +456,17 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-title="SUBCATEGORÍA" class="col-table nombre-producto"><img
-                                                            src="../resources/subcategoria/cuaderno.png"
-                                                            alt="">Cuadernos</td>
-                                                    <td data-title="CATEGORIA" class="categoria">Papelería General</td>
-                                                    <td data-title="Acciones" class="botones-table">
+                                                    <td class="col-table text-center">Herbert
+                                                        Cornejo</td>
+                                                    <td class="text-center">Avenida Aguilares 218
+                                                        San Salvador </td>
+                                                    <td class="text-center">San Salvador</td>
+                                                    <td class="text-center">258790-4</td>
+                                                    <td class="text-center">00000000-0</td>
+                                                    <td class="text-center">7668-4927</td>
+                                                    <td class="text-center">Particular</td>
+                                                    <td class="estado-stock"><span class="estado">Activo</span></td>
+                                                    <td class="botones-table">
                                                         <div class="dropdown">
                                                             <button class=" btn-acciones dropdown-toggle" type="button"
                                                                 id="dropdownMenuButton1" data-bs-toggle="dropdown"
@@ -394,11 +475,10 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" href="#"
+                                                                <li><a class="dropdown-item" type="button"
                                                                         data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-agregarSub">Editar</a>
-                                                                </li>
-                                                                <li><a class="dropdown-item" href="#"
+                                                                        data-bs-target="#modal-agregar">Editar</a></li>
+                                                                <li><a class="dropdown-item" type="button"
                                                                         data-bs-toggle="modal"
                                                                         data-bs-target="#modal-eliminar">Eliminar</a>
                                                                 </li>
@@ -407,11 +487,17 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-title="SUBCATEGORÍA" class="col-table nombre-producto"><img
-                                                            src="../resources/subcategoria/cuaderno.png"
-                                                            alt="">Cuadernos</td>
-                                                    <td data-title="CATEGORIA" class="categoria">Papelería General</td>
-                                                    <td data-title="Acciones" class="botones-table">
+                                                    <td class="col-table text-center">Herbert
+                                                        Cornejo</td>
+                                                    <td class="text-center">Avenida Aguilares 218
+                                                        San Salvador </td>
+                                                    <td class="text-center">San Salvador</td>
+                                                    <td class="text-center">258790-4</td>
+                                                    <td class="text-center">00000000-0</td>
+                                                    <td class="text-center">7668-4927</td>
+                                                    <td class="text-center">Particular</td>
+                                                    <td class="estado-stock"><span class="estado">Activo</span></td>
+                                                    <td class="botones-table">
                                                         <div class="dropdown">
                                                             <button class=" btn-acciones dropdown-toggle" type="button"
                                                                 id="dropdownMenuButton1" data-bs-toggle="dropdown"
@@ -420,11 +506,10 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" href="#"
+                                                                <li><a class="dropdown-item" type="button"
                                                                         data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-agregarSub">Editar</a>
-                                                                </li>
-                                                                <li><a class="dropdown-item" href="#"
+                                                                        data-bs-target="#modal-agregar">Editar</a></li>
+                                                                <li><a class="dropdown-item" type="button"
                                                                         data-bs-toggle="modal"
                                                                         data-bs-target="#modal-eliminar">Eliminar</a>
                                                                 </li>
@@ -433,11 +518,17 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-title="SUBCATEGORÍA" class="col-table nombre-producto"><img
-                                                            src="../resources/subcategoria/cuaderno.png"
-                                                            alt="">Cuadernos</td>
-                                                    <td data-title="CATEGORIA" class="categoria">Papelería General</td>
-                                                    <td data-title="Acciones" class="botones-table">
+                                                    <td class="col-table text-center">Herbert
+                                                        Cornejo</td>
+                                                    <td class="text-center">Avenida Aguilares 218
+                                                        San Salvador </td>
+                                                    <td class="text-center">San Salvador</td>
+                                                    <td class="text-center">258790-4</td>
+                                                    <td class="text-center">00000000-0</td>
+                                                    <td class="text-center">7668-4927</td>
+                                                    <td class="text-center">Particular</td>
+                                                    <td class="estado-stock"><span class="estado">Activo</span></td>
+                                                    <td class="botones-table">
                                                         <div class="dropdown">
                                                             <button class=" btn-acciones dropdown-toggle" type="button"
                                                                 id="dropdownMenuButton1" data-bs-toggle="dropdown"
@@ -446,11 +537,10 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" href="#"
+                                                                <li><a class="dropdown-item" type="button"
                                                                         data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-agregarSub">Editar</a>
-                                                                </li>
-                                                                <li><a class="dropdown-item" href="#"
+                                                                        data-bs-target="#modal-agregar">Editar</a></li>
+                                                                <li><a class="dropdown-item" type="button"
                                                                         data-bs-toggle="modal"
                                                                         data-bs-target="#modal-eliminar">Eliminar</a>
                                                                 </li>
@@ -459,11 +549,17 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-title="SUBCATEGORÍA" class="col-table nombre-producto"><img
-                                                            src="../resources/subcategoria/cuaderno.png"
-                                                            alt="">Cuadernos</td>
-                                                    <td data-title="CATEGORIA" class="categoria">Papelería General</td>
-                                                    <td data-title="Acciones" class="botones-table">
+                                                    <td class="col-table text-center">Herbert
+                                                        Cornejo</td>
+                                                    <td class="text-center">Avenida Aguilares 218
+                                                        San Salvador </td>
+                                                    <td class="text-center">San Salvador</td>
+                                                    <td class="text-center">258790-4</td>
+                                                    <td class="text-center">00000000-0</td>
+                                                    <td class="text-center">7668-4927</td>
+                                                    <td class="text-center">Particular</td>
+                                                    <td class="estado-stock"><span class="estado">Activo</span></td>
+                                                    <td class="botones-table">
                                                         <div class="dropdown">
                                                             <button class=" btn-acciones dropdown-toggle" type="button"
                                                                 id="dropdownMenuButton1" data-bs-toggle="dropdown"
@@ -472,11 +568,10 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" href="#"
+                                                                <li><a class="dropdown-item" type="button"
                                                                         data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-agregarSub">Editar</a>
-                                                                </li>
-                                                                <li><a class="dropdown-item" href="#"
+                                                                        data-bs-target="#modal-agregar">Editar</a></li>
+                                                                <li><a class="dropdown-item" type="button"
                                                                         data-bs-toggle="modal"
                                                                         data-bs-target="#modal-eliminar">Eliminar</a>
                                                                 </li>
@@ -485,11 +580,17 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-title="SUBCATEGORÍA" class="col-table nombre-producto"><img
-                                                            src="../resources/subcategoria/cuaderno.png"
-                                                            alt="">Cuadernos</td>
-                                                    <td data-title="CATEGORIA" class="categoria">Papelería General</td>
-                                                    <td data-title="Acciones" class="botones-table">
+                                                    <td class="col-table text-center">Herbert
+                                                        Cornejo</td>
+                                                    <td class="text-center">Avenida Aguilares 218
+                                                        San Salvador </td>
+                                                    <td class="text-center">San Salvador</td>
+                                                    <td class="text-center">258790-4</td>
+                                                    <td class="text-center">00000000-0</td>
+                                                    <td class="text-center">7668-4927</td>
+                                                    <td class="text-center">Particular</td>
+                                                    <td class="estado-stock"><span class="estado">Activo</span></td>
+                                                    <td class="botones-table">
                                                         <div class="dropdown">
                                                             <button class=" btn-acciones dropdown-toggle" type="button"
                                                                 id="dropdownMenuButton1" data-bs-toggle="dropdown"
@@ -498,11 +599,10 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" href="#"
+                                                                <li><a class="dropdown-item" type="button"
                                                                         data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-agregarSub">Editar</a>
-                                                                </li>
-                                                                <li><a class="dropdown-item" href="#"
+                                                                        data-bs-target="#modal-agregar">Editar</a></li>
+                                                                <li><a class="dropdown-item" type="button"
                                                                         data-bs-toggle="modal"
                                                                         data-bs-target="#modal-eliminar">Eliminar</a>
                                                                 </li>
@@ -511,11 +611,17 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-title="SUBCATEGORÍA" class="col-table nombre-producto"><img
-                                                            src="../resources/subcategoria/cuaderno.png"
-                                                            alt="">Cuadernos</td>
-                                                    <td data-title="CATEGORIA" class="categoria">Papelería General</td>
-                                                    <td data-title="Acciones" class="botones-table">
+                                                    <td class="col-table text-center">Herbert
+                                                        Cornejo</td>
+                                                    <td class="text-center">Avenida Aguilares 218
+                                                        San Salvador </td>
+                                                    <td class="text-center">San Salvador</td>
+                                                    <td class="text-center">258790-4</td>
+                                                    <td class="text-center">00000000-0</td>
+                                                    <td class="text-center">7668-4927</td>
+                                                    <td class="text-center">Particular</td>
+                                                    <td class="estado-stock"><span class="estado">Activo</span></td>
+                                                    <td class="botones-table">
                                                         <div class="dropdown">
                                                             <button class=" btn-acciones dropdown-toggle" type="button"
                                                                 id="dropdownMenuButton1" data-bs-toggle="dropdown"
@@ -524,11 +630,41 @@
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                                                                 aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" href="#"
+                                                                <li><a class="dropdown-item" type="button"
                                                                         data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-agregarSub">Editar</a>
+                                                                        data-bs-target="#modal-agregar">Editar</a></li>
+                                                                <li><a class="dropdown-item" type="button"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-eliminar">Eliminar</a>
                                                                 </li>
-                                                                <li><a class="dropdown-item" href="#"
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-table text-center">Herbert
+                                                        Cornejo</td>
+                                                    <td class="text-center">Avenida Aguilares 218
+                                                        San Salvador </td>
+                                                    <td class="text-center">San Salvador</td>
+                                                    <td class="text-center">258790-4</td>
+                                                    <td class="text-center">00000000-0</td>
+                                                    <td class="text-center">7668-4927</td>
+                                                    <td class="text-center">Particular</td>
+                                                    <td class="estado-stock"><span class="estado">Activo</span></td>
+                                                    <td class="botones-table">
+                                                        <div class="dropdown">
+                                                            <button class=" btn-acciones dropdown-toggle" type="button"
+                                                                id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                                                aria-expanded="false">
+                                                                Acciones
+                                                            </button>
+                                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                                                                aria-labelledby="dropdownMenuButton1">
+                                                                <li><a class="dropdown-item" type="button"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#modal-agregar">Editar</a></li>
+                                                                <li><a class="dropdown-item" type="button"
                                                                         data-bs-toggle="modal"
                                                                         data-bs-target="#modal-eliminar">Eliminar</a>
                                                                 </li>
@@ -539,14 +675,28 @@
                                             </tbody>
                                         </table>
                                     </div>
+
+                                </div>
+
+                            </div>
+
+                            <!-- CHECKBOX TODOS LOS CAMPOS -->
+                            <div class="row mb-3 ">
+                                <div class="d-flex justify-content-center">
+                                    <label>Mostrar todos los campos
+                                        <input type="checkbox" id="checkTabla">
+                                    </label>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
             </div>
         </main>
-        <!-- INICIO FOOTER -->
+        <!-- FIN MAIN -->
+
+        <!-- INICIA FOOTER -->
         <footer class='footerSP'>
             <div class="section">
                 <div class="row justify-content-center">
@@ -558,62 +708,84 @@
         </footer>
         <!-- FIN FOOTER -->
     </div>
-    <!-- INICIO MODAL AGREGAR-->
-    <div class="modal modal-agregarSub fade" id="modal-agregarSub" tabindex="-1" aria-labelledby="exampleModalLabel"
+
+    <!-- INICIO MODAL AGREGAR CLIENTE-->
+
+    <div class="modal modal-agregar fade" id="modal-agregar" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
-                <div class="modal-header">
-                    <input type="text" class="form-control addname" id="validationDefault01"
-                        placeholder="Ingresar nombre de la subcategoría" value="" required>
-                    <button type="button" class="btn-close my" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
                 <div class="modal-body">
                     <div class="container">
                         <div class="row agregar-content">
                             <div class="col">
+                                <div class="row mt-3">
+                                    <input class="form-control form-control-lg nombre-producto" type="text"
+                                        placeholder="Ingresar nombre del cliente" aria-label=".form-control-lg example">
+                                </div>
                                 <div class="row">
-                                    <div class="col-6 mb-4">
-                                        <div class="text-center">
-                                            <label for="validationDefault02" class="form-label py-2">Añadir imagen
-                                                subcategoria</label>
-                                        </div>
-                                        <div class="container imagenmodal">
-                                            <div class="row">
-                                                <div class="col-5">
-                                                    <img src="../resources/subcategoria/cuaderno.png" class="image"
-                                                        alt="" id="img1">
-                                                </div>
-                                                <div class="col-7">
-                                                    <p class="my-4">imagensubcat123.jpg</p>
-                                                    <div class="row imagentext">
-                                                        <div class="col-6">
-                                                            <a href="#" onclick="enlargeImg()">
-                                                                <i class="bi bi-eye-fill"></i>
-                                                                <b>Ver</b>
-                                                            </a>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <a href="#">
-                                                                <i class="bi bi-trash-fill"></i>
-                                                                <b>Eliminar</b>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div class="col col-6 mt-3">
+                                        <label>DUI</label>
+                                        <input class="form-control pl-dui" type="text" placeholder="00000000-0"
+                                            aria-label=".form-control example">
                                     </div>
-                                    <div class="col-6 mb-4">
-                                        <div class="text-center">
-                                            <label for="validationDefault02" class="form-label py-2">Categoría</label>
-                                        </div>
-                                        <select class="form-select custom-form-select"
-                                            aria-label="Default select example">
+                                    <div class="col col-6 mt-3">
+                                        <label>NIT</label>
+                                        <input class="form-control" type="text" placeholder="0000-000000-000-0"
+                                            aria-label=".form-control example">
+                                    </div>
+                                    <div class="col col-6 mt-3">
+                                        <label>Dirección</label>
+                                        <input class="form-control" type="text" placeholder=""
+                                            aria-label=".form-control example">
+                                    </div>
+                                    <div class="col col-6 mt-3">
+                                        <label>Teléfono</label>
+                                        <input class="form-control" type="text" placeholder="0000-0000"
+                                            aria-label=".form-control example">
+                                    </div>
+                                    <div class="col col-6 mt-3">
+                                        <label>Registro No.</label>
+                                        <input class="form-control" type="text" placeholder="0000000-0"
+                                            aria-label=".form-control example">
+                                    </div>
+                                    <div class="col col-6 mt-3">
+                                        <label>Giro</label>
+                                        <select class="form-select" aria-label="Default select example">
                                             <option selected disabled>Seleccione una opción</option>
-                                            <option value="1">Oficina (Papelería)</option>
-                                            <option value="2">Tecnología</option>
-                                            <option value="3">Pegamentos</option>
+                                            <option value="1">Particular</option>
+                                            <option value="2">Comida</option>
+                                            <option value="3">Medicina</option>
+                                            <option value="3">Escolar</option>
+                                            <option value="3">Otros</option>
+                                        </select>
+                                    </div>
+                                    <div class="col col-6 mt-3">
+                                        <label>Departamento</label>
+                                        <select class="form-select" aria-label="Default select example" onChange="pagoOnChange(this)">
+                                            <option selected disabled>Seleccione una opción</option>
+                                            <option value="san salvador">San Salvador</option>
+                                            <option value="san miguel">San Miguel</option>
+                                            <option value="santa ana">Santa Ana</option>
+                                            
+                                        </select>
+                                    </div>
+                                    <div class="col col-6 mt-3" id="municipio">
+                                        <label>Municipio</label>
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option selected disabled>Seleccione una opción</option>
+                                            <option value="1">San Salvador</option>
+                                            <option value="2">Apopa</option>
+                                            <option value="3">Mejicanos</option>
+                                            
+                                        </select>
+                                    </div>
+                                    <div class="col col-6 mt-3">
+                                        <label>Estado</label>
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option selected disabled>Seleccione una opción</option>
+                                            <option value="1">Activo</option>
+                                            <option value="2">Inactivo</option>
                                         </select>
                                     </div>
                                 </div>
@@ -621,19 +793,19 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer d-flex justify-content-end">
-                    <button class="btn btn-continuaradd" type="button" data-bs-target="#modal-agregar2"
+                <div class="modal-footer d-flex justify-content-end mt-4">
+                    <button class="btn btn-guardar" type="button" data-bs-target="#modal-agregar2"
                         data-bs-toggle="modal" data-bs-dismiss="modal">Guardar</button>
-                    <button class="btn btn-canceladd" type="button" data-bs-target="#modal-agregar2"
-                        data-bs-toggle="modal" data-bs-dismiss="modal">Cancelar</button>
+                    <button class="btn btn-cancel btn-second" type="button" data-bs-target="" data-bs-toggle="modal"
+                        data-bs-dismiss="modal">Cancelar</button>
                 </div>
             </div>
         </div>
     </div>
-    <!-- FIN MODAL AGREGAR -->
+    <!-- FIN MODAL AGREGAR CLIENTE-->
 
 
-    <!-- INICIO MODAL DELETE -->
+    <!-- INICIO MODAL DELETE CLIENTE-->
     <div class="modal modal-eliminar fade" id="modal-eliminar" aria-hidden="true"
         aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered modal-xl">
@@ -661,9 +833,9 @@
             </div>
         </div>
     </div>
-    <!-- FIN MODAL DELETE -->
+    <!-- FIN MODAL DELETE CLIENTE-->
 
-    <script src="../js/subcategoria.js"></script>
+    <script src="../../controllers/private/subcategoria.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
@@ -675,8 +847,8 @@
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
 
-    <script src="/js/subcategoria.js"></script>
-    <script src="/js/dashboard.js"></script>
+    <script src="../../controllers/private/clientes.js"></script>
+    <script src="../../controllers/private/dashboard.js"></script>
 </body>
 
 </html>
