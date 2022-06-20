@@ -1495,19 +1495,19 @@ tbody .imgMP{
 }
 
 .con-rg{
-  padding-top: 60px;
-  padding-bottom: 60px;
+  padding-top: 6%;
+  padding-bottom: 6%;
 }
 
 .izquierdo-Rg{
   background-image: url(../../resources/img/login_crear_recu/fondol.png);
   background-size: cover;
-  height: 730px;
+  height: 820px;
 }
 
 .derecho-Rg{
   background-color: white;
-  height: 730px; 
+  height: 820px; 
 }
 
 .reg-fondo input{
