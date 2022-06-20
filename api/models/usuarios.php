@@ -10,7 +10,6 @@ class Usuarios extends Validator
     private $nombres = null;
     private $apellidos = null;
     private $cargo = null;
-    private $telefono = null;
     private $foto = null;
     private $estado = null;
     private $correo = null;
@@ -60,17 +59,6 @@ class Usuarios extends Validator
         }
     }
 
-
-    public function setTelefono($value)
-    {   
-        if ($this->validatePhone($value)) {
-            $this->telefono = $value;
-            return true;
-        } else {
-            return false;
-        }
-        
-    }
 
     public function setCorreo($value)
     {
@@ -138,11 +126,6 @@ class Usuarios extends Validator
     public function getCargo()
     {
         return $this->cargo;
-    }
-
-    public function getTelefono()
-    {
-        return $this->telefono;
     }
 
     public function getEstado()
@@ -264,9 +247,9 @@ class Usuarios extends Validator
     /* CREATE */
     public function createRow()
     {
-        $sql = 'INSERT INTO empleado("nombresEmpleado", "apellidosEmpleado", "correoEmpleado", "aliasEmpleado", "contrasenaEmpleado", "direccionEmpleado", "telefonoEmpleado", "fotoEmpleado", "cargoEmpleado", "estadoEmpleado")
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);';
-        $params = array($this->nombres, $this->apellidos, $this->correo, $this->alias, $this->clave, $this->direccion, $this->telefono, $this->foto, $this->cargo, $this->estado);
+        $sql = 'INSERT INTO empleado("nombresEmpleado", "apellidosEmpleado", "correoEmpleado", "aliasEmpleado", "contrasenaEmpleado", "idAvatar", "cargoEmpleado", "estadoEmpleado")
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?);';
+        $params = array($this->nombres, $this->apellidos, $this->correo, $this->alias, $this->clave, $this->foto, $this->cargo, $this->estado);
         return Database::executeRow($sql, $params);
     }
 
