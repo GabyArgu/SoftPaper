@@ -186,6 +186,8 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Correo inválido';
                 }elseif (!$usuario->setEstado(1)) {
                     $result['exception'] = 'Estado inválido';
+                }elseif (!$usuario->setFoto(1)) {
+                    $result['exception'] = 'Avatar inválido';
                 }elseif (!$usuario->setAlias($_POST['alias'])) {
                     $result['exception'] = 'Alias inválido';
                 } elseif ($_POST['clave'] != $_POST['confirmar']) {
