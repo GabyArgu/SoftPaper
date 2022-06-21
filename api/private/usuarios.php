@@ -180,13 +180,13 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Nombres inválidos';
                 } elseif (!$usuario->setApellidos($_POST['apellidos'])) {
                     $result['exception'] = 'Apellidos inválidos';
-                } elseif (!$usuario->setCargo(1)){
+                } elseif (!$usuario->setCargo('58a8b7aa-0e40-44e4-9409-0eab6bd23255')){
                     $result['exception'] = 'Cargo inválido';
                 } elseif (!$usuario->setCorreo($_POST['correo'])) {
                     $result['exception'] = 'Correo inválido';
-                }elseif (!$usuario->setEstado(1)) {
+                }elseif (!$usuario->setEstado(true)) {
                     $result['exception'] = 'Estado inválido';
-                }elseif (!$usuario->setFoto(1)) {
+                }elseif (!$usuario->setFoto('7875dbce-e16c-400f-94f0-acb86a329fb5')) {
                     $result['exception'] = 'Avatar inválido';
                 }elseif (!$usuario->setAlias($_POST['alias'])) {
                     $result['exception'] = 'Alias inválido';
@@ -210,8 +210,8 @@ if (isset($_GET['action'])) {
                     } elseif ($usuario->checkPassword($_POST['clave'])) {
                         $result['status'] = 1;
                         $result['message'] = 'Autenticación correcta';
-                        $_SESSION['idEmpleado'] = $usuario->getId();
-                        $_SESSION['correoEmpleado'] = $usuario->getCorreo();
+                        $_SESSION['uuid_empleado'] = $usuario->getId();
+                        $_SESSION['correo_empleado'] = $usuario->getCorreo();
                     } else {
                         $result['exception'] = 'Clave incorrecta';
                     }

@@ -21,7 +21,7 @@ class Usuarios extends Validator
     */
     public function setId($value)
     {
-        if ($this->validateNaturalNumber($value)) {
+        if ($this->validateString($value, 1, 38)) {
             $this->id = $value;
             return true;
         } else {
@@ -51,7 +51,7 @@ class Usuarios extends Validator
 
     public function setCargo($value)
     {
-        if ($this->validateNaturalNumber($value)) {
+        if ($this->validateString($value, 1, 38)) {
             $this->cargo = $value;
             return true;
         } else {
@@ -72,7 +72,7 @@ class Usuarios extends Validator
 
     public function setAlias($value)
     {
-        if ($this->validateAlphanumeric($value, 1, 50)) {
+        if ($this->validateAlphanumeric($value, 1, 38)) {
             $this->alias = $value;
             return true;
         } else {
@@ -92,13 +92,17 @@ class Usuarios extends Validator
 
     public function setFoto($value)
     {
-        $this->foto = $value;
-        return true;
+        if ($this->validateString($value, 1, 38)) {
+            $this->foto = $value;
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public function setEstado($value)
     {
-        if ($this->validateNaturalNumber($value)) {
+        if ($this->validateBoolean($value)) {
             $this->estado = $value;
             return true;
         } else {
@@ -161,11 +165,11 @@ class Usuarios extends Validator
 
     public function checkUser($correo)
     {
-        $sql = 'SELECT "idEmpleado", "estadoEmpleado" FROM empleado WHERE "correoEmpleado" = ? or "aliasEmpleado" = ?';
+        $sql = 'SELECT uuid_empleado, estado_empleado FROM empleado WHERE correo_empleado = ? or alias_empleado = ?';
         $params = array($correo, $correo);
         if ($data = Database::getRow($sql, $params)) {
-            $this->id = $data['idEmpleado'];
-            $this->estado = $data['estadoEmpleado'];
+            $this->id = $data['uuid_empleado'];
+            $this->estado = $data['estado_empleado'];
             $this->correo = $correo;
             return true;
         } else {
@@ -175,11 +179,11 @@ class Usuarios extends Validator
 
     public function checkPassword($password)
     {
-        $sql = 'SELECT "contrasenaEmpleado" FROM empleado WHERE "idEmpleado" = ?';
+        $sql = "SELECT contrasena_empleado FROM empleado WHERE uuid_empleado = ?";
         $params = array($this->id);
         $data = Database::getRow($sql, $params);
         // Se verifica si la contraseña coincide con el hash almacenado en la base de datos.
-        if (password_verify($password, $data['contrasenaEmpleado'])) {
+        if (password_verify($password, $data['contrasena_empleado'])) {
             return true;
         } else {
             return false;
@@ -199,10 +203,9 @@ class Usuarios extends Validator
     // Método para leer toda la información de los usuarios registrados-------------------------.
     public function readAll()
     {
-        $sql = 'SELECT "idEmpleado", "nombresEmpleado", "apellidosEmpleado", ce."cargoEmpleado", ee."estadoEmpleado"
-        FROM empleado as e inner join "cargoEmpleado" as ce on e."cargoEmpleado" = ce."idCargoEmpleado"
-        inner join "estadoEmpleado" as ee on e."estadoEmpleado" = ee."idEstadoEmpleado" 
-		order by "idEmpleado", e."estadoEmpleado"';
+        $sql = 'SELECT uuid_empleado, nombres_empleado, apellidos_empleado, ce.cargo_empleado, estado_empleado
+        FROM empleado as e inner join cargo_empleado as ce USING(uuid_cargo_empleado)
+		order by nombres_empleado, estado_empleado;';
         
         $params = null;
         return Database::getRows($sql, $params);
@@ -247,7 +250,7 @@ class Usuarios extends Validator
     /* CREATE */
     public function createRow()
     {
-        $sql = 'INSERT INTO empleado("nombresEmpleado", "apellidosEmpleado", "correoEmpleado", "aliasEmpleado", "contrasenaEmpleado", "idAvatar", "cargoEmpleado", "estadoEmpleado")
+        $sql = 'INSERT INTO empleado(nombres_empleado, apellidos_empleado, correo_empleado, alias_empleado, contrasena_empleado, uuid_avatar, uuid_cargo_empleado, estado_empleado)
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?);';
         $params = array($this->nombres, $this->apellidos, $this->correo, $this->alias, $this->clave, $this->foto, $this->cargo, $this->estado);
         return Database::executeRow($sql, $params);
