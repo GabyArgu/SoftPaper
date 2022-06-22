@@ -265,6 +265,40 @@ class Validator
     }
 
     /*
+*   Método para validar el formato del NIT (Número de Identificación Tributaria).
+*
+*   Parámetros: $value (dato a validar).
+*   
+*   Retorno: booleano (true si el valor es correcto o false en caso contrario).
+*/
+public function validateNIT($value)
+{
+    // Se verifica que el número tenga el formato 0000-000000-000-0.
+    if (preg_match('/^[0-9]{4}[-][0-9]{6}[-][0-9]{3}[-][0-9]{1}$/', $value)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+/*
+*   Método para validar el formato del NRC (Nº de Registro).
+*
+*   Parámetros: $value (dato a validar).
+*   
+*   Retorno: booleano (true si el valor es correcto o false en caso contrario).
+*/
+public function validateNRC($value)
+{
+    // Se verifica que el número tenga el formato 000000-0.
+    if (preg_match('/^[0-9]{6}[-][0-9]{1}$/', $value)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+    /*
 *   Método para validar un número telefónico.
 *
 *   Parámetros: $value (dato a validar).
