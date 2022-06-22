@@ -12,7 +12,7 @@ if (isset($_GET['action'])) {
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'session' => 0, 'message' => null, 'exception' => null, 'dataset' => null, 'username' => null);
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
-    if (isset($_SESSION['id_usuario'])) {
+    if (isset($_SESSION['uuid_empleado'])) {
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
             case 'readAll':
@@ -50,15 +50,13 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Categoría inválida';
                 } elseif (!$productos->setColor($_POST['color'])){
                     $result['exception'] = 'Color inválido';
-                }elseif (!$productos->setDescuento($_POST['descuento'])){
-                    $result['exception'] = 'Descuento inválido';
-                }elseif (!$productos->setStock($_POST['stock'])){
+                } elseif (!$productos->setStock($_POST['stock'])){
                     $result['exception'] = 'Stock inválido';
                 }  elseif (!is_uploaded_file($_FILES['archivo']['tmp_name'])) {
                     $result['exception'] = 'Seleccione una imagen';
                 } elseif (!$productos->setImagen($_FILES['archivo'])) {
                     $result['exception'] = $productos->getFileError();
-                } elseif (!$productos->setEstado(1)) {
+                } elseif (!$productos->setEstado(true)) {
                     $result['exception'] = 'Estado inválido';
                 } elseif ($productos->createRow()) {
                     $result['status'] = 1;
@@ -66,6 +64,8 @@ if (isset($_GET['action'])) {
                         
                         if (!$productos->insertStock($productos->getLastId())) {
                             $result['exception'] = 'Ocurrió un error al insertar el stock';
+                        } elseif (!$productos->insertProveedor($productos->getLastId())) {
+                            $result['exception'] = 'Ocurrió un error al insertar el proveedor';
                         } else {
                             $result['message'] = 'Producto creado correctamente';
                         }
