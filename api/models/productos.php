@@ -25,7 +25,7 @@ class Productos extends Validator
     */
     public function setId($value)
     {
-        if ($this->validateNaturalNumber($value)) {
+        if ($this->validateString($value, 1, 38)) {
             $this->id = $value;
             return true;
         } else {
@@ -56,7 +56,7 @@ class Productos extends Validator
 
     public function setSubcategoria($value)
     {
-        if ($this->validateNaturalNumber($value)) {
+        if ($this->validateString($value, 1, 38)) {
             $this->subcategoria = $value;
             return true;
         } else {
@@ -66,7 +66,7 @@ class Productos extends Validator
 
     public function setProveedor($value)
     {
-        if ($this->validateNaturalNumber($value)) {
+        if ($this->validateString($value, 1, 38)) {
             $this->proveedor = $value;
             return true;
         } else {
@@ -75,7 +75,7 @@ class Productos extends Validator
     }
     public function setMarca($value)
     {
-        if ($this->validateNaturalNumber($value)) {
+        if ($this->validateString($value, 1, 38)) {
             $this->marca = $value;
             return true;
         } else {
@@ -217,9 +217,14 @@ class Productos extends Validator
     */
     public function readAll()
     {
-        $sql = 'SELECT "idProducto", "imagenPrincipal", "nombreProducto", "descripcionProducto", "precioProducto", ep."estadoProducto" 
-        FROM producto as p inner join "estadoProducto" as ep on p."estadoProducto" = ep."idEstadoProducto" 
-        ORDER BY "idProducto"
+        $sql = 'SELECT Distinct on (nombre_producto) nombre_producto, uuid_producto, imagen_producto, nombre_subcategoria_p, precio_producto, uuid_color_producto, uuid_color_stock, stock, nombre_marca, nombre_proveedor, descripcion_producto, estado_producto
+        FROM producto INNER JOIN estado_producto USING(uuid_estado_producto)
+		INNER JOIN subcategoria_producto USING(uuid_subcategoria_p)
+		INNER JOIN color_stock USING(uuid_producto)
+		INNER JOIN marca USING(uuid_marca)
+		INNER JOIN detalle_producto USING(uuid_producto)
+		INNER JOIN proveedor USING(uuid_proveedor)
+		ORDER BY  nombre_producto
         ';
         
         $params = null;
