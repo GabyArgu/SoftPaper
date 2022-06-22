@@ -1962,3 +1962,15 @@ tbody .imgMP{
   color: var(--blanco);
 }
 /* Diseño footer fin */
+
+
+/* UTILITIES */
+.input-hide{
+  display: none;
+}
+
+.dropzone{
+  border: 1px solid var(--azulMain) !important;
+  border-radius: 15%;
+  margin-top: .5rem;
+}
