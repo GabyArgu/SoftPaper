@@ -56,15 +56,14 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Seleccione una imagen';
                 } elseif (!$productos->setImagen($_FILES['archivo'])) {
                     $result['exception'] = $productos->getFileError();
-                } elseif (!$productos->setEstado(true)) {
+                } elseif (!$productos->setEstado('09ed67e4-98c7-46e3-b6c5-45c234020efb')) {
                     $result['exception'] = 'Estado inválido';
                 } elseif ($productos->createRow()) {
                     $result['status'] = 1;
                     if ($productos->saveFile($_FILES['archivo'], $productos->getRuta(), $productos->getImagen())) {
-                        
-                        if (!$productos->insertStock($productos->getLastId())) {
+                        if (!$productos->insertStock()) {
                             $result['exception'] = 'Ocurrió un error al insertar el stock';
-                        } elseif (!$productos->insertProveedor($productos->getLastId())) {
+                        } elseif (!$productos->insertProvider()) {
                             $result['exception'] = 'Ocurrió un error al insertar el proveedor';
                         } else {
                             $result['message'] = 'Producto creado correctamente';
@@ -105,7 +104,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Producto incorrecto';
                 } elseif (!$data = $productos->readOne()) {
                     $result['exception'] = 'Producto inexistente';
-                }elseif (!$productos->setNombre($_POST['nombre'])) {
+                } elseif (!$productos->setNombre($_POST['nombre'])) {
                     $result['exception'] = 'Nombre inválido';
                 }  elseif (!$productos->setDescripcion($_POST['descripcion'])) {
                     $result['exception'] = 'Descripción inválida';
@@ -116,19 +115,19 @@ if (isset($_GET['action'])) {
                 } elseif (!$productos->setMarca($_POST['marca'])){
                     $result['exception'] = 'marca inválida';
                 } elseif (!$productos->setPrecio($_POST['precio'])){
-                    $result['exception'] = 'Precio inválido';
+                    $result['exception'] = 'Categoría inválida';
                 } elseif (!$productos->setColor($_POST['color'])){
                     $result['exception'] = 'Color inválido';
-                }elseif (!$productos->setDescuento($_POST['descuento'])){
-                    $result['exception'] = 'Descuento inválido';
-                }elseif (!$productos->setStock($_POST['stock'])){
+                } elseif (!$productos->setStock($_POST['stock'])){
                     $result['exception'] = 'Stock inválido';
-                }elseif (!$productos->setEstado($_POST['estado'])) {
+                } elseif (!$productos->setEstado($_POST['estado'])) {
                     $result['exception'] = 'Estado inválido';
                 } elseif (!$productos->updateStock()) {
                     $result['exception'] = 'Ocurrió un error al actualizar el stock';
+                } elseif (!$productos->updateProvider()) {
+                    $result['exception'] = 'Ocurrió un error al actualizar el proveedor';
                 } elseif (!is_uploaded_file($_FILES['archivo']['tmp_name'])) {
-                    if ($productos->updateRow($data['imagenPrincipal'])) {
+                    if ($productos->updateRow($data['imagen_producto'])) {
                         $result['status'] = 1;
                         $result['message'] = 'Producto modificado correctamente';
                     } else {
@@ -136,7 +135,7 @@ if (isset($_GET['action'])) {
                     }
                 } elseif (!$productos->setImagen($_FILES['archivo'])) {
                     $result['exception'] = $subcategorias->getFileError();
-                } elseif ($productos->updateRow($data['imagenPrincipal'])) {
+                } elseif ($productos->updateRow($data['imagen_producto'])) {
                     $result['status'] = 1;
                     if ($productos->saveFile($_FILES['archivo'], $productos->getRuta(), $productos->getImagen())) {
                     } else {

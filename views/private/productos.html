@@ -198,7 +198,7 @@
                                 <div class="col">
                                     <!-- INICIO TABLA PRODUCTOS-->
                                     <div class="table-responsive mt-3 scroll" id="no-more-tables">
-                                        <table class="table table-hover" id="example">
+                                        <table class="table table-hover" id="table">
                                             <thead>
                                                 <tr>
                                                     <th>Producto</th>
@@ -252,7 +252,7 @@
         <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content">
                 <div class="modal-body">
-                    <form method="post" action="/" id="save-form" enctype="multipart/form-data">
+                    <form method="post" id="save-form" >
                         <div class="container">
                             <div class="row agregar-content">
                                 <div class="col">
@@ -262,7 +262,7 @@
                                             aria-label=".form-control-lg example" id="nombre" name="nombre">
                                         <textarea class="form-control w-100"
                                             placeholder="Ingresar descripción del producto"
-                                            id="exampleFormControlTextarea1" rows="2" id="descripcion"
+                                            rows="2" id="descripcion"
                                             name="descripcion"></textarea>
                                     </div>
                                     <div class="row">
@@ -292,8 +292,8 @@
                                         </div>
                                         <div class="col col-6 mt-3">
                                             <label for="cmb-precio">Precio</label>
-                                            <input class="form-control w-100" type="number" placeholder="" min="0.01"
-                                                max="999.99" aria-label=".form-control example" id="precio"
+                                            <input class="form-control w-100" type="number" placeholder="" 
+                                                id="precio"
                                                 name="precio">
                                         </div>
                                         <div class="col col-6 mt-3">
@@ -336,18 +336,19 @@
                                         </div>
                                         <div class="col col-6 mt-3">
                                             <label for="" id="estado-label">Estado</label>
-                                            <input class="form-control w-100" type="number" placeholder=""
-                                                aria-label=".form-control example" id="estado" name="estado">
+                                            <select class="form-select w-100" type="number" placeholder=""
+                                            aria-label=".form-control example" id="estado" name="estado"></select>
+                                        </div>
+                                        <div class="col col-6 mt-3">
+                                            <input class="form-control input-hide" type="text" id="id" name="id">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col col-9 mx-auto my-5 color-producto text-center">
-                                            <label class="">Añadir imagen del producto</label>
-                                            <div class="clsbox-1" >
-                                                <div class="dropzone clsbox" id="file" name="file">
-                                                    <div class="dz-default dz-message"><button class="dz-button"
-                                                            type="button"><i class="bi bi-cloud-arrow-up-fill"></i></button></div>
-                                                </div>
+                                            <label for="">Imagen del producto</label>
+                                            <div class="img-container">
+                                                <input id="archivo" class="form-control p-2 my-2" type="file" name="archivo" accept=".jpg, .png" onchange="previewFile()">
+                                                <img src="" height="80" id="img-thumbnail">
                                             </div>
                                         </div>
 
@@ -366,117 +367,6 @@
         </div>
     </div>
     <!-- FIN MODAL AGREGAR PRODUCTO-->
-    <!-- INICIO MODAL ACTUALIZAR PRODUCTO-->
-    <div class="modal modal-agregar modal-actualizar fade" id="modal-actualizar" tabindex="-1"
-        aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-xl">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="container">
-                        <div class="row agregar-content">
-                            <div class="col">
-                                <div class="row mt-3">
-                                    <input class="form-control form-control-lg nombre-producto" type="text"
-                                        placeholder="Ingresar nombre del producto"
-                                        aria-label=".form-control-lg example">
-                                    <textarea class="form-control w-100" placeholder="Ingresar descripción del producto"
-                                        id="exampleFormControlTextarea1" rows="2"></textarea>
-                                </div>
-                                <div class="row">
-                                    <div class="col col-6 mt-3">
-                                        <label for="cmb-subcategoría">Subcategoría</label>
-                                        <select class="form-select" aria-label="Default select example">
-                                            <option selected disabled>Seleccione una opción</option>
-                                            <option value="1">Lapiceros normales</option>
-                                            <option value="2">Lápices redondos</option>
-                                            <option value="3">Plumones delgados</option>
-                                        </select>
-                                    </div>
-                                    <div class="col col-6 mt-3">
-                                        <label for="cmb-proveedor">Proveedor</label>
-                                        <select class="form-select" aria-label="Default select example">
-                                            <option selected disabled>Seleccione una opción</option>
-                                            <option value="1">ACOSA</option>
-                                            <option value="2">ARANDA</option>
-                                            <option value="3">COPLASA</option>
-                                        </select>
-                                    </div>
-                                    <div class="col col-6 mt-3">
-                                        <label for="cmb-marca">Marca</label>
-                                        <select class="form-select" aria-label="Default select example">
-                                            <option selected disabled>Seleccione una opción</option>
-                                            <option value="1">Studio</option>
-                                            <option value="2">Big</option>
-                                            <option value="3">Norma</option>
-                                        </select>
-                                    </div>
-                                    <div class="col col-6 mt-3">
-                                        <label for="cmb-precio">Precio</label>
-                                        <input class="form-control w-100" type="text" placeholder=""
-                                            aria-label=".form-control example">
-                                    </div>
-                                    <div class="col col-6 mt-3">
-                                        <label for="">Color</label>
-                                        <select class="form-select" aria-label="Default select example">
-                                            <option selected disabled>Seleccione una opción</option>
-                                            <option value="1">Rojo</option>
-                                            <option value="2">Verde</option>
-                                            <option value="3">Azul</option>
-                                        </select>
-                                    </div>
-                                    <div class="col col-6 mt-3">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <label for="">Cantidad actual</label>
-                                                <div class="stock-container">
-                                                    <div class="col col-12">
-                                                        <input type="text" class="form-control w-100" id="stock-actual"
-                                                            value="" placeholder="10" disabled>
-                                                    </div>
-                                                    <div class="col col-12 px-0 mt-2">
-                                                        <div class="row input-stock mb-2">
-                                                            <div class="col col-6 mx-0">
-                                                                <div class="controls-producto d-flex ">
-                                                                    <input class="w-100 ps-3" type="number" value="1"
-                                                                        min="1" max="100" step="1" />
-                                                                </div>
-                                                            </div>
-                                                            <div
-                                                                class="col col-6 d-flex justify-content-evenly  col-btn-stock">
-                                                                <button class="btn btn-stock btn-main " type="button"><i
-                                                                        class="bi bi-dash"></i></button>
-                                                                <button class="btn btn-stock btn-main" type="button"><i
-                                                                        class="bi bi-plus"></i></button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col col-9 mx-auto my-5 color-producto text-center">
-                                        <label class="">Añadir imagen del producto</label>
-                                        <div class="drop-container">
-                                            <i class="bi bi-cloud-arrow-up-fill"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer d-flex justify-content-between">
-                    <button class="btn btn-cancel btn-second" type="button" data-bs-target="" data-bs-toggle="modal"
-                        data-bs-dismiss="modal">Cancelar</button>
-                    <button class="btn btn-guardar" type="button" data-bs-target="#modal-agregar2"
-                        data-bs-toggle="modal" data-bs-dismiss="modal">Guardar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- FIN MODAL ACTUALIZAR -->
     <!-- INICIO MODAL DELETE -->
     <div class="modal modal-eliminar fade" id="modal-eliminar" aria-hidden="true"
         aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
@@ -518,6 +408,7 @@
 
     <script src="https://unpkg.com/dropzone@6.0.0-beta.1/dist/dropzone-min.js"></script>
 
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../../controllers/componentes.js"></script>
     <script src="../../controllers/private/productos.js"></script>
     <script src="../../controllers/private/dashboard.js"></script>
