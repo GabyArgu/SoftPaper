@@ -217,16 +217,14 @@ class Productos extends Validator
     */
     public function readAll()
     {
-        $sql = 'SELECT Distinct on (nombre_producto) nombre_producto, uuid_producto, imagen_producto, nombre_subcategoria_p, precio_producto, uuid_color_producto, uuid_color_stock, stock, nombre_marca, nombre_proveedor, descripcion_producto, estado_producto
+        $sql = "SELECT Distinct on (nombre_producto) nombre_producto, uuid_producto, imagen_producto, nombre_subcategoria_p, precio_producto, uuid_color_producto, uuid_color_stock, stock, nombre_marca, nombre_proveedor, descripcion_producto, estado_producto
         FROM producto INNER JOIN estado_producto USING(uuid_estado_producto)
 		INNER JOIN subcategoria_producto USING(uuid_subcategoria_p)
 		INNER JOIN color_stock USING(uuid_producto)
 		INNER JOIN marca USING(uuid_marca)
 		INNER JOIN detalle_producto USING(uuid_producto)
 		INNER JOIN proveedor USING(uuid_proveedor)
-		WHERE NOT uuid_estado_producto = '20b898d6-140f-4ebe-ae05-f49667c9f0a2' AND NOT stock = 0
-		ORDER BY  nombre_producto
-        ';
+		ORDER BY  nombre_producto, stock DESC";
         
         $params = null;
         return Database::getRows($sql, $params);
@@ -234,9 +232,10 @@ class Productos extends Validator
 
     public function readOne()
     {
-        $sql = 'SELECT nombre_producto, descripcion_producto, imagen_producto, precio_producto, uuid_subcategoria_p, uuid_marca, uuid_estado_producto,  uuid_proveedor, uuid_color_producto, stock, (SELECT uuid_categoria_p FROM subcategoria_producto WHERE uuid_subcategoria_p = (SELECT uuid_subcategoria_p FROM producto WHERE uuid_producto = ?))
+        $sql = 'SELECT Distinct on (nombre_producto) nombre_producto, descripcion_producto, imagen_producto, precio_producto, uuid_subcategoria_p, uuid_marca, uuid_estado_producto,  uuid_proveedor, uuid_color_producto, stock, (SELECT uuid_categoria_p FROM subcategoria_producto WHERE uuid_subcategoria_p = (SELECT uuid_subcategoria_p FROM producto WHERE uuid_producto = ?))
         FROM producto INNER JOIN color_stock USING(uuid_producto) INNER JOIN detalle_producto USING(uuid_producto)
-        WHERE uuid_producto = ?;';
+        WHERE uuid_producto = ?
+		ORDER BY  nombre_producto, stock DESC;';
         $params = array($this->id, $this->id);
         return Database::getRow($sql, $params);
     }
@@ -353,14 +352,58 @@ class Productos extends Validator
             return Database::executeRow($sql, $params);
         } 
     }
+    /* */
+    public function readProductStock()
+    {
+        $sql = 'SELECT 	stock
+        FROM color_stock 
+		WHERE uuid_producto = ? and uuid_color_producto = ?';
+        $params = array($this->id, $this->color);
+        return Database::getRow($sql, $params);
+    }
+
     /* DELETE */
-    /* Función para inhabilitar un usuario ya que no los borraremos de la base*/
+    /* Funciones para inhabilitar un producto ya que no los borraremos de la base*/
+    /* Función que actualiza el estado del producto a sin existencias*/
     public function deleteRow()
     {
-        //No eliminaremos registros, solo los inhabilitaremos
-        $sql = 'UPDATE producto SET "estadoProducto" = 3 WHERE "idProducto" = ?';
+        //No eliminaremos registros, solo los inhabilitaremos, borraremos el stock, y borraremos sus registros en tablas foraneas, dejando uno para que se pueda mostrar en la tabla
+        $sql = "UPDATE producto SET uuid_estado_producto = (SELECT uuid_estado_producto FROM estado_producto WHERE estado_producto = 'Sin existencias') WHERE uuid_producto = ?;";
         $params = array($this->id);
         return Database::executeRow($sql, $params);
     }
 
+    /* Función que borra todos los registros del producto en la tabla color_stock dejando uno para que se muestre en el readRows*/
+    public function deleteColorStock()
+    {
+        $sql = 'DELETE FROM color_stock
+        WHERE uuid_color_stock IN 
+        (SELECT uuid_color_stock
+        FROM (SELECT uuid_color_stock,
+                ROW_NUMBER() OVER (partition BY uuid_producto ORDER BY uuid_color_stock) AS RowNumber
+                FROM color_stock) AS T
+        WHERE T.RowNumber > 1) AND uuid_producto = ?;';
+        $params = array($this->id);
+        return Database::executeRow($sql, $params);
+    }
+    /* Función que borra todos los registros del producto en la tabla detalle_producto dejando uno para que se muestre en el readRows*/
+    public function deleteProvider()
+    {
+        $sql = 'DELETE FROM detalle_producto
+        WHERE uuid_detalle_producto IN 
+        (SELECT uuid_detalle_producto
+        FROM (SELECT uuid_detalle_producto,
+                ROW_NUMBER() OVER (partition BY uuid_producto ORDER BY uuid_detalle_producto) AS RowNumber
+            FROM detalle_producto) AS T
+        WHERE T.RowNumber > 1) AND uuid_producto = ?;';
+        $params = array($this->id);
+        return Database::executeRow($sql, $params);
+    }
+    /* Función que actualiza el stock del producto después de vaciar las tablas necesarias*/
+    public function colorAfterDelete()
+    {
+        $sql = 'UPDATE color_stock SET stock = 0 WHERE uuid_producto = ?;';
+        $params = array($this->id);
+        return Database::executeRow($sql, $params);
+    }
 }

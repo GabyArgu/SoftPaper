@@ -315,17 +315,17 @@
                                                             <div class="row input-stock mb-2">
                                                                 <div class="col col-6 mx-0">
                                                                     <div class="controls-producto d-flex ">
-                                                                        <input class="w-100 ps-3" type="number"
+                                                                        <input class="w-100 ps-3" type="number" id="stock-nuevo"
                                                                             value="1" min="1" max="100" step="1" />
                                                                     </div>
                                                                 </div>
                                                                 <div
                                                                     class="col col-6 d-flex justify-content-evenly  col-btn-stock">
                                                                     <button class="btn btn-stock btn-main "
-                                                                        type="button"><i
+                                                                        type="button" type="button" id="quitar-stock" onclick="restarStock()"><i
                                                                             class="bi bi-dash"></i></button>
                                                                     <button class="btn btn-stock btn-main"
-                                                                        type="button"><i
+                                                                        type="button" id="añadir-stock" onclick="sumarStock()"><i
                                                                             class="bi bi-plus"></i></button>
                                                                 </div>
                                                             </div>
@@ -389,8 +389,11 @@
                 <div class="modal-footer d-flex mx-2 justify-content-between">
                     <button class="btn btn-cancel btn-second" type="button" data-bs-target="" data-bs-toggle="modal"
                         data-bs-dismiss="modal">Cancelar</button>
-                    <button class="btn btn-continuar btn-main" type="button" data-bs-target="" data-bs-toggle="modal"
+                        <form id="delete-form">
+                            <input type="hidden" id="id-delete" name="id-delete">
+                            <button class="btn btn-continuar btn-main" type="submit" 
                         data-bs-dismiss="modal">Continuar</button>
+                        </form>
                 </div>
             </div>
         </div>

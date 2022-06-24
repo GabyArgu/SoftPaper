@@ -58,7 +58,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
 const reInitTable = () => {
     table.destroy();
-    readRows(API_PRODUCTOS);
+    setTimeout(() => {
+        readRows(API_PRODUCTOS);
+
+    }, 100);
 
     setTimeout(() => {
         /*Inicializando y configurando tabla*/
@@ -69,7 +72,7 @@ const reInitTable = () => {
             $('#table').DataTable().columns([4, 5, 6]).visible($(this).is(':checked'))
         });
 
-    }, 300);
+    }, 600);
 }
 
 // Función para llenar la tabla con los datos de los registros. Se manda a llamar en la función readRows().
@@ -233,3 +236,87 @@ function previewFile() {
         preview.src = "";
     }
 }
+
+
+//Función para cambiar el stock al cambiar de color en el select
+document.getElementById("color").addEventListener("change", function () {
+    if(!document.getElementById("id").value.length == 0){
+        let selectValue = document.getElementById('color').value;
+        console.log(selectValue);
+        setStock();
+    }
+});
+
+//Funcion para asignar el atributo max del input max dinámicamente
+function setStock() {
+    let input = document.getElementById("stock");
+    // Petición para obtener los datos del producto solicitado.
+    fetch(API_PRODUCTOS + 'readStock', {
+        method: 'post',
+        body: new FormData(document.getElementById('save-form'))
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            // Se obtiene la respuesta en formato JSON.
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    //Le asignamos el valor del stock del color y producto seleccionado
+                    input.value = parseInt(response.dataset.stock);
+                } else {
+                    // Se presenta un mensaje de error cuando no existen datos para mostrar.
+                    sweetAlert(4, response.exception, null);
+                    input.value = 0;
+                    
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
+}
+
+let sumarStock = () => {
+    let nuevo = parseInt(document.getElementById("stock-nuevo").value);
+    let stock = parseInt(document.getElementById("stock").value);
+
+    if (!isNaN(nuevo)) {
+        let stockActualizado = stock + nuevo;
+        document.getElementById("stock-nuevo").value = "";
+        document.getElementById("stock").value = stockActualizado;
+    }
+
+
+}
+
+let restarStock = () => {
+    let nuevo = parseInt(document.getElementById("stock-nuevo").value);
+    let stock = parseInt(document.getElementById("stock").value);
+
+    if (!isNaN(nuevo)) {
+        if ((stock - nuevo) < 0) {
+            alert("No se puede tener stock en negativo")
+            document.getElementById("stock-nuevo").value = "";
+        }
+        else {
+            let stockActualizado = stock - nuevo;
+            document.getElementById("stock-nuevo").value = "";
+            document.getElementById("stock").value = stockActualizado;
+        }
+    }
+}
+
+// Función para mandar el id de la row seleccionada al modal eliminar.
+function openDelete(id) {
+    document.getElementById('id-delete').value = id;
+}
+
+// Método manejador de eventos que se ejecuta cuando se envía el modal de eliminar.
+document.getElementById('delete-form').addEventListener('submit', function (event) {
+    // Se evita recargar la página web después de enviar el formulario.
+    event.preventDefault();
+    //Llamamos al método que se encuentra en la api y le pasamos la ruta de la API y el id del formulario dentro de nuestro modal eliminar
+    confirmDelete(API_PRODUCTOS, 'delete-form');
+    reInitTable();
+});
+

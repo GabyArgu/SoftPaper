@@ -86,17 +86,19 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Producto inexistente';
                 }
                 break;
-            case 'readOneShow':
-                    if (!$productos->setId($_POST['id'])) {
-                        $result['exception'] = 'Producto incorrecto';
-                    } elseif ($result['dataset'] = $productos->readOneShow()) {
-                        $result['status'] = 1;
-                    } elseif (Database::getException()) {
-                        $result['exception'] = Database::getException();
-                    } else {
-                        $result['exception'] = 'Producto inexistente';
-                    }
-                    break;
+            case 'readStock':
+                if (!$productos->setId($_POST['id'])) {
+                    $result['exception'] = 'Producto incorrecto';
+                } elseif (!$productos->setColor($_POST['color'])) {
+                    $result['exception'] = 'Color incorrecto';
+                } elseif ($result['dataset'] = $productos->readProductStock()) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'Stock del producto en ese color inexistente';
+                }
+                break;
             case 'update':
                 //Especificamos los inputs por medio de su atributo name, y los capturamos con el método post
                 $_POST = $productos->validateForm($_POST);
@@ -113,9 +115,9 @@ if (isset($_GET['action'])) {
                 } elseif (!$productos->setProveedor($_POST['proveedor'])){
                     $result['exception'] = 'Proveedor inválido';
                 } elseif (!$productos->setMarca($_POST['marca'])){
-                    $result['exception'] = 'marca inválida';
+                    $result['exception'] = 'Marca inválida';
                 } elseif (!$productos->setPrecio($_POST['precio'])){
-                    $result['exception'] = 'Categoría inválida';
+                    $result['exception'] = 'Precio inválida';
                 } elseif (!$productos->setColor($_POST['color'])){
                     $result['exception'] = 'Color inválido';
                 } elseif (!$productos->setStock($_POST['stock'])){
@@ -150,9 +152,15 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Producto incorrecto';
                 } elseif (!$productos->readOne()) {
                     $result['exception'] = 'Producto inexistente';
+                } elseif (!$productos->deleteColorStock()) {
+                    $result['exception'] = 'Ocurrió un error al borrar el stock con los colores';
+                } elseif (!$productos->deleteProvider()) {
+                    $result['exception'] = 'Ocurrió un error al borrar los proveedores del producto';
+                } elseif (!$productos->colorAfterDelete()) {
+                    $result['exception'] = 'Ocurrió al vaciar el stock del producto';
                 } elseif ($productos->deleteRow()) {
                     $result['status'] = 1;
-                    $result['message'] = 'Producto inhabilitado correctamente';
+                    $result['message'] = 'Producto vaciado correctamente';
                 } else {
                     $result['exception'] = Database::getException();
                 }
