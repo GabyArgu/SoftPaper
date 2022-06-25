@@ -1861,8 +1861,6 @@ tbody .imgMP{
   display: none;
 }
 
-.dropzone{
-  border: 1px solid var(--azulMain) !important;
-  border-radius: 15%;
-  margin-top: .5rem;
+input.invalid, textarea.invalid{
+  background-color: rgb(255, 241, 240);
 }
