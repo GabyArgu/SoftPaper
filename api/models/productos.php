@@ -401,4 +401,24 @@ class Productos extends Validator
         $params = array($this->id);
         return Database::executeRow($sql, $params);
     }
+    /* Función que borra todos los registros del producto en la tabla detalle_producto dejando uno para que se muestre en el readRows*/
+    public function deleteProvider()
+    {
+        $sql = 'DELETE FROM detalle_producto
+        WHERE uuid_detalle_producto IN 
+        (SELECT uuid_detalle_producto
+        FROM (SELECT uuid_detalle_producto,
+                ROW_NUMBER() OVER (partition BY uuid_producto ORDER BY uuid_detalle_producto) AS RowNumber
+            FROM detalle_producto) AS T
+        WHERE T.RowNumber > 1) AND uuid_producto = ?;';
+        $params = array($this->id);
+        return Database::executeRow($sql, $params);
+    }
+    /* Función que actualiza el stock del producto después de vaciar las tablas necesarias*/
+    public function colorAfterDelete()
+    {
+        $sql = 'UPDATE color_stock SET stock = 0 WHERE uuid_producto = ?;';
+        $params = array($this->id);
+        return Database::executeRow($sql, $params);
+    }
 }
