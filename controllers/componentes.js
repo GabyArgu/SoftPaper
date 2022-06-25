@@ -428,3 +428,56 @@ function logOut() {
         }
     });
 }
+
+
+/* Validaciones */
+//Validación para inputs vacíos
+const validateEmptyField = (e) => {
+    let field = e.target;
+    let fieldValue = e.target.value;
+    if(fieldValue.trim().length === 0){
+        field.classList.add("invalid");
+    } else {
+        field.classList.remove("invalid")
+    }
+}
+
+//Validar solo números
+const validateNum = (evt) => {
+    // code is the decimal ASCII representation of the pressed key.
+    var code = (evt.which) ? evt.which : evt.keyCode;
+
+    if (code == 8) { // backspace.
+        return true;
+    } else if (code >= 48 && code <= 57) { // is a number.
+        return true;
+    } else { // other keys.
+        return false;
+    }
+}
+
+//Validar números decimales
+const validateNumDec = (e) => {
+    var soloNumeros=/^[0-9]([.][0-9]{1,2})?$/;
+    let fieldValue = e.target.value;
+    let field = e.target;
+    if(soloNumeros.test(fieldValue)){
+        field.classList.add("invalid");
+    } else {
+        field.classList.remove("invalid")
+    }
+}
+
+//Validar solo letras
+function validateChar (evt) {
+    let soloLetras=/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/;
+    let fieldValue = e.target.value;
+
+    if(soloLetras.test(fieldValue)){
+        console.log("true")
+        return true;
+    } else {
+        console.log("false")
+        return false;
+    }
+}

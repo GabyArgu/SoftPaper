@@ -53,14 +53,13 @@ document.addEventListener('DOMContentLoaded', function () {
             $('#table').DataTable().columns([4, 5, 6]).visible($(this).is(':checked'))
         });
 
-    }, 300);
+    }, 250);
 });
 
 const reInitTable = () => {
     table.destroy();
     setTimeout(() => {
         readRows(API_PRODUCTOS);
-
     }, 100);
 
     setTimeout(() => {
@@ -72,7 +71,7 @@ const reInitTable = () => {
             $('#table').DataTable().columns([4, 5, 6]).visible($(this).is(':checked'))
         });
 
-    }, 600);
+    }, 300);
 }
 
 // Función para llenar la tabla con los datos de los registros. Se manda a llamar en la función readRows().
@@ -135,6 +134,8 @@ function openCreate() {
     //Activamos el stock
     document.getElementById('stock').disabled = false;
     document.getElementById('update-stock').classList.add('input-hide')
+    // Se establece el campo de archivo como requerido.
+    document.getElementById('archivo').required = true;
     /* Se llama a la función que llena el select del formulario. Se encuentra en el archivo components.js, 
     * mandar de parametros la ruta de la api de la tabla que utiliza el select, y el id del select*/
     fillSelect(ENDPOINT_CATEGORIA, 'categoria', null);
@@ -221,8 +222,8 @@ function previewFile() {
     var preview = document.getElementById('img-thumbnail');
     var file = document.querySelector('input[type=file]').files[0];
     var reader = new FileReader();
-    
-    if(preview.classList.contains('input-hide')){
+
+    if (preview.classList.contains('input-hide')) {
         preview.classList.remove('input-hide');
     }
 
@@ -240,7 +241,7 @@ function previewFile() {
 
 //Función para cambiar el stock al cambiar de color en el select
 document.getElementById("color").addEventListener("change", function () {
-    if(!document.getElementById("id").value.length == 0){
+    if (!document.getElementById("id").value.length == 0) {
         let selectValue = document.getElementById('color').value;
         console.log(selectValue);
         setStock();
@@ -267,7 +268,7 @@ function setStock() {
                     // Se presenta un mensaje de error cuando no existen datos para mostrar.
                     sweetAlert(4, response.exception, null);
                     input.value = 0;
-                    
+
                 }
             });
         } else {
@@ -317,6 +318,69 @@ document.getElementById('delete-form').addEventListener('submit', function (even
     event.preventDefault();
     //Llamamos al método que se encuentra en la api y le pasamos la ruta de la API y el id del formulario dentro de nuestro modal eliminar
     confirmDelete(API_PRODUCTOS, 'delete-form');
-    reInitTable();
+
 });
 
+
+//Función que se ejecuta cada vez que apretamos una tecla dentro del input #search, sirve para buscador en tiempo real
+$(document).on('keyup', '#search', function () {
+    var valor = $(this).val();
+
+    table.destroy();
+    console.log(valor);
+    if (valor != "") {
+        //SearchRows se encuentra en componentes.js y mandamos la ruta de la api, el formulario el cual contiene nuestro input para buscar (id) y el input de buscar (id)
+        searchRows(API_PRODUCTOS, 'search-form', 'search');
+    }
+    else if (valor = "") {
+        //Cuando el input este vacío porque borramos el texto manualmente
+        readRows(API_PRODUCTOS);
+    }
+
+    setTimeout(() => {
+        /*Inicializando y configurando tabla*/
+        table = new DataTable('#table', options);
+
+        /*Función para mostrar y ocultar campos de la tabla*/
+        document.getElementById('checkTabla').addEventListener('change', function () {
+            $('#table').DataTable().columns([4, 5, 6]).visible($(this).is(':checked'))
+        });
+
+    }, 100);
+
+
+
+
+});
+
+//Función para refrescar la tabla manualmente al darle click al botón refresh
+document.getElementById('limpiar').addEventListener('click', function () {
+    table.destroy();
+    readRows(API_PRODUCTOS);
+
+    setTimeout(() => {
+        /*Inicializando y configurando tabla*/
+        table = new DataTable('#table', options);
+
+        /*Función para mostrar y ocultar campos de la tabla*/
+        document.getElementById('checkTabla').addEventListener('change', function () {
+            $('#table').DataTable().columns([4, 5, 6]).visible($(this).is(':checked'))
+        });
+
+    }, 250);
+});
+
+
+
+document.getElementById('nombre').addEventListener('keypress', function (event) {
+
+});
+
+
+
+
+
+document.getElementById('nombre').addEventListener("blur", (e) => validateEmptyField(e));
+document.getElementById('precio').addEventListener("blur", (e) => validateNumDec(e));
+document.getElementById('stock').addEventListener("blur", (e) => validateEmptyField(e));
+document.getElementById('descripcion').addEventListener("blur", (e) => validateEmptyField(e));

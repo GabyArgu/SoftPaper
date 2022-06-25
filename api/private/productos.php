@@ -47,7 +47,7 @@ if (isset($_GET['action'])) {
                 } elseif (!$productos->setMarca($_POST['marca'])){
                     $result['exception'] = 'marca inválida';
                 } elseif (!$productos->setPrecio($_POST['precio'])){
-                    $result['exception'] = 'Categoría inválida';
+                    $result['exception'] = 'Precio inválido';
                 } elseif (!$productos->setColor($_POST['color'])){
                     $result['exception'] = 'Color inválido';
                 } elseif (!$productos->setStock($_POST['stock'])){
@@ -117,7 +117,7 @@ if (isset($_GET['action'])) {
                 } elseif (!$productos->setMarca($_POST['marca'])){
                     $result['exception'] = 'Marca inválida';
                 } elseif (!$productos->setPrecio($_POST['precio'])){
-                    $result['exception'] = 'Precio inválida';
+                    $result['exception'] = 'Precio inválido';
                 } elseif (!$productos->setColor($_POST['color'])){
                     $result['exception'] = 'Color inválido';
                 } elseif (!$productos->setStock($_POST['stock'])){

@@ -248,21 +248,16 @@ class Productos extends Validator
     /* SEARCH */
     public function searchRows($value)
     {
-        $sql = 'SELECT "idProducto", "imagenPrincipal", "nombreProducto", "descripcionProducto", "precioProducto", ep."estadoProducto" 
-        FROM producto as p inner join "estadoProducto" as ep on p."estadoProducto" = ep."idEstadoProducto"
-        WHERE "nombreProducto" ILIKE ? OR "descripcionProducto" ILIKE ?
-        ORDER BY "idProducto"';
-        $params = array("%$value%", "%$value%");
-        return Database::getRows($sql, $params);
-    }
-
-    public function searchRowsPublic($value)
-    {
-        $sql = 'SELECT Distinct on ("idProducto") "idProducto", "imagenPrincipal", "nombreProducto", "descripcionProducto", "precioProducto", descuento, "estadoProducto", "idColorStock", "idColor", p."idSubCategoriaP"
-        FROM producto as p INNER JOIN "marca" USING("idMarca") INNER JOIN "colorStock" USING("idProducto")
-		WHERE ("nombreProducto" ILIKE ? OR "nombreMarca" ILIKE ?) AND "idSubCategoriaP" = ? AND "estadoProducto" = 1 
-		ORDER BY "idProducto"';
-        $params = array("%$value%", "%$value%", $this->id);
+        $sql = 'SELECT Distinct on (nombre_producto) nombre_producto, uuid_producto, imagen_producto, nombre_subcategoria_p, precio_producto, uuid_color_producto, uuid_color_stock, stock, nombre_marca, nombre_proveedor, descripcion_producto, estado_producto
+        FROM producto INNER JOIN estado_producto USING(uuid_estado_producto)
+		INNER JOIN subcategoria_producto USING(uuid_subcategoria_p)
+		INNER JOIN color_stock USING(uuid_producto)
+		INNER JOIN marca USING(uuid_marca)
+		INNER JOIN detalle_producto USING(uuid_producto)
+		INNER JOIN proveedor USING(uuid_proveedor)
+        WHERE "nombre_producto" ILIKE ?
+        ORDER BY  nombre_producto, stock DESC';
+        $params = array("%$value%");
         return Database::getRows($sql, $params);
     }
 
