@@ -12,7 +12,6 @@ if (isset($_GET['action'])) {
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'message' => null, 'exception' => null);
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
-    if (isset($_SESSION['uuid_empleado'])) {
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
             // Accion de leer toda la información------------------.
@@ -27,7 +26,7 @@ if (isset($_GET['action'])) {
                 break;
             // Accion de buscar información de los colores disponibles------------------.        
             case 'search':
-                if ($result['dataset'] = $marca->searchRows($_POST['search'])) {
+                if ($result['dataset'] = $marca->searchRows($_POST['buscar-marca'])) {
                     $result['status'] = 1;
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
@@ -39,12 +38,12 @@ if (isset($_GET['action'])) {
             case 'create':
                 //Especificamos los inputs por medio de su atributo name, y los capturamos con el método post
                 $_POST = $marca->validateForm($_POST);
-                if (!$marca->setMarca($_POST['nombre'])) {
-                    $result['exception'] = 'Nombre inválido';
+                if (!$marca->setMarca($_POST['nombre_marca'])) {
+                    $result['exception'] = 'Marca inválida';
                 } elseif (!is_uploaded_file($_FILES['archivo']['tmp_name'])) {
                     $result['exception'] = 'Seleccione una imagen';
                 } elseif (!$marca->setImagen($_FILES['archivo'])) {
-                    $result['exception'] = $subcategorias->getFileError();
+                    $result['exception'] = $marca->getFileError();
                 } elseif (!$marca->setEstado(1)) {
                     $result['exception'] = 'Estado inválido';
                 } elseif ($marca->createRow()) {
@@ -122,9 +121,6 @@ if (isset($_GET['action'])) {
         header('content-type: application/json; charset=utf-8');
         // Se imprime el resultado en formato JSON y se retorna al controlador.
         print(json_encode($result));
-    } else {
-        print(json_encode('Acceso denegado'));
-    }
 } else {
     print(json_encode('Recurso no disponible'));
 }

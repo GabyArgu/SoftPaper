@@ -12,7 +12,6 @@ if (isset($_GET['action'])) {
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'message' => null, 'exception' => null);
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
-    if (isset($_SESSION['uuid_empleado'])) {
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
             // Accion de leer toda la información------------------.
@@ -27,7 +26,7 @@ if (isset($_GET['action'])) {
                 break;
             // Accion de buscar información de los colores disponibles------------------.        
             case 'search':
-                if ($result['dataset'] = $proveedor->searchRows($_POST['search2'])) {
+                if ($result['dataset'] = $proveedor->searchRows($_POST['buscar-proveedor'])) {
                     $result['status'] = 1;
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
@@ -39,13 +38,11 @@ if (isset($_GET['action'])) {
             case 'create':
                 //Especificamos los inputs por medio de su atributo name, y los capturamos con el método post
                 $_POST = $proveedor->validateForm($_POST);
-                if (!$proveedor->setProveedor($_POST['nombre-prov'])) {
-                    $result['exception'] = 'Nombre inválido';
+                if (!$proveedor->setProveedor($_POST['nombre_prov'])) {
+                    $result['exception'] = 'Nombre invalido';
                 } elseif (!$proveedor->setEstado(1)) {
                     $result['exception'] = 'Estado inválido';
-                } elseif (!$proveedor->setDireccion($_POST['direccion-prov'])) {
-                    $result['exception'] = 'Dirección inválida';
-                }elseif (!$proveedor->setTelefono($_POST['telefono-prov'])) {
+                }elseif (!$proveedor->setTelefono($_POST['tele_prov'])) {
                     $result['exception'] = 'Telefono inválido';
                 }elseif ($proveedor->createRow()) {
                     $result['status'] = 1;
@@ -56,7 +53,7 @@ if (isset($_GET['action'])) {
                 break;
             // Accion leer un elemento de toda la información------------------.        
             case 'readOne':
-                if (!$proveedor->setId($_POST['id-prov'])) {
+                if (!$proveedor->setId($_POST['id_prov'])) {
                     $result['exception'] = 'Proveedor incorrecto';
                 } elseif ($result['dataset'] = $proveedor->readOne()) {
                     $result['status'] = 1;
@@ -120,9 +117,6 @@ if (isset($_GET['action'])) {
         header('content-type: application/json; charset=utf-8');
         // Se imprime el resultado en formato JSON y se retorna al controlador.
         print(json_encode($result));
-    } else {
-        print(json_encode('Acceso denegado'));
-    }
 } else {
     print(json_encode('Recurso no disponible'));
 }

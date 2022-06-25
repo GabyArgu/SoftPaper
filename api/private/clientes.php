@@ -25,7 +25,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'search':
-                if ($result['dataset'] = $productos->searchRows($_POST['search'])) {
+                if ($result['dataset'] = $clientes->searchRows($_POST['search'])) {
                     $result['status'] = 1;
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
@@ -35,51 +35,33 @@ if (isset($_GET['action'])) {
                 break;
             case 'create':
                 //Especificamos los inputs por medio de su atributo name, y los capturamos con el método post
-                $_POST = $productos->validateForm($_POST);
-                if (!$productos->setNombre($_POST['nombre'])) {
+                $_POST = $clientes->validateForm($_POST);
+                if (!$clientes->setNombre($_POST['nombre_c'])) {
                     $result['exception'] = 'Nombre inválido';
-                }  elseif (!$productos->setDescripcion($_POST['descripcion'])) {
-                    $result['exception'] = 'Descripción inválida';
-                } elseif (!$productos->setSubcategoria($_POST['subcategoria'])){
-                    $result['exception'] = 'Subcategoría inválida';
-                } elseif (!$productos->setProveedor($_POST['proveedor'])){
-                    $result['exception'] = 'Proveedor inválido';
-                } elseif (!$productos->setMarca($_POST['marca'])){
-                    $result['exception'] = 'marca inválida';
-                } elseif (!$productos->setPrecio($_POST['precio'])){
-                    $result['exception'] = 'Categoría inválida';
-                } elseif (!$productos->setColor($_POST['color'])){
-                    $result['exception'] = 'Color inválido';
-                }elseif (!$productos->setDescuento($_POST['descuento'])){
-                    $result['exception'] = 'Descuento inválido';
-                }elseif (!$productos->setStock($_POST['stock'])){
-                    $result['exception'] = 'Stock inválido';
-                }  elseif (!is_uploaded_file($_FILES['archivo']['tmp_name'])) {
-                    $result['exception'] = 'Seleccione una imagen';
-                } elseif (!$productos->setImagen($_FILES['archivo'])) {
-                    $result['exception'] = $productos->getFileError();
-                } elseif (!$productos->setEstado(1)) {
+                } elseif (!$clientes->setDireccion($_POST['direccion_c'])) {
+                    $result['exception'] = 'Dirección inválida';
+                } elseif (!$clientes->setNrc($_POST['nrc_c'])){
+                    $result['exception'] = 'NRC inválido';
+                } elseif (!$clientes->setDUI($_POST['dui_c'])){
+                    $result['exception'] = 'DUI inválido';
+                } elseif (!$clientes->setNIT($_POST['nit_c'])){
+                    $result['exception'] = 'NIT inválido';
+                } elseif (!$clientes->setTelefono($_POST['telefono_c'])){
+                    $result['exception'] = 'Teléfono inválido';
+                } elseif (!$clientes->setGiro($_POST['giro_c'])){
+                    $result['exception'] = 'Giro inválido';
+                } elseif (!$clientes->setEstado($_POST['estado_c'])){
                     $result['exception'] = 'Estado inválido';
-                } elseif ($productos->createRow()) {
+                } elseif ($clientes->createRow()) {
                     $result['status'] = 1;
-                    if ($productos->saveFile($_FILES['archivo'], $productos->getRuta(), $productos->getImagen())) {
-                        
-                        if (!$productos->insertStock($productos->getLastId())) {
-                            $result['exception'] = 'Ocurrió un error al insertar el stock';
-                        } else {
-                            $result['message'] = 'Producto creado correctamente';
-                        }
-                    } else {
-                        $result['message'] = 'Producto creado pero no se guardó la imagen';
-                    }
                 } else {
                     $result['exception'] = Database::getException();
                 }
                 break;
             case 'readOne':
-                if (!$productos->setId($_POST['id'])) {
-                    $result['exception'] = 'Producto incorrecto';
-                } elseif ($result['dataset'] = $productos->readOne()) {
+                if (!$clientes->setId($_POST['id'])) {
+                    $result['exception'] = 'ID incorrecto';
+                } elseif ($result['dataset'] = $clientes->readOne()) {
                     $result['status'] = 1;
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
@@ -100,58 +82,39 @@ if (isset($_GET['action'])) {
                     break;
             case 'update':
                 //Especificamos los inputs por medio de su atributo name, y los capturamos con el método post
-                $_POST = $productos->validateForm($_POST);
-                if (!$productos->setId($_POST['id'])) {
-                    $result['exception'] = 'Producto incorrecto';
-                } elseif (!$data = $productos->readOne()) {
+                $_POST = $clientes->validateForm($_POST);
+                if (!$clientes->setId($_POST['id'])) {
+                    $result['exception'] = 'Id incorrecto';
+                } elseif (!$data = $clientes->readOne()) {
                     $result['exception'] = 'Producto inexistente';
-                }elseif (!$productos->setNombre($_POST['nombre'])) {
+                }elseif (!$clientes->setNombre($_POST['unombre_c'])) {
                     $result['exception'] = 'Nombre inválido';
-                }  elseif (!$productos->setDescripcion($_POST['descripcion'])) {
-                    $result['exception'] = 'Descripción inválida';
-                } elseif (!$productos->setSubcategoria($_POST['subcategoria'])){
-                    $result['exception'] = 'Subcategoría inválida';
-                } elseif (!$productos->setProveedor($_POST['proveedor'])){
-                    $result['exception'] = 'Proveedor inválido';
-                } elseif (!$productos->setMarca($_POST['marca'])){
-                    $result['exception'] = 'marca inválida';
-                } elseif (!$productos->setPrecio($_POST['precio'])){
-                    $result['exception'] = 'Precio inválido';
-                } elseif (!$productos->setColor($_POST['color'])){
-                    $result['exception'] = 'Color inválido';
-                }elseif (!$productos->setDescuento($_POST['descuento'])){
-                    $result['exception'] = 'Descuento inválido';
-                }elseif (!$productos->setStock($_POST['stock'])){
-                    $result['exception'] = 'Stock inválido';
-                }elseif (!$productos->setEstado($_POST['estado'])) {
+                }  elseif (!$clientes->setDUI($_POST['udui_c'])) {
+                    $result['exception'] = 'DUI inválido';
+                } elseif (!$clientes->setNIT($_POST['unit_c'])){
+                    $result['exception'] = 'NIT inválido';
+                } elseif (!$clientes->setDireccion($_POST['udireccion_c'])){
+                    $result['exception'] = 'Dirección inválida';
+                } elseif (!$clientes->setTelefono($_POST['utelefono_c'])){
+                    $result['exception'] = 'Teléfono inválido';
+                } elseif (!$clientes->setNrc($_POST['unrc_c'])){
+                    $result['exception'] = 'NRC inválido';
+                } elseif (!$clientes->setGiro($_POST['ugiro_c'])){
+                    $result['exception'] = 'Giro inválido';
+                } elseif (!$clientes->setMunicipio($_POST['umunicipio_c'])){
+                    $result['exception'] = 'Municipio inválido';
+                } elseif (!$clientes->setEstado($_POST['uestado_c'])) {
                     $result['exception'] = 'Estado inválido';
-                } elseif (!$productos->updateStock()) {
-                    $result['exception'] = 'Ocurrió un error al actualizar el stock';
-                } elseif (!is_uploaded_file($_FILES['archivo']['tmp_name'])) {
-                    if ($productos->updateRow($data['imagenPrincipal'])) {
-                        $result['status'] = 1;
-                        $result['message'] = 'Producto modificado correctamente';
-                    } else {
-                        $result['exception'] = Database::getException();
-                    }
-                } elseif (!$productos->setImagen($_FILES['archivo'])) {
-                    $result['exception'] = $subcategorias->getFileError();
-                } elseif ($productos->updateRow($data['imagenPrincipal'])) {
-                    $result['status'] = 1;
-                    if ($productos->saveFile($_FILES['archivo'], $productos->getRuta(), $productos->getImagen())) {
-                    } else {
-                        $result['message'] = 'Producto actualizado pero no se guardó la imagen';
-                    }
                 } else {
                     $result['exception'] = Database::getException();
                 }
                 break;
             case 'delete':
-                if (!$productos->setId($_POST['id-delete'])) {
+                if (!$clientes->setId($_POST['id'])) {
                     $result['exception'] = 'Producto incorrecto';
-                } elseif (!$productos->readOne()) {
+                } elseif (!$clientes->readOne()) {
                     $result['exception'] = 'Producto inexistente';
-                } elseif ($productos->deleteRow()) {
+                } elseif ($clientes->deleteRow()) {
                     $result['status'] = 1;
                     $result['message'] = 'Producto inhabilitado correctamente';
                 } else {

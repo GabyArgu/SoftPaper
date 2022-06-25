@@ -291,7 +291,7 @@ public function validateNIT($value)
 public function validateNRC($value)
 {
     // Se verifica que el número tenga el formato 000000-0.
-    if (preg_match('/^[0-9]{6}[-][0-9]{1}$/', $value)) {
+    if (preg_match('/^[0-9]{8}$/', $value)) {
         return true;
     } else {
         return false;

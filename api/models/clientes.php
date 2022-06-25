@@ -43,7 +43,7 @@ class Cliente extends Validator
 
     public function setDireccion($value)
     {
-        if ($this->validateAlphabetic($value)) {
+        if ($this->validateAlphanumeric($value, 1, 50)) {
             $this->direccion = $value;
             return true;
         } else {
@@ -103,7 +103,7 @@ class Cliente extends Validator
 
     public function setGiro($value)
     {
-        if ($this->validateNaturalNumber($value)) {
+        if ($this->validateString($value, 1, 50)) {
             $this->giro = $value;
             return true;
         } else {
@@ -190,9 +190,10 @@ class Cliente extends Validator
 
     public function readOne()
     {
-        $sql = 'SELECT p."idProducto", "idSubCategoriaP", "idProveedor", "idMarca", "imagenPrincipal", "nombreProducto", "descripcionProducto", "precioProducto", "estadoProducto", "idColor", stock, descuento 
-        FROM producto as p inner join "colorStock" as cs on p."idProducto" = cs."idProducto"
-        WHERE p."idProducto" =  ?';
+        $sql = 'SELECT cc."uuid_cliente", "nombre_cliente", "direccion_cliente", "nombre_municipio", "nrc_cliente", "nit_cliente", "dui_cliente", "telefono_cliente", "giro_cliente", "estado_cliente" 
+        FROM cliente as cc inner join "municipio" as m on cc."uuid_municipio" = m."uuid_municipio"
+		inner join "giro_cliente" as g on cc."uuid_giro_cliente" = g."uuid_giro_cliente"
+        WHERE cc."uuid_cliente" = ?';
         $params = array($this->id);
         return Database::getRow($sql, $params);
     }
@@ -225,21 +226,12 @@ class Cliente extends Validator
     /* SEARCH */
     public function searchRows($value)
     {
-        $sql = 'SELECT "idProducto", "imagenPrincipal", "nombreProducto", "descripcionProducto", "precioProducto", ep."estadoProducto" 
-        FROM producto as p inner join "estadoProducto" as ep on p."estadoProducto" = ep."idEstadoProducto"
-        WHERE "nombreProducto" ILIKE ? OR "descripcionProducto" ILIKE ?
-        ORDER BY "idProducto"';
+        $sql = 'SELECT "uuid_cliente", "nombre_cliente", "direccion_cliente", m."nombre_municipio", "nrc_cliente", "nit_cliente", "dui_cliente", "telefono_cliente", g."giro_cliente", "estado_cliente"
+        FROM cliente as cc inner join "municipio" as m on cc."uuid_municipio" = m."uuid_municipio"
+		inner join "giro_cliente" as g on cc."uuid_giro_cliente" = g."uuid_giro_cliente"
+        WHERE "nombre_cliente" ILIKE ? OR "dui_cliente" ILIKE ?
+        ORDER BY "uuid_cliente"';
         $params = array("%$value%", "%$value%");
-        return Database::getRows($sql, $params);
-    }
-
-    public function searchRowsPublic($value)
-    {
-        $sql = 'SELECT Distinct on ("idProducto") "idProducto", "imagenPrincipal", "nombreProducto", "descripcionProducto", "precioProducto", descuento, "estadoProducto", "idColorStock", "idColor", p."idSubCategoriaP"
-        FROM producto as p INNER JOIN "marca" USING("idMarca") INNER JOIN "colorStock" USING("idProducto")
-		WHERE ("nombreProducto" ILIKE ? OR "nombreMarca" ILIKE ?) AND "idSubCategoriaP" = ? AND "estadoProducto" = 1 
-		ORDER BY "idProducto"';
-        $params = array("%$value%", "%$value%", $this->id);
         return Database::getRows($sql, $params);
     }
 
@@ -256,10 +248,10 @@ class Cliente extends Validator
     /* CREATE */
     public function createRow()
     {
-        $sql = 'INSERT INTO producto(
-        "idSubCategoriaP", "idProveedor", "idMarca", "nombreProducto", "descripcionProducto", "precioProducto", "estadoProducto", "imagenPrincipal", descuento)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING "idProducto";';
-        $params = array($this->subcategoria, $this->proveedor, $this->marca, $this->nombre, $this->descripcion, $this->precio, $this->estado, $this->imagen, $this->descuento);
+        $sql = 'INSERT INTO cliente(
+            "nombre_cliente", "direccion_cliente", "uuid_municipio", "nrc_cliente", "nit_cliente", "dui_cliente", "telefono_cliente", "uuid_giro_cliente", "estado_cliente")
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING "uuid_cliente";';
+        $params = array($this->nombre, $this->direccion, $this->municipio, $this->nrc, $this->nit, $this->dui, $this->telefono, $this->giro, $this->estado);
         return Database::executeRow($sql, $params);
     }
 
@@ -304,9 +296,10 @@ class Cliente extends Validator
     /* Función para inhabilitar un usuario ya que no los borraremos de la base*/
     public function deleteRow()
     {
-        //No eliminaremos registros, solo los inhabilitaremos
-        $sql = 'UPDATE producto SET "estadoProducto" = 3 WHERE "idProducto" = ?';
-        $params = array($this->id);
+        //No eliminaremos los clientes, solo los inhabilitaremos
+        $this->estado = 0;
+        $sql = 'UPDATE cliente SET "estado_cliente" = ? WHERE "uuid_cliente" = ?';
+        $params = array($this->estado, $this->id);
         return Database::executeRow($sql, $params);
     }
 

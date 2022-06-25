@@ -86,7 +86,6 @@ class Marca extends Validator
     public function readAll()
     {
         $sql = 'SELECT uuid_marca, nombre_marca, imagen_marca, estado_marca FROM marca WHERE estado_marca = true;';
-        
         $params = null;
         return Database::getRows($sql, $params);
     }
@@ -105,9 +104,9 @@ class Marca extends Validator
     /* SEARCH */
     public function searchRows($value)
     {
-        $sql = 'SELECT "idMarca", "nombreMarca", "imagenMarca", e.estado FROM marca m INNER JOIN estado as e on m.estado = e."idEstado" 
-        WHERE "nombreMarca" ILIKE ?
-		ORDER BY "idMarca"';
+        $sql = 'SELECT "uuid_marca", "nombre_marca", "imagen_marca", "estado_marca" FROM marca
+        WHERE "nombre_marca" ILIKE ?
+		ORDER BY "uuid_marca"';
         $params = array("%$value%");
         return Database::getRows($sql, $params);
     }
@@ -116,7 +115,7 @@ class Marca extends Validator
     public function createRow()
     {
         $sql = 'INSERT INTO marca(
-            "nombreMarca", "imagenMarca", estado)
+            "nombre_marca", "imagen_marca", "estado_marca")
             VALUES (?, ?, ?);';
         $params = array($this->marca, $this->imagen, $this->estado);
         return Database::executeRow($sql, $params);
