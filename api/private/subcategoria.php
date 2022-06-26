@@ -40,7 +40,7 @@ if (isset($_GET['action'])) {
                 break;
             // Accion de buscar información de las subcategorias disponibles------------------.     
             case 'search':
-                if ($result['dataset'] = $subcategorias->searchRows($_POST['search'])) {
+                if ($result['dataset'] = $subcategorias->searchRows($_POST['buscar-subcategoria'])) {
                     $result['status'] = 1;
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
@@ -52,12 +52,10 @@ if (isset($_GET['action'])) {
             case 'create':
                 //Especificamos los inputs por medio de su atributo name, y los capturamos con el método post
                 $_POST = $subcategorias->validateForm($_POST);
-                if (!$subcategorias->setNombre($_POST['nombre'])) {
+                if (!$subcategorias->setNombre($_POST['nombre_sub'])) {
                     $result['exception'] = 'Nombre inválido';
                 }  elseif (!$subcategorias->setCategoria($_POST['categoria'])){
                     $result['exception'] = 'Categoría inválida';
-                } elseif (!$subcategorias->setDescripcion($_POST['descripcion'])) {
-                    $result['exception'] = 'Descripción inválida';
                 } elseif (!is_uploaded_file($_FILES['archivo']['tmp_name'])) {
                     $result['exception'] = 'Seleccione una imagen';
                 } elseif (!$subcategorias->setImagen($_FILES['archivo'])) {
@@ -95,13 +93,11 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Subcategoria incorrecta';
                 } elseif (!$data = $subcategorias->readOne()) {
                     $result['exception'] = 'Subcategoria inexistente';
-                }elseif (!$subcategorias->setNombre($_POST['nombre'])) {
+                }elseif (!$subcategorias->setNombre($_POST['nombre_sub'])) {
                     $result['exception'] = 'Nombre inválido';
                 }  elseif (!$subcategorias->setCategoria($_POST['categoria'])){
                     $result['exception'] = 'Categoría inválida';
-                } elseif (!$subcategorias->setDescripcion($_POST['descripcion'])) {
-                    $result['exception'] = 'Descripción inválida';
-                } elseif (!$subcategorias->setEstado($_POST['estado'])) {
+                } elseif (!$subcategorias->setEstado($_POST['estado_sub'])) {
                     $result['exception'] = 'Estado inválido';
                 } elseif (!is_uploaded_file($_FILES['archivo']['tmp_name'])) {
                     if ($subcategorias->updateRow($data['imagenSubcategoria'])) {
@@ -125,17 +121,18 @@ if (isset($_GET['action'])) {
                 break;
             // Accion de desabilitar un elemento de toda la información------------------.        
             case 'delete':
-                if (!$productos->setId($_POST['id-delete'])) {
-                    $result['exception'] = 'Producto incorrecto';
-                } elseif (!$productos->readOne()) {
-                    $result['exception'] = 'Producto inexistente';
-                } elseif ($productos->deleteRow()) {
+                if (!$subcategorias->setId($_POST['id_delete'])) {
+                    $result['exception'] = 'Subcategoría incorrecto';
+                } elseif (!$subcategorias->readOne()) {
+                    $result['exception'] = 'Subcategoría inexistente';
+                } elseif ($subcategorias->deleteRow()) {
                     $result['status'] = 1;
-                    $result['message'] = 'Producto inhabilitado correctamente';
+                    $result['message'] = 'Subcategoría inhabilitado correctamente';
                 } else {
                     $result['exception'] = Database::getException();
                 }
-                break;   
+                break;
+            default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }
     } else {
