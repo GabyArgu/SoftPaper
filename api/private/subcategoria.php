@@ -100,7 +100,7 @@ if (isset($_GET['action'])) {
                 } elseif (!$subcategorias->setEstado($_POST['estado_sub'])) {
                     $result['exception'] = 'Estado inválido';
                 } elseif (!is_uploaded_file($_FILES['archivo']['tmp_name'])) {
-                    if ($subcategorias->updateRow($data['imagenSubcategoria'])) {
+                    if ($subcategorias->updateRow($data['imagen_subcategoria'])) {
                         $result['status'] = 1;
                         $result['message'] = 'Subcategoría modificada correctamente';
                     } else {
