@@ -1463,13 +1463,19 @@ tbody .imgMP{
 #modal-agregarM .modal-header, #modal-agregarM .modal-footer{
   border: none;
 }
-#modal-agregarP select{
+#modal-agregarP select, #modal-agregarSub select{
   border-radius: 15px;
   border-color: var(--azulModal);
 }
-#modal-agregarP h2, #modal-agregarM h2{
+#modal-agregarP h2, #modal-agregarM h2, #modal-agregarSub h2{
   color: var(--azulOscuro);
 }
+
+#nombre_sub{
+  font-size: 25px !important;
+}
+
+
 /* MARCA_PROVEEDOR FIN */
 
 /* RESPONSIVE */
