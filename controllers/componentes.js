@@ -5,7 +5,7 @@
 /*
 *   Constante para establecer la ruta del servidor.
 */
-const SERVER = 'http://localhost/softpaper/api/';
+const SERVER = 'http://localhost/SoftPaper/api/';
 
 /*
 *   Función para obtener todos los registros disponibles en los mantenimientos de tablas (operación read).
@@ -146,7 +146,7 @@ function saveRow(api, action, form, modal) {
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
                     // Se cierra la caja de dialogo (modal) del formulario.
-                    $(`#${modal}`).modal('hide');
+                    bootstrap.Modal.getInstance(document.getElementById(modal)).hide();
                     
                     //M.Modal.getInstance(document.getElementById(modal)).close();
                     sweetAlert(1, response.message, null);
@@ -172,11 +172,8 @@ function saveRow2(api, action, form, modal) {
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
                     // Se cierra la caja de dialogo (modal) del formulario.
-                    //$(modal).modal('hide');
-                    var myModalEl = document.getElementById(modal);
-                    var modalIns = bootstrap.Modal.getInstance(myModalEl)
-                    modalIns.hide();
-                    //M.Modal.getInstance(document.getElementById(modal)).close();
+                    bootstrap.Modal.getInstance(document.getElementById(modal)).hide();
+                    
                     // Se cargan nuevamente las filas en la tabla de la vista después de guardar un registro y se muestra un mensaje de éxito.
                     readRows2(api);
                     sweetAlert(1, response.message, null);
@@ -352,6 +349,49 @@ function fillSelectDependent(endpoint, select, selected, value) {
     const data = new FormData();
     data.append('idCategoria', value);
 
+    fetch(endpoint, {
+        method: 'post',
+        body: data
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            // Se obtiene la respuesta en formato JSON.
+            request.json().then(function (response) {
+                let content = '';
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Si no existe un valor para seleccionar, se muestra una opción para indicarlo.
+                    if (!selected) {
+                        content += '<option disabled selected>Seleccione una opción</option>';
+                    }
+                    // Se recorre el conjunto de registros devuelto por la API (dataset) fila por fila a través del objeto row.
+                    response.dataset.map(function (row) {
+                        // Se obtiene el dato del primer campo de la sentencia SQL (valor para cada opción).
+                        value = Object.values(row)[0];
+                        // Se obtiene el dato del segundo campo de la sentencia SQL (texto para cada opción).
+                        text = Object.values(row)[1];
+                        // Se verifica si el valor de la API es diferente al valor seleccionado para enlistar una opción, de lo contrario se establece la opción como seleccionada.
+                        if (value != selected) {
+                            content += `<option value="${value}">${text}</option>`;
+                        } else {
+                            content += `<option value="${value}" selected>${text}</option>`;
+                        }
+                    });
+                } else {
+                    content += '<option>No hay opciones disponibles</option>';
+                }
+                // Se agregan las opciones a la etiqueta select mediante su id.
+                document.getElementById(select).innerHTML = content;
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
+}
+
+function fillSelectDependentM(endpoint, select, selected, value) {
+    const data = new FormData();
+    data.append('uuid_departamento', value);
     fetch(endpoint, {
         method: 'post',
         body: data

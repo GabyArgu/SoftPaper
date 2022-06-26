@@ -86,7 +86,6 @@ class Marca extends Validator
     public function readAll()
     {
         $sql = 'SELECT uuid_marca, nombre_marca, imagen_marca, estado_marca FROM marca WHERE estado_marca = true;';
-        
         $params = null;
         return Database::getRows($sql, $params);
     }
@@ -94,7 +93,7 @@ class Marca extends Validator
     // Método para un dato en especifico de los colores existentes-------------------------.
     public function readOne()
     {
-        $sql = 'SELECT "idMarca", "nombreMarca", "imagenMarca", estado FROM marca  WHERE "idMarca" = ?';
+        $sql = 'SELECT "nombre_marca", "imagen_marca", "estado_marca" FROM marca  WHERE "uuid_marca" = ?';
         $params = array($this->id);
         return Database::getRow($sql, $params);
     }
@@ -105,9 +104,9 @@ class Marca extends Validator
     /* SEARCH */
     public function searchRows($value)
     {
-        $sql = 'SELECT "idMarca", "nombreMarca", "imagenMarca", e.estado FROM marca m INNER JOIN estado as e on m.estado = e."idEstado" 
-        WHERE "nombreMarca" ILIKE ?
-		ORDER BY "idMarca"';
+        $sql = 'SELECT "uuid_marca", "nombre_marca", "imagen_marca", "estado_marca" FROM marca
+        WHERE "nombre_marca" ILIKE ?
+		ORDER BY "uuid_marca"';
         $params = array("%$value%");
         return Database::getRows($sql, $params);
     }
@@ -116,7 +115,7 @@ class Marca extends Validator
     public function createRow()
     {
         $sql = 'INSERT INTO marca(
-            "nombreMarca", "imagenMarca", estado)
+            "nombre_marca", "imagen_marca", "estado_marca")
             VALUES (?, ?, ?);';
         $params = array($this->marca, $this->imagen, $this->estado);
         return Database::executeRow($sql, $params);
@@ -129,9 +128,9 @@ class Marca extends Validator
         ($this->imagen) ? $this->deleteFile($this->getRuta(), $current_image) : $this->imagen = $current_image;
 
         $sql = 'UPDATE marca
-            SET "nombreMarca"=?, "imagenMarca"=?, estado=?
-            WHERE "idMarca"=?;';
-            $params = array($this->marca, $this->imagen, $this->estado, $this->id);
+            SET "nombre_marca"=?, "imagen_marca"=?
+            WHERE "uuid_marca"= ?;';
+            $params = array($this->marca, $this->imagen, $this->id);
         return Database::executeRow($sql, $params);
     }
 
@@ -140,8 +139,9 @@ class Marca extends Validator
     public function deleteRow()
     {
         //No eliminaremos registros, solo los inhabilitaremos----------------------
-        $sql = 'UPDATE marca SET estado = 3 WHERE "idMarca" = ?';
-        $params = array($this->id);
+        $this->estado = 0;
+        $sql = 'UPDATE marca SET estado_marca = ? WHERE "uuid_marca" = ?';
+        $params = array($this->estado, $this->id);
         return Database::executeRow($sql, $params);
     }
 }
