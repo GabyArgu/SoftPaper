@@ -178,3 +178,15 @@ document.getElementById('delete-form').addEventListener('submit', function (even
         reInitTable();
     }, 100);
 });
+
+//Función para refrescar la tabla manualmente al darle click al botón refresh
+document.getElementById('limpiar').addEventListener('click', function () {
+    table.destroy();
+    readRows(API_SUBCATEGORIA);
+    document.getElementById('buscar-subcategoria-input').value ="";
+    setTimeout(() => {
+        /*Inicializando y configurando tabla*/
+        table = new DataTable('#subcategoria', options);
+
+    }, 250);
+});
