@@ -25,7 +25,7 @@ class Proveedor extends Validator
 
     public function setProveedor($value)
     {
-        if ($this->validateAlphabetic($value, 1, 50)) {
+        if ($this->validateString($value, 1, 50)) {
             $this->proveedor = $value;
             return true;
         } else {
@@ -87,7 +87,7 @@ class Proveedor extends Validator
     // Método para un dato en especifico de los colores existentes-------------------------.
     public function readOne()
     {
-        $sql = 'SELECT "uuid_proveedor", "nombre_proveedor", "telefono_proveedor", "estado_proveedor" FROM proveedor WHERE "uuid_proveedor" = ?';
+        $sql = 'SELECT "nombre_proveedor", "telefono_proveedor", "estado_proveedor" FROM proveedor WHERE "uuid_proveedor" = ?';
         $params = array($this->id);
         return Database::getRow($sql, $params);
     }
@@ -128,9 +128,9 @@ class Proveedor extends Validator
     public function updateRow()
     {   
         $sql = 'UPDATE proveedor
-        SET "nombreProveedor"=?, "direccionProveedor"=?, "telefonoProveedor"=?, estado=?
-        WHERE "idProveedor"=?;';
-            $params = array($this->proveedor, $this->direccion, $this->telefono, $this->estado, $this->id);
+        SET "nombre_proveedor" = ?, "telefono_proveedor" = ?, "estado_proveedor" = ?
+        WHERE "uuid_proveedor" = ?;';
+            $params = array($this->proveedor, $this->telefono, $this->estado, $this->id);
         return Database::executeRow($sql, $params);
     }
 
@@ -138,9 +138,10 @@ class Proveedor extends Validator
     /* Función para inhabilitar un usuario ya que no los borraremos de la base---------------------------*/
     public function deleteRow()
     {
+        $this->estado = 0;
         //No eliminaremos registros, solo los inhabilitaremos----------------------------
-        $sql = 'UPDATE proveedor SET estado = 3 WHERE "idProveedor" = ?';
-        $params = array($this->id);
+        $sql = 'UPDATE proveedor SET "estado_proveedor" = ? WHERE "uuid_proveedor" = ?';
+        $params = array($this->estado, $this->id);
         return Database::executeRow($sql, $params);
     }
 }

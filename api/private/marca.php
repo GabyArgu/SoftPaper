@@ -12,6 +12,7 @@ if (isset($_GET['action'])) {
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'message' => null, 'exception' => null);
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
+    if (isset($_SESSION['uuid_empleado'])) {
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
             // Accion de leer toda la información------------------.
@@ -73,16 +74,14 @@ if (isset($_GET['action'])) {
             case 'update':
                 //Especificamos los inputs por medio de su atributo name, y los capturamos con el método post
                 $_POST = $marca->validateForm($_POST);
-                if (!$marca->setId($_POST['id'])) {
+                if (!$marca->setId($_POST['id1'])) {
                     $result['exception'] = 'Marca incorrecta';
                 } elseif (!$data = $marca->readOne()) {
                     $result['exception'] = 'Marca inexistente';
-                }elseif (!$marca->setMarca($_POST['nombre'])) {
+                }elseif (!$marca->setMarca($_POST['nombre_marca'])) {
                     $result['exception'] = 'Nombre inválido';
-                }  elseif (!$marca->setEstado($_POST['estado'])) {
-                    $result['exception'] = 'Estado inválido';
                 } elseif (!is_uploaded_file($_FILES['archivo']['tmp_name'])) {
-                    if ($marca->updateRow($data['imagenMarca'])) {
+                    if ($marca->updateRow($data['imagen_marca'])) {
                         $result['status'] = 1;
                         $result['message'] = 'Marca modificada correctamente';
                     } else {
@@ -90,12 +89,12 @@ if (isset($_GET['action'])) {
                     }
                 } elseif (!$marca->setImagen($_FILES['archivo'])) {
                     $result['exception'] = $marca->getFileError();
-                } elseif ($marca->updateRow($data['imagenMarca'])) {
+                } elseif ($marca->updateRow($data['imagen_marca'])) {
                     $result['status'] = 1;
                     if ($marca->saveFile($_FILES['archivo'], $marca->getRuta(), $marca->getImagen())) {
-                        $result['message'] = 'Subcategoría actualizada correctamente';
+                        $result['message'] = 'Marca actualizada correctamente';
                     } else {
-                        $result['message'] = 'Subcategoría actualizada pero no se guardó la imagen';
+                        $result['message'] = 'Marca actualizada pero no se guardó la imagen';
                     }
                 } else {
                     $result['exception'] = Database::getException();
@@ -103,7 +102,7 @@ if (isset($_GET['action'])) {
                 break;
             // Accion de desabilitar un elemento de toda la información------------------.      
             case 'delete':
-                if (!$marca->setId($_POST['id-delete'])) {
+                if (!$marca->setId($_POST['id_delete'])) {
                     $result['exception'] = 'Marca incorrecta';
                 } elseif (!$marca->readOne()) {
                     $result['exception'] = 'Marca inexistente';
@@ -117,6 +116,9 @@ if (isset($_GET['action'])) {
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }
+    } else {
+        print(json_encode('Acceso denegado'));
+    }
         // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
         header('content-type: application/json; charset=utf-8');
         // Se imprime el resultado en formato JSON y se retorna al controlador.

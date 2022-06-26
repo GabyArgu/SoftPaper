@@ -12,7 +12,7 @@ if (isset($_GET['action'])) {
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'session' => 0, 'message' => null, 'exception' => null, 'dataset' => null, 'username' => null);
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
-    
+    if (isset($_SESSION['uuid_empleado'])) {
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
             case 'readAll':
@@ -48,9 +48,11 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'NIT inválido';
                 } elseif (!$clientes->setTelefono($_POST['telefono_c'])){
                     $result['exception'] = 'Teléfono inválido';
+                } elseif (!$clientes->setMunicipio($_POST['municipio_c'])){
+                    $result['exception'] = 'Municipio inválido';
                 } elseif (!$clientes->setGiro($_POST['giro_c'])){
                     $result['exception'] = 'Giro inválido';
-                } elseif (!$clientes->setEstado($_POST['estado_c'])){
+                } elseif (!$clientes->setEstado(1)){
                     $result['exception'] = 'Estado inválido';
                 } elseif ($clientes->createRow()) {
                     $result['status'] = 1;
@@ -110,13 +112,13 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'delete':
-                if (!$clientes->setId($_POST['id'])) {
+                if (!$clientes->setId($_POST['id_delete'])) {
                     $result['exception'] = 'Producto incorrecto';
                 } elseif (!$clientes->readOne()) {
                     $result['exception'] = 'Producto inexistente';
                 } elseif ($clientes->deleteRow()) {
                     $result['status'] = 1;
-                    $result['message'] = 'Producto inhabilitado correctamente';
+                    $result['message'] = 'Cliente inhabilitado correctamente';
                 } else {
                     $result['exception'] = Database::getException();
                 }
@@ -124,6 +126,9 @@ if (isset($_GET['action'])) {
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }
+    } else {
+        print(json_encode('Acceso denegado'));
+    }
     // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
     header('content-type: application/json; charset=utf-8');
     // Se imprime el resultado en formato JSON y se retorna al controlador.

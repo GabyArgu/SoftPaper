@@ -34,7 +34,7 @@ class Municipio extends Validator
 
     public function setDepartamento($value)
     {
-        if ($this->validateAlphanumeric($value, 1, 50)) {
+        if ($this->validateString($value, 1, 50)) {
             $this->departamento = $value;
             return true;
         } else {
@@ -65,6 +65,14 @@ class Municipio extends Validator
         $sql = 'SELECT uuid_municipio, nombre_municipio, d.uuid_departamento
         FROM municipio as m inner join "departamento" as d on m.uuid_departamento = d.uuid_departamento 
         WHERE nombre_departamento = ?';
+        $params = array($this->departamento);
+        return Database::getRows($sql, $params);
+    }
+
+    public function readAllParam()
+    {
+        $sql = 'SELECT uuid_municipio, nombre_municipio FROM municipio WHERE uuid_departamento = ?;';
+        
         $params = array($this->departamento);
         return Database::getRows($sql, $params);
     }

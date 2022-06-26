@@ -14,7 +14,7 @@ class Departamento extends Validator
     */
     public function setId($value)
     {
-        if ($this->validateString($value, 1, 38)) {
+        if ($this->validateString($value, 1, 50)) {
             $this->id = $value;
             return true;
         } else {
@@ -47,7 +47,6 @@ class Departamento extends Validator
     // Método para leer toda la información de los colores existentes-------------------------.
     public function readAll()
     {
-
         $sql = 'SELECT uuid_departamento, nombre_departamento FROM departamento';
         $params = null;
         return Database::getRows($sql, $params);

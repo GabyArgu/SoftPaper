@@ -93,7 +93,7 @@ class Marca extends Validator
     // Método para un dato en especifico de los colores existentes-------------------------.
     public function readOne()
     {
-        $sql = 'SELECT "idMarca", "nombreMarca", "imagenMarca", estado FROM marca  WHERE "idMarca" = ?';
+        $sql = 'SELECT "nombre_marca", "imagen_marca", "estado_marca" FROM marca  WHERE "uuid_marca" = ?';
         $params = array($this->id);
         return Database::getRow($sql, $params);
     }
@@ -128,9 +128,9 @@ class Marca extends Validator
         ($this->imagen) ? $this->deleteFile($this->getRuta(), $current_image) : $this->imagen = $current_image;
 
         $sql = 'UPDATE marca
-            SET "nombreMarca"=?, "imagenMarca"=?, estado=?
-            WHERE "idMarca"=?;';
-            $params = array($this->marca, $this->imagen, $this->estado, $this->id);
+            SET "nombre_marca"=?, "imagen_marca"=?
+            WHERE "uuid_marca"= ?;';
+            $params = array($this->marca, $this->imagen, $this->id);
         return Database::executeRow($sql, $params);
     }
 
@@ -139,8 +139,9 @@ class Marca extends Validator
     public function deleteRow()
     {
         //No eliminaremos registros, solo los inhabilitaremos----------------------
-        $sql = 'UPDATE marca SET estado = 3 WHERE "idMarca" = ?';
-        $params = array($this->id);
+        $this->estado = 0;
+        $sql = 'UPDATE marca SET estado_marca = ? WHERE "uuid_marca" = ?';
+        $params = array($this->estado, $this->id);
         return Database::executeRow($sql, $params);
     }
 }

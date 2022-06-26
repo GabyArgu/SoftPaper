@@ -22,7 +22,7 @@ class Cliente extends Validator
     */
     public function setId($value)
     {
-        if ($this->validateNaturalNumber($value)) {
+        if ($this->validateString($value, 1, 50)) {
             $this->id = $value;
             return true;
         } else {
@@ -53,7 +53,7 @@ class Cliente extends Validator
 
     public function setMunicipio($value)
     {
-        if ($this->validateNaturalNumber($value)) {
+        if ($this->validateString($value, 1, 50)) {
             $this->municipio = $value;
             return true;
         } else {

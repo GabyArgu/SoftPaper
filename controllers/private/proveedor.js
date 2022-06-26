@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
         dismissible: false,
         onOpenStart: function () {
             // Se restauran los elementos del formulario.
-            document.getElementById('save-form').reset();
+            document.getElementById('modal-agregarP').reset();
         }
     }
 });
@@ -39,11 +39,11 @@ function fillTable(dataset) {
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                         aria-labelledby="dropdownMenuButton1">
-                        <li><button onclick="openUpdateProv(${row.uuid_proveedor})" class="dropdown-item"
+                        <li><a onclick="openUpdateProv('${row.uuid_proveedor}')" class="dropdown-item"
                                 data-bs-toggle="modal"
-                                data-bs-target="#modal-actualizarP">Editar</button>
+                                data-bs-target="#modal-agregarP">Editar</a>
                         </li>
-                        <li><a class="dropdown-item"
+                        <li><a onclick="openDeleteProv('${row.uuid_proveedor}')" class="dropdown-item"
                                 data-bs-toggle="modal"
                                 data-bs-target="#modal-eliminar">Eliminar</a>
                         </li>
@@ -57,9 +57,12 @@ function fillTable(dataset) {
     document.getElementById('tbody-rows234').innerHTML = content;
 }
 
-$(document).ready(function () {
-    $('#proveedor').DataTable({
-        "info": false,
+document.addEventListener('DOMContentLoaded', function () {
+    readRows(API_PROVEEDOR);
+    setTimeout(() => {
+        /*Inicializando y configurando tabla*/
+        let options = {
+            "info": false,
         "searching": false,
         "dom":
             "<'row'<'col-sm-12'tr>>" +
@@ -71,9 +74,29 @@ $(document).ready(function () {
                 "previous": '<i class="bi bi-arrow-left-short"></i>'
             }
         },
-        "lengthMenu": [[10, 15, 10, -1], [10, 15, 20, "Todos"]]
-    });
+        "lengthMenu": [[10, 15, 20, -1], [10, 15, 20, "Todos"]]
+        };
+        let table = new DataTable('#proveedor', options);
+    }, 300);
 });
+
+// $(document).ready(function () {
+//     $('#proveedor').DataTable({
+//         "info": false,
+//         "searching": false,
+//         "dom":
+//             "<'row'<'col-sm-12'tr>>" +
+//             "<'row'<'col-sm-5'l><'col-sm-1'><'col-sm-6'p>>",
+//         "language": {
+//             "lengthMenu": "Mostrando _MENU_ registros",
+//             "paginate": {
+//                 "next": '<i class="bi bi-arrow-right-short"></i>',
+//                 "previous": '<i class="bi bi-arrow-left-short"></i>'
+//             }
+//         },
+//         "lengthMenu": [[10, 15, 10, -1], [10, 15, 20, "Todos"]]
+//     });
+// });
 
 document.getElementById('buscar-proveedor').addEventListener('submit', function (event) {
     // Se evita recargar la página web después de enviar el formulario.
@@ -86,19 +109,11 @@ function openCreateProv() {
     // Se establece que el campo archivo sea obligatorio (input de subir imagen).
     document.getElementById("nombre_prov").value = "";
     document.getElementById("tele_prov").value = "";
-    document.getElementById('estado_prov').disabled = true;
+    document.getElementById("estado_prov").disabled = true;
 }
 
-// Función para crear proveedor
-document.getElementById('modal-agregarP').addEventListener('submit', function (event) {
-    // Se evita recargar la página web después de enviar el formulario.
-    event.preventDefault();
-    let action = 'create';
-    saveRow(API_PROVEEDOR, action, 'agregar-prov', 'modal-agregarP');
-});
-
 function openUpdateProv(id) {
-    document.getElementById('uestado_prov').disabled = false;
+    document.getElementById("estado_prov").disabled = false;
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData();
     data.append('id', id);
@@ -114,12 +129,13 @@ function openUpdateProv(id) {
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
                     // Se inicializan los campos del formulario con los datos del registro seleccionado.
-                    document.getElementById('id_prov').value = response.dataset.uuid_proveedor;
-                    document.getElementById('unombre_prov').value = response.dataset.nombre_proveedor;
+                    document.getElementById('id').value = (id);
+                    document.getElementById('nombre_prov').value = response.dataset.nombre_proveedor;
+                    document.getElementById('tele_prov').value = response.dataset.telefono_proveedor;
                     if (response.dataset.estado_cliente) {
-                        document.getElementById('uestado_prov').value = 1;
+                        document.getElementById('estado_prov').value = 0;
                     } else {
-                        document.getElementById('uestado_prov').value = 0;
+                        document.getElementById('estado_prov').value = 1;
                     }
                     // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos.
                 } else {
@@ -132,18 +148,26 @@ function openUpdateProv(id) {
     });
 }
 
-// Método manejador de eventos que se ejecuta cuando se envía el formulario de actualizar.
-document.getElementById('update-prov').addEventListener('submit', function (event) {
+// Método manejador de eventos que se ejecuta cuando se envía el formulario de guardar.
+document.getElementById('agregar-prov').addEventListener('submit', function (event) {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
+    // Se define una variable para establecer la acción a realizar en la API.
+    let action = '';
+    // Se comprueba si el campo oculto del formulario esta seteado para actualizar, de lo contrario será para crear.
+    (document.getElementById('id').value) ? action = 'update' : action = 'create';
     // Se llama a la función para guardar el registro. Se encuentra en el archivo components.js
-    saveRow(API_PROVEEDOR, 'update', 'update-prov', 'modal-actualizarP');
+    saveRow(API_PROVEEDOR, action, 'agregar-prov', 'modal-agregarP');
 });
 
-function openDelete(id) {
-    // Se define un objeto con los datos del registro seleccionado.
-    const data = new FormData();
-    data.append('id', id);
-    // Se llama a la función que elimina un registro. Se encuentra en el archivo components.js
-    confirmDelete(API_CLIENTES, data);
+function openDeleteProv(id) {
+    document.getElementById('id_delete').value = (id);
 }
+
+// Método manejador de eventos que se ejecuta cuando se envía el modal de eliminar.
+document.getElementById('delete-form').addEventListener('submit', function (event) {
+    // Se evita recargar la página web después de enviar el formulario.
+    event.preventDefault();
+    //Llamamos al método que se encuentra en la api y le pasamos la ruta de la API y el id del formulario dentro de nuestro modal eliminar
+    confirmDelete(API_PROVEEDOR, 'delete-form');
+});

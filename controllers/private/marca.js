@@ -37,11 +37,11 @@ function fillTable2(dataset) {
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                         aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="#"
+                        <li><a onclick="openUpdateMarca('${row.uuid_marca}')" class="dropdown-item"
                                 data-bs-toggle="modal"
                                 data-bs-target="#modal-agregarM">Editar</a>
                         </li>
-                        <li><a class="dropdown-item" href="#"
+                        <li><a onclick="openDeleteMarca('${row.uuid_marca}')" class="dropdown-item"
                                 data-bs-toggle="modal"
                                 data-bs-target="#modal-eliminar">Eliminar</a>
                         </li>
@@ -55,9 +55,12 @@ function fillTable2(dataset) {
     document.getElementById('tbody-rows').innerHTML = content;
 }
 
-$(document).ready(function () {
-    $('#marca').DataTable({
-        "info": false,
+document.addEventListener('DOMContentLoaded', function () {
+    readRows(API_PROVEEDOR);
+    setTimeout(() => {
+        /*Inicializando y configurando tabla*/
+        let options = {
+            "info": false,
         "searching": false,
         "dom":
             "<'row'<'col-sm-12'tr>>" +
@@ -69,8 +72,10 @@ $(document).ready(function () {
                 "previous": '<i class="bi bi-arrow-left-short"></i>'
             }
         },
-        "lengthMenu": [[10, 15, 10, -1], [10, 15, 20, "Todos"]]
-    });
+        "lengthMenu": [[10, 15, 20, -1], [10, 15, 20, "Todos"]]
+        };
+        let table = new DataTable('#marca', options);
+    }, 300);
 });
 
 document.getElementById('buscar-marca').addEventListener('submit', function (event) {
@@ -85,21 +90,12 @@ function openCreateMarca() {
     document.getElementById("nombre_marca").value = "";
 }
 
-// Función para crear usuario
-document.getElementById('agregar-marca').addEventListener('submit', function (event) {
-    // Se evita recargar la página web después de enviar el formulario.
-    event.preventDefault();
-    let action = 'create';
-    saveRow(API_MARCA, action, 'agregar-marca', 'modal-agregarM');
-});
-
-function openUpdate(id) {
-    document.getElementById('uestado_c').disabled = false;
+function openUpdateMarca(id) {
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData();
     data.append('id', id);
     // Petición para obtener los datos del registro solicitado.
-    fetch(API_CLIENTES + 'readOne', {
+    fetch(API_MARCA + 'readOne', {
         method: 'post',
         body: data
     }).then(function (request) {
@@ -110,23 +106,9 @@ function openUpdate(id) {
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
                     // Se inicializan los campos del formulario con los datos del registro seleccionado.
-                    document.getElementById('id').value = response.dataset.uuid_cliente;
-                    document.getElementById('unombre_c').value = response.dataset.nombre_cliente;
-                    document.getElementById('udui_c').value = response.dataset.dui_cliente;
-                    document.getElementById('unit_c').value = response.dataset.nit_cliente;
-                    document.getElementById('udireccion_c').value = response.dataset.direccion_cliente;
-                    document.getElementById('utelefono_c').value = response.dataset.telefono_cliente;
-                    document.getElementById('unrc_c').value = response.dataset.nrc_cliente;
-                    if (response.dataset.estado_cliente) {
-                        document.getElementById('uestado_c').value = 1;
-                    } else {
-                        document.getElementById('uestado_c').value = 0;
-                    }
-                    fillSelect(ENDPOINT_GIROC, 'ugiro_c', response.dataset.giro_cliente);
-                    // fillSelect(ENDPOINT_DEPAC, 'udepartamento_c', response.dataset.nombre);
-                    // fillSelect(ENDPOINT_MUNIC, 'umunicipio_c', response.dataset.nombre_municipio);
+                    document.getElementById('id1').value = (id);
+                    document.getElementById('nombre_marca').value = response.dataset.nombre_marca;
                     // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos.
-                    //M.updateTextFields();
                 } else {
                     sweetAlert(2, response.exception, null);
                 }
@@ -137,18 +119,26 @@ function openUpdate(id) {
     });
 }
 
-// Método manejador de eventos que se ejecuta cuando se envía el formulario de actualizar.
-document.getElementById('update-cliente').addEventListener('submit', function (event) {
+// Método manejador de eventos que se ejecuta cuando se envía el formulario de guardar.
+document.getElementById('agregar-marca').addEventListener('submit', function (event) {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
+    // Se define una variable para establecer la acción a realizar en la API.
+    let action = '';
+    // Se comprueba si el campo oculto del formulario esta seteado para actualizar, de lo contrario será para crear.
+    (document.getElementById('id1').value) ? action = 'update' : action = 'create';
     // Se llama a la función para guardar el registro. Se encuentra en el archivo components.js
-    saveRow(API_CLIENTES, 'update', 'update-cliente', 'modal-actualizar');
+    saveRow(API_MARCA, action, 'agregar-marca', 'modal-agregarM');
 });
 
-function openDelete(id) {
-    // Se define un objeto con los datos del registro seleccionado.
-    const data = new FormData();
-    data.append('id', id);
-    // Se llama a la función que elimina un registro. Se encuentra en el archivo components.js
-    confirmDelete(API_CLIENTES, data);
+function openDeleteMarca(id) {
+    document.getElementById('id_delete').value = (id);
 }
+
+// Método manejador de eventos que se ejecuta cuando se envía el modal de eliminar.
+document.getElementById('delete-form').addEventListener('submit', function (event) {
+    // Se evita recargar la página web después de enviar el formulario.
+    event.preventDefault();
+    //Llamamos al método que se encuentra en la api y le pasamos la ruta de la API y el id del formulario dentro de nuestro modal eliminar
+    confirmDelete(API_MARCA, 'delete-form');
+});

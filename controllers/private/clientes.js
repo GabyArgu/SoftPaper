@@ -3,7 +3,7 @@ const API_CLIENTES = SERVER + 'private/clientes.php?action=';
 
 const ENDPOINT_GIROC = SERVER + 'private/giro.php?action=readAll';
 const ENDPOINT_DEPAC = SERVER + 'private/departamento.php?action=readAll';
-const ENDPOINT_MUNIC = SERVER + 'private/municipio.php?action=readAll';
+const ENDPOINT_MUNIC = SERVER + 'private/municipio.php?action=readAllParam';
 
 var depC;
 
@@ -49,12 +49,12 @@ function fillTable(dataset) {
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                         aria-labelledby="dropdownMenuButton1">
-                        <li><button onclick="openUpdate(${row.uuid_cliente})" class="dropdown-item" type="button"
+                        <li><a onclick="openUpdate('${row.uuid_cliente}')" class="dropdown-item" type="button"
                                 data-bs-toggle="modal"
-                                data-bs-target="#modal-actualizar">Editar</button></li>
-                        <li><button onclick="openDelete(${row.uuid_cliente})" class="dropdown-item" type="button"
+                                data-bs-target="#modal-actualizar">Editar</a></li>
+                        <li><a onclick="openDeleteCliente     ('${row.uuid_cliente}')" class="dropdown-item" type="button"
                                 data-bs-toggle="modal"
-                                data-bs-target="#modal-eliminar">Eliminar</button>
+                                data-bs-target="#modal-eliminar">Eliminar</a>
                         </li>
                     </ul>
                 </div>
@@ -120,21 +120,6 @@ document.getElementById('buscar-cliente').addEventListener('submit', function (e
     searchRows(API_CLIENTES, 'buscar-cliente');
 });
 
-function openCreate() {
-    // Se establece que el campo archivo sea obligatorio (input de subir imagen).
-    document.getElementById("nombre_c").value = "";
-    document.getElementById("dui_c").value = "";
-    document.getElementById("nit_c").value = "";
-    document.getElementById("direccion_c").value = "";
-    document.getElementById("telefono_c").value = "";
-    document.getElementById("nrc_c").value = "";
-    document.getElementById("estado_c").disabled = true;
-    // Se llama a la función para cargar los select.
-    fillSelect(ENDPOINT_GIROC, 'giro_c', null);
-    fillSelect(ENDPOINT_DEPAC, 'departamento_c', null);
-    fillSelect(ENDPOINT_MUNIC, 'municipio_c', null);
-}
-
 /*Función para mostrar y ocultar cmbs según departamento seleccionado*/
 function pagoOnChange(sel) {
     if (sel.value == "") {
@@ -148,17 +133,36 @@ function pagoOnChange(sel) {
     }
 }
 
+function openCreate() {
+    document.getElementById("nombre_c").value = "";
+    document.getElementById("dui_c").value = "";
+    document.getElementById("nit_c").value = "";
+    document.getElementById("direccion_c").value = "";
+    document.getElementById("telefono_c").value = "";
+    document.getElementById("nrc_c").value = "";
+    document.getElementById("estado_c").disabled = true;
+    // Se llama a la función para cargar los select.
+    fillSelect(ENDPOINT_GIROC, 'giro_c', null);
+    fillSelect(ENDPOINT_DEPAC, 'departamento_c', null);
+    divC = document.getElementById("municipio");
+    divC.style.display = "none";
+}
+
+document.getElementById("departamento_c").addEventListener("change", function () {
+    var selectValue = document.getElementById('departamento_c').value;
+    fillSelectDependentM(ENDPOINT_MUNIC, 'municipio_c', null, selectValue);
+});
+
 // Función para crear usuario
 document.getElementById('agregar-cliente').addEventListener('submit', function (event) {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
     let action = 'create';
     saveRow(API_CLIENTES, action, 'agregar-cliente', 'modal-agregar');
-    $('#modal-agregar').modal = 'hide';
 });
 
 function openUpdate(id) {
-    document.getElementById('uestado_c').disabled = false;
+    document.getElementById("estado_c").disabled = true;
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData();
     data.append('id', id);
@@ -174,7 +178,8 @@ function openUpdate(id) {
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
                     // Se inicializan los campos del formulario con los datos del registro seleccionado.
-                    document.getElementById('id').value = response.dataset.uuid_cliente;
+                    console.log(response.dataset.nombre_departamento)
+                    document.getElementById('id').value = (id);
                     document.getElementById('unombre_c').value = response.dataset.nombre_cliente;
                     document.getElementById('udui_c').value = response.dataset.dui_cliente;
                     document.getElementById('unit_c').value = response.dataset.nit_cliente;
@@ -187,10 +192,8 @@ function openUpdate(id) {
                         document.getElementById('uestado_c').value = 0;
                     }
                     fillSelect(ENDPOINT_GIROC, 'ugiro_c', response.dataset.giro_cliente);
-                    // fillSelect(ENDPOINT_DEPAC, 'udepartamento_c', response.dataset.nombre);
-                    // fillSelect(ENDPOINT_MUNIC, 'umunicipio_c', response.dataset.nombre_municipio);
-                    // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos.
-                    //M.updateTextFields();
+                    fillSelect(ENDPOINT_DEPAC, 'udepartamento_c', response.dataset.nombre_departamento);
+                    fillSelectDependentM(ENDPOINT_MUNIC, 'umunicipio_c', response.dataset.uuid_municipio, response.dataset.uuid_departamento);
                 } else {
                     sweetAlert(2, response.exception, null);
                 }
@@ -209,10 +212,14 @@ document.getElementById('update-cliente').addEventListener('submit', function (e
     saveRow(API_CLIENTES, 'update', 'update-cliente', 'modal-actualizar');
 });
 
-function openDelete(id) {
-    // Se define un objeto con los datos del registro seleccionado.
-    const data = new FormData();
-    data.append('id', id);
-    // Se llama a la función que elimina un registro. Se encuentra en el archivo components.js
-    confirmDelete(API_CLIENTES, data);
+function openDeleteCliente(id) {
+    document.getElementById('id_delete').value = (id);
 }
+
+// Método manejador de eventos que se ejecuta cuando se envía el modal de eliminar.
+document.getElementById('delete-form').addEventListener('submit', function (event) {
+    // Se evita recargar la página web después de enviar el formulario.
+    event.preventDefault();
+    //Llamamos al método que se encuentra en la api y le pasamos la ruta de la API y el id del formulario dentro de nuestro modal eliminar
+    confirmDelete(API_CLIENTES, 'delete-form');
+});
