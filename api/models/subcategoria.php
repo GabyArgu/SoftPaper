@@ -12,7 +12,7 @@ class Subcategoria extends Validator
     private $imagen = null;
     private $estado = null;
     //Variable para un campo con imagen -------------------------.
-    private $ruta = '../images/subcategorias/';
+    private $ruta = '../images/subcategoria/';
 
     /*
     *   Métodos para validar y asignar valores de los atributos.
@@ -103,9 +103,8 @@ class Subcategoria extends Validator
     // Método para leer toda la información de las subcategorias existentes-------------------------.
     public function readAll()
     {
-        $sql = 'SELECT uuid_subcategoria_p, nombre_subcategoria_p, cp.nombre_categoria_p, "imagen_subcategoria" 
-       FROM "subcategoria_producto" as sc inner join "categoria_producto" as cp on sc."uuid_categoria_p" = cp."uuid_categoria_p"
-        WHERE estado_subcategoria_p = true;';
+        $sql = 'SELECT uuid_subcategoria_p, nombre_subcategoria_p, cp.nombre_categoria_p, "imagen_subcategoria", estado_subcategoria_p
+        FROM "subcategoria_producto" as sc inner join "categoria_producto" as cp on sc."uuid_categoria_p" = cp."uuid_categoria_p"';
         
         $params = null;
         return Database::getRows($sql, $params);
@@ -135,11 +134,11 @@ class Subcategoria extends Validator
     /* SEARCH */
     public function searchRows($value)
     {
-        $sql = 'SELECT "SELECT "uuid_subcategoria_p", cp."nombre_subcategoria_p", "uuid_categoria_p", estado_subcategoria_p
+        $sql = 'SELECT uuid_subcategoria_p, nombre_subcategoria_p, cp.nombre_categoria_p, "imagen_subcategoria", estado_subcategoria_p
                 FROM "subcategoria_producto" as sc inner join "categoria_producto" as cp on sc."uuid_categoria_p" = cp."uuid_categoria_p"
-                WHERE "nombre_subcategoria_p" ILIKE ? 
+                WHERE "nombre_subcategoria_p" ILIKE ?
                 ORDER BY "uuid_subcategoria_p"';
-        $params = array("%$value%", "%$value%");
+        $params = array("%$value%");
         return Database::getRows($sql, $params);
     }
 

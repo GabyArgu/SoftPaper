@@ -2,26 +2,53 @@
 const API_SUBCATEGORIA = SERVER + 'private/subcategoria.php?action=';
 const ENDPOINT_CATEGORIA = SERVER + 'private/categoria.php?action=readAll';
 
+//Configuración de la tabla
+const options = {
+    "info": false,
+            "searching": false,
+            "dom":
+                "<'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-sm-5'l><'col-sm-1'><'col-sm-6'p>>",
+            "language": {
+                "lengthMenu": "Mostrando _MENU_ registros",
+                "paginate": {
+                    "next": '<i class="bi bi-arrow-right-short"></i>',
+                    "previous": '<i class="bi bi-arrow-left-short"></i>'
+                }
+            },
+            "lengthMenu": [[10, 15, 20, -1], [10, 15, 20, "Todos"]]
+};
+let table;
+
 // Método manejador de eventos que se ejecuta cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', function () {
     // Se llama a la función que obtiene los registros para llenar la tabla. Se encuentra en el archivo components.js
     readRows(API_SUBCATEGORIA);
-    // Se define una variable para establecer las opciones del componente Modal.
-    let options = {
-        dismissible: false,
-        onOpenStart: function () {
-            // Se restauran los elementos del formulario.
-            document.getElementById('modal-agregarSub').reset();
-        }
-    }
+    setTimeout(() => {
+        /*Inicializando y configurando tabla*/
+        table = new DataTable('#subcategoria', options);
+    }, 250);
 });
+
+const reInitTable = () => {
+    table.destroy();
+    loadStadictics();
+    setTimeout(() => {
+        readRows(API_SUBCATEGORIA);
+    }, 100);
+
+    setTimeout(() => {
+        /*Inicializando y configurando tabla*/
+        table = new DataTable('#subcategoria', options);
+    }, 300);
+}
 
 // Función para llenar la tabla con los datos de los registros. Se manda a llamar en la función readRows().
 function fillTable(dataset) {
     let content = '';
     // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
     dataset.map(function (row) {
-        (row.estado_subcategoria_p) ? icon = '<span class="estado3">Inactivo</span>' : icon = '<span class="estado">Activo</span>';
+        (row.estado_subcategoria_p) ? icon = '<span class="estado">Activo</span>' : icon = '<span class="estado3">Inactivo</span>';
         // Se crean y concatenan las filas de la tabla con los datos de cada registro.
         content += `
         <tr>
@@ -60,52 +87,24 @@ function fillTable(dataset) {
     document.getElementById('tbody-rows').innerHTML = content;
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    readRows(API_SUBCATEGORIA);
-    setTimeout(() => {
-        /*Inicializando y configurando tabla*/
-        let options = {
-            "info": false,
-            "searching": false,
-            "dom":
-                "<'row'<'col-sm-12'tr>>" +
-                "<'row'<'col-sm-5'l><'col-sm-1'><'col-sm-6'p>>",
-            "language": {
-                "lengthMenu": "Mostrando _MENU_ registros",
-                "paginate": {
-                    "next": '<i class="bi bi-arrow-right-short"></i>',
-                    "previous": '<i class="bi bi-arrow-left-short"></i>'
-                }
-            },
-            "lengthMenu": [[10, 15, 20, -1], [10, 15, 20, "Todos"]]
-        };
-        let table = new DataTable('#subcategoria', options);
-    }, 300);
-});
 
-// $(document).ready(function () {
-//     $('#subcategoria').DataTable({
-//         "info": false,
-//         "searching": false,
-//         "dom":
-//             "<'row'<'col-sm-12'tr>>" +
-//             "<'row'<'col-sm-5'l><'col-sm-1'><'col-sm-6'p>>",
-//         "language": {
-//             "lengthMenu": "Mostrando _MENU_ registros",
-//             "paginate": {
-//                 "next": '<i class="bi bi-arrow-right-short"></i>',
-//                 "previous": '<i class="bi bi-arrow-left-short"></i>'
-//             }
-//         },
-//         "lengthMenu": [[10, 15, 10, -1], [10, 15, 20, "Todos"]]
-//     });
-// });
 
 document.getElementById('buscar-subcategoria').addEventListener('submit', function (event) {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
-    // Se llama a la función que realiza la búsqueda. Se encuentra en el archivo components.js
-    searchRows(API_SUBCATEGORIA, 'buscar-subcategoria');
+    if(document.getElementById('buscar-subcategoria-input').value == ""){
+        sweetAlert(3, 'Cambo de búsqueda vacío', null)
+    }
+    else{
+        table.destroy();
+        // Se llama a la función que realiza la búsqueda. Se encuentra en el archivo components.js
+        searchRows(API_SUBCATEGORIA, 'buscar-subcategoria', 'buscar-subcategoria-input');
+        setTimeout(() => {
+            /*Inicializando y configurando tabla*/
+            table = new DataTable('#subcategoria', options);
+        }, 150);
+    }
+    
 });
 
 function openCreate() {
@@ -162,6 +161,7 @@ document.getElementById('agregar-sub').addEventListener('submit', function (even
     (document.getElementById('id').value) ? action = 'update' : action = 'create';
     // Se llama a la función para guardar el registro. Se encuentra en el archivo components.js
     saveRow(API_SUBCATEGORIA, action, 'agregar-sub', 'modal-agregarSub');
+    reInitTable();
 });
 
 function openDelete(id) {
@@ -174,4 +174,7 @@ document.getElementById('delete-form').addEventListener('submit', function (even
     event.preventDefault();
     //Llamamos al método que se encuentra en la api y le pasamos la ruta de la API y el id del formulario dentro de nuestro modal eliminar
     confirmDelete(API_SUBCATEGORIA, 'delete-form');
+    setTimeout(() => {
+        reInitTable();
+    }, 100);
 });
