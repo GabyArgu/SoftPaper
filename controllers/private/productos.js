@@ -43,7 +43,7 @@ let table;
 document.addEventListener('DOMContentLoaded', function () {
 
     readRows(API_PRODUCTOS);
-
+    loadStadictics();
     setTimeout(() => {
         /*Inicializando y configurando tabla*/
         table = new DataTable('#table', options);
@@ -58,6 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 const reInitTable = () => {
     table.destroy();
+    loadStadictics();
     setTimeout(() => {
         readRows(API_PRODUCTOS);
     }, 100);
@@ -318,7 +319,10 @@ document.getElementById('delete-form').addEventListener('submit', function (even
     event.preventDefault();
     //Llamamos al método que se encuentra en la api y le pasamos la ruta de la API y el id del formulario dentro de nuestro modal eliminar
     confirmDelete(API_PRODUCTOS, 'delete-form');
-
+    setTimeout(() => {
+        reInitTable();
+    }, 100);
+    
 });
 
 
@@ -370,7 +374,63 @@ document.getElementById('limpiar').addEventListener('click', function () {
     }, 250);
 });
 
+document.getElementById('filter-btn').addEventListener('click', function () {
+    fillSelect(ENDPOINT_CATEGORIA, 'filter-categoria', null);
+    fillSelect(ENDPOINT_ESTADO, 'filter-estado', null);
+});
 
+document.getElementById('filter-form').addEventListener('submit', function (event) {
+    event.preventDefault();
+    let valCategoria = document.getElementById('filter-categoria').value;
+    let valEstado = document.getElementById('filter-estado').value;
+    if (valCategoria == "Seleccione una opción") {
+        sweetAlert(3, 'No se han seleccionado opciones para filtrar', null)
+    }
+    else if (valEstado == "Seleccione una opción") {
+        sweetAlert(3, 'No se han seleccionado opciones para filtrar', null)
+    }
+    else {
+        table.destroy();
+        readRowsFilter(API_PRODUCTOS, 'filter-form');
+        setTimeout(() => {
+            /*Inicializando y configurando tabla*/
+            table = new DataTable('#table', options);
+
+            /*Función para mostrar y ocultar campos de la tabla*/
+            document.getElementById('checkTabla').addEventListener('change', function () {
+                $('#table').DataTable().columns([4, 5, 6]).visible($(this).is(':checked'))
+            });
+
+        }, 300);
+    }
+});
+
+function loadStadictics() {
+
+    // Petición para obtener los datos del registro solicitado.
+    fetch(API_PRODUCTOS + 'readStadistics', {
+        method: 'get'
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            // Se obtiene la respuesta en formato JSON.
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Se inicializan los campos del formulario con los datos del registro seleccionado.  
+                    document.getElementById('stadistic-total').innerText = response.dataset.total;
+                    document.getElementById('stadistic-agotados').innerText = response.dataset.agotados;
+                    document.getElementById('stadistic-existencias').innerText = response.dataset.existencias;
+                    document.getElementById('stadistic-categorias').innerText = response.dataset.categorias;
+                } else {
+                    sweetAlert(2, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
+}
 
 document.getElementById('nombre').addEventListener('keypress', function (event) {
 
