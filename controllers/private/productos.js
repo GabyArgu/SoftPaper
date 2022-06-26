@@ -43,7 +43,7 @@ let table;
 document.addEventListener('DOMContentLoaded', function () {
 
     readRows(API_PRODUCTOS);
-
+    loadStadictics();
     setTimeout(() => {
         /*Inicializando y configurando tabla*/
         table = new DataTable('#table', options);
@@ -58,6 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 const reInitTable = () => {
     table.destroy();
+    loadStadictics();
     setTimeout(() => {
         readRows(API_PRODUCTOS);
     }, 100);
@@ -77,8 +78,19 @@ const reInitTable = () => {
 // Función para llenar la tabla con los datos de los registros. Se manda a llamar en la función readRows().
 function fillTable(dataset) {
     let content = '';
+    let estadoColor;
     // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
     dataset.map(function (row) {
+            if(row.estado_producto == "En stock"){
+                estadoColor = 'estado';
+            }
+            else if(row.estado_producto == "Cantidad escasa"){
+                estadoColor = 'estado2';
+            }
+            else {
+                estadoColor = 'estado3';
+            } 
+        
         // Se crean y concatenan las filas de la tabla con los datos de cada registro.
         content += `
             <tr>
@@ -94,7 +106,7 @@ function fillTable(dataset) {
                 <td data-title="MARCA" class="marca">${row.nombre_marca}</td>
                 <td data-title="PROVEEDOR" class="proveedor">${row.nombre_proveedor}</td>
                 <td data-title="DESCRIPCION" class="descripcion">${row.descripcion_producto}</td>
-                <td data-title="ESTADO" class="estado-stock"><span class="estado">${row.estado_producto}</span></td>
+                <td data-title="ESTADO" class="estado-stock"><span id="estado-color" class="${estadoColor}">${row.estado_producto}</span></td>
                 <td data-title="Acciones" class="botones-table">
                     <div class="dropdown">
                         <button class=" btn-acciones dropdown-toggle" type="button"
@@ -116,6 +128,7 @@ function fillTable(dataset) {
                 </td>
             </tr>            
 		`;
+        
     });
     // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
     document.getElementById('tbody_rows').innerHTML = content;
@@ -318,46 +331,45 @@ document.getElementById('delete-form').addEventListener('submit', function (even
     event.preventDefault();
     //Llamamos al método que se encuentra en la api y le pasamos la ruta de la API y el id del formulario dentro de nuestro modal eliminar
     confirmDelete(API_PRODUCTOS, 'delete-form');
-
-});
-
-
-//Función que se ejecuta cada vez que apretamos una tecla dentro del input #search, sirve para buscador en tiempo real
-$(document).on('keyup', '#search', function () {
-    var valor = $(this).val();
-
-    table.destroy();
-    console.log(valor);
-    if (valor != "") {
-        //SearchRows se encuentra en componentes.js y mandamos la ruta de la api, el formulario el cual contiene nuestro input para buscar (id) y el input de buscar (id)
-        searchRows(API_PRODUCTOS, 'search-form', 'search');
-    }
-    else if (valor = "") {
-        //Cuando el input este vacío porque borramos el texto manualmente
-        readRows(API_PRODUCTOS);
-    }
-
     setTimeout(() => {
-        /*Inicializando y configurando tabla*/
-        table = new DataTable('#table', options);
-
-        /*Función para mostrar y ocultar campos de la tabla*/
-        document.getElementById('checkTabla').addEventListener('change', function () {
-            $('#table').DataTable().columns([4, 5, 6]).visible($(this).is(':checked'))
-        });
-
+        reInitTable();
     }, 100);
-
-
-
-
+    
 });
+
+
+// Método manejador de eventos que se ejecuta cuando se envía el formulario de buscar.
+document.getElementById('search-form').addEventListener('submit', function (event) {
+    // Se evita recargar la página web después de enviar el formulario.
+    event.preventDefault();
+    
+    if(document.getElementById('search').value == ""){
+        sweetAlert(3, 'Cambo de búsqueda vacío', null)
+    }
+    else{
+        table.destroy();
+        // Se llama a la función que realiza la búsqueda. Se encuentra en el archivo components.js
+        searchRows(API_PRODUCTOS, 'search-form', 'search');
+        setTimeout(() => {
+            /*Inicializando y configurando tabla*/
+            table = new DataTable('#table', options);
+    
+            /*Función para mostrar y ocultar campos de la tabla*/
+            document.getElementById('checkTabla').addEventListener('change', function () {
+                $('#table').DataTable().columns([4, 5, 6]).visible($(this).is(':checked'))
+            });
+    
+        }, 150);
+    }
+});
+
+
 
 //Función para refrescar la tabla manualmente al darle click al botón refresh
 document.getElementById('limpiar').addEventListener('click', function () {
     table.destroy();
     readRows(API_PRODUCTOS);
-
+    document.getElementById('search').value ="";
     setTimeout(() => {
         /*Inicializando y configurando tabla*/
         table = new DataTable('#table', options);
@@ -370,7 +382,63 @@ document.getElementById('limpiar').addEventListener('click', function () {
     }, 250);
 });
 
+document.getElementById('filter-btn').addEventListener('click', function () {
+    fillSelect(ENDPOINT_CATEGORIA, 'filter-categoria', null);
+    fillSelect(ENDPOINT_ESTADO, 'filter-estado', null);
+});
 
+document.getElementById('filter-form').addEventListener('submit', function (event) {
+    event.preventDefault();
+    let valCategoria = document.getElementById('filter-categoria').value;
+    let valEstado = document.getElementById('filter-estado').value;
+    if (valCategoria == "Seleccione una opción") {
+        sweetAlert(3, 'No se han seleccionado opciones para filtrar', null)
+    }
+    else if (valEstado == "Seleccione una opción") {
+        sweetAlert(3, 'No se han seleccionado opciones para filtrar', null)
+    }
+    else {
+        table.destroy();
+        readRowsFilter(API_PRODUCTOS, 'filter-form');
+        setTimeout(() => {
+            /*Inicializando y configurando tabla*/
+            table = new DataTable('#table', options);
+
+            /*Función para mostrar y ocultar campos de la tabla*/
+            document.getElementById('checkTabla').addEventListener('change', function () {
+                $('#table').DataTable().columns([4, 5, 6]).visible($(this).is(':checked'))
+            });
+
+        }, 300);
+    }
+});
+
+function loadStadictics() {
+
+    // Petición para obtener los datos del registro solicitado.
+    fetch(API_PRODUCTOS + 'readStadistics', {
+        method: 'get'
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            // Se obtiene la respuesta en formato JSON.
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Se inicializan los campos del formulario con los datos del registro seleccionado.  
+                    document.getElementById('stadistic-total').innerText = response.dataset.total;
+                    document.getElementById('stadistic-agotados').innerText = response.dataset.agotados;
+                    document.getElementById('stadistic-existencias').innerText = response.dataset.existencias;
+                    document.getElementById('stadistic-categorias').innerText = response.dataset.categorias;
+                } else {
+                    sweetAlert(2, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
+}
 
 document.getElementById('nombre').addEventListener('keypress', function (event) {
 

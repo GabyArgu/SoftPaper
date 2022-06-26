@@ -128,19 +128,19 @@
                             <div class="row my-5 row-estadisticas">
                                 <div class="col col-3 col-e col-e-1">
                                     <span class="d-block e-texto">Total de productos</span>
-                                    <span class="d-block n-estadistica">75</span>
+                                    <span class="d-block n-estadistica" id="stadistic-total"></span>
                                 </div>
                                 <div class="col col-3 col-e col-e-1">
                                     <span class="d-block e-texto">Productos agotados</span>
-                                    <span class="n-estadistica">2</span>
+                                    <span class="n-estadistica" id="stadistic-agotados"></span>
                                 </div>
                                 <div class="col col-3 col-e col-e-1">
                                     <span class="d-block e-texto">Total existencias</span>
-                                    <span class="n-estadistica">350</span>
+                                    <span class="n-estadistica" id="stadistic-existencias"></span>
                                 </div>
                                 <div class="col col-3 col-e-1">
                                     <span class="d-block e-texto">Categorías</span>
-                                    <span class="n-estadistica">12</span>
+                                    <span class="n-estadistica" id="stadistic-categorias"></span>
                                 </div>
                             </div>
                             <!-- FIN ESTADÍSTICAS-->
@@ -150,50 +150,49 @@
                                         <i class="bi bi-search px-2"></i>
                                         <form class="d-none d-sm-inline-block me-auto " method="post" id="search-form">
                                             <input class=" form-control form-control-lite barra-buscar" type="text"
-                                                placeholder="Buscar producto" aria-label="Search" id="search" name="search">
-                                        </form>
+                                                placeholder="Buscar por nombre" aria-label="Search" id="search"
+                                                name="search">
                                     </div>
                                     <div>
-                                        <button class="btn-filtro btn-second" type="button"
-                                            id="limpiar"><i class="bi bi-arrow-clockwise"></i></button>
+                                        
+                                        </form>
+                                        <button class="btn-filtro btn-second" type="button" id="limpiar"><i
+                                                class="bi bi-arrow-clockwise"></i></button>
                                     </div>
                                     <div class="dropdown">
-                                        <button class="btn-filtro btn-second" type="button"
-                                            id="dropdownMenuButtonFilter" data-bs-toggle="dropdown"
-                                            aria-expanded="false"><i class="bi bi-funnel-fill"></i>Filtrar</button>
-                                        <ul class="dropdown-menu dropdown-menu-end animate slideIn dropdown-filtro"
-                                            aria-labelledby="dropdownMenuButtonFilter">
-                                            <li>
-                                                <h5 class="mt-3">Opciones de filtro</h5>
-                                            </li>
-                                            <li>
-                                                <hr class="dropdown-divider">
-                                            </li>
-                                            <li>
-                                                <h6 class="mb-3">Categoría</h6>
-                                            </li>
-                                            <li><select class="form-select filtro-combo"
-                                                    aria-label="Default select example">
-                                                    <option selected disabled>Seleccione una opción</option>
-                                                    <option value="1">Lapiceros normales</option>
-                                                    <option value="2">Lápices redondos</option>
-                                                    <option value="3">Plumones delgados</option>
-                                                </select></li>
-                                            <li>
-                                                <h6 class="my-3">Estado</h6>
-                                            </li>
-                                            <li><select class="form-select filtro-combo"
-                                                    aria-label="Default select example">
-                                                    <option selected disabled>Seleccione una opción</option>
-                                                    <option value="1">En stock</option>
-                                                    <option value="2">Por agotar</option>
-                                                    <option value="3">Agotado</option>
-                                                </select></li>
-                                            <li class="d-flex justify-content-end"><button
-                                                    class="btn btn-main btn-aplicar-filtro mt-3" type="button"
-                                                    data-bs-target="#modal-agregar2" data-bs-toggle="modal"
-                                                    data-bs-dismiss="modal">Aplicar</button></li>
-                                        </ul>
+                                        <form id="filter-form" method="post">
+                                            <button class="btn-filtro btn-second py-2" type="button" id="filter-btn"
+                                                data-bs-toggle="dropdown" aria-expanded="false"><i
+                                                    class="bi bi-funnel-fill"></i>Filtrar</button>
+                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn dropdown-filtro"
+                                                aria-labelledby="dropdownMenuButtonFilter">
+                                                <li>
+                                                    <h5 class="mt-3">Opciones de filtro</h5>
+                                                </li>
+                                                <li>
+                                                    <hr class="dropdown-divider">
+                                                </li>
+                                                <li>
+                                                    <h6 class="mb-3">Categoría</h6>
+                                                </li>
+                                                <li><select class="form-select filtro-combo"
+                                                        aria-label="Default select example" id="filter-categoria"
+                                                        name="filter-categoria">
+                                                    </select></li>
+                                                <li>
+                                                    <h6 class="my-3">Estado</h6>
+                                                </li>
+                                                <li><select class="form-select filtro-combo"
+                                                        aria-label="Default select example" id="filter-estado"
+                                                        name="filter-estado">
+                                                    </select></li>
+                                                <li class="d-flex justify-content-end"><button
+                                                        class="btn btn-main btn-aplicar-filtro mt-3" type="submit"
+                                                        form="filter-form" data-bs-dismiss="modal"
+                                                        id="apply-filter">Aplicar</button></li>
+                                            </ul>
+                                        </form>
+
                                     </div>
                                 </div>
                                 <div class="col col-lg-6 d-flex justify-content-end">
@@ -263,17 +262,17 @@
         <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content">
                 <div class="modal-body">
-                    <form method="post" id="save-form" >
+                    <form method="post" id="save-form">
                         <div class="container">
                             <div class="row agregar-content">
                                 <div class="col">
                                     <div class="row mt-3">
                                         <input class="form-control form-control-lg nombre-producto" type="text"
                                             placeholder="Ingresar nombre del producto"
-                                            aria-label=".form-control-lg example" id="nombre" name="nombre" required onkeypress="return validateChar(event);">
+                                            aria-label=".form-control-lg example" id="nombre" name="nombre" required
+                                            onkeypress="return validateChar(event);">
                                         <textarea class="form-control w-100"
-                                            placeholder="Ingresar descripción del producto"
-                                            rows="2" id="descripcion"
+                                            placeholder="Ingresar descripción del producto" rows="2" id="descripcion"
                                             name="descripcion" required></textarea>
                                     </div>
                                     <div class="row">
@@ -303,8 +302,7 @@
                                         </div>
                                         <div class="col col-6 mt-3">
                                             <label for="cmb-precio">Precio</label>
-                                            <input class="form-control w-100" type="number" placeholder="" 
-                                                id="precio"
+                                            <input class="form-control w-100" type="number" placeholder="" id="precio"
                                                 name="precio" pattern="\d+" required>
                                         </div>
                                         <div class="col col-6 mt-3">
@@ -320,23 +318,26 @@
                                                     <div class="stock-container">
                                                         <div class="col col-12">
                                                             <input type="number" class="form-control w-100" id="stock"
-                                                                name="stock" value="" placeholder="" required onkeypress="return validateNum(event);">
+                                                                name="stock" value="" placeholder="" required
+                                                                onkeypress="return validateNum(event);">
                                                         </div>
                                                         <div class="col col-12 px-0 mt-2" id="update-stock">
                                                             <div class="row input-stock mb-2">
                                                                 <div class="col col-6 mx-0">
                                                                     <div class="controls-producto d-flex ">
-                                                                        <input class="w-100 ps-3" type="number" id="stock-nuevo"
-                                                                            value="1" min="1" max="1000" />
+                                                                        <input class="w-100 ps-3" type="number"
+                                                                            id="stock-nuevo" value="1" min="1"
+                                                                            max="1000" />
                                                                     </div>
                                                                 </div>
                                                                 <div
                                                                     class="col col-6 d-flex justify-content-evenly  col-btn-stock">
                                                                     <button class="btn btn-stock btn-main "
-                                                                        type="button" type="button" id="quitar-stock" onclick="restarStock()"><i
+                                                                        type="button" type="button" id="quitar-stock"
+                                                                        onclick="restarStock()"><i
                                                                             class="bi bi-dash"></i></button>
-                                                                    <button class="btn btn-stock btn-main"
-                                                                        type="button" id="añadir-stock" onclick="sumarStock()"><i
+                                                                    <button class="btn btn-stock btn-main" type="button"
+                                                                        id="añadir-stock" onclick="sumarStock()"><i
                                                                             class="bi bi-plus"></i></button>
                                                                 </div>
                                                             </div>
@@ -348,7 +349,7 @@
                                         <div class="col col-6 mt-3">
                                             <label for="" id="estado-label">Estado</label>
                                             <select class="form-select w-100" type="number" placeholder=""
-                                            aria-label=".form-control example" id="estado" name="estado"></select>
+                                                aria-label=".form-control example" id="estado" name="estado"></select>
                                         </div>
                                         <div class="col col-6 mt-3">
                                             <input class="form-control input-hide" type="text" id="id" name="id">
@@ -358,7 +359,8 @@
                                         <div class="col col-9 mx-auto my-5 color-producto text-center">
                                             <label for="">Imagen del producto</label>
                                             <div class="img-container">
-                                                <input id="archivo" class="form-control p-2 my-2" type="file" name="archivo" accept=".jpg, .png" onchange="previewFile()">
+                                                <input id="archivo" class="form-control p-2 my-2" type="file"
+                                                    name="archivo" accept=".jpg, .png" onchange="previewFile()">
                                                 <img src="" height="80" id="img-thumbnail">
                                             </div>
                                         </div>
@@ -370,8 +372,7 @@
                     </form>
                 </div>
                 <div class="modal-footer d-flex justify-content-between">
-                    <button class="btn btn-cancel btn-second" type="button"
-                        data-bs-dismiss="modal">Cancelar</button>
+                    <button class="btn btn-cancel btn-second" type="button" data-bs-dismiss="modal">Cancelar</button>
                     <button class="btn btn-guardar" type="submit" form="save-form">Guardar</button>
                 </div>
             </div>
@@ -400,11 +401,11 @@
                 <div class="modal-footer d-flex mx-2 justify-content-between">
                     <button class="btn btn-cancel btn-second" type="button" data-bs-target="" data-bs-toggle="modal"
                         data-bs-dismiss="modal">Cancelar</button>
-                        <form id="delete-form">
-                            <input type="hidden" id="id-delete" name="id-delete">
-                            <button class="btn btn-continuar btn-main" type="submit" 
-                        data-bs-dismiss="modal">Continuar</button>
-                        </form>
+                    <form id="delete-form">
+                        <input type="hidden" id="id-delete" name="id-delete">
+                        <button class="btn btn-continuar btn-main" type="submit"
+                            data-bs-dismiss="modal">Continuar</button>
+                    </form>
                 </div>
             </div>
         </div>
