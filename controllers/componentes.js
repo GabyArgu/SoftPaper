@@ -576,28 +576,22 @@ const validateNum = (evt) => {
     }
 }
 
-//Validar números decimales
-const validateNumDec = (e) => {
-    var soloNumeros=/^[0-9]([.][0-9]{1,2})?$/;
-    let fieldValue = e.target.value;
-    let field = e.target;
-    if(soloNumeros.test(fieldValue)){
-        field.classList.add("invalid");
-    } else {
-        field.classList.remove("invalid")
-    }
-}
-
 //Validar solo letras
-function validateChar (evt) {
-    let soloLetras=/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/;
-    let fieldValue = e.target.value;
+function validateChar (e, evt) {
+    var key = e.keyCode || e.which,
+      tecla = String.fromCharCode(key).toLowerCase(),
+      letras = " áéíóúabcdefghijklmnñopqrstuvwxyz",
+      specials = [8],
+      tecla_especial = false;
 
-    if(soloLetras.test(fieldValue)){
-        console.log("true")
-        return true;
-    } else {
-        console.log("false")
-        return false;
+    for (var i in specials) {
+      if (key == specials[i]) {
+        tecla_especial = true;
+        break;
+      }
+    }
+
+    if (letras.indexOf(tecla) == -1 && !tecla_especial) {
+      return false;
     }
 }

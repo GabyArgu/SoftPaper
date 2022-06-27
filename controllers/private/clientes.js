@@ -168,7 +168,7 @@ document.getElementById("udepartamento_c").addEventListener("change", function (
     fillSelectDependentM(ENDPOINT_MUNIC, 'umunicipio_c', null, selectValue);
 });
 
-// Función para crear usuario
+// Función para crear cliente
 document.getElementById('agregar-cliente').addEventListener('submit', function (event) {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();

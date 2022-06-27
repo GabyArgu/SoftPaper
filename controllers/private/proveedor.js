@@ -106,7 +106,7 @@ document.getElementById('buscar-proveedor').addEventListener('submit', function 
 });
 
 function openCreateProv() {
-    // Se establece que el campo archivo sea obligatorio (input de subir imagen).
+    // Se limpian los campos, se deshabilita el campo de estado y se cambia el título del modal
     document.getElementById("nombre_prov").value = "";
     document.getElementById("tele_prov").value = "";
     document.getElementById("estado_prov").disabled = true;
@@ -163,6 +163,7 @@ document.getElementById('agregar-prov').addEventListener('submit', function (eve
     readRows(API_PROVEEDOR);
 });
 
+// Función para cargar el id a eliminar
 function openDeleteProv(id) {
     document.getElementById('id_delete').value = (id);
 }
