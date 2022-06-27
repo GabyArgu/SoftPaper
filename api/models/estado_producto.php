@@ -84,9 +84,7 @@ class EstadoProducto extends Validator
     // Método para un dato en especifico de los colores existentes-------------------------.
     public function readOne()
     {
-        $sql = 'SELECT *
-        FROM "colorProducto"
-        where "idColor" = ?';
+        $sql = 'SELECT uuid_estado_producto, estado_producto, estado_estado_producto FROM estado_producto where uuid_estado_producto = ?';
         $params = array($this->id);
         return Database::getRow($sql, $params);
     }
@@ -108,9 +106,9 @@ class EstadoProducto extends Validator
     /* CREATE */
     public function createRow()
     {
-        $sql = 'INSERT INTO "colorProducto"("colorProducto", estado)
-                VALUES (?, 1);';
-        $params = array($this->color);
+        $sql = 'INSERT INTO estado_producto(estado_producto, estado_estado_producto)
+            VALUES (?, ?)';
+        $params = array($this->estado, $this->estado_estado);
         return Database::executeRow($sql, $params);
     }
 

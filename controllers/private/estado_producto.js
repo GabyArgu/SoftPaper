@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
         dismissible: false,
         onOpenStart: function () {
             // Se restauran los elementos del formulario.
-            document.getElementById('modal-agregarP').reset();
+            document.getElementById('modal-agregarEP').reset();
         }
     }
 });
@@ -36,11 +36,11 @@ function fillTable(dataset) {
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                         aria-labelledby="dropdownMenuButton1">
-                        <li><a onclick="openUpdateProv('${row.uuid_proveedor}')" class="dropdown-item"
+                        <li><a onclick="openUpdateEP('${row.uuid_estado_producto}')" class="dropdown-item"
                                 data-bs-toggle="modal"
-                                data-bs-target="#modal-agregarP">Editar</a>
+                                data-bs-target="#modal-agregarEP">Editar</a>
                         </li>
-                        <li><a onclick="openDeleteProv('${row.uuid_proveedor}')" class="dropdown-item"
+                        <li><a onclick="openDeleteProv('${row.uuid_estado_producto}')" class="dropdown-item"
                                 data-bs-toggle="modal"
                                 data-bs-target="#modal-eliminar">Eliminar</a>
                         </li>
@@ -95,27 +95,27 @@ document.addEventListener('DOMContentLoaded', function () {
 //     });
 // });
 
-document.getElementById('buscar-proveedor').addEventListener('submit', function (event) {
-    // Se evita recargar la página web después de enviar el formulario.
-    event.preventDefault();
-    // Se llama a la función que realiza la búsqueda. Se encuentra en el archivo components.js
-    searchRows(API_PROVEEDOR, 'buscar-proveedor');
-});
+// BUSCADOR
+// document.getElementById('buscar-proveedor').addEventListener('submit', function (event) {
+//     // Se evita recargar la página web después de enviar el formulario.
+//     event.preventDefault();
+//     // Se llama a la función que realiza la búsqueda. Se encuentra en el archivo components.js
+//     searchRows(API_PROVEEDOR, 'buscar-proveedor');
+// });
 
-function openCreateProv() {
+function opencreateEP() {
     // Se establece que el campo archivo sea obligatorio (input de subir imagen).
-    document.getElementById("nombre_prov").value = "";
-    document.getElementById("tele_prov").value = "";
-    document.getElementById("estado_prov").disabled = true;
+    document.getElementById("nombre_estado_producto").value = "";
+    document.getElementById("estado_estado_producto").disabled = true;
 }
 
-function openUpdateProv(id) {
-    document.getElementById("estado_prov").disabled = false;
+function openUpdateEP(id) {
+    document.getElementById("estado_estado_producto").disabled = false;
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData();
     data.append('id', id);
     // Petición para obtener los datos del registro solicitado.
-    fetch(API_PROVEEDOR + 'readOne', {
+    fetch(API_ESTADO_PRODUCTO + 'readOne', {
         method: 'post',
         body: data
     }).then(function (request) {
@@ -127,12 +127,11 @@ function openUpdateProv(id) {
                 if (response.status) {
                     // Se inicializan los campos del formulario con los datos del registro seleccionado.
                     document.getElementById('id').value = (id);
-                    document.getElementById('nombre_prov').value = response.dataset.nombre_proveedor;
-                    document.getElementById('tele_prov').value = response.dataset.telefono_proveedor;
-                    if (response.dataset.estado_cliente) {
-                        document.getElementById('estado_prov').value = 0;
+                    document.getElementById('nombre_estado_producto').value = response.dataset.estado_producto;
+                    if (response.dataset.estado_estado_producto) {
+                        document.getElementById('estado_estado_producto').value = 1;
                     } else {
-                        document.getElementById('estado_prov').value = 1;
+                        document.getElementById('estado_estado_producto').value = 0;
                     }
                     // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos.
                 } else {
@@ -146,7 +145,7 @@ function openUpdateProv(id) {
 }
 
 // Método manejador de eventos que se ejecuta cuando se envía el formulario de guardar.
-document.getElementById('agregar-prov').addEventListener('submit', function (event) {
+document.getElementById('agregar-ep').addEventListener('submit', function (event) {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
     // Se define una variable para establecer la acción a realizar en la API.
@@ -154,7 +153,7 @@ document.getElementById('agregar-prov').addEventListener('submit', function (eve
     // Se comprueba si el campo oculto del formulario esta seteado para actualizar, de lo contrario será para crear.
     (document.getElementById('id').value) ? action = 'update' : action = 'create';
     // Se llama a la función para guardar el registro. Se encuentra en el archivo components.js
-    saveRow(API_PROVEEDOR, action, 'agregar-prov', 'modal-agregarP');
+    saveRow(API_ESTADO_PRODUCTO, action, 'agregar-ep', 'modal-agregarEP');
 });
 
 function openDeleteProv(id) {

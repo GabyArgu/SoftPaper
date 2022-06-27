@@ -15,7 +15,7 @@ if (isset($_GET['action'])) {
     if (isset($_SESSION['uuid_empleado'])) {
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
-            // Accion de leer toda la información------------------.
+                // Accion de leer toda la información------------------.
             case 'readAll':
                 if ($result['dataset'] = $estadoProducto->readAll()) {
                     $result['status'] = 1;
@@ -25,55 +25,69 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No hay datos registrados';
                 }
                 break;
-            // Accion leer un elemento de toda la información------------------.       
+                // Accion leer un elemento de toda la información------------------.       
             case 'readOne':
                 if (!$estadoProducto->setId($_POST['id'])) {
-                    $result['exception'] = 'Subcategoría incorrecta';
+                    $result['exception'] = 'Estado de producto incorrecto';
                 } elseif ($result['dataset'] = $estadoProducto->readOne()) {
                     $result['status'] = 1;
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
                 } else {
-                    $result['exception'] = 'Subcategoría inexistente';
+                    $result['exception'] = 'Estado de producto inexistente';
                 }
                 break;
-            // Accion de actualizar un elemento de toda la información------------------.     
-            // case 'update':
-            //     //Especificamos los inputs por medio de su atributo name, y los capturamos con el método post
-            //     $_POST = $estadoProducto->validateForm($_POST);
-            //     if (!$estadoProducto->setId($_POST['id'])) {
-            //         $result['exception'] = 'Subcategoria incorrecta';
-            //     } elseif (!$data = $estadoProducto->readOne()) {
-            //         $result['exception'] = 'Subcategoria inexistente';
-            //     }elseif (!$estadoProducto->setNombre($_POST['nombre'])) {
-            //         $result['exception'] = 'Nombre inválido';
-            //     }  elseif (!$estadoProducto->setCategoria($_POST['categoria'])){
-            //         $result['exception'] = 'Categoría inválida';
-            //     } elseif (!$estadoProducto->setDescripcion($_POST['descripcion'])) {
-            //         $result['exception'] = 'Descripción inválida';
-            //     } elseif (!$estadoProducto->setEstado($_POST['estado'])) {
-            //         $result['exception'] = 'Estado inválido';
-            //     } elseif (!is_uploaded_file($_FILES['archivo']['tmp_name'])) {
-            //         if ($estadoProducto->updateRow($data['imagenSubcategoria'])) {
-            //             $result['status'] = 1;
-            //             $result['message'] = 'Subcategoría modificada correctamente';
-            //         } else {
-            //             $result['exception'] = Database::getException();
-            //         }
-            //     } elseif (!$estadoProducto->setImagen($_FILES['archivo'])) {
-            //         $result['exception'] = $estadoProducto->getFileError();
-            //     } elseif ($estadoProducto->updateRow($data['imagenSubcategoria'])) {
-            //         $result['status'] = 1;
-            //         if ($estadoProducto->saveFile($_FILES['archivo'], $estadoProducto->getRuta(), $estadoProducto->getImagen())) {
-            //             $result['message'] = 'Subcategoría actualizada correctamente';
-            //         } else {
-            //             $result['message'] = 'Subcategoría actualizada pero no se guardó la imagen';
-            //         }
-            //     } else {
-            //         $result['exception'] = Database::getException();
-            //     }
-            //     break;
-            // Accion de desabilitar un elemento de toda la información------------------.        
+            case 'create':
+                //Especificamos los inputs por medio de su atributo name, y los capturamos con el método post
+                $_POST = $estadoProducto->validateForm($_POST);
+                if (!$estadoProducto->setEstado($_POST['nombre_estado_producto'])) {
+                    $result['exception'] = 'Nombre de estado inválido';
+                } elseif (!$estadoProducto->setEstadoEstado(1)) {
+                    $result['exception'] = 'Estado de estado inválido';
+                } elseif ($estadoProducto->createRow()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Estado de producto creado correctamente';
+                } else {
+                    $result['exception'] = Database::getException();
+                }
+                break;
+                // Accion de actualizar un elemento de toda la información------------------.     
+                // case 'update':
+                //     //Especificamos los inputs por medio de su atributo name, y los capturamos con el método post
+                //     $_POST = $estadoProducto->validateForm($_POST);
+                //     if (!$estadoProducto->setId($_POST['id'])) {
+                //         $result['exception'] = 'Subcategoria incorrecta';
+                //     } elseif (!$data = $estadoProducto->readOne()) {
+                //         $result['exception'] = 'Subcategoria inexistente';
+                //     }elseif (!$estadoProducto->setNombre($_POST['nombre'])) {
+                //         $result['exception'] = 'Nombre inválido';
+                //     }  elseif (!$estadoProducto->setCategoria($_POST['categoria'])){
+                //         $result['exception'] = 'Categoría inválida';
+                //     } elseif (!$estadoProducto->setDescripcion($_POST['descripcion'])) {
+                //         $result['exception'] = 'Descripción inválida';
+                //     } elseif (!$estadoProducto->setEstado($_POST['estado'])) {
+                //         $result['exception'] = 'Estado inválido';
+                //     } elseif (!is_uploaded_file($_FILES['archivo']['tmp_name'])) {
+                //         if ($estadoProducto->updateRow($data['imagenSubcategoria'])) {
+                //             $result['status'] = 1;
+                //             $result['message'] = 'Subcategoría modificada correctamente';
+                //         } else {
+                //             $result['exception'] = Database::getException();
+                //         }
+                //     } elseif (!$estadoProducto->setImagen($_FILES['archivo'])) {
+                //         $result['exception'] = $estadoProducto->getFileError();
+                //     } elseif ($estadoProducto->updateRow($data['imagenSubcategoria'])) {
+                //         $result['status'] = 1;
+                //         if ($estadoProducto->saveFile($_FILES['archivo'], $estadoProducto->getRuta(), $estadoProducto->getImagen())) {
+                //             $result['message'] = 'Subcategoría actualizada correctamente';
+                //         } else {
+                //             $result['message'] = 'Subcategoría actualizada pero no se guardó la imagen';
+                //         }
+                //     } else {
+                //         $result['exception'] = Database::getException();
+                //     }
+                //     break;
+                // Accion de desabilitar un elemento de toda la información------------------.        
             case 'delete':
                 if (!$productos->setId($_POST['id-delete'])) {
                     $result['exception'] = 'Producto incorrecto';
@@ -85,7 +99,7 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['exception'] = Database::getException();
                 }
-                break;   
+                break;
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }
     } else {
