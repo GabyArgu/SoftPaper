@@ -46,248 +46,224 @@
         </div>
     </div>
 
-    <!-- INICIA NAVBAR -->
-    <header>
-        <nav class="navbar navbar-expand-lg " id="navbar-dashboard">
-            <div class="container">
-                <div class="nav-logo">
-                    <a class="navbar-brand nav-item" href="dashboard.html">
-                        <img src="../../resources/img/logo/logo_default.png" alt=""
-                            class="d-inline-block align-text-top logo">
-                    </a>
-                </div>
-                <button class="navbar-toggler collapsed d-flex d-lg-none flex-column justify-content-around"
-                    type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="toggler-icon top-bar"></span>
-                    <span class="toggler-icon middle-bar"></span>
-                    <span class="toggler-icon bottom-bar"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarText">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+    <div class="wrapper">
 
-                        <li class="active nav-item menu-item" type="button">
+        <!-- INICIA NAVBAR -->
+        <header>
+            <nav class="navbar navbar-expand-lg " id="navbar-dashboard">
+                <div class="container">
+                    <div class="nav-logo">
+                        <a class="navbar-brand nav-item" href="dashboard.html">
+                            <img src="../../resources/img/logo/logo_default.png" alt=""
+                                class="d-inline-block align-text-top logo">
+                        </a>
+                    </div>
+                    <button class="navbar-toggler collapsed d-flex d-lg-none flex-column justify-content-around"
+                        type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="toggler-icon top-bar"></span>
+                        <span class="toggler-icon middle-bar"></span>
+                        <span class="toggler-icon bottom-bar"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarText">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-                            <a class="nav-link dropdown" id="navbarDropdownMenuLink" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false"> Inventario
-                            </a>
-                            <ul class="dropdown-menu dropdown-inventario slideInNav animate"
-                                aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="productos.html">Productos</a></li>
-                                <li><a class="dropdown-item" href="categoria.html">Categoria</a></li>
-                                <li><a class="dropdown-item" href="subcategoria.html">Subcategorías</a></li>
-                                <li><a class="dropdown-item" href="departamentos_municipios.html">Proveedores y
-                                        marcas</a></li>
-                            </ul>
+                            <li class="active nav-item menu-item" type="button">
 
-                        </li>
-                        <li class="active nav-item menu-item" type="button">
+                                <a class="nav-link dropdown" id="navbarDropdownMenuLink" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false"> Inventario
+                                </a>
+                                <ul class="dropdown-menu dropdown-inventario slideInNav animate"
+                                    aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="productos.html">Productos</a></li>
+                                    <li><a class="dropdown-item" href="subcategoria.html">Subcategorías</a></li>
+                                    <li><a class="dropdown-item" href="marca_proveedor.html">Proveedores y marcas</a>
+                                    </li>
+                                </ul>
 
-                            <a class="nav-link dropdown" id="navbarDropdownMenuLink" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false"> Facturación
-                            </a>
-                            <ul class="dropdown-menu dropdown-inventario slideInNav animate"
-                                aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="venta.html">Ventas</a></li>
-                                <li><a class="dropdown-item" href="tipos.html">Tipo factura y venta</a></li>
-                            </ul>
+                            </li>
 
-                        </li>
-                        <li class="active nav-item menu-item" type="button">
+                            <li class="active nav-item menu-item" type="button">
+                                <a class="nav-link active" aria-current="page" href="venta.html">Venta</a>
+                            </li>
 
-                            <a class="nav-link dropdown" id="navbarDropdownMenuLink" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false"> Usuarios
-                            </a>
-                            <ul class="dropdown-menu dropdown-inventario slideInNav animate"
-                                aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="clientes.html">Clientes</a></li>
-                                <li><a class="dropdown-item" href="empleados.html">Empleados</a></li>
-                            </ul>
+                            <li class="active nav-item menu-item" type="button">
+                                <a class="nav-link active" aria-current="page" href="clientes.html">Clientes</a>
+                            </li>
 
-                        </li>
-                        <li class="active nav-item menu-item" type="button">
+                            <li class="active nav-item menu-item" type="button">
+                                <a class="nav-link" href="empleados.html">Empleados</a>
+                            </li>
+                        </ul>
+                        <div class="nav-options d-flex">
+                            <a href="" class="nav-item"><i class="bi bi-search" type="button"></i></a>
 
-                            <a class="nav-link dropdown" id="navbarDropdownMenuLink" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false"> Catálogos
-                            </a>
-                            <ul class="dropdown-menu dropdown-inventario slideInNav animate"
-                                aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="estados.html">Estado de producto y venta</a></li>
-                                <li><a class="dropdown-item" href="subcategoria.html">Departamentos y municipios</a>
-                                </li>
-                                <li><a class="dropdown-item" href="giro.html">Giro clientes</a></li>
-                                <li><a class="dropdown-item" href="color.html">Colores</a></li>
-                            </ul>
+                            <li class="active nav-item menu-item" type="button">
 
-                        </li>
-                    </ul>
-                    <div class="nav-options d-flex">
-                        <a href="" class="nav-item"><i class="bi bi-search" type="button"></i></a>
+                                <a class="nav-link dropdown" id="navbarDropdownMenuLink" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="../../api/images/avatares/a2.png" alt=""
+                                        class="d-inline-block align-text-top user">
+                                </a>
+                                <ul class="dropdown-menu slideInNav1 slideInNav  animate"
+                                    aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="perfil_usuario.html">Ir a perfil</a></li>
+                                    <li><a class="dropdown-item" href="index.html">Cerrar sesión</a></li>
+                                </ul>
 
-                        <li class="active nav-item menu-item" type="button">
-
-                            <a class="nav-link dropdown" id="navbarDropdownMenuLink" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="../../api/images/avatares/a2.png" alt=""
-                                    class="d-inline-block align-text-top user">
-                            </a>
-                            <ul class="dropdown-menu slideInNav1 slideInNav  animate" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="perfil_usuario.html">Ir a perfil</a></li>
-                                <li><a class="dropdown-item" href="index.html">Cerrar sesión</a></li>
-                            </ul>
-
-                        </li>
+                            </li>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </nav>
-    </header>
-    <!-- FIN NAVBAR-->
-
-    <!-- INICIO CONTENIDO -->
-    <main class="container-xxl">
-        <div class="header-content my-5">
-            <h1>Productos</h1>
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="dashboard.html">Inicio</a></li>
-                    <li class="breadcrumb-item"><a href="">Inventario</a></li>
-                    <li class="breadcrumb-item active" aria-current="page"><a href="productos.html">Productos</a></li>
-                </ol>
             </nav>
-        </div>
-        <div class="content content-productos">
-            <div class="container content-card">
-                <div class="row">
-                    <div class="col">
-                        <!-- INICIO ESTADÍSTICAS-->
-                        <div class="row my-5 row-estadisticas">
-                            <div class="col col-3 col-e col-e-1">
-                                <span class="d-block e-texto">Total de productos</span>
-                                <span class="d-block n-estadistica" id="stadistic-total"></span>
-                            </div>
-                            <div class="col col-3 col-e col-e-1">
-                                <span class="d-block e-texto">Productos agotados</span>
-                                <span class="n-estadistica" id="stadistic-agotados"></span>
-                            </div>
-                            <div class="col col-3 col-e col-e-1">
-                                <span class="d-block e-texto">Total existencias</span>
-                                <span class="n-estadistica" id="stadistic-existencias"></span>
-                            </div>
-                            <div class="col col-3 col-e-1">
-                                <span class="d-block e-texto">Categorías</span>
-                                <span class="n-estadistica" id="stadistic-categorias"></span>
-                            </div>
-                        </div>
-                        <!-- FIN ESTADÍSTICAS-->
-                        <div class="row">
-                            <div class="col col-lg-6 d-flex justify-content-start">
-                                <div class="buscador">
-                                    <i class="bi bi-search px-2"></i>
-                                    <form class="d-none d-sm-inline-block me-auto " method="post" id="search-form">
-                                        <input class=" form-control form-control-lite barra-buscar" type="text"
-                                            placeholder="Buscar por nombre" aria-label="Search" id="search"
-                                            name="search">
-                                    </form>
-                                </div>
-                                <div>
-                                    <button class="btn-filtro btn-second" type="button" id="limpiar"><i
-                                            class="bi bi-arrow-clockwise"></i></button>
-                                </div>
-                                <div class="dropdown">
-                                    <form id="filter-form" method="post">
-                                        <button class="btn-filtro btn-second py-2" type="button" id="filter-btn"
-                                            data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                class="bi bi-funnel-fill"></i>Filtrar</button>
-                                        <ul class="dropdown-menu dropdown-menu-end animate slideIn dropdown-filtro"
-                                            aria-labelledby="dropdownMenuButtonFilter">
-                                            <li>
-                                                <h5 class="mt-3">Opciones de filtro</h5>
-                                            </li>
-                                            <li>
-                                                <hr class="dropdown-divider">
-                                            </li>
-                                            <li>
-                                                <h6 class="mb-3">Categoría</h6>
-                                            </li>
-                                            <li><select class="form-select filtro-combo"
-                                                    aria-label="Default select example" id="filter-categoria"
-                                                    name="filter-categoria">
-                                                </select></li>
-                                            <li>
-                                                <h6 class="my-3">Estado</h6>
-                                            </li>
-                                            <li><select class="form-select filtro-combo"
-                                                    aria-label="Default select example" id="filter-estado"
-                                                    name="filter-estado">
-                                                </select></li>
-                                            <li class="d-flex justify-content-end"><button
-                                                    class="btn btn-main btn-aplicar-filtro mt-3" type="submit"
-                                                    form="filter-form" data-bs-dismiss="modal"
-                                                    id="apply-filter">Aplicar</button></li>
-                                        </ul>
-                                    </form>
+        </header>
+        <!-- FIN NAVBAR-->
 
+        <!-- INICIO CONTENIDO -->
+        <main class="container-xxl">
+            <div class="header-content my-5">
+                <h1>Productos</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="dashboard.html">Inicio</a></li>
+                        <li class="breadcrumb-item"><a href="productos.html">Inventario</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"><a href="">Productos</a></li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="content content-productos">
+                <div class="container content-card">
+                    <div class="row">
+                        <div class="col">
+                            <!-- INICIO ESTADÍSTICAS-->
+                            <div class="row my-5 row-estadisticas">
+                                <div class="col col-3 col-e col-e-1">
+                                    <span class="d-block e-texto">Total de productos</span>
+                                    <span class="d-block n-estadistica" id="stadistic-total"></span>
+                                </div>
+                                <div class="col col-3 col-e col-e-1">
+                                    <span class="d-block e-texto">Productos agotados</span>
+                                    <span class="n-estadistica" id="stadistic-agotados"></span>
+                                </div>
+                                <div class="col col-3 col-e col-e-1">
+                                    <span class="d-block e-texto">Total existencias</span>
+                                    <span class="n-estadistica" id="stadistic-existencias"></span>
+                                </div>
+                                <div class="col col-3 col-e-1">
+                                    <span class="d-block e-texto">Categorías</span>
+                                    <span class="n-estadistica" id="stadistic-categorias"></span>
                                 </div>
                             </div>
-                            <div class="col col-lg-6 d-flex justify-content-end">
-                                <button class="btn-añadir btn-main" onclick="openCreate()" type="button"
-                                    data-bs-toggle="modal" data-bs-target="#save-modal"><i class="bi bi-plus"></i>Añadir
-                                    producto</button>
-                                <button class="btn-export btn-second" type="button"><i
-                                        class="bi bi-box-arrow-up"></i></button>
-                            </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col">
-                                <!-- INICIO TABLA PRODUCTOS-->
-                                <div class="table-responsive mt-3 scroll" id="no-more-tables">
-                                    <table class="table table-hover" id="table">
-                                        <thead>
-                                            <tr>
-                                                <th>Producto</th>
-                                                <th>Subcategoría</th>
-                                                <th>Precio</th>
-                                                <th>Inventario</th>
-                                                <th>Marca</th>
-                                                <th>Proveedor</th>
-                                                <th>Descripción</th>
-                                                <th>Estado</th>
-                                                <th>Acciones</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="tbody_rows">
+                            <!-- FIN ESTADÍSTICAS-->
+                            <div class="row">
+                                <div class="col col-lg-6 d-flex justify-content-start">
+                                    <div class="buscador">
+                                        <i class="bi bi-search px-2"></i>
+                                        <form class="d-none d-sm-inline-block me-auto " method="post" id="search-form">
+                                            <input class=" form-control form-control-lite barra-buscar" type="text"
+                                                placeholder="Buscar por nombre" aria-label="Search" id="search"
+                                                name="search">
+                                        </form>
+                                    </div>
+                                    <div>
+                                        <button class="btn-filtro btn-second" type="button" id="limpiar"><i
+                                                class="bi bi-arrow-clockwise"></i></button>
+                                    </div>
+                                    <div class="dropdown">
+                                        <form id="filter-form" method="post">
+                                            <button class="btn-filtro btn-second py-2" type="button" id="filter-btn"
+                                                data-bs-toggle="dropdown" aria-expanded="false"><i
+                                                    class="bi bi-funnel-fill"></i>Filtrar</button>
+                                            <ul class="dropdown-menu dropdown-menu-end animate slideIn dropdown-filtro"
+                                                aria-labelledby="dropdownMenuButtonFilter">
+                                                <li>
+                                                    <h5 class="mt-3">Opciones de filtro</h5>
+                                                </li>
+                                                <li>
+                                                    <hr class="dropdown-divider">
+                                                </li>
+                                                <li>
+                                                    <h6 class="mb-3">Categoría</h6>
+                                                </li>
+                                                <li><select class="form-select filtro-combo"
+                                                        aria-label="Default select example" id="filter-categoria"
+                                                        name="filter-categoria">
+                                                    </select></li>
+                                                <li>
+                                                    <h6 class="my-3">Estado</h6>
+                                                </li>
+                                                <li><select class="form-select filtro-combo"
+                                                        aria-label="Default select example" id="filter-estado"
+                                                        name="filter-estado">
+                                                    </select></li>
+                                                <li class="d-flex justify-content-end"><button
+                                                        class="btn btn-main btn-aplicar-filtro mt-3" type="submit"
+                                                        form="filter-form" data-bs-dismiss="modal"
+                                                        id="apply-filter">Aplicar</button></li>
+                                            </ul>
+                                        </form>
 
-                                        </tbody>
-                                    </table>
+                                    </div>
                                 </div>
-                                <!-- FIN TABLA PRODUCTOS-->
+                                <div class="col col-lg-6 d-flex justify-content-end">
+                                    <button class="btn-añadir btn-main" onclick="openCreate()" type="button"
+                                        data-bs-toggle="modal" data-bs-target="#save-modal"><i
+                                            class="bi bi-plus"></i>Añadir
+                                        producto</button>
+                                    <button class="btn-export btn-second" type="button"><i
+                                            class="bi bi-box-arrow-up"></i></button>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row mb-3 ">
-                            <div class="d-flex justify-content-center">
-                                <label>Mostrar todos los campos
-                                    <input type="checkbox" id="checkTabla">
-                                </label>
+                            <div class="row mt-3">
+                                <div class="col">
+                                    <!-- INICIO TABLA PRODUCTOS-->
+                                    <div class="table-responsive mt-3 scroll" id="no-more-tables">
+                                        <table class="table table-hover" id="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Producto</th>
+                                                    <th>Subcategoría</th>
+                                                    <th>Precio</th>
+                                                    <th>Inventario</th>
+                                                    <th>Marca</th>
+                                                    <th>Proveedor</th>
+                                                    <th>Descripción</th>
+                                                    <th>Estado</th>
+                                                    <th>Acciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="tbody_rows">
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- FIN TABLA PRODUCTOS-->
+                                </div>
+                            </div>
+                            <div class="row mb-3 ">
+                                <div class="d-flex justify-content-center">
+                                    <label>Mostrar todos los campos
+                                        <input type="checkbox" id="checkTabla">
+                                    </label>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </main>
-    <!-- FIN CONTENIDO -->
-    <!-- INICIO FOOTER-->
-    <footer class='footerSP'>
-        <div class="section">
-            <div class="row justify-content-center">
-                <div class="col-12 text-center pt-3">
-                    <p class="footerH6">© SoftPaper. 2022 Derechos Reservados.</p>
+        </main>
+        <!-- FIN CONTENIDO -->
+        <!-- INICIO FOOTER-->
+        <footer class='footerSP'>
+            <div class="section">
+                <div class="row justify-content-center">
+                    <div class="col-12 text-center pt-3">
+                        <p class="footerH6">© SoftPaper. 2022 Derechos Reservados.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </footer>
-    <!-- FIN FOOTER-->
+        </footer>
+        <!-- FIN FOOTER-->
     </div>
 
     <!-- INICIO MODAL AGREGAR PRODUCTO-->
