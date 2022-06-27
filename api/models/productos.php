@@ -240,7 +240,23 @@ class Productos extends Validator
         return Database::getRow($sql, $params);
     }
 
+    
 
+    /*
+    *   Métodos para obtener estadísticas de productos
+    */
+
+    public function readStadistics()
+    {
+        $sql = "SELECT (SELECT COUNT(*) FROM producto) as total, 
+        (SELECT COUNT(*) FROM producto WHERE uuid_estado_producto = (SELECT uuid_estado_producto FROM estado_producto WHERE estado_producto = 'Sin existencias')) as agotados,
+        (SELECT SUM(stock) FROM color_stock) as existencias, 
+        (SELECT COUNT(*) FROM categoria_producto WHERE estado_categoria_p = true) as categorias  
+        FROM producto, color_stock, categoria_producto
+        GROUP BY total;";
+        $params = null;
+        return Database::getRow($sql, $params);
+    }
 
     /*
     *   Métodos para realizar las operaciones SCRUD (search, create, read, update, delete).
@@ -261,15 +277,25 @@ class Productos extends Validator
         return Database::getRows($sql, $params);
     }
 
-    public function filterPrecio($min, $max)
+    /* Método para filtrar tabla
+    *   Parámetros: categoria = categoria por la cual filtrar, estado = estado por el cual filtrar
+    */
+    public function readRowsFilter($categoria, $estado)
     {
-        $sql = 'SELECT Distinct on ("idProducto") "idProducto", "imagenPrincipal", "nombreProducto", "descripcionProducto", "precioProducto", descuento, "estadoProducto", "idColorStock", "idColor", p."idSubCategoriaP"
-        FROM producto as p INNER JOIN "marca" USING("idMarca") INNER JOIN "colorStock" USING("idProducto")
-		WHERE  "idSubCategoriaP" = ? AND "estadoProducto" = 1 AND "precioProducto" BETWEEN ? AND ?
-		ORDER BY "idProducto"';
-        $params = array($this->id, $min, $max);
+        $sql = 'SELECT Distinct on (nombre_producto) nombre_producto, uuid_producto, imagen_producto, nombre_subcategoria_p, precio_producto, uuid_color_producto, uuid_color_stock, stock, nombre_marca, nombre_proveedor, descripcion_producto, estado_producto
+        FROM producto INNER JOIN estado_producto USING(uuid_estado_producto)
+		INNER JOIN subcategoria_producto USING(uuid_subcategoria_p)
+		INNER JOIN categoria_producto USING(uuid_categoria_p)
+		INNER JOIN color_stock USING(uuid_producto)
+		INNER JOIN marca USING(uuid_marca)
+		INNER JOIN detalle_producto USING(uuid_producto)
+		INNER JOIN proveedor USING(uuid_proveedor)
+        WHERE "uuid_categoria_p" = ? AND uuid_estado_producto = ?
+        ORDER BY  nombre_producto, stock DESC';
+        $params = array($categoria, $estado);
         return Database::getRows($sql, $params);
     }
+
 
     /* CREATE */
     public function createRow()
@@ -401,4 +427,14 @@ class Productos extends Validator
         $params = array($this->id);
         return Database::executeRow($sql, $params);
     }
+
+    public function readProductosVentas(){
+        $sql = "SELECT uuid_producto, nombre_producto, color_producto, stock
+                from color_stock inner join producto using(uuid_producto)
+                inner join color_producto using (uuid_color_producto)
+                inner join detalle_producto using (uuid_producto)";
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
+
 }

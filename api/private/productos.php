@@ -23,8 +23,26 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No hay datos registrados';
                 }
                 break;
+            case 'readStadistics':
+                if ($result['dataset'] = $productos->readStadistics()) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'No hay datos registrados';
+                }
+                break;
             case 'search':
                 if ($result['dataset'] = $productos->searchRows($_POST['search'])) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                }else {
+                    $result['exception'] = 'No hay coincidencias';
+                }
+                break;
+            case 'filterTable':
+                if ($result['dataset'] = $productos->readRowsFilter($_POST['filter-categoria'], $_POST['filter-estado'])) {
                     $result['status'] = 1;
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
@@ -162,6 +180,15 @@ if (isset($_GET['action'])) {
                     $result['message'] = 'Producto vaciado correctamente';
                 } else {
                     $result['exception'] = Database::getException();
+                }
+                break;
+            case 'readProductosVentas':
+                if ($result['dataset'] = $productos->readProductosVentas()) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'No hay datos registrados';
                 }
                 break;   
             default:
