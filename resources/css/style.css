@@ -1463,13 +1463,19 @@ tbody .imgMP{
 #modal-agregarM .modal-header, #modal-agregarM .modal-footer{
   border: none;
 }
-#modal-agregarP select{
+#modal-agregarP select, #modal-agregarSub select{
   border-radius: 15px;
   border-color: var(--azulModal);
 }
-#modal-agregarP h2, #modal-agregarM h2{
+#modal-agregarP h2, #modal-agregarM h2, #modal-agregarSub h2{
   color: var(--azulOscuro);
 }
+
+#nombre_sub{
+  font-size: 25px !important;
+}
+
+
 /* MARCA_PROVEEDOR FIN */
 
 /* RESPONSIVE */
@@ -1827,7 +1833,6 @@ tbody .imgMP{
     }
   }
 }
-<<<<<<< HEAD
 
 .avatar{
   width: 250px;
@@ -1841,22 +1846,6 @@ tbody .imgMP{
   margin-bottom: 50px;
 }
 
-
-=======
-
-.avatar{
-  width: 250px;
-}
-
-/* Perfil Usuario*/
-.t-texto{
-  font-size: 30px;
-  color: black;
-  font-weight: 700;
-  margin-bottom: 50px;
-}
-
->>>>>>> ae85f916df80b5b6a6013c39a9034777cacf9e3f
 .btn-editar {
   width: 120px;
   height: 35px;
@@ -1938,19 +1927,6 @@ tbody .imgMP{
   justify-content: center;
 }
 
-<<<<<<< HEAD
-@media (max-width:1200px){
-  .col-avatar{
-    display: flex;
-    justify-content: center;
-  }
-  .perfil-usuario .content-card h2{
-    text-align: center;
-    margin-top: 20px;
-  }
-}
-/* Editar Perfil Fin */
-=======
 @media (max-width:768px){
   .s-texto{
     justify-content: start;
@@ -2000,7 +1976,6 @@ tbody .imgMP{
   justify-content: center;
   align-items: center;
 }
->>>>>>> ae85f916df80b5b6a6013c39a9034777cacf9e3f
 
 
 .form-control.form-control-solid {
