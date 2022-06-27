@@ -1,14 +1,14 @@
 <?php
 require_once('../helpers/database.php');
 require_once('../helpers/validaciones.php');
-require_once('../models/subcategoria.php');
+require_once('../models/estado_producto.php');
 
 // Se comprueba si existe una acción a realizar por medio de isset, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
     // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en el script.
     session_start();
     // Se instancia la clase correspondiente.
-    $subcategorias = new Subcategoria;
+    $estadoProducto = new EstadoProducto;
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'session' => 0, 'message' => null, 'exception' => null, 'dataset' => null, 'username' => null);
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
@@ -17,7 +17,7 @@ if (isset($_GET['action'])) {
         switch ($_GET['action']) {
             // Accion de leer toda la información------------------.
             case 'readAll':
-                if ($result['dataset'] = $subcategorias->readAll()) {
+                if ($result['dataset'] = $estadoProducto->readAll()) {
                     $result['status'] = 1;
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
@@ -25,22 +25,9 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No hay datos registrados';
                 }
                 break;
-            // Accion de leer toda la información dada una categoría------------------.
-            case 'readAllParam':
-                //echo $_POST['idCategoria'];
-                if (!$subcategorias->setCategoria($_POST['idCategoria'])) {
-                    $result['exception'] = 'Categoría incorrecta';
-                } elseif ($result['dataset'] = $subcategorias->readAllParam()) {
-                    $result['status'] = 1;
-                } elseif (Database::getException()) {
-                    $result['exception'] = Database::getException();
-                } else {
-                    $result['exception'] = 'No hay datos registrados';
-                }
-                break;
-            // Accion de buscar información de las subcategorias disponibles------------------.     
+            // Accion de buscar información de las estadoProducto disponibles------------------.     
             case 'search':
-                if ($result['dataset'] = $subcategorias->searchRows($_POST['buscar-subcategoria'])) {
+                if ($result['dataset'] = $estadoProducto->searchRows($_POST['search'])) {
                     $result['status'] = 1;
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
@@ -51,20 +38,22 @@ if (isset($_GET['action'])) {
             // Accion de crear una nueva subcategoria ------------------.       
             case 'create':
                 //Especificamos los inputs por medio de su atributo name, y los capturamos con el método post
-                $_POST = $subcategorias->validateForm($_POST);
-                if (!$subcategorias->setNombre($_POST['nombre_sub'])) {
+                $_POST = $estadoProducto->validateForm($_POST);
+                if (!$estadoProducto->setNombre($_POST['nombre'])) {
                     $result['exception'] = 'Nombre inválido';
-                }  elseif (!$subcategorias->setCategoria($_POST['categoria'])){
+                }  elseif (!$estadoProducto->setCategoria($_POST['categoria'])){
                     $result['exception'] = 'Categoría inválida';
+                } elseif (!$estadoProducto->setDescripcion($_POST['descripcion'])) {
+                    $result['exception'] = 'Descripción inválida';
                 } elseif (!is_uploaded_file($_FILES['archivo']['tmp_name'])) {
                     $result['exception'] = 'Seleccione una imagen';
-                } elseif (!$subcategorias->setImagen($_FILES['archivo'])) {
-                    $result['exception'] = $subcategorias->getFileError();
-                } elseif (!$subcategorias->setEstado(1)) {
+                } elseif (!$estadoProducto->setImagen($_FILES['archivo'])) {
+                    $result['exception'] = $estadoProducto->getFileError();
+                } elseif (!$estadoProducto->setEstado(1)) {
                     $result['exception'] = 'Estado inválido';
-                } elseif ($subcategorias->createRow()) {
+                } elseif ($estadoProducto->createRow()) {
                     $result['status'] = 1;
-                    if ($subcategorias->saveFile($_FILES['archivo'], $subcategorias->getRuta(), $subcategorias->getImagen())) {
+                    if ($estadoProducto->saveFile($_FILES['archivo'], $estadoProducto->getRuta(), $estadoProducto->getImagen())) {
                         $result['message'] = 'Subcategoría creada correctamente';
                     } else {
                         $result['message'] = 'Subcategoría creada pero no se guardó la imagen';
@@ -75,9 +64,9 @@ if (isset($_GET['action'])) {
                 break;
             // Accion leer un elemento de toda la información------------------.       
             case 'readOne':
-                if (!$subcategorias->setId($_POST['id'])) {
+                if (!$estadoProducto->setId($_POST['id'])) {
                     $result['exception'] = 'Subcategoría incorrecta';
-                } elseif ($result['dataset'] = $subcategorias->readOne()) {
+                } elseif ($result['dataset'] = $estadoProducto->readOne()) {
                     $result['status'] = 1;
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
@@ -88,29 +77,31 @@ if (isset($_GET['action'])) {
             // Accion de actualizar un elemento de toda la información------------------.     
             case 'update':
                 //Especificamos los inputs por medio de su atributo name, y los capturamos con el método post
-                $_POST = $subcategorias->validateForm($_POST);
-                if (!$subcategorias->setId($_POST['id'])) {
+                $_POST = $estadoProducto->validateForm($_POST);
+                if (!$estadoProducto->setId($_POST['id'])) {
                     $result['exception'] = 'Subcategoria incorrecta';
-                } elseif (!$data = $subcategorias->readOne()) {
+                } elseif (!$data = $estadoProducto->readOne()) {
                     $result['exception'] = 'Subcategoria inexistente';
-                }elseif (!$subcategorias->setNombre($_POST['nombre_sub'])) {
+                }elseif (!$estadoProducto->setNombre($_POST['nombre'])) {
                     $result['exception'] = 'Nombre inválido';
-                }  elseif (!$subcategorias->setCategoria($_POST['categoria'])){
+                }  elseif (!$estadoProducto->setCategoria($_POST['categoria'])){
                     $result['exception'] = 'Categoría inválida';
-                } elseif (!$subcategorias->setEstado($_POST['estado_sub'])) {
+                } elseif (!$estadoProducto->setDescripcion($_POST['descripcion'])) {
+                    $result['exception'] = 'Descripción inválida';
+                } elseif (!$estadoProducto->setEstado($_POST['estado'])) {
                     $result['exception'] = 'Estado inválido';
                 } elseif (!is_uploaded_file($_FILES['archivo']['tmp_name'])) {
-                    if ($subcategorias->updateRow($data['imagen_subcategoria'])) {
+                    if ($estadoProducto->updateRow($data['imagenSubcategoria'])) {
                         $result['status'] = 1;
                         $result['message'] = 'Subcategoría modificada correctamente';
                     } else {
                         $result['exception'] = Database::getException();
                     }
-                } elseif (!$subcategorias->setImagen($_FILES['archivo'])) {
-                    $result['exception'] = $subcategorias->getFileError();
-                } elseif ($subcategorias->updateRow($data['imagenSubcategoria'])) {
+                } elseif (!$estadoProducto->setImagen($_FILES['archivo'])) {
+                    $result['exception'] = $estadoProducto->getFileError();
+                } elseif ($estadoProducto->updateRow($data['imagenSubcategoria'])) {
                     $result['status'] = 1;
-                    if ($subcategorias->saveFile($_FILES['archivo'], $subcategorias->getRuta(), $subcategorias->getImagen())) {
+                    if ($estadoProducto->saveFile($_FILES['archivo'], $estadoProducto->getRuta(), $estadoProducto->getImagen())) {
                         $result['message'] = 'Subcategoría actualizada correctamente';
                     } else {
                         $result['message'] = 'Subcategoría actualizada pero no se guardó la imagen';
@@ -121,18 +112,17 @@ if (isset($_GET['action'])) {
                 break;
             // Accion de desabilitar un elemento de toda la información------------------.        
             case 'delete':
-                if (!$subcategorias->setId($_POST['id_delete'])) {
-                    $result['exception'] = 'Subcategoría incorrecto';
-                } elseif (!$subcategorias->readOne()) {
-                    $result['exception'] = 'Subcategoría inexistente';
-                } elseif ($subcategorias->deleteRow()) {
+                if (!$productos->setId($_POST['id-delete'])) {
+                    $result['exception'] = 'Producto incorrecto';
+                } elseif (!$productos->readOne()) {
+                    $result['exception'] = 'Producto inexistente';
+                } elseif ($productos->deleteRow()) {
                     $result['status'] = 1;
-                    $result['message'] = 'Subcategoría inhabilitado correctamente';
+                    $result['message'] = 'Producto inhabilitado correctamente';
                 } else {
                     $result['exception'] = Database::getException();
                 }
-                break;
-            default:
+                break;   
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }
     } else {

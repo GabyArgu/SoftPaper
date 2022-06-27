@@ -16,7 +16,7 @@ class Database
         $server = 'localhost';
         $database = 'dbSoftPaper';
         $username = 'postgres';
-        $password = 'admin';
+        $password = 'admin'; //admin
 
         // Se crea la conexión mediante la extensión PDO y el controlador para PostgreSQL.
         self::$connection = new PDO('pgsql:host=' . $server . ';dbname=' . $database . ';port=5432', $username, $password);
@@ -131,12 +131,12 @@ class Database
     *   
     *   Retorno: arreglo asociativo del registro si la sentencia SQL se ejecuta satisfactoriamente o false en caso contrario.
     */
-    public static function getRowId($query)
+    public static function getRowId($query, $values)
     {
         try {
             self::conectar();
             self::$statement = self::$connection->prepare($query);
-            self::$statement->execute();
+            self::$statement->execute($values);
             // Se anula la conexión con el servidor de base de datos.
             $idReturn = self::$statement->fetchColumn();
             self::$connection = null;

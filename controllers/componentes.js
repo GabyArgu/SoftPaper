@@ -5,7 +5,7 @@
 /*
 *   Constante para establecer la ruta del servidor.
 */
-const SERVER = 'http://localhost/softpaper/api/';
+const SERVER = 'http://localhost/SoftPaper/api/';
 
 /*
 *   Función para obtener todos los registros disponibles en los mantenimientos de tablas (operación read).
@@ -33,6 +33,33 @@ function readRows(api) {
                 }
                 // Se envían los datos a la función del controlador para llenar la tabla en la vista.
                 fillTable(data);
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
+}
+
+function readRowsFilter(api, form) {
+    // Se promete devolver un valor (peticion al servidor)------------------------.
+    fetch(api + 'filterTable', {
+        method: 'post',
+        body: new FormData(document.getElementById(form))
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            // Se obtiene la respuesta en formato JSON.
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Se envían los datos a la función del controlador para que llene la tabla en la vista y se muestra un mensaje de éxito.
+                    fillTable(response.dataset);
+                    //sweetAlert(1, response.message, null);
+                } else {
+                    /* En caso de no encontrar coincidencias, limpiara el campo y se recargará la tabla */
+                    sweetAlert(2, response.exception, null);
+                    readRows(api);
+                }
             });
         } else {
             console.log(request.status + ' ' + request.statusText);
@@ -146,11 +173,9 @@ function saveRow(api, action, form, modal) {
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
                     // Se cierra la caja de dialogo (modal) del formulario.
-                    //$(modal).modal('hide');
+                    bootstrap.Modal.getInstance(document.getElementById(modal)).hide();
                     
                     //M.Modal.getInstance(document.getElementById(modal)).close();
-                    // Se cargan nuevamente las filas en la tabla de la vista después de guardar un registro y se muestra un mensaje de éxito.
-                    readRows(api);
                     sweetAlert(1, response.message, null);
                 } else {
                     sweetAlert(2, response.exception, null);
@@ -174,11 +199,8 @@ function saveRow2(api, action, form, modal) {
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
                     // Se cierra la caja de dialogo (modal) del formulario.
-                    //$(modal).modal('hide');
-                    var myModalEl = document.getElementById(modal);
-                    var modalIns = bootstrap.Modal.getInstance(myModalEl)
-                    modalIns.hide();
-                    //M.Modal.getInstance(document.getElementById(modal)).close();
+                    bootstrap.Modal.getInstance(document.getElementById(modal)).hide();
+                    
                     // Se cargan nuevamente las filas en la tabla de la vista después de guardar un registro y se muestra un mensaje de éxito.
                     readRows2(api);
                     sweetAlert(1, response.message, null);
@@ -212,7 +234,6 @@ function confirmDelete(api, form) {
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
                     // Se cargan nuevamente las filas en la tabla de la vista después de borrar un registro y se muestra un mensaje de éxito.
-                    readRows(api);
                     sweetAlert(1, response.message, null);
                 } else {
                     sweetAlert(2, response.exception, null);
@@ -395,19 +416,9 @@ function fillSelectDependent(endpoint, select, selected, value) {
     });
 }
 
-/*
-*   Función para cargar las opciones en un select de formulario de un producto en especifico.
-*
-*   Parámetros: endpoint (ruta específica del servidor para obtener los datos), select (identificador del select en el formulario) y selected (valor seleccionado), id del producto.
-*
-*   Retorno: ninguno.
-*   Se usa para cargar los colores que hay guardados de cierto producto
-*/
-function fillSelectProducto(endpoint, select, selected, id) {
-    //let valorReturn;
-    // Se define un objeto con los datos del producto seleccionado.
+function fillSelectDependentM(endpoint, select, selected, value) {
     const data = new FormData();
-    data.append('idProducto', id);
+    data.append('uuid_departamento', value);
     fetch(endpoint, {
         method: 'post',
         body: data
@@ -434,7 +445,6 @@ function fillSelectProducto(endpoint, select, selected, id) {
                             content += `<option value="${value}">${text}</option>`;
                         } else {
                             content += `<option value="${value}" selected>${text}</option>`;
-                            //valorReturn = value;
                         }
                     });
                 } else {
@@ -442,14 +452,12 @@ function fillSelectProducto(endpoint, select, selected, id) {
                 }
                 // Se agregan las opciones a la etiqueta select mediante su id.
                 document.getElementById(select).innerHTML = content;
-                //return valorReturn;
             });
         } else {
             console.log(request.status + ' ' + request.statusText);
         }
     });
 }
-
 
 
 // Función para mostrar un mensaje de confirmación al momento de cerrar sesión.
@@ -486,4 +494,57 @@ function logOut() {
             sweetAlert(4, 'Puede continuar con la sesión', null);
         }
     });
+}
+
+
+/* Validaciones */
+//Validación para inputs vacíos
+const validateEmptyField = (e) => {
+    let field = e.target;
+    let fieldValue = e.target.value;
+    if(fieldValue.trim().length === 0){
+        field.classList.add("invalid");
+    } else {
+        field.classList.remove("invalid")
+    }
+}
+
+//Validar solo números
+const validateNum = (evt) => {
+    // code is the decimal ASCII representation of the pressed key.
+    var code = (evt.which) ? evt.which : evt.keyCode;
+
+    if (code == 8) { // backspace.
+        return true;
+    } else if (code >= 48 && code <= 57) { // is a number.
+        return true;
+    } else { // other keys.
+        return false;
+    }
+}
+
+//Validar números decimales
+const validateNumDec = (e) => {
+    var soloNumeros=/^[0-9]([.][0-9]{1,2})?$/;
+    let fieldValue = e.target.value;
+    let field = e.target;
+    if(soloNumeros.test(fieldValue)){
+        field.classList.add("invalid");
+    } else {
+        field.classList.remove("invalid")
+    }
+}
+
+//Validar solo letras
+function validateChar (evt) {
+    let soloLetras=/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/;
+    let fieldValue = e.target.value;
+
+    if(soloLetras.test(fieldValue)){
+        console.log("true")
+        return true;
+    } else {
+        console.log("false")
+        return false;
+    }
 }
