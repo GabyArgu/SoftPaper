@@ -67,10 +67,6 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Cargo inválido';
                 } elseif (!$usuario->setCorreo($_POST['correo'])) {
                     $result['exception'] = 'Correo inválido';
-                } elseif (!$usuario->setDireccion($_POST['direccion'])) {
-                    $result['exception'] = 'Direccion inválida';
-                } elseif (!$usuario->setTelefono($_POST['telefono'])) {
-                    $result['exception'] = 'Teléfono inválido';
                 }elseif (!$usuario->setFoto($_POST['foto'])) {
                     $result['exception'] = 'Foto inválida';
                 }elseif (!$usuario->setEstado(1)) {
@@ -128,10 +124,6 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Cargo inválido';
                 } elseif (!$usuario->setCorreo($_POST['correo'])) {
                     $result['exception'] = 'Correo inválido';
-                } elseif (!$usuario->setDireccion($_POST['direccion'])) {
-                    $result['exception'] = 'Direccion inválida';
-                } elseif (!$usuario->setTelefono($_POST['telefono'])) {
-                    $result['exception'] = 'Teléfono inválido';
                 }elseif (!$usuario->setFoto($_POST['foto'])) {
                     $result['exception'] = 'Foto inválida';
                 }elseif (!$usuario->setEstado($_POST['estado'])) {
