@@ -207,9 +207,9 @@ class Cliente extends Validator
         $sql = 'SELECT "uuid_cliente", "nombre_cliente", "direccion_cliente", m."nombre_municipio", "nrc_cliente", "nit_cliente", "dui_cliente", "telefono_cliente", g."giro_cliente", "estado_cliente"
         FROM cliente as cc inner join "municipio" as m on cc."uuid_municipio" = m."uuid_municipio"
 		inner join "giro_cliente" as g on cc."uuid_giro_cliente" = g."uuid_giro_cliente"
-        WHERE "nombre_cliente" ILIKE ? OR "dui_cliente" ILIKE ?
+        WHERE "nombre_cliente" ILIKE ? OR "dui_cliente" ILIKE ? OR g."giro_cliente" ILIKE ?
         ORDER BY "uuid_cliente"';
-        $params = array("%$value%", "%$value%");
+        $params = array("%$value%", "%$value%", "%$value%");
         return Database::getRows($sql, $params);
     }
 

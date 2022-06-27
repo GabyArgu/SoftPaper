@@ -19,8 +19,6 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('save-form').reset();
         }
     }
-    // Se inicializa el componente Modal para que funcionen las cajas de diálogo.
-    //M.Modal.init(document.querySelectorAll('.modal'), options);
 });
 
 // Función para llenar la tabla con los datos de los registros. Se manda a llamar en la función readRows().
@@ -132,6 +130,18 @@ function pagoOnChange(sel) {
         divC.style.display = "block";
     }
 }
+
+function openFilter() {
+    fillSelect(ENDPOINT_GIROC, 'filtroC', null);
+}
+
+document.getElementById('filter-form').addEventListener('submit', function (event) {
+    // Se evita recargar la página web después de enviar el formulario.
+    event.preventDefault();
+    console.log('filtroC'.value);
+    // Se llama a la función que realiza la búsqueda. Se encuentra en el archivo components.js
+    searchRows3(API_CLIENTES, 'filter-form');
+});
 
 function openCreate() {
     document.getElementById("nombre_c").value = "";

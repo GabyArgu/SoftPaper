@@ -79,7 +79,7 @@ class Proveedor extends Validator
     // Método para leer toda la información de los colores existentes-------------------------.
     public function readAll()
     {
-        $sql = 'SELECT uuid_proveedor, nombre_proveedor, telefono_proveedor, estado_proveedor FROM proveedor WHERE estado_proveedor = true;';
+        $sql = 'SELECT uuid_proveedor, nombre_proveedor, telefono_proveedor, estado_proveedor FROM proveedor;';
         $params = null;
         return Database::getRows($sql, $params);
     }

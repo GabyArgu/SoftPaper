@@ -144,7 +144,8 @@
                                     <!-- BUSCADOR-->
                                     <div class="buscador">
                                         <i class="bi bi-search px-2"></i>
-                                        <form method="post" id="buscar-cliente" class="d-none d-sm-inline-block me-auto buscador2">
+                                        <form method="post" id="buscar-cliente"
+                                            class="d-none d-sm-inline-block me-auto buscador2">
                                             <input id="search" name="search"
                                                 class=" form-control form-control-lite barra-buscar" type="text"
                                                 placeholder="Buscar cliente">
@@ -153,7 +154,7 @@
 
                                     <!-- FILTROS -->
                                     <div class="dropdown">
-                                        <button class="btn-filtro btn-second" type="button"
+                                        <button onclick="openFilter()" class="btn-filtro btn-second" type="button"
                                             id="dropdownMenuButtonFilter" data-bs-toggle="dropdown"
                                             aria-expanded="false"><i class="bi bi-funnel-fill"></i>Filtrar</button>
                                         <ul class="dropdown-menu dropdown-menu-end animate slideIn dropdown-filtro"
@@ -167,25 +168,25 @@
                                             <li>
                                                 <h6 class="mb-3">Giro</h6>
                                             </li>
-                                            <li><select class="form-select filtro-combo mb-3"
-                                                    aria-label="Default select example">
-                                                    <option selected disabled>Seleccione una opción</option>
-                                                    <option value="1">Particular</option>
-                                                    <option value="2">Comida</option>
-                                                    <option value="3">Medicina</option>
-                                                    <option value="3">Escolar</option>
-                                                    <option value="3">Otros</option>
-                                                </select></li>
+                                            <form method="post" id="filter-form">
+                                                <li>
+                                                    <select class="form-select filtro-combo mb-3" id="filtroC"
+                                                        name="filtroC" aria-label="Default select example">
+                                                    </select>
+                                                </li>
+                                                <li>
+                                                    <button class="btn btn-guardar" type="submit">Filtrar</button>
+                                                </li>
+                                            </form>
                                         </ul>
-
                                     </div>
-
                                 </div>
 
                                 <!-- AÑADIR REGISTRO Y EXPORTAR -->
                                 <div class="col col-lg-6 col-sm-12 d-flex justify-content-end col-header-pre-table">
-                                    <button onclick="openCreate()" class="btn-añadir btn-main" type="button" data-bs-toggle="modal"
-                                        data-bs-target="#modal-agregar"><i class="bi bi-plus"></i>Añadir
+                                    <button onclick="openCreate()" class="btn-añadir btn-main" type="button"
+                                        data-bs-toggle="modal" data-bs-target="#modal-agregar"><i
+                                            class="bi bi-plus"></i>Añadir
                                         cliente</button>
                                     <button class="btn-export btn-second" type="button"><i
                                             class="bi bi-box-arrow-up"></i></button>
@@ -264,7 +265,8 @@
                                     <div class="row mt-3">
                                         <input class="form-control form-control-lg nombre-producto" type="text"
                                             placeholder="Ingresar nombre del cliente"
-                                            aria-label=".form-control-lg example" id="nombre_c" name="nombre_c" required>
+                                            aria-label=".form-control-lg example" id="nombre_c" name="nombre_c"
+                                            required>
                                     </div>
                                     <div class="row">
                                         <div class="col col-6 mt-3">
@@ -280,12 +282,14 @@
                                         <div class="col col-6 mt-3">
                                             <label>Dirección</label>
                                             <input class="form-control" type="text" placeholder=""
-                                                aria-label=".form-control example" id="direccion_c" name="direccion_c" required>
+                                                aria-label=".form-control example" id="direccion_c" name="direccion_c"
+                                                required>
                                         </div>
                                         <div class="col col-6 mt-3">
                                             <label>Teléfono</label>
                                             <input class="form-control" type="text" placeholder="0000-0000"
-                                                aria-label=".form-control example" id="telefono_c" name="telefono_c" required>
+                                                aria-label=".form-control example" id="telefono_c" name="telefono_c"
+                                                required>
                                         </div>
                                         <div class="col col-6 mt-3">
                                             <label>Registro No.</label>
@@ -299,8 +303,9 @@
                                         </div>
                                         <div class="col col-6 mt-3">
                                             <label>Departamento</label>
-                                            <select class="form-select" onchange="pagoOnChange(this)" aria-label="Default select example"
-                                                id="departamento_c" name="departamento_c" required></select>
+                                            <select class="form-select" onchange="pagoOnChange(this)"
+                                                aria-label="Default select example" id="departamento_c"
+                                                name="departamento_c" required></select>
                                         </div>
                                         <div class="col col-6 mt-3" id="municipio">
                                             <label>Municipio</label>
@@ -347,7 +352,8 @@
                                         <input type="hidden" id="id" name="id">
                                         <input class="form-control form-control-lg nombre-producto" type="text"
                                             placeholder="Ingresar nombre del cliente"
-                                            aria-label=".form-control-lg example" id="unombre_c" name="unombre_c" required>
+                                            aria-label=".form-control-lg example" id="unombre_c" name="unombre_c"
+                                            required>
                                     </div>
                                     <div class="row">
                                         <div class="col col-6 mt-3">
@@ -363,12 +369,14 @@
                                         <div class="col col-6 mt-3">
                                             <label>Dirección</label>
                                             <input class="form-control" type="text" placeholder=""
-                                                aria-label=".form-control example" id="udireccion_c" name="udireccion_c" required>
+                                                aria-label=".form-control example" id="udireccion_c" name="udireccion_c"
+                                                required>
                                         </div>
                                         <div class="col col-6 mt-3">
                                             <label>Teléfono</label>
                                             <input class="form-control" type="text" placeholder="0000-0000"
-                                                aria-label=".form-control example" id="utelefono_c" name="utelefono_c" required>
+                                                aria-label=".form-control example" id="utelefono_c" name="utelefono_c"
+                                                required>
                                         </div>
                                         <div class="col col-6 mt-3">
                                             <label>Registro No.</label>
@@ -382,8 +390,9 @@
                                         </div>
                                         <div class="col col-6 mt-3">
                                             <label>Departamento</label>
-                                            <select class="form-select" onchange="pagoOnChange(this)" aria-label="Default select example"
-                                                id="udepartamento_c" name="udepartamento_c" required></select>
+                                            <select class="form-select" onchange="pagoOnChange(this)"
+                                                aria-label="Default select example" id="udepartamento_c"
+                                                name="udepartamento_c" required></select>
                                         </div>
                                         <div class="col col-6 mt-3" id="municipio2">
                                             <label>Municipio</label>
@@ -438,11 +447,11 @@
                 <div class="modal-footer d-flex mx-2 justify-content-between">
                     <button class="btn btn-cancel btn-second" type="button" data-bs-target="" data-bs-toggle="modal"
                         data-bs-dismiss="modal">Cancelar</button>
-                        <form id="delete-form">
-                            <input type="hidden" id="id_delete" name="id_delete">
-                            <button class="btn btn-continuar btn-main" type="submit" 
-                        data-bs-dismiss="modal">Continuar</button>
-                        </form>
+                    <form id="delete-form">
+                        <input type="hidden" id="id_delete" name="id_delete">
+                        <button class="btn btn-continuar btn-main" type="submit"
+                            data-bs-dismiss="modal">Continuar</button>
+                    </form>
                 </div>
             </div>
         </div>
