@@ -43,7 +43,7 @@ class Cliente extends Validator
 
     public function setDireccion($value)
     {
-        if ($this->validateAlphanumeric($value, 1, 50)) {
+        if ($this->validateString($value, 1, 50)) {
             $this->direccion = $value;
             return true;
         } else {
@@ -190,36 +190,14 @@ class Cliente extends Validator
 
     public function readOne()
     {
-        $sql = 'SELECT cc."uuid_cliente", "nombre_cliente", "direccion_cliente", "nombre_municipio", "nrc_cliente", "nit_cliente", "dui_cliente", "telefono_cliente", "giro_cliente", "estado_cliente" 
+        $sql = 'SELECT cc."uuid_cliente", "nombre_cliente", "direccion_cliente", cc."uuid_municipio", "nombre_municipio", "nrc_cliente", "nit_cliente", "dui_cliente", "telefono_cliente", "giro_cliente", "estado_cliente", (SELECT uuid_departamento FROM municipio WHERE uuid_municipio = (SELECT uuid_municipio FROM cliente WHERE uuid_cliente = ?))
         FROM cliente as cc inner join "municipio" as m on cc."uuid_municipio" = m."uuid_municipio"
 		inner join "giro_cliente" as g on cc."uuid_giro_cliente" = g."uuid_giro_cliente"
         WHERE cc."uuid_cliente" = ?';
-        $params = array($this->id);
+        $params = array($this->id, $this->id);
         return Database::getRow($sql, $params);
     }
 
-    public function readProductStock()
-    {
-        $sql = 'SELECT  stock
-        FROM "colorProducto" as cp inner join "colorStock" as cs on cp."idColor"  = cs."idColor"
-		inner join producto as p on cs."idProducto" = p."idProducto"
-		WHERE p."idProducto" = ? and cp."idColor" = ?';
-        $params = array($this->id, $this->color);
-        return Database::getRow($sql, $params);
-    }
-
-    public function readOneShow()
-    {
-        $sql = 'SELECT p."idProducto", "nombreSubCategoriaP", "nombreMarca", "imagenPrincipal", "nombreProducto", "descripcionProducto", "precioProducto", ep."estadoProducto", cp."idColor",cp."colorProducto", stock, fecha, descuento 
-        FROM producto as p inner join "colorStock" as cs on p."idProducto" = cs."idProducto"
-		inner join "subcategoriaProducto" as sp on p."idSubCategoriaP" = sp."idSubCategoriaP"
-		inner join "estadoProducto" as ep on p."estadoProducto" = ep."idEstadoProducto"
-		inner join marca as m on p."idMarca" = m."idMarca"
-		inner join "colorProducto" as cp on cs."idColor" = cp."idColor"
-        WHERE p."idProducto" =  ?';
-        $params = array($this->id);
-        return Database::getRow($sql, $params);
-    }
     /*
     *   Métodos para realizar las operaciones SCRUD (search, create, read, update, delete).
     */
@@ -229,19 +207,9 @@ class Cliente extends Validator
         $sql = 'SELECT "uuid_cliente", "nombre_cliente", "direccion_cliente", m."nombre_municipio", "nrc_cliente", "nit_cliente", "dui_cliente", "telefono_cliente", g."giro_cliente", "estado_cliente"
         FROM cliente as cc inner join "municipio" as m on cc."uuid_municipio" = m."uuid_municipio"
 		inner join "giro_cliente" as g on cc."uuid_giro_cliente" = g."uuid_giro_cliente"
-        WHERE "nombre_cliente" ILIKE ? OR "dui_cliente" ILIKE ?
+        WHERE "nombre_cliente" ILIKE ? OR "dui_cliente" ILIKE ? OR g."giro_cliente" ILIKE ?
         ORDER BY "uuid_cliente"';
-        $params = array("%$value%", "%$value%");
-        return Database::getRows($sql, $params);
-    }
-
-    public function filterPrecio($min, $max)
-    {
-        $sql = 'SELECT Distinct on ("idProducto") "idProducto", "imagenPrincipal", "nombreProducto", "descripcionProducto", "precioProducto", descuento, "estadoProducto", "idColorStock", "idColor", p."idSubCategoriaP"
-        FROM producto as p INNER JOIN "marca" USING("idMarca") INNER JOIN "colorStock" USING("idProducto")
-		WHERE  "idSubCategoriaP" = ? AND "estadoProducto" = 1 AND "precioProducto" BETWEEN ? AND ?
-		ORDER BY "idProducto"';
-        $params = array($this->id, $min, $max);
+        $params = array("%$value%", "%$value%", "%$value%");
         return Database::getRows($sql, $params);
     }
 
@@ -255,43 +223,16 @@ class Cliente extends Validator
         return Database::executeRow($sql, $params);
     }
 
-    /* Función para obtener el id del último registro ingresado*/
-    public function getLastId()
-    {
-        $sql = 'SELECT MAX("idProducto") as "idProducto" FROM producto ';
-        return Database::getRowId($sql);
-    }
-
-    public function insertStock($lastId)
-    {
-        $sql = 'INSERT INTO "colorStock"(
-        "idProducto", "idColor", stock, fecha)
-        VALUES (?, ?, ?, CURRENT_DATE);';
-        $params = array($lastId, $this->color, $this->stock);
-        return Database::executeRow($sql, $params);
-    }
-
     /* UPDATE */
-    public function updateRow($current_image)
-    {   
-        // Se verifica si existe una nueva imagen para borrar la actual, de lo contrario se mantiene la actual.
-        ($this->imagen) ? $this->deleteFile($this->getRuta(), $current_image) : $this->imagen = $current_image;
-
-        $sql = 'UPDATE producto
-            SET "idSubCategoriaP"=?, "idProveedor"=?, "idMarca"=?, "nombreProducto"=?, "descripcionProducto"=?, "precioProducto"=?, "estadoProducto"=?, "imagenPrincipal"=?, descuento = ?
-            WHERE "idProducto"=?;';
-            $params = array($this->subcategoria, $this->proveedor, $this->marca, $this->nombre, $this->descripcion, $this->precio, $this->estado, $this->imagen, $this->descuento, $this->id);
+    public function updateRow()
+    {
+        $sql = 'UPDATE cliente
+            SET "nombre_cliente" = ?, "direccion_cliente" = ?, "uuid_municipio"=?, "nrc_cliente"=?, "nit_cliente"=?, "dui_cliente"=?, "telefono_cliente"=?, "uuid_giro_cliente"=?
+            WHERE "uuid_cliente"=?;';
+            $params = array($this->nombre, $this->direccion, $this->municipio, $this->nrc, $this->nit, $this->dui, $this->telefono, $this->giro, $this->id);
         return Database::executeRow($sql, $params);
     }
 
-    public function updateStock()
-    {   
-        $sql = 'UPDATE "colorStock"
-            SET "idColor"=?, stock=?, fecha = CURRENT_DATE
-            WHERE "idProducto" = ?;';
-            $params = array($this->color, $this->stock, $this->id);
-        return Database::executeRow($sql, $params);
-    }
     /* DELETE */
     /* Función para inhabilitar un usuario ya que no los borraremos de la base*/
     public function deleteRow()
@@ -301,29 +242,5 @@ class Cliente extends Validator
         $sql = 'UPDATE cliente SET "estado_cliente" = ? WHERE "uuid_cliente" = ?';
         $params = array($this->estado, $this->id);
         return Database::executeRow($sql, $params);
-    }
-
-
-    /* Funciones para mostrar productos en público */
-    public function readDestacados()
-    {
-        $sql = 'SELECT "idProducto", "imagenPrincipal", "nombreProducto", "descripcionProducto", "precioProducto", descuento, ep."estadoProducto", "idColorStock"
-        FROM producto as p inner join "estadoProducto" as ep on p."estadoProducto" = ep."idEstadoProducto" INNER JOIN "colorStock" USING("idProducto")
-		WHERE descuento >=25
-        ORDER BY "idProducto"
-        ';
-        
-        $params = null;
-        return Database::getRows($sql, $params);
-    }
-
-    public function readProductosSubcategoria()
-    {
-        $sql = 'SELECT Distinct on ("idProducto") "idProducto", "imagenPrincipal", "nombreProducto", "descripcionProducto", "precioProducto", descuento, ep."estadoProducto", "idColorStock", "idColor", p."idSubCategoriaP"
-        FROM producto as p inner join "estadoProducto" as ep on p."estadoProducto" = ep."idEstadoProducto" INNER JOIN "colorStock" USING("idProducto")
-		WHERE "idSubCategoriaP" = ? AND p."estadoProducto" = 1
-		ORDER BY "idProducto"';
-        $params = array($this->id);
-        return Database::getRows($sql, $params);
     }
 }

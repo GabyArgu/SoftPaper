@@ -134,10 +134,10 @@ function openUpdateProv(id) {
                     document.getElementById('id').value = (id);
                     document.getElementById('nombre_prov').value = response.dataset.nombre_proveedor;
                     document.getElementById('tele_prov').value = response.dataset.telefono_proveedor;
-                    if (response.dataset.estado_cliente) {
-                        document.getElementById('estado_prov').value = 0;
-                    } else {
+                    if (response.dataset.estado_proveedor) {
                         document.getElementById('estado_prov').value = 1;
+                    } else {
+                        document.getElementById('estado_prov').value = 0;
                     }
                     // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos.
                 } else {
@@ -160,6 +160,7 @@ document.getElementById('agregar-prov').addEventListener('submit', function (eve
     (document.getElementById('id').value) ? action = 'update' : action = 'create';
     // Se llama a la función para guardar el registro. Se encuentra en el archivo components.js
     saveRow(API_PROVEEDOR, action, 'agregar-prov', 'modal-agregarP');
+    readRows(API_PROVEEDOR);
 });
 
 function openDeleteProv(id) {
