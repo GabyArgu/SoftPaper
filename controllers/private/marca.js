@@ -87,10 +87,12 @@ document.getElementById('buscar-marca').addEventListener('submit', function (eve
 
 function openCreateMarca() {
     // Se establece que el campo archivo sea obligatorio (input de subir imagen).
+    document.getElementById('modal-title2').innerText = 'Ingresar marca';
     document.getElementById("nombre_marca").value = "";
 }
 
 function openUpdateMarca(id) {
+    document.getElementById('modal-title2').innerText = 'Actualizar marca';
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData();
     data.append('id', id);
