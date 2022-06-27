@@ -2,6 +2,7 @@
 require_once('../helpers/database.php');
 require_once('../helpers/validaciones.php');
 require_once('../models/productos.php');
+require_once('../models/color.php');
 
 // Se comprueba si existe una acción a realizar por medio de isset, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
@@ -9,6 +10,7 @@ if (isset($_GET['action'])) {
     session_start();
     // Se instancia la clase correspondiente.
     $productos = new Productos;
+    $colores = new ColorProducto;
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'session' => 0, 'message' => null, 'exception' => null, 'dataset' => null, 'username' => null);
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
@@ -184,6 +186,17 @@ if (isset($_GET['action'])) {
                 break;
             case 'readProductosVentas':
                 if ($result['dataset'] = $productos->readProductosVentas()) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'No hay datos registrados';
+                }
+                break;
+            case 'readProductoColor':
+                if (!$colores->setId($_POST['idProducto'])) {
+                    $result['exception'] = 'Producto incorrecto';
+                } elseif ($result['dataset'] = $colores->readColorProducto()) {
                     $result['status'] = 1;
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();

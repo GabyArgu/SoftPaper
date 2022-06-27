@@ -165,7 +165,7 @@ class Ventas extends Validator
 
     public function readAll()
     {
-        $sql = 'SELECT uuid_venta, nombres_empleado, apellidos_empleado, nombre_cliente, estado_venta, tipo_venta, tipo_factura, fecha_venta, correlativo_venta, monto_total
+        $sql = 'SELECT uuid_venta, nombres_empleado, apellidos_empleado, nombre_cliente, estado_venta, tipo_venta, tipo_factura, fecha_venta, correlativo_venta
                 from venta inner join empleado using(uuid_empleado)
                 inner join cliente using(uuid_cliente)
                 inner join estado_venta using(uuid_estado_venta)
@@ -312,26 +312,15 @@ class Ventas extends Validator
     /* Método para verificar si existe un pedido en proceso para seguir comprando, de lo contrario se crea uno.*/
     public function startOrder()
     {
-        $this->estado = 2;
-
-        $sql = 'SELECT "idPedido"
-                    FROM pedido
-                    WHERE "estadoPedido" = ? AND "idCliente" = ?';
-        $params = array($this->estado, $_SESSION['idCliente']);
-        if ($data = Database::getRow($sql, $params)) {
-            $this->id = $data['idPedido'];
+        $sql = "INSERT INTO venta(uuid_empleado, uuid_estado_venta)
+        VALUES(?, (select uuid_estado_venta from estado_venta where estado_venta = 'En proceso')) RETURNING uuid_venta;";
+        $params = array($_SESSION['uuid_empleado']);
+        if ($this->id = Database::getRowId($sql, $params)) {
             return true;
         } else {
-            $sql = 'INSERT INTO pedido("estadoPedido", "idCliente", "tipoPago")
-                        VALUES(?, ?, ?)';
-            $params = array($this->estado, $_SESSION['idCliente'], 1);
-            // Se obtiene el ultimo valor insertado en la llave primaria de la tabla pedidos.
-            if ($this->id = Database::getLastRow($sql, $params)) {
-                return true;
-            } else {
-                return false;
-            }
+            return false;
         }
+        
     }
 
     // Método para agregar un producto al carrito de compras.

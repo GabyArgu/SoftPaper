@@ -94,6 +94,18 @@ if (isset($_GET['action'])) {
                     $result['exception'] = Database::getException();
                 }
                 break;
+            case 'readProductoColor':
+                if (!$colores->setId($_POST['id-delete'])) {
+                    $result['exception'] = 'Color incorrecta';
+                } elseif (!$data = $colores->readOne()) {
+                    $result['exception'] = 'Color inexistente';
+                } elseif ($colores->deleteRow()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Color eliminado correctamente';
+                } else {
+                    $result['exception'] = Database::getException();
+                }
+                break;
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }

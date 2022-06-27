@@ -429,10 +429,11 @@ class Productos extends Validator
     }
 
     public function readProductosVentas(){
-        $sql = "SELECT uuid_producto, nombre_producto, color_producto, stock
+        $sql = "SELECT DISTINCT on (nombre_producto) nombre_producto, uuid_producto, color_producto, stock
                 from color_stock inner join producto using(uuid_producto)
                 inner join color_producto using (uuid_color_producto)
-                inner join detalle_producto using (uuid_producto)";
+                inner join detalle_producto using (uuid_producto)
+                ORDER BY  nombre_producto, stock DESC;";
         $params = null;
         return Database::getRows($sql, $params);
     }

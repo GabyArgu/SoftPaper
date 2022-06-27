@@ -1,5 +1,7 @@
 const API_VENTAS = SERVER + 'private/venta.php?action=';
 const API_PRODUCTOS = SERVER + 'private/productos.php?action='
+const ENDPOINT_COLOR = SERVER + 'private/color.php?action=readProductoColor';
+
 
 const options = {
     "info": false,
@@ -30,14 +32,21 @@ document.addEventListener('DOMContentLoaded', function () {
         table = new DataTable('#table-productos', options);
     }, 250);
 
+
     // Se busca en la URL las variables (parámetros) disponibles.
     let params = new URLSearchParams(location.search);
+    if(Array.from(params).length>0){
     // Se obtienen los datos localizados por medio de las variables.
-    const ID = params.get('uuid_venta');
-    // Se llama a la función que muestra el detalle del producto seleccionado previamente.
-    readOrderDetail(ID);
-    // Se llama a la función que muestra los productos destacados.
+        const ID = params.get('uuid_venta');
+        // Se llama a la función que muestra el detalle del producto seleccionado previamente.
+        readOrderDetail(ID);
+    }
+    else{
+        
+    }
 })
+
+
 
 const reInitTable = () => {
     table.destroy();
@@ -120,7 +129,7 @@ function fillTable(dataset) {
                 <div class="nombre-producto">${row.nombre_producto}</div>
             </td>
             <td>
-                <a onclick="" data-bs-toggle="modal" data-bs-target="#item-modal">
+                <a onclick="openProduct(${row.uuid_producto})" data-bs-toggle="modal" data-bs-target="#item-modal">
                     <i class="bi bi-plus-circle ms-3"></i>
                 </a>
             </td>
@@ -152,6 +161,10 @@ $(document).ready(function () {
     });
 });
 
+function openProduct(id){
+    fillSelectProducto(ENDPOINT_COLOR, 'color', null, id);
+}
+
 /*Inicializando y configurando componente de calendario*/
 flatpickr('#calendar', {
 });
@@ -170,5 +183,94 @@ function pagoOnChange(sel) {
         divC.style.display = "none";
         iva = document.getElementById("iva");
         iva.textContent = "$2";
+    }
+}
+
+//Funcion para asignar el atributo max del input max dinámicamente
+function setStock() {
+    let input = document.getElementById("stock");
+    // Petición para obtener los datos del producto solicitado.
+    fetch(API_PRODUCTOS + 'readStock', {
+        method: 'post',
+        body: new FormData(document.getElementById('item-form'))
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            // Se obtiene la respuesta en formato JSON.
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    //Le asignamos el valor del stock del color y producto seleccionado
+                    input.value = parseInt(response.dataset.stock);
+                } else {
+                    // Se presenta un mensaje de error cuando no existen datos para mostrar.
+                    sweetAlert(4, response.exception, null);
+                    input.value = 0;
+
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
+}
+
+//Función para cambiar el stock al cambiar de color en el select
+document.getElementById("color").addEventListener("change", function () {
+    if (!document.getElementById("id").value.length == 0) {
+        let selectValue = document.getElementById('color').value;
+        console.log(selectValue);
+        setStock();
+    }
+});
+
+//Función que suma 1 al stock y valida que no supere el max
+let sumarStock = () => {
+    let input = document.getElementById("input-stock");
+    let max = input.max;
+    let valor = parseInt(input.value);
+    if (valor + 1 > max) {
+        input.value = input.value;
+    }
+    else {
+        input.value = parseInt(input.value) + 1;
+    }
+}
+
+//Función que resta 1 al stock y valida que no descienda del min
+let restarStock = () => {
+    let input = document.getElementById("input-stock");
+    let min = input.min;
+    let valor = parseInt(input.value);
+    if (valor - 1 <= min) {
+        input.value = input.value;
+    }
+    else {
+        input.value = parseInt(input.value) - 1;
+    }
+
+}
+
+//Funciones de validaciones
+
+let validacionInputStock = () => {
+    let input = document.getElementById("input-stock");
+    let valor = parseInt(input.value);
+    if (valor > input.max || valor <= input.min) {
+        input.value = 1;
+    }
+}
+
+function valideKey(evt) {
+
+    // code is the decimal ASCII representation of the pressed key.
+    var code = (evt.which) ? evt.which : evt.keyCode;
+
+    if (code == 8) { // backspace.
+        return true;
+    } else if (code >= 48 && code <= 57) { // is a number.
+        return true;
+    } else { // other keys.
+        return false;
     }
 }

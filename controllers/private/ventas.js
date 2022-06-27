@@ -109,6 +109,30 @@ const reInitTable = () => {
     }, 300);
 }
 
+// Método manejador de eventos que se ejecuta cuando se envía el formulario de agregar un producto al carrito.
+function crearVenta() {
+    // Petición para agregar un producto al pedido.
+    fetch(API_VENTAS + 'startOrder', {
+        method: 'get'
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            // Se obtiene la respuesta en formato JSON.
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se constata si el cliente ha iniciado sesión.
+                if (response.status) {
+                    // sweetAlert(1, response.message, 'carrito.html');
+                    console.log(response.message);
+                } else {
+                    console.log('Todo mal master: ' + response.message)
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    })
+}
+
 function fillTable(dataset) {
     let content = '';
     // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
@@ -121,7 +145,7 @@ function fillTable(dataset) {
                 <td class="tipo">${row.tipo_factura}</td>
                 <td class="cliente">${row.nombre_cliente}</td>
                 <td class="fecha">${row.fecha_venta}</td>
-                <td class="monto">$${row.monto_total}</td>
+                <td class="monto">$2</td>
                 <td class="empleado">${row.nombres_empleado} ${row.apellidos_empleado}</td>
                 <td class="estado-stock"><span class="estado">${row.estado_venta}</span></td>
                 <td class="botones-table">

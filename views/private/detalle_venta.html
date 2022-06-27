@@ -323,17 +323,15 @@
                                     </div>
 
                                     <div class="col-lg-6 d-flex flex-column justify-content-center">
-                                        <label for="">Color:</label>
-                                        <select class="form-select mt-2" aria-label="Default select example"
-                                            id="tipo-venta" onChange="pagoOnChange(this)">
-                                            <option selected disabled>Seleccione una opción</option>
-                                            <option value="fiscal">Credito fiscal</option>
-                                            <option value="consumidor">Consumidor final</option>
+                                        <label for="">Color</label>
+                                        <select class="form-select" aria-label="Default select example" id="color"
+                                            name="color" required>
                                         </select>
                                     </div>
 
-                                    <div class="col-lg-6 d-flex flex-column justify-content-center cantidad-agregar-detalle">
-                                        <h5>Cantidad:</h5>
+                                    <div
+                                        class="col-lg-6 d-flex flex-column justify-content-center cantidad-agregar-detalle">
+                                        <label for="">Cantidad</label>
                                         <div class="input-group">
                                             <button onclick="restarStock()" class="btn btn-spinner-detalle"
                                                 type="button" id="res-btn">-</button>
@@ -346,6 +344,9 @@
                                             <button onclick="sumarStock()" class="btn btn-spinner-detalle" type="button"
                                                 id="sum-btn">+</button>
                                         </div>
+                                    </div>
+                                    <div class="col col-6 mt-3">
+                                        <input class="form-control input-hide" type="text" id="id" name="id">
                                     </div>
                                 </form>
                             </div>

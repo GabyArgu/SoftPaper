@@ -36,6 +36,14 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No existen productos en esta venta';
                 }
                 break;
+            case 'startOrder':
+                if ($ventas->startOrder()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Venta creada correctamente';
+                } else {
+                    $result['exception'] = 'Ocurrió un problema al crear la venta';
+                }
+                    break;
             case 'search':
                 if ($result['dataset'] = $ventas->searchRows($_POST['search'])) {
                     $result['status'] = 1;
