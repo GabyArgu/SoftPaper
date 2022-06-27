@@ -110,9 +110,11 @@ function openCreateProv() {
     document.getElementById("nombre_prov").value = "";
     document.getElementById("tele_prov").value = "";
     document.getElementById("estado_prov").disabled = true;
+    document.getElementById('modal-title').innerText = 'Ingresar proveedor';
 }
 
 function openUpdateProv(id) {
+    document.getElementById('modal-title').innerText = 'Actualizar proveedor';
     document.getElementById("estado_prov").disabled = false;
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData();
