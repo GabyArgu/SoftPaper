@@ -107,6 +107,9 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Municipio inválido';
                 } elseif (!$clientes->setEstado($_POST['uestado_c'])) {
                     $result['exception'] = 'Estado inválido';
+                } elseif ($clientes->updateRow()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Cliente actualizado correctamente';
                 } else {
                     $result['exception'] = Database::getException();
                 }

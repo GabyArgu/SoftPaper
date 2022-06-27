@@ -153,6 +153,11 @@ document.getElementById("departamento_c").addEventListener("change", function ()
     fillSelectDependentM(ENDPOINT_MUNIC, 'municipio_c', null, selectValue);
 });
 
+document.getElementById("udepartamento_c").addEventListener("change", function () {
+    var selectValue = document.getElementById('udepartamento_c').value;
+    fillSelectDependentM(ENDPOINT_MUNIC, 'umunicipio_c', null, selectValue);
+});
+
 // Función para crear usuario
 document.getElementById('agregar-cliente').addEventListener('submit', function (event) {
     // Se evita recargar la página web después de enviar el formulario.
@@ -178,7 +183,8 @@ function openUpdate(id) {
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
                     // Se inicializan los campos del formulario con los datos del registro seleccionado.
-                    console.log(response.dataset.nombre_departamento)
+                    divC = document.getElementById("municipio2");
+                    divC.style.display = "block";
                     document.getElementById('id').value = (id);
                     document.getElementById('unombre_c').value = response.dataset.nombre_cliente;
                     document.getElementById('udui_c').value = response.dataset.dui_cliente;
@@ -192,7 +198,7 @@ function openUpdate(id) {
                         document.getElementById('uestado_c').value = 0;
                     }
                     fillSelect(ENDPOINT_GIROC, 'ugiro_c', response.dataset.giro_cliente);
-                    fillSelect(ENDPOINT_DEPAC, 'udepartamento_c', response.dataset.nombre_departamento);
+                    fillSelect(ENDPOINT_DEPAC, 'udepartamento_c', response.dataset.uuid_departamento);
                     fillSelectDependentM(ENDPOINT_MUNIC, 'umunicipio_c', response.dataset.uuid_municipio, response.dataset.uuid_departamento);
                 } else {
                     sweetAlert(2, response.exception, null);
