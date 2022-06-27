@@ -14,7 +14,7 @@ class Database
     {
         // Credenciales para establecer la conexión con la base de datos.
         $server = 'localhost';
-        $database = 'dbsoftpaper';
+        $database = 'dbSoftPaper';
         $username = 'postgres';
         $password = 'admin'; //admin
 
