@@ -8,6 +8,7 @@ class EstadoProducto extends Validator
     // Declaración de atributos (propiedades).
     private $id = null;
     private $estado = null;
+    private $estado_estado = null;
 
     /*
     *   Métodos para validar y asignar valores de los atributos.
@@ -32,6 +33,17 @@ class EstadoProducto extends Validator
             return false;
         }
     }
+
+    public function setEstadoEstado($value)
+    {
+        if ($this->validateBoolean($value)) {
+            $this->estado_estado = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     /*
     *   Métodos para obtener valores de los atributos.
     */
@@ -45,10 +57,15 @@ class EstadoProducto extends Validator
         return $this->estado;
     }
 
+    public function getEstadoEstado()
+    {
+        return $this->estado_estado;
+    }
+
     // Método para leer toda la información de los colores existentes-------------------------.
     public function readAll()
     {
-        $sql = 'SELECT uuid_estado_producto, estado_producto FROM estado_producto';
+        $sql = 'SELECT uuid_estado_producto, estado_producto, estado_estado_producto FROM estado_producto';
         $params = null;
         return Database::getRows($sql, $params);
     }

@@ -2235,6 +2235,11 @@ tbody .imgMP{
 
 /* Diseño footer fin */
 
+/* ESTADOS FIN */
+
+.btn-agregar-estado {
+  height: 35px;
+}
 
 /* UTILITIES */
 .input-hide {
