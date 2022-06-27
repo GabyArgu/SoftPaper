@@ -1,14 +1,14 @@
 <?php
 require_once('../helpers/database.php');
 require_once('../helpers/validaciones.php');
-require_once('../models/estado_producto.php');
+require_once('../models/tipo_venta.php');
 
 // Se comprueba si existe una acción a realizar por medio de isset, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
     // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en el script.
     session_start();
     // Se instancia la clase correspondiente.
-    $estadoProducto = new EstadoProducto;
+    $tipoVenta = new TipoVenta;
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'session' => 0, 'message' => null, 'exception' => null, 'dataset' => null, 'username' => null);
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
@@ -17,7 +17,7 @@ if (isset($_GET['action'])) {
         switch ($_GET['action']) {
             // Accion de leer toda la información------------------.
             case 'readAll':
-                if ($result['dataset'] = $estadoProducto->readAll()) {
+                if ($result['dataset'] = $tipoVenta->readAll()) {
                     $result['status'] = 1;
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
