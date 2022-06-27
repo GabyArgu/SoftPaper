@@ -63,28 +63,18 @@ class ColorProducto extends Validator
     // Método para leer toda la información de los colores existentes-------------------------.
     public function readAll()
     {
-        $sql = 'SELECT uuid_color_producto, color_producto, estado_color_producto FROM color_producto WHERE estado_color_producto = true;';
+        $sql = 'SELECT uuid_color_producto, color_producto, estado_color_producto FROM color_producto;';
         $params = null;
         return Database::getRows($sql, $params);
     }
 
-    public function readColorProducto()
-    {
-        $sql = 'SELECT  cp."idColor", "colorProducto"
-        FROM "colorProducto" as cp inner join "colorStock" as cs on cp."idColor"  = cs."idColor"
-		inner join producto as p on cs."idProducto" = p."idProducto"
-		WHERE p."idProducto" = ?
-        ORDER BY "idColor"';
-        $params = array($this->id);
-        return Database::getRows($sql, $params);
-    }
 
     // Método para un dato en especifico de los colores existentes-------------------------.
     public function readOne()
     {
         $sql = 'SELECT *
-        FROM "colorProducto"
-        where "idColor" = ?';
+        FROM "color_producto"
+        where "uuid_color_producto" = ?';
         $params = array($this->id);
         return Database::getRow($sql, $params);
     }
@@ -95,10 +85,10 @@ class ColorProducto extends Validator
     /* SEARCH */
     public function searchRows($value)
     {
-        $sql = 'SELECT  "idColor","colorProducto", ee."estado"
-                FROM "colorProducto" as e inner join estado as ee on e."estado" = ee."idEstado"
-                WHERE "colorProducto" ILIKE ?
-                ORDER BY "idColor"';
+        $sql = 'SELECT  "uuid_color_producto","color_producto", "estado_color_producto"
+                FROM "color_producto" 
+                WHERE "color_producto" ILIKE ?
+                ORDER BY "uuid_color_producto"';
         $params = array("%$value%");
         return Database::getRows($sql, $params);
     }
@@ -106,9 +96,9 @@ class ColorProducto extends Validator
     /* CREATE */
     public function createRow()
     {
-        $sql = 'INSERT INTO "colorProducto"("colorProducto", estado)
-                VALUES (?, 1);';
-        $params = array($this->color);
+        $sql = 'INSERT INTO "color_producto"("color_producto", "estado_color_producto")
+        VALUES (?, ?);';
+        $params = array($this->color,  $this->estado);
         return Database::executeRow($sql, $params);
     }
 
@@ -116,10 +106,9 @@ class ColorProducto extends Validator
     /* UPDATE */
     public function updateRow()
     {
-        $sql = 'UPDATE "colorProducto"
-                SET "colorProducto" = ?,
-                "estado" = ?
-                WHERE "idColor" = ?';
+        $sql = 'UPDATE "color_producto"
+                SET "color_producto" = ?, "estado_color_producto" = ?
+                WHERE "uuid_color_producto" = ?';
             $params = array($this->color,$this->estado,$this->id);
         return Database::executeRow($sql, $params);
     }
@@ -128,11 +117,10 @@ class ColorProducto extends Validator
     /* Función para borrar un color de la base (Solo se inahbilita)-------------------------*/
     public function deleteRow()
     {
-        //No eliminaremos registros, solo los inhabilitaremos-------------------------
-        $sql = 'UPDATE "colorProducto"
-                SET estado = 2
-                WHERE "idColor" = ?';
-        $params = array($this->id);
+        $this->estado = 0;
+        //No eliminaremos registros, solo los inhabilitaremos----------------------------
+        $sql = 'UPDATE "color_producto" SET estado_color_producto = ? WHERE "uuid_color_producto" = ?';
+        $params = array($this->estado, $this->id);
         return Database::executeRow($sql, $params);
     }
 }
