@@ -1149,7 +1149,6 @@ input::-webkit-inner-spin-button {
   max-height: 1125px;
   overflow-x: hidden;
 }
-
 .content-detalle,
 .detalle-venta .content-card {
   position: relative;
@@ -1158,6 +1157,23 @@ input::-webkit-inner-spin-button {
 .detalle-venta .table-responsive {
   max-height: 500px;
   overflow: auto;
+}
+
+.btn-spinner-detalle {
+  color:  var(--azulMain);
+  border-color: var(--azulMain);
+}
+
+.btn-agregar-cantidad {
+  background-color: var(--azulMain);
+  color: var(--blanco);
+  transition: 0.3s all;
+}
+
+.btn-agregar-cantidad:hover{
+  background-color: var(--azulSecond) !important;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px !important;
+  color: var(--azulMain);
 }
 
 /*OCULTANDO SCROLLBAR*/
@@ -1466,6 +1482,10 @@ table.dataTable tbody>tr>.selected {
       -webkit-transform: translateY(0 rem);
       -webkit-opacity: 0;
     }
+  }
+
+  .cantidad-agregar-detalle {
+    margin-top: 25px;
   }
 }
 

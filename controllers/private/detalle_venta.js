@@ -1,21 +1,34 @@
 const API_VENTAS = SERVER + 'private/venta.php?action=';
+const API_PRODUCTOS = SERVER + 'private/productos.php?action='
+
+const options = {
+    "info": false,
+    "columnDefs": [],
+    "searching": false,
+    "dom":
+        "<'row'<'col-sm-12'tr>>" +
+        "<'row'<'col-sm-2 text-center'l><'col-sm-10'p>>",
+    "language": {
+        "lengthMenu": "Mostrando _MENU_ registros",
+        "paginate": {
+            "next": '<i class="bi bi-arrow-right-short"></i>',
+            "previous": '<i class="bi bi-arrow-left-short"></i>'
+        }
+    },
+    "lengthMenu": [[10, 15, 20, -1], [10, 15, 20, "Todos"]]
+};
 
 document.addEventListener('DOMContentLoaded', function () {
 
-    /*Inicializando input spinner*/
-    $("input[type='number']").inputSpinner();
+    readRows3(API_PRODUCTOS);
+    
+    //Inicializando tooltips
+    $("body").tooltip({ selector: '[data-bs-toggle=tooltip]' });
 
-    /*Añadiendo clase a botones de input spinner para modificar su diseño*/
-    let añadirClaseSpinnerInputBtn = () => {
-        var elemento1 = document.getElementsByClassName("btn-decrement");
-        for (var i = 0; i < elemento1.length; i++)
-            elemento1[i].className += " btn-second";
-
-        var elemento = document.getElementsByClassName("btn-increment");
-        for (var i = 0; i < elemento.length; i++)
-            elemento[i].className += " btn-second";
-    }
-    añadirClaseSpinnerInputBtn();
+    setTimeout(() => {
+        /*Inicializando y configurando tabla*/
+        table = new DataTable('#table-productos', options);
+    }, 250);
 
     // Se busca en la URL las variables (parámetros) disponibles.
     let params = new URLSearchParams(location.search);
@@ -24,13 +37,19 @@ document.addEventListener('DOMContentLoaded', function () {
     // Se llama a la función que muestra el detalle del producto seleccionado previamente.
     readOrderDetail(ID);
     // Se llama a la función que muestra los productos destacados.
-
-    //Inicializando tooltips
-    $("body").tooltip({ selector: '[data-bs-toggle=tooltip]' });
 })
 
+const reInitTable = () => {
+    table.destroy();
+    setTimeout(() => {
+        readRows3(API_PRODUCTOS);
+    }, 100);
 
-
+    setTimeout(() => {
+        /*Inicializando y configurando tabla*/
+        table = new DataTable('#table-productos', options);
+    }, 300);
+}
 
 function readOrderDetail(uuid_venta) {
     const data = new FormData();
@@ -90,17 +109,28 @@ function readOrderDetail(uuid_venta) {
     });
 }
 
-
-/*Inicializando y configurando tabla de productos*/
-$(document).ready(function () {
-    $('#example').DataTable({
-        "info": false,
-        "searching": false,
-        "scrollCollapse": true,
-        "paging": false,
-        "lengthMenu": [[10, 15, 20, -1], [10, 15, 20, "Todos"]]
+function fillTable(dataset) {
+    let content = '';
+    // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
+    dataset.map(function (row) {
+        // Se crean y concatenan las filas de la tabla con los datos de cada registro.
+        content += `
+        <tr>
+            <td data-title="PRODUCTO" class="text-center">
+                <div class="nombre-producto">${row.nombre_producto}</div>
+            </td>
+            <td>
+                <a onclick="" data-bs-toggle="modal" data-bs-target="#item-modal">
+                    <i class="bi bi-plus-circle ms-3"></i>
+                </a>
+            </td>
+        </tr> 
+		`;
     });
-});
+    // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
+    document.getElementById('tbody_rows').innerHTML = content;
+}
+
 /*Inicializando y configurando tabla de clientes*/
 $(document).ready(function () {
     $('#example1').DataTable({

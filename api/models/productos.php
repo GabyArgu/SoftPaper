@@ -427,4 +427,14 @@ class Productos extends Validator
         $params = array($this->id);
         return Database::executeRow($sql, $params);
     }
+
+    public function readProductosVentas(){
+        $sql = "SELECT uuid_producto, nombre_producto, color_producto, stock
+                from color_stock inner join producto using(uuid_producto)
+                inner join color_producto using (uuid_color_producto)
+                inner join detalle_producto using (uuid_producto)";
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
+
 }
