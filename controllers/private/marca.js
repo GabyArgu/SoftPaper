@@ -92,7 +92,7 @@ function openCreateMarca() {
 }
 
 function openUpdateMarca(id) {
-    document.getElementById('modal-title2').innerText = 'Actualizar marca';
+    document.getElementById('modal-title2').innerText = 'Actualizar proveedor';
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData();
     data.append('id', id);
