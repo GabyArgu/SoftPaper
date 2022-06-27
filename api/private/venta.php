@@ -36,6 +36,33 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No existen productos en esta venta';
                 }
                 break;
+            case 'search':
+                if ($result['dataset'] = $ventas->searchRows($_POST['search'])) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                }else {
+                    $result['exception'] = 'No hay coincidencias';
+                }
+                break;
+            case 'filterTable':
+                if ($result['dataset'] = $ventas->readRowsFilter($_POST['filter-tipo-venta'], $_POST['filter-estado'])) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                }else {
+                    $result['exception'] = 'No hay coincidencias';
+                }
+                break;
+            case 'filterDate':
+                if ($result['dataset'] = $ventas->readRowsFilterDate($_POST['start-date'], $_POST['end-date'])) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                }else {
+                    $result['exception'] = 'No hay coincidencias';
+                }
+                break;
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }
