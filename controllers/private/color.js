@@ -1,35 +1,60 @@
 // Constante para establecer la ruta y parámetros de comunicación con la API.
-const API_MARCA = SERVER + 'private/marca.php?action=';
+const API_COLOR = SERVER + 'private/color.php?action=';
+
+//Configuración de la tabla
+const options = {
+    "info": false,
+            "searching": false,
+            "dom":
+                "<'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-sm-5'l><'col-sm-1'><'col-sm-6'p>>",
+            "language": {
+                "lengthMenu": "Mostrando _MENU_ registros",
+                "paginate": {
+                    "next": '<i class="bi bi-arrow-right-short"></i>',
+                    "previous": '<i class="bi bi-arrow-left-short"></i>'
+                }
+            },
+            "lengthMenu": [[10, 15, 20, -1], [10, 15, 20, "Todos"]]
+};
+let table;
 
 // Método manejador de eventos que se ejecuta cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', function () {
     // Se llama a la función que obtiene los registros para llenar la tabla. Se encuentra en el archivo components.js
-    readRows2(API_MARCA);
-    // Se define una variable para establecer las opciones del componente Modal.
-    let options = {
-        dismissible: false,
-        onOpenStart: function () {
-            // Se restauran los elementos del formulario.
-            document.getElementById('save-form').reset();
-        }
-    }
+    readRows(API_COLOR);
+    setTimeout(() => {
+        /*Inicializando y configurando tabla*/
+        table = new DataTable('#color', options);
+    }, 250);
 });
 
+const reInitTable = () => {
+    table.destroy();
+    setTimeout(() => {
+        readRows(API_COLOR);
+    }, 100);
+
+    setTimeout(() => {
+        /*Inicializando y configurando tabla*/
+        table = new DataTable('#color', options);
+    }, 300);
+}
+
 // Función para llenar la tabla con los datos de los registros. Se manda a llamar en la función readRows().
-function fillTable2(dataset) {
+function fillTable(dataset) {
     let content = '';
     // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
     dataset.map(function (row) {
+        (row.estado_color_producto) ? icon = '<span class="estado">Activo</span>' : icon = '<span class="estado3">Inactivo</span>';
         // Se crean y concatenan las filas de la tabla con los datos de cada registro.
         content += `
         <tr>
-            <td data-title="Marca" class="col-table ">
-                <img src="${SERVER}images/marcas/${row.imagen_marca}"
-                    class="imgMP me-3" alt="">${row.nombre_marca}</td>
+            <td data-title="Nombre" class="categoria">${row.color_producto}</td>
+            <td data-title="Estado" class="estado-stock">${icon}</td>
             <td data-title="Acciones" class="botones-table">
                 <div class="dropdown">
-                    <button
-                        class=" btn-acciones dropdown-toggle"
+                    <button class=" btn-acciones dropdown-toggle"
                         type="button" id="dropdownMenuButton1"
                         data-bs-toggle="dropdown"
                         aria-expanded="false">
@@ -37,11 +62,11 @@ function fillTable2(dataset) {
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                         aria-labelledby="dropdownMenuButton1">
-                        <li><a onclick="openUpdateMarca('${row.uuid_marca}')" class="dropdown-item"
+                        <li><a onclick="openUpdate('${row.uuid_color_producto}')" class="dropdown-item"
                                 data-bs-toggle="modal"
-                                data-bs-target="#modal-agregarM">Editar</a>
+                                data-bs-target="#modal-agregarCo">Editar</a>
                         </li>
-                        <li><a onclick="openDeleteMarca('${row.uuid_marca}')" class="dropdown-item"
+                        <li><a onclick="openDelete('${row.uuid_color_producto}')" class="dropdown-item"
                                 data-bs-toggle="modal"
                                 data-bs-target="#modal-eliminar">Eliminar</a>
                         </li>
@@ -55,49 +80,38 @@ function fillTable2(dataset) {
     document.getElementById('tbody-rows').innerHTML = content;
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    readRows(API_PROVEEDOR);
-    setTimeout(() => {
-        /*Inicializando y configurando tabla*/
-        let options = {
-            "info": false,
-        "searching": false,
-        "dom":
-            "<'row'<'col-sm-12'tr>>" +
-            "<'row'<'col-sm-5'l><'col-sm-1'><'col-sm-6'p>>",
-        "language": {
-            "lengthMenu": "Mostrando _MENU_ registros",
-            "paginate": {
-                "next": '<i class="bi bi-arrow-right-short"></i>',
-                "previous": '<i class="bi bi-arrow-left-short"></i>'
-            }
-        },
-        "lengthMenu": [[10, 15, 20, -1], [10, 15, 20, "Todos"]]
-        };
-        let table = new DataTable('#marca', options);
-    }, 300);
-});
 
-document.getElementById('buscar-marca').addEventListener('submit', function (event) {
+
+document.getElementById('buscar-color').addEventListener('submit', function (event) {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
-    // Se llama a la función que realiza la búsqueda. Se encuentra en el archivo components.js
-    searchRows2(API_MARCA, 'buscar-marca');
+    if(document.getElementById('buscar-color-input').value == ""){
+        sweetAlert(3, 'Cambo de búsqueda vacío', null)
+    }
+    else{
+        table.destroy();
+        // Se llama a la función que realiza la búsqueda. Se encuentra en el archivo components.js
+        searchRows(API_COLOR, 'buscar-color', 'buscar-color-input');
+        setTimeout(() => {
+            /*Inicializando y configurando tabla*/
+            table = new DataTable('#color', options);
+        }, 250);
+    }
+    
 });
 
-function openCreateMarca() {
-    // Se establece que el campo archivo sea obligatorio (input de subir imagen).
-    document.getElementById('modal-title2').innerText = 'Ingresar marca';
-    document.getElementById("nombre_marca").value = "";
+function openCreate() {
+    document.getElementById("nombre_color").value = "";
+    document.getElementById("estado_color").disabled = true;
 }
 
-function openUpdateMarca(id) {
-    document.getElementById('modal-title2').innerText = 'Actualizar marca';
+function openUpdate(id) {
+    document.getElementById("estado_color").disabled = false;
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData();
     data.append('id', id);
     // Petición para obtener los datos del registro solicitado.
-    fetch(API_MARCA + 'readOne', {
+    fetch(API_COLOR + 'readOne', {
         method: 'post',
         body: data
     }).then(function (request) {
@@ -108,8 +122,14 @@ function openUpdateMarca(id) {
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
                     // Se inicializan los campos del formulario con los datos del registro seleccionado.
-                    document.getElementById('id1').value = (id);
-                    document.getElementById('nombre_marca').value = response.dataset.nombre_marca;
+                    document.getElementById('id').value = (id);
+                    document.getElementById('nombre_color').value = response.dataset.color_producto;
+
+                    if (response.dataset.estado_cliente) {
+                        document.getElementById('estado_color').value = 0;
+                    } else {
+                        document.getElementById('estado_color').value = 1;
+                    }
                     // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos.
                 } else {
                     sweetAlert(2, response.exception, null);
@@ -122,18 +142,19 @@ function openUpdateMarca(id) {
 }
 
 // Método manejador de eventos que se ejecuta cuando se envía el formulario de guardar.
-document.getElementById('agregar-marca').addEventListener('submit', function (event) {
+document.getElementById('agregar-color').addEventListener('submit', function (event) {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
     // Se define una variable para establecer la acción a realizar en la API.
     let action = '';
     // Se comprueba si el campo oculto del formulario esta seteado para actualizar, de lo contrario será para crear.
-    (document.getElementById('id1').value) ? action = 'update' : action = 'create';
+    (document.getElementById('id').value) ? action = 'update' : action = 'create';
     // Se llama a la función para guardar el registro. Se encuentra en el archivo components.js
-    saveRow(API_MARCA, action, 'agregar-marca', 'modal-agregarM');
+    saveRow(API_COLOR, action, 'agregar-color', 'modal-agregarCo');
+    reInitTable();
 });
 
-function openDeleteMarca(id) {
+function openDelete(id) {
     document.getElementById('id_delete').value = (id);
 }
 
@@ -142,5 +163,20 @@ document.getElementById('delete-form').addEventListener('submit', function (even
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
     //Llamamos al método que se encuentra en la api y le pasamos la ruta de la API y el id del formulario dentro de nuestro modal eliminar
-    confirmDelete(API_MARCA, 'delete-form');
+    confirmDelete(API_COLOR, 'delete-form');
+    setTimeout(() => {
+        reInitTable();
+    }, 100);
+});
+
+//Función para refrescar la tabla manualmente al darle click al botón refresh
+document.getElementById('limpiar').addEventListener('click', function () {
+    table.destroy();
+    readRows(API_COLOR);
+    document.getElementById('buscar-color-input').value ="";
+    setTimeout(() => {
+        /*Inicializando y configurando tabla*/
+        table = new DataTable('#color', options);
+
+    }, 250);
 });

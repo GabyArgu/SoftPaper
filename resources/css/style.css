@@ -714,7 +714,7 @@ input::-webkit-inner-spin-button {
 }
 
 .btn-añadir {
-  width: 160px;
+  width: 180px;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -724,6 +724,7 @@ input::-webkit-inner-spin-button {
   font-weight: 500;
   font-size: 14px;
 }
+
 
 .btn-añadir .bi-plus {
   font-size: 24px;
@@ -1681,6 +1682,26 @@ tbody .imgMP {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
+.btn-añadirDM {
+  width: 190px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: var(--azulMain);
+  color: var(--blanco);
+  border: none;
+  padding-right: 5px;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-añadirDM:hover {
+  color: var(--azulMain);
+  background-color: var(--azulSecond);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
 #modal-agregarP .modal-header,
 #modal-agregarP .modal-footer,
 #modal-agregarEP .modal-header,
@@ -1700,11 +1721,20 @@ tbody .imgMP {
   border-color: var(--azulModal);
 }
 
+.cpicker{
+  box-sizing: var(--azulModal) !important;
+  font-family: 'Poppins', sans-serif !important;
+  border-radius: 15px !important;
+  border-color: var(--azulModal) !important;
+  height: 26px !important;
+}
+
 #modal-agregarP h2,
 #modal-agregarM h2,
 #modal-agregarSub h2,
 #modal-agregarEP h2 {
   color: var(--azulOscuro);
+  text-align: center !important;
 }
 
 #nombre_sub {
@@ -1712,6 +1742,24 @@ tbody .imgMP {
 }
 
 /* MARCA_PROVEEDOR FIN */
+
+/* DEPARTAMENTOS_MUNICIPIOS INICIO */
+
+#modal-agregarD .modal-header,
+#modal-agregarD .modal-footer {
+  border: none;
+}
+
+#modal-agregarD select, #modal-agregarSub select{
+  border-radius: 15px;
+  border-color: var(--azulModal);
+}
+
+#modal-agregarD h2, #modal-agregarM h2, #modal-agregarSub h2{
+  color: var(--azulOscuro);
+}
+
+/* DEPARTAMENTOS_MUNICIPIOS FIN */
 
 /* RESPONSIVE */
 
