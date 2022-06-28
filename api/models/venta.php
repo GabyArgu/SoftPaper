@@ -165,7 +165,7 @@ class Ventas extends Validator
 
     public function readAll()
     {
-        $sql = 'SELECT uuid_venta, nombres_empleado, apellidos_empleado, nombre_cliente, estado_venta, tipo_venta, tipo_factura, fecha_venta, correlativo_venta
+        $sql = 'SELECT uuid_venta, nombres_empleado, apellidos_empleado, nombre_cliente, estado_venta, tipo_venta, tipo_factura, fecha_venta, correlativo_venta, (getmonto(uuid_venta)) as monto
                 from venta inner join empleado using(uuid_empleado)
                 inner join cliente using(uuid_cliente)
                 inner join estado_venta using(uuid_estado_venta)
@@ -195,6 +195,13 @@ class Ventas extends Validator
                 from pedido as p inner join "cliente" as c using ("idCliente")
                 inner join "tipoPago" as tp on p."tipoPago" = tp."idTipoPago"
                 where "idPedido" = ?';
+        $params = array($this->id);
+        return Database::getRow($sql, $params);
+    }
+
+    public function readMonto()
+    {
+        $sql = 'SELECT SUM(precio_unitario*cantidad_producto) as monto from detalle_venta WHERE uuid_venta = ?';
         $params = array($this->id);
         return Database::getRow($sql, $params);
     }
@@ -336,32 +343,32 @@ class Ventas extends Validator
     public function finishOrder($tipoFactura, $tipoVenta)
     {
         //Credito
-        if(strval($tipoFactura) == '44a24a3c-06c1-42c1-a0d8-2c229cba197e'){
-            if($tipoVenta == '6f2d2f0a-6134-4825-a9ff-978d156d5c49'){
+        if(strval($tipoFactura) == 'bfd00eca-a737-46f0-9ac8-14f1017cbde1'){
+            if($tipoVenta == '84a2a8bf-54b1-4ab4-9bf1-4ec7057c361e'){
                 $sql = "UPDATE venta
-                SET uuid_cliente = (SELECT uuid_cliente FROM cliente WHERE dui_cliente = ?), uuid_tipo_venta = ?, uuid_tipo_factura = ?, fecha_venta = CURRENT_DATE, correlativo_venta = (select nextval('seq_correlativo_credito')), uuid_estado_venta = 'f486f9a3-2083-4117-9342-804d5a3c3328'
+                SET uuid_cliente = (SELECT uuid_cliente FROM cliente WHERE dui_cliente = ?), uuid_tipo_venta = ?, uuid_tipo_factura = ?, fecha_venta = CURRENT_DATE, correlativo_venta = (select nextval('seq_correlativo_credito')), uuid_estado_venta = '43fbc4c4-35a4-4890-865e-21bf562606ec'
                 WHERE uuid_venta = ?";
                 $params = array($this->cliente, $this->tipo_venta, $this->tipo_factura, $this->id);
                 return Database::executeRow($sql, $params);
             } else {
                 $sql = "UPDATE venta
-                SET uuid_cliente = (SELECT uuid_cliente FROM cliente WHERE dui_cliente = ?), uuid_tipo_venta = ?, uuid_tipo_factura = ?, fecha_venta = CURRENT_DATE, correlativo_venta = (select nextval('seq_correlativo_credito')), uuid_estado_venta = 'afa22507-c0a0-42e0-b6ad-7b8da3ffddcb'
+                SET uuid_cliente = (SELECT uuid_cliente FROM cliente WHERE dui_cliente = ?), uuid_tipo_venta = ?, uuid_tipo_factura = ?, fecha_venta = CURRENT_DATE, correlativo_venta = (select nextval('seq_correlativo_credito')), uuid_estado_venta = '8b432835-70fc-4bed-83cc-18011f28acbe'
                 WHERE uuid_venta = ?";
                 $params = array($this->cliente, $this->tipo_venta, $this->tipo_factura, $this->id);
                 return Database::executeRow($sql, $params);
             }
             
         //Consumidor
-        } elseif(strval($tipoFactura) == 'f53a9f03-d43b-41fb-8e00-cdc9dfd81e26') {
-            if($tipoVenta == '6f2d2f0a-6134-4825-a9ff-978d156d5c49'){
+        } elseif(strval($tipoFactura) == 'c69b153d-a384-4c0a-b1f2-8c2b0403e9d6') {
+            if($tipoVenta == '84a2a8bf-54b1-4ab4-9bf1-4ec7057c361e'){
                 $sql = "UPDATE venta
-                SET uuid_cliente = (SELECT uuid_cliente FROM cliente WHERE dui_cliente = ?), uuid_tipo_venta = ?, uuid_tipo_factura = ?, fecha_venta = CURRENT_DATE, correlativo_venta = (select nextval('seq_correlativo_consumidor')), uuid_estado_venta = 'f486f9a3-2083-4117-9342-804d5a3c3328'
+                SET uuid_cliente = (SELECT uuid_cliente FROM cliente WHERE dui_cliente = ?), uuid_tipo_venta = ?, uuid_tipo_factura = ?, fecha_venta = CURRENT_DATE, correlativo_venta = (select nextval('seq_correlativo_consumidor')), uuid_estado_venta = '43fbc4c4-35a4-4890-865e-21bf562606ec'
                 WHERE uuid_venta = ?";
                 $params = array($this->cliente, $this->tipo_venta, $this->tipo_factura, $this->id);
                 return Database::executeRow($sql, $params);
             } else {
                 $sql = "UPDATE venta
-                SET uuid_cliente = (SELECT uuid_cliente FROM cliente WHERE dui_cliente = ?), uuid_tipo_venta = ?, uuid_tipo_factura = ?, fecha_venta = CURRENT_DATE, correlativo_venta = (select nextval('seq_correlativo_consumidor')), uuid_estado_venta = 'afa22507-c0a0-42e0-b6ad-7b8da3ffddcb'
+                SET uuid_cliente = (SELECT uuid_cliente FROM cliente WHERE dui_cliente = ?), uuid_tipo_venta = ?, uuid_tipo_factura = ?, fecha_venta = CURRENT_DATE, correlativo_venta = (select nextval('seq_correlativo_consumidor')), uuid_estado_venta = '8b432835-70fc-4bed-83cc-18011f28acbe'
                 WHERE uuid_venta = ?";
                 $params = array($this->cliente, $this->tipo_venta, $this->tipo_factura, $this->id);
                 return Database::executeRow($sql, $params);
@@ -370,15 +377,15 @@ class Ventas extends Validator
 
         //Ticket
         } else {
-            if($tipoVenta == '6f2d2f0a-6134-4825-a9ff-978d156d5c49'){
+            if($tipoVenta == '84a2a8bf-54b1-4ab4-9bf1-4ec7057c361e'){
                 $sql = "UPDATE venta
-                SET uuid_cliente = (SELECT uuid_cliente FROM cliente WHERE dui_cliente = ?), uuid_tipo_venta = ?, uuid_tipo_factura = ?, fecha_venta = CURRENT_DATE, correlativo_venta = (select nextval('seq_correlativo_ticket')), uuid_estado_venta = 'f486f9a3-2083-4117-9342-804d5a3c3328'
+                SET uuid_cliente = (SELECT uuid_cliente FROM cliente WHERE dui_cliente = ?), uuid_tipo_venta = ?, uuid_tipo_factura = ?, fecha_venta = CURRENT_DATE, correlativo_venta = (select nextval('seq_correlativo_ticket')), uuid_estado_venta = '43fbc4c4-35a4-4890-865e-21bf562606ec'
                 WHERE uuid_venta = ?";
                 $params = array($this->cliente, $this->tipo_venta, $this->tipo_factura, $this->id);
                 return Database::executeRow($sql, $params);
             } else {
                 $sql = "UPDATE venta
-                SET uuid_cliente = (SELECT uuid_cliente FROM cliente WHERE dui_cliente = ?), uuid_tipo_venta = ?, uuid_tipo_factura = ?, fecha_venta = CURRENT_DATE, correlativo_venta = (select nextval('seq_correlativo_ticket')), uuid_estado_venta = 'afa22507-c0a0-42e0-b6ad-7b8da3ffddcb'
+                SET uuid_cliente = (SELECT uuid_cliente FROM cliente WHERE dui_cliente = ?), uuid_tipo_venta = ?, uuid_tipo_factura = ?, fecha_venta = CURRENT_DATE, correlativo_venta = (select nextval('seq_correlativo_ticket')), uuid_estado_venta = '8b432835-70fc-4bed-83cc-18011f28acbe'
                 WHERE uuid_venta = ?";
                 $params = array($this->cliente, $this->tipo_venta, $this->tipo_factura, $this->id);
                 return Database::executeRow($sql, $params);

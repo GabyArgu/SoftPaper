@@ -1,13 +1,17 @@
 <?php
 /*
-*	Clase para manejar la tabla giro clientes de la base de datos de la tienda.
+
+
+*	Clase para manejar la tabla tipo factura de la base de datos de la tienda.
 *   Es una clase hija de Validator.
 */
-class Cargo_Empleado extends Validator
+class CargoEmpleado extends Validator
 {
     // Declaración de atributos (propiedades).
     private $id = null;
     private $cargo = null;
+
+    private $estado = null;
 
     /*
     *   Métodos para validar y asignar valores de los atributos.
@@ -22,15 +26,29 @@ class Cargo_Empleado extends Validator
         }
     }
 
+
+
+
     public function setCargo($value)
     {
-        if ($this->validateAlphabetic($value)) {
+        if ($this->validateString($value, 1, 50)) {
             $this->cargo = $value;
             return true;
         } else {
             return false;
         }
     }
+
+    public function setEstado($value)
+    {
+        if ($this->validateBoolean($value)) {
+            $this->estado = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     /*
     *   Métodos para obtener valores de los atributos.
     */
@@ -39,17 +57,24 @@ class Cargo_Empleado extends Validator
         return $this->id;
     }
 
-    public function getGiro()
+    public function getCargo()
+
     {
         return $this->cargo;
     }
 
-    // Método para leer toda la información de los colores existentes-------------------------.
+
+    public function getEstado()
+    {
+        return $this->estado;
+    }
+
+    // Método para leer toda la información de tipo factura existentes-------------------------.
     public function readAll()
     {
-
-        $sql = 'SELECT uuid_cargo_empleado, cargo_empleado FROM cargo_empleado';
+        $sql = 'SELECT uuid_cargo_empleado, cargo_empleado from cargo_empleado;';
         $params = null;
         return Database::getRows($sql, $params);
     }
+
 }

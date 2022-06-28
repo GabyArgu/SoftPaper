@@ -25,6 +25,17 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No hay datos registrados';
                 }
                 break;
+            case 'getMonto':
+                if (!$ventas->setId($_POST['uuid_venta'])) {
+                    $result['exception'] = 'Venta incorrecta';
+                } elseif ($result['dataset'] = $ventas->readMonto()) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'No existe el monto en esta venta';
+                }
+                break;
             case 'readOrderDetail':
                 if (!$ventas->setId($_POST['uuid_venta'])) {
                     $result['exception'] = 'Venta incorrecta';

@@ -73,9 +73,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Seleccione una imagen';
                 } elseif (!$productos->setImagen($_FILES['archivo'])) {
                     $result['exception'] = $productos->getFileError();
-                } elseif (!$productos->setEstado('09ed67e4-98c7-46e3-b6c5-45c234020efb')) {
-                    $result['exception'] = 'Estado inválido';
-                } elseif ($productos->createRow()) {
+                }   elseif ($productos->createRow()) {
                     $result['status'] = 1;
                     if ($productos->saveFile($_FILES['archivo'], $productos->getRuta(), $productos->getImagen())) {
                         if (!$productos->insertStock()) {

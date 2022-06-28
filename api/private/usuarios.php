@@ -63,13 +63,13 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Nombres inválidos';
                 } elseif (!$usuario->setApellidos($_POST['apellidos'])) {
                     $result['exception'] = 'Apellidos inválidos';
-                } elseif (!$usuario->setCargo('58a8b7aa-0e40-44e4-9409-0eab6bd23255')){
+                } elseif (!$usuario->setCargo($_POST['cargo'])){
                     $result['exception'] = 'Cargo inválido';
                 } elseif (!$usuario->setCorreo($_POST['correo'])) {
                     $result['exception'] = 'Correo inválido';
-                }elseif (!$usuario->setEstado(true)) {
+                }elseif (!$usuario->setEstado($_POST['estado'])) {
                     $result['exception'] = 'Estado inválido';
-                }elseif (!$usuario->setFoto('7875dbce-e16c-400f-94f0-acb86a329fb5')) {
+                }elseif (!$usuario->setFoto($_POST['foto'])) {
                     $result['exception'] = 'Avatar inválido';
                 }elseif (!$usuario->setAlias($_POST['alias'])) {
                     $result['exception'] = 'Alias inválido';

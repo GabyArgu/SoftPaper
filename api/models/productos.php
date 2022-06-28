@@ -303,10 +303,10 @@ class Productos extends Validator
     /* CREATE */
     public function createRow()
     {
-        $sql = 'INSERT INTO public.producto(
+        $sql = "INSERT INTO public.producto(
             uuid_subcategoria_p, uuid_marca, nombre_producto, descripcion_producto, precio_producto, imagen_producto, uuid_estado_producto)
-            VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING uuid_producto';
-        $params = array($this->subcategoria, $this->marca, $this->nombre, $this->descripcion, $this->precio, $this->imagen, $this->estado,);
+            VALUES (?, ?, ?, ?, ?, ?, (select uuid_estado_producto from estado_producto where estado_producto = 'En stock')) RETURNING uuid_producto";
+        $params = array($this->subcategoria, $this->marca, $this->nombre, $this->descripcion, $this->precio, $this->imagen);
         /* Guardamos el último id porque es necesario para hacer el insert de manera completa */
         if ($this->id = Database::getRowId($sql, $params)) {
             return true;

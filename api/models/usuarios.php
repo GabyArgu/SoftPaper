@@ -208,7 +208,7 @@ class Usuarios extends Validator
     // Método para leer toda la información de los usuarios registrados-------------------------.
     public function readAll()
     {
-        $sql = 'SELECT uuid_empleado, nombres_empleado, apellidos_empleado, ce.cargo_empleado, estado_empleado
+        $sql = 'SELECT uuid_empleado, nombres_empleado, apellidos_empleado, ce.cargo_empleado, estado_empleado, alias_empleado, correo_empleado
         FROM empleado as e inner join cargo_empleado as ce USING(uuid_cargo_empleado)
 		order by nombres_empleado, estado_empleado;';
         

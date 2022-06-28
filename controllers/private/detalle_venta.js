@@ -141,6 +141,7 @@ function readOrderDetail(uuid_venta) {
                     document.getElementById('subtotal-detalle').textContent = `$${(parseFloat(total.toFixed(2)))}`;
                     document.getElementById('iva').textContent = `$${(parseFloat(iva.toFixed(2)))}`;
                     document.getElementById('total-venta').textContent = `$${(parseFloat(totalVenta.toFixed(2)))}`;
+                    document.getElementById('monto').value = (parseFloat(totalVenta.toFixed(2)));
                 } else {
                     document.getElementById('productos-detalle').innerHTML = `<h1 class="text-center fs-5">${response.exception}</h1>`;
                 }
