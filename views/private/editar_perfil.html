@@ -179,101 +179,94 @@
 
                     <div class="row">
                         <div class="col">
-                            <div class="row mt-5">
-                                <div class="col">
-                                    <h4 class=" text-center">Avatar</h4>
-                                    <div class="imagen-contendor d-flex justify-content-center">
-                                        <div class="imagen-iconos">
-                                            <img class="avatar1 m-0 p-0" src="../../api/images/avatares/a2.png" alt="">
-                                            <span class="bg-body shadow btn-editar-foto"
-                                                data-kt-image-input-action="change" data-bs-toggle="tooltip" title=""
-                                                data-bs-original-title="Change avatar">
-                                                <i class="bi bi-pencil-fill fs-7"></i>
-                                            </span>
-                                            <span class=" w-25px h-25px bg-body shadow btn-borrar-foto"
-                                                data-kt-image-input-action="remove" data-bs-toggle="tooltip" title=""
-                                                data-bs-original-title="Remove avatar">
-                                                <i class="bi bi-x fs-2"></i>
-                                            </span>
+                            <form action="" method="post" id="update-empleado">
+                                <div class="row mt-5">
+                                    <div class="col">
+                                        <h4 class=" text-center">Avatar</h4>
+                                        <div class="imagen-contendor d-flex justify-content-center">
+                                            <div class="imagen-iconos">
+                                                <img class="avatar1 m-0 p-0" src="../../api/images/avatares/a2.png"
+                                                    alt="">
+                                                <span class="bg-body shadow btn-editar-foto"
+                                                    data-kt-image-input-action="change" data-bs-toggle="tooltip"
+                                                    title="" data-bs-original-title="Change avatar">
+                                                    <i class="bi bi-pencil-fill fs-7"></i>
+                                                </span>
+                                                <span class=" w-25px h-25px bg-body shadow btn-borrar-foto"
+                                                    data-kt-image-input-action="remove" data-bs-toggle="tooltip"
+                                                    title="" data-bs-original-title="Remove avatar">
+                                                    <i class="bi bi-x fs-2"></i>
+                                                </span>
+                                            </div>
                                         </div>
-
                                     </div>
-
-
                                 </div>
-                            </div>
-                            <div class="row pb-5">
-                                <div class="col">
-                                    <h4 class="p-text">Tipo de archivos permitidos: pnj, jpg, jpej</h4>
+                                <div class="row pb-5">
+                                    <div class="col">
+                                        <h4 class="p-text">Tipo de archivos permitidos: pnj, jpg, jpej</h4>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row mx-3 mt-5 row-espacio-editar-perfil">
+                                <div class="row mx-3 mt-5 row-espacio-editar-perfil">
 
-                                <div class="col">
-                                    <div class="row row-md-my-4">
-                                        <div class="col-4 my-3 col-md-3 s-texto  text-center">
-                                            <span>Nombre</span>
-                                        </div>
-                                        <div class="col-8 col-md-3 d-flex align-items-center">
-                                            <input type="text reset" name="fname" class=" w-100 form-control 
-                                    form-control-lg form-control-solid" placeholder="Un Nombre" value="">
-                                        </div>
-                                        <div class="col-4 my-3 col-md-3 s-texto text-center">
-                                            <span>Cargo</span>
-                                        </div>
-                                        <div class="col-8 col-md-3 d-flex align-items-center">
-                                            <select class="w-100 form-control 
+                                    <div class="col">
+                                        <div class="row row-md-my-4">
+                                            <input type="hidden" name="id" id="id">
+                                            <div class="col-4 my-3 col-md-3 s-texto  text-center">
+                                                <span>Nombre</span>
+                                            </div>
+                                            <div class="col-8 col-md-3 d-flex align-items-center">
+                                                <input type="text reset" name="nombre_emp" id="nombre_emp" class=" w-100 form-control 
+                                    form-control-lg form-control-solid" placeholder="Nombre" value="">
+                                            </div>
+                                            <div class="col-4 my-3 col-md-3 s-texto text-center">
+                                                <span>Cargo</span>
+                                            </div>
+                                            <div class="col-8 col-md-3 d-flex align-items-center">
+                                                <select id="cargo_emp" name="cargo_emp" class="w-100 form-control 
                                                 form-control-lg form-control-solid "
-                                                aria-label="Default select example">
-                                                <option selected disabled>Seleccione una opción</option>
-                                                <option value="1">Administrador</option>
-                                                <option value="2">Empleado</option>
-                                            </select>
+                                                    aria-label="Default select example">
+                                                </select>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="row row-md-my-4">
-                                        <div class="col-4 my-3 col-md-3 s-texto text-center">
-                                            <span>Apellidos</span>
+                                        <div class="row row-md-my-4">
+                                            <div class="col-4 my-3 col-md-3 s-texto text-center">
+                                                <span>Apellidos</span>
+                                            </div>
+                                            <div class="col-8 col-md-3 d-flex align-items-center">
+                                                <input type="text reset" name="apellido_emp" id="apellido_emp" class="w-100 form-control 
+                                        form-control-lg form-control-solid " placeholder="Apellido" value="">
+                                            </div>
+                                            <div class="col-4 my-3 col-md-3 s-texto text-center">
+                                                <span>Estado</span>
+                                            </div>
+                                            <div class="col-8 col-md-3 d-flex align-items-center">
+                                                <select class="w-100 form-control 
+                                        form-control-lg form-control-solid" aria-label="Default select example"
+                                                    id="estado_emp" name="estado_emp">
+                                                    <option value="1">Activo</option>
+                                                    <option value="0">Inactivo</option>
+                                                </select>
+                                            </div>
                                         </div>
-                                        <div class="col-8 col-md-3 d-flex align-items-center">
-                                            <input type="text reset" name="fname" class="w-100 form-control 
-                                        form-control-lg form-control-solid " placeholder="Un Apellido" value="">
-                                        </div>
-                                        <div class="col-4 my-3 col-md-3 s-texto text-center">
-                                            <span>Estado</span>
-                                        </div>
-                                        <div class="col-8 col-md-3 d-flex align-items-center">
-                                            <select class="w-100 form-control 
-                                        form-control-lg form-control-solid" aria-label="Default select example">
-                                                <option selected disabled>Seleccione una opción</option>
-                                                <option value="1">Activo</option>
-                                                <option value="2">Inactivo</option>
-                                                <option value="3">Inhabilitado</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-4 my-3 col-md-3 s-texto text-center">
-                                            <span>Alias</span>
-                                        </div>
-                                        <div class="col-8 col-md-3 d-flex align-items-center">
-                                            <input type="text reset" name="fname" class="w-100 form-control 
-                                    form-control-lg form-control-solid " placeholder="Un Apodo" value="">
+                                        <div class="row">
+                                            <div class="col-4 my-3 col-md-3 s-texto text-center">
+                                                <span>Alias</span>
+                                            </div>
+                                            <div class="col-8 col-md-3 d-flex align-items-center">
+                                                <input type="text reset" name="alias_emp" id="alias_emp" class="w-100 form-control 
+                                    form-control-lg form-control-solid " placeholder="Apodo" value="">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-
-
-
-
-
-                            </div>
-                            <div class="row my-5 mx-3">
-                                <div class="col d-flex justify-content-end">
-                                    <a class="btn-editar1 btn-main" type="reset" href="">Descartar</a>
-                                    <a class="btn-editar1 btn-main ms-3" href="perfil_usuario.html">Guardar</a>
+                                <div class="row my-5 mx-3">
+                                    <div class="col d-flex justify-content-end">
+                                        <a class="btn-editar1 btn-main" type="reset" href="">Descartar</a>
+                                        <button type="submit" class="btn-editar1 btn-main ms-3"
+                                            href="perfil_usuario.html">Guardar</button>
+                                    </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                     <!-- AVATAR -->
@@ -297,7 +290,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script src="../../controllers/componentes.js"></script>
     <script src="../../controllers/private/charge.js"></script>
+    <script src="../../controllers/private/perfil.js"></script>
     </main>
     </div>
 </body>

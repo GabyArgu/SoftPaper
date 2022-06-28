@@ -216,9 +216,9 @@ class Usuarios extends Validator
     // Método para un dato en especifico de los usuarios registrados-------------------------.
     public function readOne()
     {
-        $sql = 'SELECT "idEmpleado", "nombresEmpleado", "apellidosEmpleado", "correoEmpleado", "aliasEmpleado", "fotoEmpleado", "cargoEmpleado", "estadoEmpleado"
+        $sql = 'SELECT "uuid_empleado", "nombres_empleado", "apellidos_empleado", "correo_empleado", "alias_empleado", "uuid_avatar", "uuid_cargo_empleado", "estado_empleado"
         FROM empleado
-        where "idEmpleado" = ?';
+        where "uuid_empleado" = ?';
         $params = array($this->id);
         return Database::getRow($sql, $params);
     }
@@ -226,11 +226,10 @@ class Usuarios extends Validator
     /* Método para obtener un empleado y mostrarlo en modal de visualizar*/
     public function readOneShow()
     {
-        $sql = 'SELECT "idEmpleado", "nombresEmpleado", "apellidosEmpleado", "correoEmpleado",  "aliasEmpleado", a.avatar, ce."cargoEmpleado", ee."estadoEmpleado"
-        FROM empleado as e inner join "cargoEmpleado" as ce on e."cargoEmpleado" = ce."idCargoEmpleado"
-        inner join "estadoEmpleado" as ee on e."estadoEmpleado" = ee."idEstadoEmpleado"
-		inner join "avatar" as a on e."fotoEmpleado" = a."idAvatar" 
-        where "idEmpleado" = ?';
+        $sql = 'SELECT "uuid_empleado", "nombres_empleado", "apellidos_empleado", "correo_empleado",  "alias_empleado", a."uuid_avatar", ce."uuid_cargo_empleado", "estado_empleado"
+        FROM empleado as e inner join "cargo_empleado" as ce on e."uuid_cargo_empleado" = ce."uuid_cargo_empleado"
+		inner join "avatar_empleado" as a on e."uuid_avatar" = a."uuid_avatar" 
+        where "uuid_empleado" = ?';
         $params = array($this->id);
         return Database::getRow($sql, $params);
     }
@@ -266,6 +265,16 @@ class Usuarios extends Validator
                 SET "nombresEmpleado" = ?, "apellidosEmpleado" = ?, "correoEmpleado" = ?, "direccionEmpleado" = ?, "telefonoEmpleado" = ?, "cargoEmpleado" = ?, "estadoEmpleado" = ?, "fotoEmpleado" = ?
                 WHERE "idEmpleado" = ?';
             $params = array($this->nombres, $this->apellidos, $this->correo, $this->direccion, $this->telefono, $this->cargo, $this->estado, $this->foto, $this->id);
+        return Database::executeRow($sql, $params);
+    }
+
+    // Update perfil
+    public function updatePerfil()
+    {
+        $sql = 'UPDATE empleado
+                SET "nombres_empleado" = ?, "apellidos_empleado" = ?, "alias_empleado" = ?, "uuid_cargo_empleado" = ?, "estado_empleado" = ?
+                WHERE "uuid_empleado" = ?';
+            $params = array($this->nombres, $this->apellidos, $this->alias, $this->cargo, $this->estado, $this->id);
         return Database::executeRow($sql, $params);
     }
 

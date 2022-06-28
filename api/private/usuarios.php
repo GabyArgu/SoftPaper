@@ -100,6 +100,17 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Empleado inexistente';
                 }
                 break;
+            case 'readOnePerfil':
+                if (!$usuario->setId($_SESSION['uuid_empleado'])) {
+                    $result['exception'] = 'Usuario incorrecto';
+                } elseif ($result['dataset'] = $usuario->readOneShow()) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'Usuario inexistente';
+                }
+                break;
             // Accion de leer si el id existe del empleado------------------.     
             case 'readOneShow':
                     if (!$usuario->setId($_POST['id'])) {
@@ -137,6 +148,31 @@ if (isset($_GET['action'])) {
                 }elseif (!$usuario->setEstado($_POST['estado'])) {
                     $result['exception'] = 'Estado inválido';
                 }elseif ($usuario->updateRow()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Empleado modificado correctamente';
+                } else {
+                    $result['exception'] = Database::getException();
+                }
+                break;
+            // Actualizar 
+            case 'updateP':
+                //Especificamos los inputs por medio de su atributo name, y los capturamos con el método post
+                $_POST = $usuario->validateForm($_POST);
+                if (!$usuario->setId($_POST['id'])) {
+                    $result['exception'] = 'Empleado incorrecto';
+                } elseif (!$usuario->readOne()) {
+                    $result['exception'] = 'Empleado inexistente';
+                } if (!$usuario->setNombres($_POST['nombre_emp'])) {
+                    $result['exception'] = 'Nombres inválidos';
+                } elseif (!$usuario->setApellidos($_POST['apellido_emp'])) {
+                    $result['exception'] = 'Apellidos inválidos';
+                }elseif (!$usuario->setAlias($_POST['alias_emp'])) {
+                    $result['exception'] = 'Alias inválido';
+                } elseif (!$usuario->setCargo($_POST['cargo_emp'])){
+                    $result['exception'] = 'Cargo inválido';
+                } elseif (!$usuario->setEstado($_POST['estado_emp'])) {
+                    $result['exception'] = 'Estado inválido';
+                } elseif ($usuario->updatePerfil()) {
                     $result['status'] = 1;
                     $result['message'] = 'Empleado modificado correctamente';
                 } else {
