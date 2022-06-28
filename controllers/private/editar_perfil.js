@@ -1,11 +1,13 @@
 // Constante para establecer la ruta y parámetros de comunicación con la API.
-const API_CLIENTE = SERVER + 'private/usuario.php?action=';
+const API_USUARIO = SERVER + 'private/usuario.php?action=';
+
+const ENDPOINT_CARGO = SERVER + 'private/usuario.php?action=readAll';
 const ENDPOINT_AVATAR = SERVER + 'private/usuario.php?action=readAvatar';
 
 // Método manejador de eventos que se ejecuta cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', function () {
     // Se declara e inicializa un objeto para obtener la fecha y hora actual.
-    
+    cargarDatos();
 });
 
 // Función para preparar el formulario al momento de modificar un registro.
@@ -36,6 +38,36 @@ function openUpdate() {
                     fillSelect(ENDPOINT_AVATAR, 'foto', response.dataset.avatar);
                     document.getElementById('imagen-avatar').src = `../../resources/img/avatares/avatar${response.dataset.avatar}.jpg`
                     document.getElementById('imagen-avatar').style.display = 'inline-block'
+                } else {
+                    sweetAlert(2, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
+}
+
+function cargarDatos(id) {
+    // Se define un objeto con los datos del registro seleccionado.
+    const data = new FormData();
+    data.append('id', id);
+    // Petición para obtener los datos del registro solicitado.
+    fetch(API_USUARIOS + 'readOnePerfil', {
+        method: 'post',
+        body: data
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            // Se obtiene la respuesta en formato JSON.
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Se inicializan los campos del formulario con los datos del registro seleccionado.
+                    // document.getElementById('id').value = response.dataset.id_usuario;
+                    document.getElementById('alias_perfil').value = response.dataset.alias_empleado;
+                    document.getElementById('estado_perfil').value = response.dataset.estado_empleado;
+                    document.getElementById('correo_perfil').value = response.dataset.correo_empleado;
                 } else {
                     sweetAlert(2, response.exception, null);
                 }
