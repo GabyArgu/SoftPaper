@@ -434,7 +434,7 @@ function loadStadictics() {
                     document.getElementById('stadistic-existencias').innerText = response.dataset.existencias;
                     document.getElementById('stadistic-categorias').innerText = response.dataset.categorias;
                 } else {
-                    sweetAlert(2, response.exception, null);
+                    sweetAlert(3, response.exception, null);
                 }
             });
         } else {

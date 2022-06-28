@@ -138,6 +138,7 @@ function fillTable(dataset) {
     let content = '';
     // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
     dataset.map(function (row) {
+
         // Se crean y concatenan las filas de la tabla con los datos de cada registro.
         content += `
             <tr>
@@ -146,7 +147,7 @@ function fillTable(dataset) {
                 <td class="tipo">${row.tipo_factura}</td>
                 <td class="cliente">${row.nombre_cliente}</td>
                 <td class="fecha">${row.fecha_venta}</td>
-                <td class="monto">$2</td>
+                <td class="monto">$${row.monto}</td>
                 <td class="empleado">${row.nombres_empleado} ${row.apellidos_empleado}</td>
                 <td class="estado-stock"><span class="estado">${row.estado_venta}</span></td>
                 <td class="botones-table">

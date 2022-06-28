@@ -1,3 +1,4 @@
+
 <?php
 require_once('../helpers/database.php');
 require_once('../helpers/validaciones.php');
@@ -107,9 +108,9 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'readProductoColor':
-                if (!$colores->setId($_POST['idProducto'])) {
+                if (!$color->setId($_POST['idProducto'])) {
                     $result['exception'] = 'Producto incorrecto';
-                } elseif ($result['dataset'] = $colores->readColorProducto()) {
+                } elseif ($result['dataset'] = $color->readColorProducto()) {
                     $result['status'] = 1;
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();

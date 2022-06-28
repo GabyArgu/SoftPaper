@@ -244,6 +244,7 @@
                                         <table class="table table-hover" id="table-empleados">
                                             <thead>
                                                 <tr>
+                                                    <th>UUID</th>
                                                     <th>Nombres</th>
                                                     <th>Apellidos</th>
                                                     <th>Alias</th>
@@ -308,9 +309,13 @@
                                         <div class="text-center">
                                             <label for="validationDefault02" class="form-label py-2">Elegir
                                                 avatar</label>
+                                                <select class="form-select custom-form-select"
+                                                    aria-label="Default select example" id="foto" name="foto"
+                                                    onchange="changeAvatar()">
+                                                </select>
                                         </div>
-                                        <div class="foto-empleado d-flex justify-content-center align-items-center">
-                                            <img src="../../api/images/avatares/a1.png" alt="">
+                                        <div class="foto-empleado d-flex justify-content-center align-items-center mt-4">
+                                            <img id="imagen-avatar" src="" alt="">
                                         </div>
                                     </div>
                                     <div class="col-lg-8">
@@ -329,20 +334,13 @@
                                             </div>
                                             <div class="col col-6 mt-4">
                                                 <label>Cargo</label>
-                                                <select class="form-select" aria-label="Default select example">
-                                                    <option selected disabled>Seleccione una opción</option>
-                                                    <option value="1">Administrador</option>
-                                                    <option value="2">Empleado</option>
+                                                <select class="form-select" aria-label="Default select example" id="cargo" name="cargo">
                                                 </select>
                                             </div>
                                             <div class="col col-6 mt-4">
-                                                <label>Estado</label>
-                                                <select class="form-select estado-label input-hide" aria-label="Default select example">
-                                                    <option selected disabled>Seleccione una opción</option>
-                                                    <option value="1">Activo</option>
-                                                    <option value="2">Inactivo</option>
-                                                    <option value="3">Inhabilitado</option>
-                                                </select>
+                                                <label for="" id="estado-label">Estado</label>
+                                                <select class="form-select w-100" type="number" placeholder=""
+                                                    aria-label=".form-control example" id="estado-empleado" name="estado"></select>
                                             </div>
                                             <div class="col col-6 mt-4">
                                                 <label>Correo</label>
@@ -365,6 +363,9 @@
                                                 <input type="password" class="form-control Lcorreo" id="confirmar" name="confirmar"
                                                 placeholder="Escribe tu contraseña" aria-describedby="inputGroupPrepend2"
                                                 required>
+                                            </div>
+                                            <div class="col col-6 mt-3">
+                                                <input class=" input-hide" type="text" id="id" name="id">
                                             </div>
                                         </div>
                                     </div>
