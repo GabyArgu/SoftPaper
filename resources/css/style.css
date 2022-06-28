@@ -696,7 +696,7 @@ input::-webkit-inner-spin-button {
 }
 
 .btn-añadir {
-  width: 160px;
+  width: 180px;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -706,6 +706,7 @@ input::-webkit-inner-spin-button {
   font-weight: 500;
   font-size: 14px;
 }
+
 
 .btn-añadir .bi-plus {
   font-size: 24px;
@@ -1683,8 +1684,18 @@ tbody .imgMP{
   border-radius: 15px;
   border-color: var(--azulModal);
 }
+
+.cpicker{
+  box-sizing: var(--azulModal) !important;
+  font-family: 'Poppins', sans-serif !important;
+  border-radius: 15px !important;
+  border-color: var(--azulModal) !important;
+  height: 26px !important;
+}
+
 #modal-agregarP h2, #modal-agregarM h2, #modal-agregarSub h2{
   color: var(--azulOscuro);
+  text-align: center !important;
 }
 
 #nombre_sub{
