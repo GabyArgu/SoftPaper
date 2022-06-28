@@ -223,6 +223,16 @@ class Usuarios extends Validator
         return Database::getRow($sql, $params);
     }
 
+    /* Método para obtener un empleado y mostrarlo en modal de visualizar*/
+    public function readOneShow()
+    {
+        $sql = 'SELECT "uuid_empleado", "nombres_empleado", "apellidos_empleado", "correo_empleado",  "alias_empleado", a."uuid_avatar", ce."uuid_cargo_empleado", ce."cargo_empleado", "estado_empleado"
+        FROM empleado as e inner join "cargo_empleado" as ce on e."uuid_cargo_empleado" = ce."uuid_cargo_empleado"
+		inner join "avatar_empleado" as a on e."uuid_avatar" = a."uuid_avatar" 
+        where "uuid_empleado" = ?';
+        $params = array($this->id);
+        return Database::getRow($sql, $params);
+    }
     /*
     *   Métodos para realizar las operaciones SCRUD (search, create, read, update, delete).
     */
@@ -255,6 +265,16 @@ class Usuarios extends Validator
                 SET "nombres_empleado" = ?, "apellidos_empleado" = ?, "correo_empleado" = ?, "alias_empleado" = ?, "contrasena_empleado" = ?, "uuid_avatar" = ?, "uuid_cargo_empleado" = ?, "estado_empleado" = ?
                 WHERE "uuid_empleado" = ?';
             $params = array($this->nombres, $this->apellidos, $this->correo, $this->alias, $this->clave, $this->foto, $this->cargo, $this->estado, $this->id);
+        return Database::executeRow($sql, $params);
+    }
+
+    // Update perfil del empleado
+    public function updatePerfil()
+    {
+        $sql = 'UPDATE empleado
+                SET "nombres_empleado" = ?, "apellidos_empleado" = ?, "alias_empleado" = ?
+                WHERE "uuid_empleado" = ?';
+            $params = array($this->nombres, $this->apellidos, $this->alias, $this->id);
         return Database::executeRow($sql, $params);
     }
 
