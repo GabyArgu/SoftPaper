@@ -177,6 +177,7 @@ class Usuarios extends Validator
         }
     }
 
+    // Método para verificar la contraseña-------------------------.
     public function checkPassword($password)
     {
         $sql = "SELECT contrasena_empleado FROM empleado WHERE uuid_empleado = ?";
@@ -190,6 +191,7 @@ class Usuarios extends Validator
         }
     }
 
+    // Método para cambiar la contraseña-------------------------.
     public function changePassword()
     {
         $sql = 'UPDATE empleado SET claveEmpleado = ? WHERE idEmpleado = ?';

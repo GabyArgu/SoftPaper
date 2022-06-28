@@ -118,7 +118,7 @@ document.getElementById('buscar-cliente').addEventListener('submit', function (e
     searchRows(API_CLIENTES, 'buscar-cliente');
 });
 
-/*Función para mostrar y ocultar cmbs según departamento seleccionado*/
+/*Función para mostrar y ocultar cmbs según departamento seleccionado---------*/
 function pagoOnChange(sel) {
     if (sel.value == "") {
         divC = document.getElementById("municipio");
@@ -151,7 +151,7 @@ function openCreate() {
     document.getElementById("telefono_c").value = "";
     document.getElementById("nrc_c").value = "";
     document.getElementById("estado_c").disabled = true;
-    // Se llama a la función para cargar los select.
+    // Se llama a la función para cargar los select---------------------------.
     fillSelect(ENDPOINT_GIROC, 'giro_c', null);
     fillSelect(ENDPOINT_DEPAC, 'departamento_c', null);
     divC = document.getElementById("municipio");
@@ -168,7 +168,7 @@ document.getElementById("udepartamento_c").addEventListener("change", function (
     fillSelectDependentM(ENDPOINT_MUNIC, 'umunicipio_c', null, selectValue);
 });
 
-// Función para crear cliente
+// Función para crear cliente-------------------.
 document.getElementById('agregar-cliente').addEventListener('submit', function (event) {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();

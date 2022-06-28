@@ -22,6 +22,7 @@ function fillTable(dataset) {
     dataset.map(function (row) {
         (row.estado_proveedor) ? icon = '<span class="estado">Activo</span>' : icon = '<span class="estado3">Inactivo</span>';
         // Se crean y concatenan las filas de la tabla con los datos de cada registro.
+        // Se coloca el nombre de la columna de la tabla---------------.
         content += `
         <tr>
             <td data-title="Proveedor" class="col-table ">${row.nombre_proveedor}</td>
@@ -60,7 +61,7 @@ function fillTable(dataset) {
 document.addEventListener('DOMContentLoaded', function () {
     readRows(API_PROVEEDOR);
     setTimeout(() => {
-        /*Inicializando y configurando tabla*/
+        /*Inicializando y configurando tabla------------------------------------*/
         let options = {
             "info": false,
         "searching": false,
@@ -88,7 +89,7 @@ document.getElementById('buscar-proveedor').addEventListener('submit', function 
 });
 
 function openCreateProv() {
-    // Se limpian los campos, se deshabilita el campo de estado y se cambia el título del modal
+    // Se limpian los campos, se deshabilita el campo de estado y se cambia el título del modal-----------------.
     document.getElementById("nombre_prov").value = "";
     document.getElementById("tele_prov").value = "";
     document.getElementById("estado_prov").disabled = true;

@@ -82,7 +82,7 @@ class Marca extends Validator
         return $this->ruta;
     }
 
-    // Método para leer toda la información de los colores existentes-------------------------.
+    // Método para leer toda la información de las marcas existentes-------------------------.
     public function readAll()
     {
         $sql = 'SELECT uuid_marca, nombre_marca, imagen_marca, estado_marca FROM marca WHERE estado_marca = true;';
@@ -90,7 +90,7 @@ class Marca extends Validator
         return Database::getRows($sql, $params);
     }
 
-    // Método para un dato en especifico de los colores existentes-------------------------.
+    // Método para un dato en especifico de las marcas existentes-------------------------.
     public function readOne()
     {
         $sql = 'SELECT "nombre_marca", "imagen_marca", "estado_marca" FROM marca  WHERE "uuid_marca" = ?';

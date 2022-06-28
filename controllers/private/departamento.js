@@ -21,6 +21,7 @@ function fillTable(dataset) {
     // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
     dataset.map(function (row) {
         // Se crean y concatenan las filas de la tabla con los datos de cada registro.
+        //Se coloca el nombre de la columna---------------.
         content += `
         <tr>
             <td data-title="Departamento" class="col-table ">${row.nombre_departamento}</td>
@@ -76,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function openCreateDepa() {
-    // Se limpian los campos, se deshabilita el campo de estado y se cambia el título del modal
+    // Se limpian los campos, se deshabilita el campo de estado -----------.
     document.getElementById("nombre_depa").value = "";
     document.getElementById('modal-title').innerText = 'Ingresar Departamento';
 }

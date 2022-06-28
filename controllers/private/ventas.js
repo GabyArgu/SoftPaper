@@ -30,7 +30,7 @@ const options = {
 };
 let table;
 
-
+//Rango de el calendario-----------------------.
 flatpickr('#calendar-range', {
     "mode": "range",
     dateFormat: "Y-m-d",
@@ -50,7 +50,7 @@ flatpickr('#calendar-range', {
                 /*Inicializando y configurando tabla*/
                 table = new DataTable('#table-ventas', options);
 
-                /*Función para mostrar y ocultar campos de la tabla*/
+                /*Función para mostrar y ocultar campos de la tabla-------------*/
                 document.getElementById('checkTabla').addEventListener('change', function () {
                     $('#table').DataTable().columns([4, 5, 6]).visible($(this).is(':checked'))
                 });
@@ -60,9 +60,6 @@ flatpickr('#calendar-range', {
 
             // interact with selected dates here
         }
-
-
-
 
     }
 });
@@ -75,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
         /*Inicializando y configurando tabla*/
         table = new DataTable('#table-ventas', options);
 
-        /*Función para mostrar y ocultar campos de la tabla*/
+        /*Función para mostrar y ocultar campos de la tabla-------------------*/
         document.getElementById('checkTabla').addEventListener('change', function () {
             $('#table-ventas').DataTable().columns([2, 6]).visible($(this).is(':checked'))
         });
@@ -83,6 +80,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 250);
 });
 
+
+//Metodo para numeros a caracteres de fecha-------------.
 function numeroAdosCaracteres(fecha) {
     if (fecha > 9) {
         return "" + fecha;

@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     readRows3(API_PRODUCTOS);
     
-    //Inicializando tooltips
+    //Inicializando tooltips-----------------------.
     $("body").tooltip({ selector: '[data-bs-toggle=tooltip]' });
 
     setTimeout(() => {
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const ID = params.get('uuid_venta');
     // Se llama a la función que muestra el detalle del producto seleccionado previamente.
     readOrderDetail(ID);
-    // Se llama a la función que muestra los productos destacados.
+    // Se llama a la función que muestra los productos destacados----------------.
 })
 
 const reInitTable = () => {
@@ -54,7 +54,7 @@ const reInitTable = () => {
 function readOrderDetail(uuid_venta) {
     const data = new FormData();
     data.append('uuid_venta', uuid_venta);
-    // Petición para solicitar los datos del pedido en proceso.
+    // Petición para solicitar los datos del pedido en proceso----------------.
     fetch(API_VENTAS + 'readOrderDetail', {
         method: 'post',
         body: data
@@ -131,7 +131,7 @@ function fillTable(dataset) {
     document.getElementById('tbody_rows').innerHTML = content;
 }
 
-/*Inicializando y configurando tabla de clientes*/
+/*Inicializando y configurando tabla de detalle venta--------------*/
 $(document).ready(function () {
     $('#example1').DataTable({
         "info": false,
@@ -152,11 +152,11 @@ $(document).ready(function () {
     });
 });
 
-/*Inicializando y configurando componente de calendario*/
+/*Inicializando y configurando componente de calendario----------------*/
 flatpickr('#calendar', {
 });
 
-/*Función para mostrar y ocultar cmbs según tipo de venta seleccionado*/
+/*Función para mostrar y ocultar cmbs según tipo de venta seleccionado-----------------------*/
 function pagoOnChange(sel) {
     if (sel.value == "consumidor") {
         divC = document.getElementById("tipo-venta-div");

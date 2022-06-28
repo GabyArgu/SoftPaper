@@ -160,7 +160,7 @@ class Ventas extends Validator
     }
 
     /* 
-    *   Método para comprobar que existen pedidos registrados en nuestra base de datos
+    *   Método para comprobar que existen pedidos registrados en nuestra base de datos-----------------.
     */
 
     public function readAll()
@@ -175,7 +175,7 @@ class Ventas extends Validator
         return Database::getRows($sql, $params);
     }
 
-    // Método para obtener los productos que se encuentran en la venta seleccionada
+    // Método para obtener los productos que se encuentran en la venta seleccionada------------------.
     public function readOrderDetail()
     {
         $sql = 'SELECT correlativo_venta, uuid_detalle_venta, imagen_producto, nombre_producto, color_producto, precio_producto, cantidad_producto, uuid_color_stock
@@ -199,7 +199,7 @@ class Ventas extends Validator
     }
 
     /* 
-    *   Método para leer los datos del pedido seleccionado en el modal visualizar
+    *   Método para leer los datos del pedido seleccionado en el modal visualizar------------------------.
     */
 
     public function readOneShow()
@@ -214,7 +214,7 @@ class Ventas extends Validator
     }
 
     /* 
-    *   Método para leer el detalle del pedido seleccionado en el modal visualizar
+    *   Método para leer el detalle del pedido seleccionado en el modal visualizar----------------------.
     */
 
     public function readOneDPShow()
@@ -250,7 +250,7 @@ class Ventas extends Validator
     }
 
     /* Método para filtrar tabla
-    *   Parámetros: categoria = categoria por la cual filtrar, estado = estado por el cual filtrar
+    *   Parámetros: categoria = categoria por la cual filtrar, estado = estado por el cual filtrar-----------------.
     */
     public function readRowsFilter($tipo, $estado)
     {
@@ -294,7 +294,7 @@ class Ventas extends Validator
     */
 
     /*
-    *   Método para obtener los pedidos del cliente activo
+    *   Método para obtener los pedidos del cliente activo--------------------.
     */
 
     public function readPedidosCliente()
@@ -309,7 +309,7 @@ class Ventas extends Validator
         return Database::getRows($sql, $params);
     }
 
-    /* Método para verificar si existe un pedido en proceso para seguir comprando, de lo contrario se crea uno.*/
+    /* Método para verificar si existe un pedido en proceso para seguir comprando, de lo contrario se crea uno.----------------------.*/
     public function startOrder()
     {
         $this->estado = 2;
@@ -325,7 +325,7 @@ class Ventas extends Validator
             $sql = 'INSERT INTO pedido("estadoPedido", "idCliente", "tipoPago")
                         VALUES(?, ?, ?)';
             $params = array($this->estado, $_SESSION['idCliente'], 1);
-            // Se obtiene el ultimo valor insertado en la llave primaria de la tabla pedidos.
+            // Se obtiene el ultimo valor insertado en la llave primaria de la tabla pedidos--------------.
             if ($this->id = Database::getLastRow($sql, $params)) {
                 return true;
             } else {
@@ -334,7 +334,7 @@ class Ventas extends Validator
         }
     }
 
-    // Método para agregar un producto al carrito de compras.
+    // Método para agregar un producto al carrito de compras--------------.
     public function createDetail()
     {
         // Se realiza una subconsulta para obtener el precio del producto.
