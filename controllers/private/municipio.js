@@ -23,7 +23,6 @@ function fillTable2(dataset) {
     // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
     dataset.map(function (row) {
         // Se crean y concatenan las filas de la tabla con los datos de cada registro.
-        // Se coloca el nombre de la columna de la tabla---------------.
         content += `
         <tr>
         <td data-title="Municipio" class="col-table ">${row.nombre_municipio}</td>
@@ -59,7 +58,7 @@ function fillTable2(dataset) {
 document.addEventListener('DOMContentLoaded', function () {
     readRows4(API_MUNICIPIO);
     setTimeout(() => {
-        /*Inicializando y configurando tabla-----------------*/
+        /*Inicializando y configurando tabla*/
         let options = {
             "info": false,
         "searching": false,
@@ -125,7 +124,7 @@ document.getElementById('agregar-muni').addEventListener('submit', function (eve
     let action = '';
     // Se comprueba si el campo oculto del formulario esta seteado para actualizar, de lo contrario será para crear.
     (document.getElementById('id1').value) ? action = 'update' : action = 'create';
-    // Se llama a la función para guardar el registro. Se encuentra en el archivo components.js--------------------------
+    // Se llama a la función para guardar el registro. Se encuentra en el archivo components.js
     saveRow(API_MUNICIPIO, action, 'agregar-muni', 'modal-agregarM');
 });
 
@@ -134,7 +133,6 @@ function openDeleteMuni(id) {
 }
 
 // Método manejador de eventos que se ejecuta cuando se envía el modal de eliminar.
-//En esta caso si se elimina el registro--------------------------.
 document.getElementById('delete-form').addEventListener('submit', function (event) {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();

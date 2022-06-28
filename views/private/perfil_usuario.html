@@ -110,8 +110,9 @@
                                 <ul class="dropdown-menu dropdown-inventario slideInNav animate"
                                     aria-labelledby="navbarDropdown">
                                     <li><a class="dropdown-item" href="estados.html">Estado de producto y venta</a></li>
-                                    <li><a class="dropdown-item" href="departamentos_municipios.html">Departamentos y municipios</a>
-                                    </li>                                   
+                                    <li><a class="dropdown-item" href="departamentos_municipios.html">Departamentos y
+                                            municipios</a>
+                                    </li>
                                     <li><a class="dropdown-item" href="color.html">Colores</a></li>
                                 </ul>
 
@@ -147,7 +148,8 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="dashboard.html">Inicio</a></li>
-                        <li class="breadcrumb-item active" aria-current="page"><a href="perfil_usuario.html">Perfil Usuario</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"><a href="perfil_usuario.html">Perfil
+                                Usuario</a></li>
                     </ol>
                 </nav>
             </div>
@@ -161,20 +163,21 @@
                                 <div class="col col-12 col-xl-3 col-avatar"><img class="avatar"
                                         src="../../api/images/avatares/a2.png" alt=""></div>
                                 <div class="col col-12 col-xl-9">
-                                    <h2>Carla Santana</h2>
+                                    <h2 id="nombre">Carla</h2>
                                     <div class="row">
                                         <div class="col d-flex align-items-center justify-content-start">
                                             <img class="d-blockimg" src="../../resources/img/perfil/user.png" alt="">
-                                            <div class="e-texto ms-3"><span id="cargo-empleado"></div>
+                                            <div class="e-texto ms-3"><span id="cargo_empleado"></div>
                                         </div>
                                         <div class="col d-flex align-items-center justify-content-start">
 
-                                            <img class="d-blockimg" src="../../resources/img/perfil/information.png" alt="">
-                                            <div class="e-texto ms-3"><span id="estado-empleado"></div>
+                                            <img class="d-blockimg" src="../../resources/img/perfil/information.png"
+                                                alt="">
+                                            <div class="e-texto ms-3"><span id="estado_empleado"></div>
                                         </div>
                                         <div class="col d-flex align-items-center justify-content-start">
                                             <img class="d-blockimg" src="../../resources/img/perfil/email.png" alt="">
-                                            <div class="e-texto ms-3"><span id="correo-empleado"></div>
+                                            <div class="e-texto ms-3"><span id="correo_empleado"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -185,132 +188,155 @@
                                     <div class="row d-flex justify-content-between mt-5">
                                         <div class="col d-flex align-items-center">
                                             <h3 class="fw-bolder m-0 p-0">Detalles del Perfil</h3>
-
                                         </div>
-                                        <div class="col d-flex justify-content-end align-items-center">
-                                            <a onclick="openUpdate()" class="btn-editar btn-main" data-bs-toggle="modal"
-                                            data-bs-target="#staticBackdrop" href="#staticBackdrop">Editar Perfil</a>  
-                                        </div>
-
                                     </div>
 
                                 </div>
                             </div>
 
                             <div class="row">
-                                <div class="col">
-                                    <table>
-                                        <div class="sept">
-                                            <tr>
-                                                <td class=" move text1">Nombre</td>
-                                                <td class="text2 "></b><span id="nombres-empleado"></span></td>
-                                                <td class="text1">Cargo</td>
-                                                <td class="text2"><span id="cargo-empleado"></span></td>
-                                            </tr>
-                                            <tr>
-                                                <td class=" move text1">Apellido</td>
-                                                <td class="text2 "><span id="apellidos-empleado"></td>
-                                                <td class="text1">Estado</td>
-                                                <td class="text2"><span id="estado-empleado"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class=" move text1">Alias</td>
-                                                <td class="text2"><span id="alias-empleado"></td>
-                                                
-                                            </tr>
+                                <div class="row mt-5 row-espacio-editar-perfil">
+                                    <div class="col">
+                                        <div class="row row-md-3">
+                                            <div class="col-4 my-3 col-md-3 s-texto  text-center">
+                                                <span>Nombre</span>
+                                            </div>
+                                            <div class="col-8 col-md-3 d-flex align-items-center">
+                                                <input type="text reset" name="nombre_emp" id="nombre_emp" class=" w-100 form-control 
+                                                form-control-lg form-control-solid" placeholder="Nombre" value=""
+                                                    disabled>
+                                            </div>
+                                            <div class="col-4 my-3 col-md-3 s-texto text-center">
+                                                <span>Cargo</span>
+                                            </div>
+                                            <div class="col-8 col-md-3 d-flex align-items-center">
+                                                <select id="cargo_emp" name="cargo_emp" class="w-100 form-control 
+                                                form-control-lg form-control-solid "
+                                                    aria-label="Default select example">
+                                                </select>
+                                            </div>
                                         </div>
-                                    </table>
+                                        <div class="row row-md-my-4">
+                                            <div class="col-4 my-3 col-md-3 s-texto text-center">
+                                                <span>Apellidos</span>
+                                            </div>
+                                            <div class="col-8 col-md-3 d-flex align-items-center">
+                                                <input type="text reset" name="apellido_emp" id="apellido_emp" class="w-100 form-control 
+                                                form-control-lg form-control-solid " placeholder="Apellido" value=""
+                                                    disabled>
+                                            </div>
+                                            <div class="col-4 my-3 col-md-3 s-texto text-center">
+                                                <span>Estado</span>
+                                            </div>
+                                            <div class="col-8 col-md-3 d-flex align-items-center">
+                                                <select class="w-100 form-control 
+                                                form-control-lg form-control-solid" aria-label="Default select example"
+                                                    id="estado_emp" name="estado_emp" disabled>
+                                                    <option value="1">Activo</option>
+                                                    <option value="0">Inactivo</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-4 my-3 col-md-3 s-texto text-center">
+                                                <span>Alias</span>
+                                            </div>
+                                            <div class="col-8 col-md-3 d-flex align-items-center">
+                                                <input type="text reset" name="alias_emp" id="alias_emp" class="w-100 form-control 
+                                                form-control-lg form-control-solid " placeholder="Apodo" value=""
+                                                    disabled>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-
-
+                                <div class="row my-5 mx-3">
+                                    <div class="col d-flex justify-content-end align-items-center">
+                                        <a onclick="openUpdate()" class="btn-editar btn-main" data-bs-toggle="modal"
+                                            data-bs-target="#modal-update">Editar
+                                            Perfil</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <!-- INFORMACION USUARIO PRINCIPAL FIN-->
- <!-- Modal editar cuenta -->
- <div class="modal modal-agregar modal-agregar-cliente fade" id="staticBackdrop" data-bs-backdrop="static"
- data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
- <div class="modal-dialog modal-dialog-centered modal-xl">
-     <div class="modal-content">
-         <div class="modal-header">
-             <h5 class="modal-title" id="staticBackdropLabel">Editar información</h5>
-             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-         </div>
-         <div class="modal-body">
-             <div class="container">
-                 <div class="row agregar-content">
-                     <form class="row justify-content-center" id="save-form">
-                         <div class="col-10 mt-4 d-flex justify-content-around">
-                             <div class="input-group LlenarIG">
-                                 <div class="input-group-prepend">
-                                 </div>
-                                 <input type="text"  class="form-control Lcorreo" id="nombres"
-                                     name="nombres" placeholder="Escribe tus nombres"
-                                     aria-describedby="inputGroupPrepend2"  pattern="^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$" required >
-                             </div>
-                             <div class="input-group">
-                                 <div class="input-group-prepend">
-                                 </div>
-                                 <input type="text" class="form-control Lcorreo" id="apellidos"
-                                     name="apellidos" placeholder="Escribe tus apellidos"
-                                     aria-describedby="inputGroupPrepend2" pattern="^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$" required>
-                             </div>
-                         </div>
-                         <div class="col-10 mt-4 d-flex justify-content-around">
-                             <div class="input-group LlenarIG">
-                                 <div class="input-group-prepend">
-                                 </div>
-                                 <input type="text" class="form-control Lcorreo" id="alias" name="alias"
-                                     placeholder="Nombre de usuario"
-                                     aria-describedby="inputGroupPrepend2" required>
-                             </div>
-                             <div class="input-group">
-                                 <div class="input-group-prepend">
-                                 </div>
-                                 <input type="text" class="form-control Lcorreo" id="cargo" name="cargo"
-                                     placeholder="Cargo de usuario"
-                                     aria-describedby="inputGroupPrepend2" required>
-                             </div>
-                         </div>
-                         <div class="col-10 mt-4 d-flex justify-content-around">
-                             <div class="input-group LlenarIG">
-                                 <div class="input-group-prepend">
-                                 </div>
-                                 <input type="text" class="form-control Lcorreo" id="estado" name="estado"
-                                     placeholder="Estado de usuario"
-                                     aria-describedby="inputGroupPrepend2" required>
-                             </div>
-                             <div class="input-group">
-                                 <div class="input-group-prepend">
-                                 </div>
-                                 <input type="email" class="form-control Lcorreo" id="correo"
-                                     name="correo" placeholder="Escribe tu correo"
-                                     aria-describedby="inputGroupPrepend2" required>
-                             </div>
-                         </div>
-                         <div class="col-10 mt-4 d-flex justify-content-center">
-                                 <div class="row">
-                                     <div class="col col-10">
-                                         <select class="form-select form-controlcustom-form-select h-100 w-100"
-                                             aria-label="Default select example" id="foto" name="foto"
-                                             onchange="changeAvatar()">
-                                         </select>
-                                     </div>
-                                     <div class="col col-2" >
-                                         <img id="imagen-avatar" class="avatar-cliente-modal" src="" alt="">
-                                     </div>
-                                 </div>
-                         </div>
-                     </form>
-                 </div>
-             </div>
-         </div>
-         <div class="modal-footer d-flex justify-content-end" >
-             <button class="btn-editar1 btn-main ms-3" type="submit" form="save-form">Guardar</i></button>
-         </div>
-     </div>
- </div>
-</div>
+                    <!-- Modal editar cuenta -->
+                    <div class="modal modal-agregar modal-agregar-cliente fade" id="modal-update"
+                        data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-xl">
+                            <div class="modal-content">
+                                <form method="post" id="update-empleado">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="staticBackdropLabel">Editar información</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="container">
+                                            <div class="row agregar-content">
+                                                <div class="col-10 mt-4 d-flex justify-content-around">
+                                                    <div class="input-group LlenarIG">
+                                                        <div class="input-group-prepend">
+                                                        </div>
+                                                        <input type="hidden" id="id" name="id">
+                                                        <input type="text" class="form-control Lcorreo" id="nombres"
+                                                            name="nombres" placeholder="Escribe tus nombres"
+                                                            aria-describedby="inputGroupPrepend2"
+                                                            pattern="^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$"
+                                                            required>
+                                                    </div>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                        </div>
+                                                        <input type="text" class="form-control Lcorreo" id="apellidos"
+                                                            name="apellidos" placeholder="Escribe tus apellidos"
+                                                            aria-describedby="inputGroupPrepend2"
+                                                            pattern="^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$"
+                                                            required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-10 mt-4 d-flex justify-content-around">
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                        </div>
+                                                        <input type="text" class="form-control Lcorreo" id="alias"
+                                                            name="alias" placeholder="Nombre de usuario"
+                                                            aria-describedby="inputGroupPrepend2" required>
+                                                    </div>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <input type="email" class="form-control Lcorreo" id="correo"
+                                                                name="correo" placeholder="Escribe tu correo"
+                                                                aria-describedby="inputGroupPrepend2" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-10 mt-4 d-flex justify-content-center">
+                                                    <div class="row">
+                                                        <div class="col col-10">
+                                                            <select
+                                                                class="form-select form-controlcustom-form-select h-100 w-100"
+                                                                aria-label="Default select example" id="foto"
+                                                                name="foto" onchange="changeAvatar()">
+                                                            </select>
+                                                        </div>
+                                                        <div class="col col-2">
+                                                            <img id="imagen-avatar" class="avatar-cliente-modal" src=""
+                                                                alt="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer d-flex justify-content-end">
+                                        <button class="btn-editar1 btn-main ms-3" type="submit" data-bs-dismiss="modal">Guardar</i></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                     <!-- DETALLES DEL PERFIL-->
 
 
@@ -334,8 +360,12 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script src="../../controllers/componentes.js"></script>
     <script src="../../controllers/private/dashboard.js"></script>
     <script src="../../controllers/private/charge.js"></script>
+    <script src="../../controllers/private/perfil.js"></script>
 </body>
 
 </html>
