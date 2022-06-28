@@ -127,13 +127,12 @@
 
                                 <a class="nav-link dropdown" id="navbarDropdownMenuLink" role="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="../../api/images/avatares/a2.png" alt=""
-                                        class="d-inline-block align-text-top user">
+                                    <img src="" alt="" class="d-inline-block align-text-top user" id="avatar-user">
                                 </a>
                                 <ul class="dropdown-menu slideInNav1 slideInNav  animate"
                                     aria-labelledby="navbarDropdown">
                                     <li><a class="dropdown-item" href="perfil_usuario.html">Ir a perfil</a></li>
-                                    <li><a class="dropdown-item" href="index.html">Cerrar sesión</a></li>
+                                    <li><a class="dropdown-item" onclick="logOut()">Cerrar Sesión</a></li>
                                 </ul>
 
                             </li>
@@ -372,6 +371,7 @@
     <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
 
     <script src="../../controllers/componentes.js"></script>
+    <script src="../../controllers/private/online.js"></script>
     <script src="../../controllers/private/charge.js"></script>
     <script src="../../controllers/private/municipio.js"></script>
     <script src="../../controllers/private/departamento.js"></script>

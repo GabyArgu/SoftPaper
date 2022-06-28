@@ -21,7 +21,7 @@ if (isset($_GET['action'])) {
                 if (isset($_SESSION['correo_empleado'])) {
                     $result['status'] = 1;
                     $result['username'] = $_SESSION['correo_empleado'];
-                    $result['avatar'] = $_SESSION['avatar'];
+                    $result['avatar'] = $_SESSION['imagen_avatar'];
                 } else {
                     $result['exception'] = 'Correo de usuario indefinido';
                 }
@@ -108,17 +108,17 @@ if (isset($_GET['action'])) {
                 }
                 break;
             // Accion de leer si el id existe del empleado------------------.     
-            case 'readOneShow':
-                    if (!$usuario->setId($_POST['id'])) {
-                        $result['exception'] = 'Empleado incorrecto';
-                    } elseif ($result['dataset'] = $usuario->readOneShow()) {
-                        $result['status'] = 1;
-                    } elseif (Database::getException()) {
-                        $result['exception'] = Database::getException();
-                    } else {
-                        $result['exception'] = 'Empleado inexistente';
-                    }
-                    break;
+            // case 'readOneShow':
+            //         if (!$usuario->setId($_POST['id'])) {
+            //             $result['exception'] = 'Empleado incorrecto';
+            //         } elseif ($result['dataset'] = $usuario->readOneShow()) {
+            //             $result['status'] = 1;
+            //         } elseif (Database::getException()) {
+            //             $result['exception'] = Database::getException();
+            //         } else {
+            //             $result['exception'] = 'Empleado inexistente';
+            //         }
+            //         break;
             // Accion de actualizar un elemento de toda la información------------------.         
             case 'update':
                 //Especificamos los inputs por medio de su atributo name, y los capturamos con el método post
@@ -240,6 +240,7 @@ if (isset($_GET['action'])) {
                         $result['message'] = 'Autenticación correcta';
                         $_SESSION['uuid_empleado'] = $usuario->getId();
                         $_SESSION['correo_empleado'] = $usuario->getCorreo();
+                        $_SESSION['imagen_avatar'] = $usuario->getFoto();
                     } else {
                         $result['exception'] = 'Clave incorrecta';
                     }
