@@ -1,40 +1,112 @@
 <?php
-require_once('../helpers/database.php');
-require_once('../helpers/validaciones.php');
-require_once('../models/estado_producto.php');
+/*
+*	Clase para manejar la tabla catalogo de colores de la base de datos de la tienda.
+*   Es una clase hija de Validator.
+*/
+class EstadoProducto extends Validator
+{
+    // Declaración de atributos (propiedades).
+    private $id = null;
+    private $estado = null;
+    private $estado_estado = null;
 
-// Se comprueba si existe una acción a realizar por medio de isset, de lo contrario se finaliza el script con un mensaje de error.
-if (isset($_GET['action'])) {
-    // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en el script.
-    session_start();
-    // Se instancia la clase correspondiente.
-    $estadoProducto = new EstadoProducto;
-    // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
-    $result = array('status' => 0, 'session' => 0, 'message' => null, 'exception' => null, 'dataset' => null, 'username' => null);
-    // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
-    if (isset($_SESSION['uuid_empleado'])) {
-        // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
-        switch ($_GET['action']) {
-            // Accion de leer toda la información------------------.
-            case 'readAll':
-                if ($result['dataset'] = $estadoProducto->readAll()) {
-                    $result['status'] = 1;
-                } elseif (Database::getException()) {
-                    $result['exception'] = Database::getException();
-                } else {
-                    $result['exception'] = 'No hay datos registrados';
-                }
-                break;
-            default:
-                $result['exception'] = 'Acción no disponible dentro de la sesión';
+    /*
+    *   Métodos para validar y asignar valores de los atributos.
+    */
+    public function setId($value)
+    {
+        if ($this->validateString($value, 1, 38)) {
+            $this->id = $value;
+            return true;
+        } else {
+            return false;
         }
-    } else {
-        print(json_encode('Acceso denegado'));
     }
-    // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
-    header('content-type: application/json; charset=utf-8');
-    // Se imprime el resultado en formato JSON y se retorna al controlador.
-    print(json_encode($result));
-} else {
-    print(json_encode('Recurso no disponible'));
+
+
+    public function setEstado($value)
+    {
+        if ($this->validateString($value, 1, 50)) {
+            $this->estado = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setEstadoEstado($value)
+    {
+        if ($this->validateBoolean($value)) {
+            $this->estado_estado = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /*
+    *   Métodos para obtener valores de los atributos.
+    */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function getEstado()
+    {
+        return $this->estado;
+    }
+
+    public function getEstadoEstado()
+    {
+        return $this->estado_estado;
+    }
+
+    // Método para leer toda la información de los estados existentes-------------------------.
+    public function readAll()
+    {
+        $sql = 'SELECT uuid_estado_producto, estado_producto, estado_estado_producto FROM estado_producto';
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
+
+    // Método para un dato en especifico de los estados existentes-------------------------.
+    public function readOne()
+    {
+        $sql = 'SELECT uuid_estado_producto, estado_producto, estado_estado_producto FROM estado_producto where uuid_estado_producto = ?';
+        $params = array($this->id);
+        return Database::getRow($sql, $params);
+    }
+
+    /* CREATE */
+    public function createRow()
+    {
+        $sql = 'INSERT INTO estado_producto(estado_producto, estado_estado_producto)
+            VALUES (?, ?)';
+        $params = array($this->estado, $this->estado_estado);
+        return Database::executeRow($sql, $params);
+    }
+
+    /* UPDATE */
+    public function updateRow()
+    {
+        $sql = 'UPDATE estado_producto
+        SET estado_producto=?, estado_estado_producto=?
+        WHERE uuid_estado_producto = ?;';
+            $params = array($this->estado,$this->estado_estado,$this->id);
+        return Database::executeRow($sql, $params);
+    }
+
+    /* DELETE */
+    /* Función para borrar un color de la base (Solo se inahbilita)-------------------------*/
+    public function deleteRow()
+    {
+        $this->estado = 0;
+        //No eliminaremos registros, solo los inhabilitaremos-------------------------
+        $sql = 'UPDATE estado_producto
+                SET estado_estado_producto = ?
+                WHERE uuid_estado_producto = ?';
+        $params = array($this->estado, $this->id);
+        return Database::executeRow($sql, $params);
+    }
 }
