@@ -15,7 +15,7 @@ if (isset($_GET['action'])) {
     if (isset($_SESSION['uuid_empleado'])) {
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
-            // Accion de leer toda la información------------------.
+                // Accion de leer toda la información------------------.
             case 'readAll':
                 if ($result['dataset'] = $estadoProducto->readAll()) {
                     $result['status'] = 1;
@@ -23,6 +23,60 @@ if (isset($_GET['action'])) {
                     $result['exception'] = Database::getException();
                 } else {
                     $result['exception'] = 'No hay datos registrados';
+                }
+                break;
+                // Accion leer un elemento de toda la información------------------.       
+            case 'readOne':
+                if (!$estadoProducto->setId($_POST['id'])) {
+                    $result['exception'] = 'Estado de producto incorrecto';
+                } elseif ($result['dataset'] = $estadoProducto->readOne()) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'Estado de producto inexistente';
+                }
+                break;
+            case 'create':
+                //Especificamos los inputs por medio de su atributo name, y los capturamos con el método post
+                $_POST = $estadoProducto->validateForm($_POST);
+                if (!$estadoProducto->setEstado($_POST['nombre_estado_producto'])) {
+                    $result['exception'] = 'Nombre de estado inválido';
+                } elseif (!$estadoProducto->setEstadoEstado(1)) {
+                    $result['exception'] = 'Estado de estado inválido';
+                } elseif ($estadoProducto->createRow()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Estado de producto creado correctamente';
+                } else {
+                    $result['exception'] = Database::getException();
+                }
+                break;
+            case 'update':
+                //Especificamos los inputs por medio de su atributo name, y los capturamos con el método post
+                $_POST = $estadoProducto->validateForm($_POST);
+                if (!$estadoProducto->setId($_POST['id'])) {
+                    $result['exception'] = 'Estado incorrecto';
+                } elseif (!$estadoProducto->setEstado($_POST['nombre_estado_producto'])) {
+                    $result['exception'] = 'Nombre de estado inválido';
+                } elseif (!$estadoProducto->setEstadoEstado($_POST['estado_estado_producto'])) {
+                    $result['exception'] = 'Estado de estado inválido';
+                } elseif ($estadoProducto->updateRow()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Estado de producto actualizado correctamente';
+                } else {
+                    $result['exception'] = Database::getException();
+                }
+                break;
+            case 'delete':
+                if (!$estadoProducto->setId($_POST['id_delete'])) {
+                    $result['exception'] = 'Estado de producto incorrecto';
+                } elseif (!$estadoProducto->readOne()) {
+                    $result['exception'] = 'Estado de producto inexistente';
+                } elseif ($estadoProducto->deleteRow()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Estado de producto inhabilitado correctamente';
+                } else {
+                    $result['exception'] = Database::getException();
                 }
                 break;
             default:

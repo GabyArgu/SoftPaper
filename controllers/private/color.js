@@ -1,35 +1,57 @@
 // Constante para establecer la ruta y parámetros de comunicación con la API.
-const API_PROVEEDOR = SERVER + 'private/proveedor.php?action=';
+const API_COLOR = SERVER + 'private/color.php?action=';
+
+//Configuración de la tabla
+const options = {
+    "info": false,
+            "searching": false,
+            "dom":
+                "<'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-sm-5'l><'col-sm-1'><'col-sm-6'p>>",
+            "language": {
+                "lengthMenu": "Mostrando _MENU_ registros",
+                "paginate": {
+                    "next": '<i class="bi bi-arrow-right-short"></i>',
+                    "previous": '<i class="bi bi-arrow-left-short"></i>'
+                }
+            },
+            "lengthMenu": [[10, 15, 20, -1], [10, 15, 20, "Todos"]]
+};
+let table;
 
 // Método manejador de eventos que se ejecuta cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', function () {
     // Se llama a la función que obtiene los registros para llenar la tabla. Se encuentra en el archivo components.js
-    readRows(API_PROVEEDOR);
-    // Se define una variable para establecer las opciones del componente Modal.
-    let options = {
-        dismissible: false,
-        onOpenStart: function () {
-            // Se restauran los elementos del formulario.
-            document.getElementById('modal-agregarP').reset();
-        }
-    }
+    readRows(API_COLOR);
+    setTimeout(() => {
+        /*Inicializando y configurando tabla*/
+        table = new DataTable('#color', options);
+    }, 250);
 });
+
+const reInitTable = () => {
+    table.destroy();
+    setTimeout(() => {
+        readRows(API_COLOR);
+    }, 100);
+
+    setTimeout(() => {
+        /*Inicializando y configurando tabla*/
+        table = new DataTable('#color', options);
+    }, 300);
+}
 
 // Función para llenar la tabla con los datos de los registros. Se manda a llamar en la función readRows().
 function fillTable(dataset) {
     let content = '';
     // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
     dataset.map(function (row) {
-        (row.estado_proveedor) ? icon = '<span class="estado">Activo</span>' : icon = '<span class="estado3">Inactivo</span>';
+        (row.estado_color_producto) ? icon = '<span class="estado">Activo</span>' : icon = '<span class="estado3">Inactivo</span>';
         // Se crean y concatenan las filas de la tabla con los datos de cada registro.
-        // Se coloca el nombre de la columna de la tabla---------------.
         content += `
         <tr>
-            <td data-title="Proveedor" class="col-table ">${row.nombre_proveedor}</td>
-            <td data-title="telefono"
-                class="proveedores text-center">
-                ${row.telefono_proveedor}</td>
-            <td data-title="estado" class="estado-stock">${icon}</td>
+            <td data-title="Nombre" class="categoria">${row.color_producto}</td>
+            <td data-title="Estado" class="estado-stock">${icon}</td>
             <td data-title="Acciones" class="botones-table">
                 <div class="dropdown">
                     <button class=" btn-acciones dropdown-toggle"
@@ -40,11 +62,11 @@ function fillTable(dataset) {
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                         aria-labelledby="dropdownMenuButton1">
-                        <li><a onclick="openUpdateProv('${row.uuid_proveedor}')" class="dropdown-item"
+                        <li><a onclick="openUpdate('${row.uuid_color_producto}')" class="dropdown-item"
                                 data-bs-toggle="modal"
-                                data-bs-target="#modal-agregarP">Editar</a>
+                                data-bs-target="#modal-agregarCo">Editar</a>
                         </li>
-                        <li><a onclick="openDeleteProv('${row.uuid_proveedor}')" class="dropdown-item"
+                        <li><a onclick="openDelete('${row.uuid_color_producto}')" class="dropdown-item"
                                 data-bs-toggle="modal"
                                 data-bs-target="#modal-eliminar">Eliminar</a>
                         </li>
@@ -55,55 +77,41 @@ function fillTable(dataset) {
         `;
     });
     // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
-    document.getElementById('tbody-rows234').innerHTML = content;
+    document.getElementById('tbody-rows').innerHTML = content;
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    readRows(API_PROVEEDOR);
-    setTimeout(() => {
-        /*Inicializando y configurando tabla------------------------------------*/
-        let options = {
-            "info": false,
-        "searching": false,
-        "dom":
-            "<'row'<'col-sm-12'tr>>" +
-            "<'row'<'col-sm-5'l><'col-sm-1'><'col-sm-6'p>>",
-        "language": {
-            "lengthMenu": "Mostrando _MENU_ registros",
-            "paginate": {
-                "next": '<i class="bi bi-arrow-right-short"></i>',
-                "previous": '<i class="bi bi-arrow-left-short"></i>'
-            }
-        },
-        "lengthMenu": [[10, 15, 20, -1], [10, 15, 20, "Todos"]]
-        };
-        let table = new DataTable('#proveedor', options);
-    }, 300);
-});
 
-document.getElementById('buscar-proveedor').addEventListener('submit', function (event) {
+
+document.getElementById('buscar-color').addEventListener('submit', function (event) {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
-    // Se llama a la función que realiza la búsqueda. Se encuentra en el archivo components.js
-    searchRows(API_PROVEEDOR, 'buscar-proveedor');
+    if(document.getElementById('buscar-color-input').value == ""){
+        sweetAlert(3, 'Cambo de búsqueda vacío', null)
+    }
+    else{
+        table.destroy();
+        // Se llama a la función que realiza la búsqueda. Se encuentra en el archivo components.js
+        searchRows(API_COLOR, 'buscar-color', 'buscar-color-input');
+        setTimeout(() => {
+            /*Inicializando y configurando tabla*/
+            table = new DataTable('#color', options);
+        }, 250);
+    }
+    
 });
 
-function openCreateProv() {
-    // Se limpian los campos, se deshabilita el campo de estado y se cambia el título del modal-----------------.
-    document.getElementById("nombre_prov").value = "";
-    document.getElementById("tele_prov").value = "";
-    document.getElementById("estado_prov").disabled = true;
-    document.getElementById('modal-title').innerText = 'Ingresar proveedor';
+function openCreate() {
+    document.getElementById("nombre_color").value = "";
+    document.getElementById("estado_color").disabled = true;
 }
 
-function openUpdateProv(id) {
-    document.getElementById('modal-title').innerText = 'Actualizar proveedor';
-    document.getElementById("estado_prov").disabled = false;
+function openUpdate(id) {
+    document.getElementById("estado_color").disabled = false;
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData();
     data.append('id', id);
     // Petición para obtener los datos del registro solicitado.
-    fetch(API_PROVEEDOR + 'readOne', {
+    fetch(API_COLOR + 'readOne', {
         method: 'post',
         body: data
     }).then(function (request) {
@@ -115,12 +123,12 @@ function openUpdateProv(id) {
                 if (response.status) {
                     // Se inicializan los campos del formulario con los datos del registro seleccionado.
                     document.getElementById('id').value = (id);
-                    document.getElementById('nombre_prov').value = response.dataset.nombre_proveedor;
-                    document.getElementById('tele_prov').value = response.dataset.telefono_proveedor;
-                    if (response.dataset.estado_proveedor) {
-                        document.getElementById('estado_prov').value = 1;
+                    document.getElementById('nombre_color').value = response.dataset.color_producto;
+
+                    if (response.dataset.estado_cliente) {
+                        document.getElementById('estado_color').value = 0;
                     } else {
-                        document.getElementById('estado_prov').value = 0;
+                        document.getElementById('estado_color').value = 1;
                     }
                     // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos.
                 } else {
@@ -134,7 +142,7 @@ function openUpdateProv(id) {
 }
 
 // Método manejador de eventos que se ejecuta cuando se envía el formulario de guardar.
-document.getElementById('agregar-prov').addEventListener('submit', function (event) {
+document.getElementById('agregar-color').addEventListener('submit', function (event) {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
     // Se define una variable para establecer la acción a realizar en la API.
@@ -142,12 +150,11 @@ document.getElementById('agregar-prov').addEventListener('submit', function (eve
     // Se comprueba si el campo oculto del formulario esta seteado para actualizar, de lo contrario será para crear.
     (document.getElementById('id').value) ? action = 'update' : action = 'create';
     // Se llama a la función para guardar el registro. Se encuentra en el archivo components.js
-    saveRow(API_PROVEEDOR, action, 'agregar-prov', 'modal-agregarP');
-    readRows(API_PROVEEDOR);
+    saveRow(API_COLOR, action, 'agregar-color', 'modal-agregarCo');
+    reInitTable();
 });
 
-// Función para cargar el id a eliminar
-function openDeleteProv(id) {
+function openDelete(id) {
     document.getElementById('id_delete').value = (id);
 }
 
@@ -156,5 +163,21 @@ document.getElementById('delete-form').addEventListener('submit', function (even
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
     //Llamamos al método que se encuentra en la api y le pasamos la ruta de la API y el id del formulario dentro de nuestro modal eliminar
-    confirmDelete(API_PROVEEDOR, 'delete-form');
+    //No eliminamos solo deshabilita------------------.
+    confirmDelete(API_COLOR, 'delete-form');
+    setTimeout(() => {
+        reInitTable();
+    }, 100);
+});
+
+//Función para refrescar la tabla manualmente al darle click al botón refresh----------------------------------.
+document.getElementById('limpiar').addEventListener('click', function () {
+    table.destroy();
+    readRows(API_COLOR);
+    document.getElementById('buscar-color-input').value ="";
+    setTimeout(() => {
+        /*Inicializando y configurando tabla*/
+        table = new DataTable('#color', options);
+
+    }, 250);
 });

@@ -35,7 +35,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No hay coincidencias';
                 }
                 break;
-            // Accion de crear un nuevo color ------------------.       
+            // Accion de crear un nuevo departamento xd ------------------.       
             case 'create':
                 //Especificamos los inputs por medio de su atributo name, y los capturamos con el método post
                 $_POST = $proveedor->validateForm($_POST);

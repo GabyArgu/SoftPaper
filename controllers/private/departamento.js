@@ -1,16 +1,16 @@
 // Constante para establecer la ruta y parámetros de comunicación con la API.
-const API_PROVEEDOR = SERVER + 'private/proveedor.php?action=';
+const API_DEPARTAMENTO = SERVER + 'private/departamento.php?action=';
 
 // Método manejador de eventos que se ejecuta cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', function () {
     // Se llama a la función que obtiene los registros para llenar la tabla. Se encuentra en el archivo components.js
-    readRows(API_PROVEEDOR);
+    readRows(API_DEPARTAMENTO);
     // Se define una variable para establecer las opciones del componente Modal.
     let options = {
         dismissible: false,
         onOpenStart: function () {
             // Se restauran los elementos del formulario.
-            document.getElementById('modal-agregarP').reset();
+            document.getElementById('modal-agregarD').reset();
         }
     }
 });
@@ -20,16 +20,11 @@ function fillTable(dataset) {
     let content = '';
     // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
     dataset.map(function (row) {
-        (row.estado_proveedor) ? icon = '<span class="estado">Activo</span>' : icon = '<span class="estado3">Inactivo</span>';
         // Se crean y concatenan las filas de la tabla con los datos de cada registro.
-        // Se coloca el nombre de la columna de la tabla---------------.
+        //Se coloca el nombre de la columna---------------.
         content += `
         <tr>
-            <td data-title="Proveedor" class="col-table ">${row.nombre_proveedor}</td>
-            <td data-title="telefono"
-                class="proveedores text-center">
-                ${row.telefono_proveedor}</td>
-            <td data-title="estado" class="estado-stock">${icon}</td>
+            <td data-title="Departamento" class="col-table ">${row.nombre_departamento}</td>
             <td data-title="Acciones" class="botones-table">
                 <div class="dropdown">
                     <button class=" btn-acciones dropdown-toggle"
@@ -40,11 +35,11 @@ function fillTable(dataset) {
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                         aria-labelledby="dropdownMenuButton1">
-                        <li><a onclick="openUpdateProv('${row.uuid_proveedor}')" class="dropdown-item"
+                        <li><a onclick="openUpdateDepa('${row.uuid_departamento}')" class="dropdown-item"
                                 data-bs-toggle="modal"
-                                data-bs-target="#modal-agregarP">Editar</a>
+                                data-bs-target="#modal-agregarD">Editar</a>
                         </li>
-                        <li><a onclick="openDeleteProv('${row.uuid_proveedor}')" class="dropdown-item"
+                        <li><a onclick="openDeleteDepa('${row.uuid_departamento}')" class="dropdown-item"
                                 data-bs-toggle="modal"
                                 data-bs-target="#modal-eliminar">Eliminar</a>
                         </li>
@@ -59,9 +54,9 @@ function fillTable(dataset) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    readRows(API_PROVEEDOR);
+    readRows(API_DEPARTAMENTO);
     setTimeout(() => {
-        /*Inicializando y configurando tabla------------------------------------*/
+        /*Inicializando y configurando tabla*/
         let options = {
             "info": false,
         "searching": false,
@@ -81,29 +76,19 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 300);
 });
 
-document.getElementById('buscar-proveedor').addEventListener('submit', function (event) {
-    // Se evita recargar la página web después de enviar el formulario.
-    event.preventDefault();
-    // Se llama a la función que realiza la búsqueda. Se encuentra en el archivo components.js
-    searchRows(API_PROVEEDOR, 'buscar-proveedor');
-});
-
-function openCreateProv() {
-    // Se limpian los campos, se deshabilita el campo de estado y se cambia el título del modal-----------------.
-    document.getElementById("nombre_prov").value = "";
-    document.getElementById("tele_prov").value = "";
-    document.getElementById("estado_prov").disabled = true;
-    document.getElementById('modal-title').innerText = 'Ingresar proveedor';
+function openCreateDepa() {
+    // Se limpian los campos, se deshabilita el campo de estado -----------.
+    document.getElementById("nombre_depa").value = "";
+    document.getElementById('modal-title').innerText = 'Ingresar Departamento';
 }
 
-function openUpdateProv(id) {
+function openUpdateDepa(id) {
     document.getElementById('modal-title').innerText = 'Actualizar proveedor';
-    document.getElementById("estado_prov").disabled = false;
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData();
     data.append('id', id);
     // Petición para obtener los datos del registro solicitado.
-    fetch(API_PROVEEDOR + 'readOne', {
+    fetch(API_DEPARTAMENTO + 'readOne', {
         method: 'post',
         body: data
     }).then(function (request) {
@@ -115,13 +100,7 @@ function openUpdateProv(id) {
                 if (response.status) {
                     // Se inicializan los campos del formulario con los datos del registro seleccionado.
                     document.getElementById('id').value = (id);
-                    document.getElementById('nombre_prov').value = response.dataset.nombre_proveedor;
-                    document.getElementById('tele_prov').value = response.dataset.telefono_proveedor;
-                    if (response.dataset.estado_proveedor) {
-                        document.getElementById('estado_prov').value = 1;
-                    } else {
-                        document.getElementById('estado_prov').value = 0;
-                    }
+                    document.getElementById('nombre_depa').value = response.dataset.nombre_departamento;
                     // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos.
                 } else {
                     sweetAlert(2, response.exception, null);
@@ -134,7 +113,7 @@ function openUpdateProv(id) {
 }
 
 // Método manejador de eventos que se ejecuta cuando se envía el formulario de guardar.
-document.getElementById('agregar-prov').addEventListener('submit', function (event) {
+document.getElementById('agregar-depa').addEventListener('submit', function (event) {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
     // Se define una variable para establecer la acción a realizar en la API.
@@ -142,12 +121,12 @@ document.getElementById('agregar-prov').addEventListener('submit', function (eve
     // Se comprueba si el campo oculto del formulario esta seteado para actualizar, de lo contrario será para crear.
     (document.getElementById('id').value) ? action = 'update' : action = 'create';
     // Se llama a la función para guardar el registro. Se encuentra en el archivo components.js
-    saveRow(API_PROVEEDOR, action, 'agregar-prov', 'modal-agregarP');
-    readRows(API_PROVEEDOR);
+    saveRow(API_DEPARTAMENTO, action, 'agregar-depa', 'modal-agregarD');
+    readRows(API_DEPARTAMENTO);
 });
 
 // Función para cargar el id a eliminar
-function openDeleteProv(id) {
+function openDeleteDepa(id) {
     document.getElementById('id_delete').value = (id);
 }
 
@@ -156,5 +135,5 @@ document.getElementById('delete-form').addEventListener('submit', function (even
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
     //Llamamos al método que se encuentra en la api y le pasamos la ruta de la API y el id del formulario dentro de nuestro modal eliminar
-    confirmDelete(API_PROVEEDOR, 'delete-form');
+    confirmDelete(API_DEPARTAMENTO, 'delete-form');
 });

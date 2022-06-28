@@ -1,34 +1,30 @@
 // Constante para establecer la ruta y parámetros de comunicación con la API.
-const API_PROVEEDOR = SERVER + 'private/proveedor.php?action=';
+const API_ESTADO_VENTA = SERVER + 'private/estado_venta.php?action=';
 
-// Método manejador de eventos que se ejecuta cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', function () {
     // Se llama a la función que obtiene los registros para llenar la tabla. Se encuentra en el archivo components.js
-    readRows(API_PROVEEDOR);
+    readRows2(API_ESTADO_VENTA);
     // Se define una variable para establecer las opciones del componente Modal.
     let options = {
         dismissible: false,
         onOpenStart: function () {
             // Se restauran los elementos del formulario.
-            document.getElementById('modal-agregarP').reset();
+            document.getElementById('agregar-ev').reset();
         }
     }
 });
 
 // Función para llenar la tabla con los datos de los registros. Se manda a llamar en la función readRows().
-function fillTable(dataset) {
+function fillTable2(dataset) {
     let content = '';
     // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
     dataset.map(function (row) {
-        (row.estado_proveedor) ? icon = '<span class="estado">Activo</span>' : icon = '<span class="estado3">Inactivo</span>';
+        (row.estado_estado_venta) ? icon = '<span class="estado">Activo</span>' : icon = '<span class="estado3">Inactivo</span>';
         // Se crean y concatenan las filas de la tabla con los datos de cada registro.
         // Se coloca el nombre de la columna de la tabla---------------.
         content += `
         <tr>
-            <td data-title="Proveedor" class="col-table ">${row.nombre_proveedor}</td>
-            <td data-title="telefono"
-                class="proveedores text-center">
-                ${row.telefono_proveedor}</td>
+            <td data-title="Proveedor" class="col-table ">${row.estado_venta}</td>
             <td data-title="estado" class="estado-stock">${icon}</td>
             <td data-title="Acciones" class="botones-table">
                 <div class="dropdown">
@@ -40,11 +36,11 @@ function fillTable(dataset) {
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                         aria-labelledby="dropdownMenuButton1">
-                        <li><a onclick="openUpdateProv('${row.uuid_proveedor}')" class="dropdown-item"
+                        <li><a onclick="openUpdateEV('${row.uuid_estado_venta}')" class="dropdown-item"
                                 data-bs-toggle="modal"
-                                data-bs-target="#modal-agregarP">Editar</a>
+                                data-bs-target="#modal-agregarEV">Editar</a>
                         </li>
-                        <li><a onclick="openDeleteProv('${row.uuid_proveedor}')" class="dropdown-item"
+                        <li><a onclick="openDeleteEV('${row.uuid_estado_venta}')" class="dropdown-item"
                                 data-bs-toggle="modal"
                                 data-bs-target="#modal-eliminar">Eliminar</a>
                         </li>
@@ -55,13 +51,13 @@ function fillTable(dataset) {
         `;
     });
     // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
-    document.getElementById('tbody-rows234').innerHTML = content;
+    document.getElementById('tbody-rows').innerHTML = content;
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    readRows(API_PROVEEDOR);
+    readRows2(API_ESTADO_VENTA);
     setTimeout(() => {
-        /*Inicializando y configurando tabla------------------------------------*/
+        /*Inicializando y configurando tabla-----------------*/
         let options = {
             "info": false,
         "searching": false,
@@ -77,33 +73,24 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         "lengthMenu": [[10, 15, 20, -1], [10, 15, 20, "Todos"]]
         };
-        let table = new DataTable('#proveedor', options);
+        let table = new DataTable('#estado_venta', options);
     }, 300);
 });
 
-document.getElementById('buscar-proveedor').addEventListener('submit', function (event) {
-    // Se evita recargar la página web después de enviar el formulario.
-    event.preventDefault();
-    // Se llama a la función que realiza la búsqueda. Se encuentra en el archivo components.js
-    searchRows(API_PROVEEDOR, 'buscar-proveedor');
-});
 
-function openCreateProv() {
-    // Se limpian los campos, se deshabilita el campo de estado y se cambia el título del modal-----------------.
-    document.getElementById("nombre_prov").value = "";
-    document.getElementById("tele_prov").value = "";
-    document.getElementById("estado_prov").disabled = true;
-    document.getElementById('modal-title').innerText = 'Ingresar proveedor';
+function openCreateEV() {
+    document.getElementById("agregar-ev").reset();
+    document.getElementById("nombre_estado_venta").value = "";
+    document.getElementById("estado_estado_venta").disabled = true;
 }
 
-function openUpdateProv(id) {
-    document.getElementById('modal-title').innerText = 'Actualizar proveedor';
-    document.getElementById("estado_prov").disabled = false;
+function openUpdateEV(id) {
+    document.getElementById("estado_estado_venta").disabled = false;
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData();
-    data.append('id', id);
+    data.append('id-v', id);
     // Petición para obtener los datos del registro solicitado.
-    fetch(API_PROVEEDOR + 'readOne', {
+    fetch(API_ESTADO_VENTA + 'readOne', {
         method: 'post',
         body: data
     }).then(function (request) {
@@ -114,15 +101,14 @@ function openUpdateProv(id) {
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
                     // Se inicializan los campos del formulario con los datos del registro seleccionado.
-                    document.getElementById('id').value = (id);
-                    document.getElementById('nombre_prov').value = response.dataset.nombre_proveedor;
-                    document.getElementById('tele_prov').value = response.dataset.telefono_proveedor;
-                    if (response.dataset.estado_proveedor) {
-                        document.getElementById('estado_prov').value = 1;
+                    document.getElementById('id-v').value = (id);
+                    document.getElementById('nombre_estado_venta').value = response.dataset.estado_venta;
+                    if (response.dataset.estado_estado_venta) {
+                        document.getElementById('estado_estado_venta').value = 1;
                     } else {
-                        document.getElementById('estado_prov').value = 0;
+                        document.getElementById('estado_estado_venta').value = 0;
                     }
-                    // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos.
+                    // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos--------------.
                 } else {
                     sweetAlert(2, response.exception, null);
                 }
@@ -134,20 +120,18 @@ function openUpdateProv(id) {
 }
 
 // Método manejador de eventos que se ejecuta cuando se envía el formulario de guardar.
-document.getElementById('agregar-prov').addEventListener('submit', function (event) {
+document.getElementById('agregar-ev').addEventListener('submit', function (event) {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
     // Se define una variable para establecer la acción a realizar en la API.
     let action = '';
     // Se comprueba si el campo oculto del formulario esta seteado para actualizar, de lo contrario será para crear.
-    (document.getElementById('id').value) ? action = 'update' : action = 'create';
+    (document.getElementById('id-v').value) ? action = 'update' : action = 'create';
     // Se llama a la función para guardar el registro. Se encuentra en el archivo components.js
-    saveRow(API_PROVEEDOR, action, 'agregar-prov', 'modal-agregarP');
-    readRows(API_PROVEEDOR);
+    saveRow2(API_ESTADO_VENTA, action, 'agregar-ev', 'modal-agregarEV');
 });
 
-// Función para cargar el id a eliminar
-function openDeleteProv(id) {
+function openDeleteEV(id) {
     document.getElementById('id_delete').value = (id);
 }
 
@@ -156,5 +140,5 @@ document.getElementById('delete-form').addEventListener('submit', function (even
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
     //Llamamos al método que se encuentra en la api y le pasamos la ruta de la API y el id del formulario dentro de nuestro modal eliminar
-    confirmDelete(API_PROVEEDOR, 'delete-form');
+    confirmDelete2(API_ESTADO_VENTA, 'delete-form');
 });

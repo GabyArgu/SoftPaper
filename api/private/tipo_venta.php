@@ -15,7 +15,7 @@ if (isset($_GET['action'])) {
     if (isset($_SESSION['uuid_empleado'])) {
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
-            // Accion de leer toda la información------------------.
+                // Accion de leer toda la información------------------.
             case 'readAll':
                 if ($result['dataset'] = $tipoVenta->readAll()) {
                     $result['status'] = 1;
@@ -23,6 +23,59 @@ if (isset($_GET['action'])) {
                     $result['exception'] = Database::getException();
                 } else {
                     $result['exception'] = 'No hay datos registrados';
+                }
+                break;
+            case 'readOne':
+                if (!$tipoVenta->setId($_POST['id-tv'])) {
+                    $result['exception'] = 'Tipo de venta incorrecto';
+                } elseif ($result['dataset'] = $tipoVenta->readOne()) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'Tipo de venta inexistente';
+                }
+                break;
+            case 'create':
+                //Especificamos los inputs por medio de su atributo name, y los capturamos con el método post
+                $_POST = $tipoVenta->validateForm($_POST);
+                if (!$tipoVenta->setTipo($_POST['nombre_tipo_venta'])) {
+                    $result['exception'] = 'Tipo de venta inválido';
+                } elseif (!$tipoVenta->setEstado(1)) {
+                    $result['exception'] = 'Estado inválido';
+                } elseif ($tipoVenta->createRow()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Tipo de venta creado correctamente';
+                } else {
+                    $result['exception'] = Database::getException();
+                }
+                break;
+            case 'update':
+                //Especificamos los inputs por medio de su atributo name, y los capturamos con el método post
+                $_POST = $tipoVenta->validateForm($_POST);
+                if (!$tipoVenta->setId($_POST['id-tv'])) {
+                    $result['exception'] = 'Tipo de venta incorrecto';
+                } elseif (!$tipoVenta->setTipo($_POST['nombre_tipo_venta'])) {
+                    $result['exception'] = 'Nombre de tipo de venta inválido';
+                } elseif (!$tipoVenta->setEstado($_POST['estado_tipo_venta'])) {
+                    $result['exception'] = 'Estado inválido';
+                } elseif ($tipoVenta->updateRow()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Tipo de venta actualizado correctamente';
+                } else {
+                    $result['exception'] = Database::getException();
+                }
+                break;
+            case 'delete':
+                if (!$tipoVenta->setId($_POST['id_delete'])) {
+                    $result['exception'] = 'Tipo de venta incorrecto';
+                } elseif (!$tipoVenta->readOne()) {
+                    $result['exception'] = 'Tipo de venta inexistente';
+                } elseif ($tipoVenta->deleteRow()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Tipo de venta inhabilitado correctamente';
+                } else {
+                    $result['exception'] = Database::getException();
                 }
                 break;
             default:

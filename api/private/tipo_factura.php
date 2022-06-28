@@ -15,7 +15,7 @@ if (isset($_GET['action'])) {
     if (isset($_SESSION['uuid_empleado'])) {
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
-            // Accion de leer toda la información------------------.
+                // Accion de leer toda la información------------------.
             case 'readAll':
                 if ($result['dataset'] = $tipoFactura->readAll()) {
                     $result['status'] = 1;
@@ -23,6 +23,59 @@ if (isset($_GET['action'])) {
                     $result['exception'] = Database::getException();
                 } else {
                     $result['exception'] = 'No hay datos registrados';
+                }
+                break;
+            case 'readOne':
+                if (!$tipoFactura->setId($_POST['id-tf'])) {
+                    $result['exception'] = 'Tipo de factura incorrecto';
+                } elseif ($result['dataset'] = $tipoFactura->readOne()) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'Tipo de factura inexistente';
+                }
+                break;
+            case 'create':
+                //Especificamos los inputs por medio de su atributo name, y los capturamos con el método post
+                $_POST = $tipoFactura->validateForm($_POST);
+                if (!$tipoFactura->setTipo($_POST['nombre_tipo_factura'])) {
+                    $result['exception'] = 'Tipo de factura inválido';
+                } elseif (!$tipoFactura->setEstado(1)) {
+                    $result['exception'] = 'Estado inválido';
+                } elseif ($tipoFactura->createRow()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Tipo de factura creado correctamente';
+                } else {
+                    $result['exception'] = Database::getException();
+                }
+                break;
+            case 'update':
+                //Especificamos los inputs por medio de su atributo name, y los capturamos con el método post
+                $_POST = $tipoFactura->validateForm($_POST);
+                if (!$tipoFactura->setId($_POST['id-tf'])) {
+                    $result['exception'] = 'Tipo de factura incorrecto';
+                } elseif (!$tipoFactura->setTipo($_POST['nombre_tipo_factura'])) {
+                    $result['exception'] = 'Nombre de tipo de factura inválido';
+                } elseif (!$tipoFactura->setEstado($_POST['estado_tipo_factura'])) {
+                    $result['exception'] = 'Estado inválido';
+                } elseif ($tipoFactura->updateRow()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Tipo de factura actualizado correctamente';
+                } else {
+                    $result['exception'] = Database::getException();
+                }
+                break;
+            case 'delete':
+                if (!$tipoFactura->setId($_POST['id_delete'])) {
+                    $result['exception'] = 'Tipo de factura incorrecto';
+                } elseif (!$tipoFactura->readOne()) {
+                    $result['exception'] = 'Tipo de factura inexistente';
+                } elseif ($tipoFactura->deleteRow()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Tipo de factura inhabilitado correctamente';
+                } else {
+                    $result['exception'] = Database::getException();
                 }
                 break;
             default:

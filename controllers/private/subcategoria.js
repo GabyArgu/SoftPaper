@@ -2,7 +2,7 @@
 const API_SUBCATEGORIA = SERVER + 'private/subcategoria.php?action=';
 const ENDPOINT_CATEGORIA = SERVER + 'private/categoria.php?action=readAll';
 
-//Configuración de la tabla
+//Configuración de la tabla--------------------.
 const options = {
     "info": false,
             "searching": false,
@@ -50,6 +50,7 @@ function fillTable(dataset) {
     dataset.map(function (row) {
         (row.estado_subcategoria_p) ? icon = '<span class="estado">Activo</span>' : icon = '<span class="estado3">Inactivo</span>';
         // Se crean y concatenan las filas de la tabla con los datos de cada registro.
+        // Se coloca el nombre de la columna de la tabla--------------------.
         content += `
         <tr>
             <td data-title="Imagen" class="col-table ">
@@ -108,7 +109,7 @@ document.getElementById('buscar-subcategoria').addEventListener('submit', functi
 });
 
 function openCreate() {
-    // Se establece que el campo archivo sea obligatorio (input de subir imagen).
+    // Se establece que el campo archivo sea obligatorio (input de subir imagen)-------------.
     document.getElementById("nombre_sub").value = "";
     fillSelect(ENDPOINT_CATEGORIA, 'categoria', null);
     document.getElementById("estado_sub").disabled = true;
@@ -179,7 +180,7 @@ document.getElementById('delete-form').addEventListener('submit', function (even
     }, 100);
 });
 
-//Función para refrescar la tabla manualmente al darle click al botón refresh
+//Función para refrescar la tabla manualmente al darle click al botón refresh------------------.
 document.getElementById('limpiar').addEventListener('click', function () {
     table.destroy();
     readRows(API_SUBCATEGORIA);

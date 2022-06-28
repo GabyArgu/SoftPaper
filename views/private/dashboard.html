@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -26,7 +26,25 @@
 <body>
     <div class="wrapper">
 
-        <!-- INICIA NAVBAR -->
+        <!-- PANTALLA DE CARGA DE LA PAGINA  -->
+        <div id="contenedor_carga">
+            <div class="lds-spinner">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+
+        <!-- INICIA NAVBAR DE LA PAGINA -->
         <header>
             <nav class="navbar navbar-expand-lg " id="navbar-dashboard">
                 <div class="container">
@@ -51,37 +69,68 @@
                                 <a class="nav-link dropdown" id="navbarDropdownMenuLink" role="button"
                                     data-bs-toggle="dropdown" aria-expanded="false"> Inventario
                                 </a>
-                                <ul class="dropdown-menu dropdown-inventario slideInNav animate" aria-labelledby="navbarDropdown">
+                                <ul class="dropdown-menu dropdown-inventario slideInNav animate"
+                                    aria-labelledby="navbarDropdown">
                                     <li><a class="dropdown-item" href="productos.html">Productos</a></li>
+                                    <li><a class="dropdown-item" href="categoria.html">Categoria</a></li>
                                     <li><a class="dropdown-item" href="subcategoria.html">Subcategorías</a></li>
-                                    <li><a class="dropdown-item" href="marca_proveedor.html">Proveedores y marcas</a></li>
+                                    <li><a class="dropdown-item" href="marca_proveedor.html">Proveedores y
+                                            marcas</a></li>
                                 </ul>
 
                             </li>
-
                             <li class="active nav-item menu-item" type="button">
-                                <a class="nav-link active" aria-current="page" href="venta.html">Venta</a>
+
+                                <a class="nav-link dropdown" id="navbarDropdownMenuLink" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false"> Facturación
+                                </a>
+                                <ul class="dropdown-menu dropdown-inventario slideInNav animate"
+                                    aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="venta.html">Ventas</a></li>
+                                    <li><a class="dropdown-item" href="tipos.html">Tipo factura y venta</a></li>
+                                </ul>
+
                             </li>
-
                             <li class="active nav-item menu-item" type="button">
-                                <a class="nav-link active" aria-current="page" href="clientes.html">Clientes</a>
+
+                                <a class="nav-link dropdown" id="navbarDropdownMenuLink" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false"> Usuarios
+                                </a>
+                                <ul class="dropdown-menu dropdown-inventario slideInNav animate"
+                                    aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="clientes.html">Clientes</a></li>
+                                    <li><a class="dropdown-item" href="empleados.html">Empleados</a></li>
+                                </ul>
+
                             </li>
-
                             <li class="active nav-item menu-item" type="button">
-                                <a class="nav-link" href="empleados.html">Empleados</a>
+
+                                <a class="nav-link dropdown" id="navbarDropdownMenuLink" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false"> Catálogos
+                                </a>
+                                <ul class="dropdown-menu dropdown-inventario slideInNav animate"
+                                    aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="estados.html">Estado de producto y venta</a></li>
+                                    <li><a class="dropdown-item" href="subcategoria.html">Departamentos y municipios</a>
+                                    </li>
+                                     
+                                    <li><a class="dropdown-item" href="color.html">Colores</a></li>
+                                </ul>
+
                             </li>
                         </ul>
                         <div class="nav-options d-flex">
-                            <a href="" class="nav-item"><i class="bi bi-search"  type="button"></i></a>
+                            <a href="" class="nav-item"><i class="bi bi-search" type="button"></i></a>
 
-                            <li class="active nav-item menu-item"  type="button">
+                            <li class="active nav-item menu-item" type="button">
 
                                 <a class="nav-link dropdown" id="navbarDropdownMenuLink" role="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">
                                     <img src="../../api/images/avatares/a2.png" alt=""
                                         class="d-inline-block align-text-top user">
                                 </a>
-                                <ul class="dropdown-menu slideInNav1 slideInNav  animate" aria-labelledby="navbarDropdown">
+                                <ul class="dropdown-menu slideInNav1 slideInNav  animate"
+                                    aria-labelledby="navbarDropdown">
                                     <li><a class="dropdown-item" href="perfil_usuario.html">Ir a perfil</a></li>
                                     <li><a class="dropdown-item" href="index.html">Cerrar sesión</a></li>
                                 </ul>
@@ -92,7 +141,7 @@
                 </div>
             </nav>
         </header>
-        <!-- FIN NAVBAR-->
+        <!-- FIN NAVBAR DE LA PAGINA -->
 
         <main class="container-xl">
             <div class="header-content">
@@ -537,6 +586,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"
         integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha"
         crossorigin="anonymous"></script>
+    <script src="../../controllers/private/charge.js"></script>
     <script src="../../controllers/private/charts.js"></script>
     <script src="../../controllers/private/dashboard.js"></script>
 </body>

@@ -160,7 +160,7 @@ class Ventas extends Validator
     }
 
     /* 
-    *   Método para comprobar que existen pedidos registrados en nuestra base de datos
+    *   Método para comprobar que existen pedidos registrados en nuestra base de datos-----------------.
     */
 
     public function readAll()
@@ -175,7 +175,7 @@ class Ventas extends Validator
         return Database::getRows($sql, $params);
     }
 
-    // Método para obtener los productos que se encuentran en la venta seleccionada
+    // Método para obtener los productos que se encuentran en la venta seleccionada------------------.
     public function readOrderDetail()
     {
         $sql = 'SELECT correlativo_venta, uuid_detalle_venta, imagen_producto, nombre_producto, color_producto, precio_producto, cantidad_producto, uuid_color_stock
@@ -199,8 +199,6 @@ class Ventas extends Validator
         return Database::getRow($sql, $params);
     }
 
-
-
     /*
     *   Métodos para realizar las operaciones SCRUD (search, create, read, update, delete).
     */
@@ -221,7 +219,7 @@ class Ventas extends Validator
     }
 
     /* Método para filtrar tabla
-    *   Parámetros: categoria = categoria por la cual filtrar, estado = estado por el cual filtrar
+    *   Parámetros: categoria = categoria por la cual filtrar, estado = estado por el cual filtrar-----------------.
     */
     public function readRowsFilter($tipo, $estado)
     {
@@ -265,7 +263,7 @@ class Ventas extends Validator
     */
 
     /*
-    *   Método para obtener los pedidos del cliente activo
+    *   Método para obtener los pedidos del cliente activo--------------------.
     */
 
     public function readPedidosCliente()
@@ -294,7 +292,8 @@ class Ventas extends Validator
         
     }
 
-    public function readVentaId()
+
+     public function readVentaId()
     {
         $sql = 'SELECT uuid_venta FROM venta WHERE uuid_venta = ?;';
         $params = array($this->id);

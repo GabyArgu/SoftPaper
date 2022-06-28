@@ -91,7 +91,6 @@ function readRows2(api) {
     });
 }
 
-
 function readRows3(api) {
     // Se promete devolver un valor (peticion al servidor)------------------------.
     fetch(api + 'readProductosVentas', {
@@ -141,6 +140,40 @@ function readRows4(api) {
         }
     });
 }
+
+/*
+*   Función para obtener los resultados de una búsqueda en los mantenimientos de tablas (operación search).
+*
+*   Parámetros: api (ruta del servidor para obtener los datos) y form (identificador del formulario de búsqueda) y input (el id de nuestro input para buscar).
+*
+*   Retorno: ninguno.
+*/
+function searchRows(api, form, input) {
+    fetch(api + 'search', {
+        method: 'post',
+        body: new FormData(document.getElementById(form))
+
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            // Se obtiene la respuesta en formato JSON.
+            request.json().then(function (response) {
+                let data = [];
+                // Se comprueba si la respuesta es satisfactoria para obtener los datos, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    data = response.dataset;
+                } else {
+                    sweetAlert(4, response.exception, null);
+                }
+                // Se envían los datos a la función del controlador para llenar la tabla en la vista.
+                fillTable2(data);
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
+}
+
 
 /*
 *   Función para obtener los resultados de una búsqueda en los mantenimientos de tablas (operación search).
@@ -204,33 +237,6 @@ function searchRows2(api, form, input) {
     });
 }
 
-function searchRows3(api, form, input) {
-    fetch(api + 'filter', {
-        method: 'post',
-        body: new FormData(document.getElementById(form))
-    }).then(function (request) {
-        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
-        if (request.ok) {
-            // Se obtiene la respuesta en formato JSON.
-            request.json().then(function (response) {
-                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-                if (response.status) {
-                    // Se envían los datos a la función del controlador para que llene la tabla en la vista y se muestra un mensaje de éxito.
-                    fillTable(response.dataset);
-                    //sweetAlert(1, response.message, null);
-                } else {
-                    /* En caso de no encontrar coincidencias, limpiara el campo y se recargará la tabla */
-                    sweetAlert(2, response.exception, null);
-                    document.getElementById(input).value = "";
-                    readRows(api);
-                }
-            });
-        } else {
-            console.log(request.status + ' ' + request.statusText);
-        }
-    });
-}
-
 /*
 *   Función para crear o actualizar un registro en los mantenimientos de tablas (operación create y update).
 *
@@ -251,8 +257,8 @@ function saveRow(api, action, form, modal) {
                 if (response.status) {
                     // Se cierra la caja de dialogo (modal) del formulario.
                     bootstrap.Modal.getInstance(document.getElementById(modal)).hide();
-                    
                     //M.Modal.getInstance(document.getElementById(modal)).close();
+                    readRows(api);
                     sweetAlert(1, response.message, null);
                 } else {
                     sweetAlert(2, response.exception, null);
@@ -276,10 +282,9 @@ function saveRow2(api, action, form, modal) {
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
                     // Se cierra la caja de dialogo (modal) del formulario.
-                    bootstrap.Modal.getInstance(document.getElementById(modal)).hide();
-                    
-                    // Se cargan nuevamente las filas en la tabla de la vista después de guardar un registro y se muestra un mensaje de éxito.
                     readRows2(api);
+                    bootstrap.Modal.getInstance(document.getElementById(modal)).hide();
+                    // Se cargan nuevamente las filas en la tabla de la vista después de guardar un registro y se muestra un mensaje de éxito.
                     sweetAlert(1, response.message, null);
                 } else {
                     sweetAlert(2, response.exception, null);
@@ -311,6 +316,7 @@ function confirmDelete(api, form) {
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
                     // Se cargan nuevamente las filas en la tabla de la vista después de borrar un registro y se muestra un mensaje de éxito.
+                    readRows(api);
                     sweetAlert(1, response.message, null);
                 } else {
                     sweetAlert(2, response.exception, null);
@@ -654,28 +660,22 @@ const validateNum = (evt) => {
     }
 }
 
-//Validar números decimales
-const validateNumDec = (e) => {
-    var soloNumeros=/^[0-9]([.][0-9]{1,2})?$/;
-    let fieldValue = e.target.value;
-    let field = e.target;
-    if(soloNumeros.test(fieldValue)){
-        field.classList.add("invalid");
-    } else {
-        field.classList.remove("invalid")
-    }
-}
-
 //Validar solo letras
-function validateChar (evt) {
-    let soloLetras=/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/;
-    let fieldValue = e.target.value;
+function validateChar (e, evt) {
+    var key = e.keyCode || e.which,
+      tecla = String.fromCharCode(key).toLowerCase(),
+      letras = " áéíóúabcdefghijklmnñopqrstuvwxyz",
+      specials = [8],
+      tecla_especial = false;
 
-    if(soloLetras.test(fieldValue)){
-        console.log("true")
-        return true;
-    } else {
-        console.log("false")
-        return false;
+    for (var i in specials) {
+      if (key == specials[i]) {
+        tecla_especial = true;
+        break;
+      }
+    }
+
+    if (letras.indexOf(tecla) == -1 && !tecla_especial) {
+      return false;
     }
 }

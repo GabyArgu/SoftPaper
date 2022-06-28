@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -29,7 +29,25 @@
 <body class="detalle-venta">
     <div class="wrapper">
 
-        <!-- INICIA NAVBAR -->
+        <!-- PANTALLA DE CARGA DE LA PAGINA  -->
+        <div id="contenedor_carga">
+            <div class="lds-spinner">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+
+        <!-- INICIA NAVBAR DE LA PAGINA -->
         <header>
             <nav class="navbar navbar-expand-lg " id="navbar-dashboard">
                 <div class="container">
@@ -57,23 +75,51 @@
                                 <ul class="dropdown-menu dropdown-inventario slideInNav animate"
                                     aria-labelledby="navbarDropdown">
                                     <li><a class="dropdown-item" href="productos.html">Productos</a></li>
+                                    <li><a class="dropdown-item" href="categoria.html">Categoria</a></li>
                                     <li><a class="dropdown-item" href="subcategoria.html">Subcategorías</a></li>
-                                    <li><a class="dropdown-item" href="marca_proveedor.html">Proveedores y marcas</a>
-                                    </li>
+                                    <li><a class="dropdown-item" href="marca_proveedor.html">Proveedores y
+                                            marcas</a></li>
                                 </ul>
 
                             </li>
-
                             <li class="active nav-item menu-item" type="button">
-                                <a class="nav-link active" aria-current="page" href="venta.html">Venta</a>
+
+                                <a class="nav-link dropdown" id="navbarDropdownMenuLink" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false"> Facturación
+                                </a>
+                                <ul class="dropdown-menu dropdown-inventario slideInNav animate"
+                                    aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="venta.html">Ventas</a></li>
+                                    <li><a class="dropdown-item" href="tipos.html">Tipo factura y venta</a></li>
+                                </ul>
+
                             </li>
-
                             <li class="active nav-item menu-item" type="button">
-                                <a class="nav-link active" aria-current="page" href="clientes.html">Clientes</a>
+
+                                <a class="nav-link dropdown" id="navbarDropdownMenuLink" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false"> Usuarios
+                                </a>
+                                <ul class="dropdown-menu dropdown-inventario slideInNav animate"
+                                    aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="clientes.html">Clientes</a></li>
+                                    <li><a class="dropdown-item" href="empleados.html">Empleados</a></li>
+                                </ul>
+
                             </li>
-
                             <li class="active nav-item menu-item" type="button">
-                                <a class="nav-link" href="empleados.html">Empleados</a>
+
+                                <a class="nav-link dropdown" id="navbarDropdownMenuLink" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false"> Catálogos
+                                </a>
+                                <ul class="dropdown-menu dropdown-inventario slideInNav animate"
+                                    aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="estados.html">Estado de producto y venta</a></li>
+                                    <li><a class="dropdown-item" href="subcategoria.html">Departamentos y municipios</a>
+                                    </li>
+                                     
+                                    <li><a class="dropdown-item" href="color.html">Colores</a></li>
+                                </ul>
+
                             </li>
                         </ul>
                         <div class="nav-options d-flex">
@@ -98,7 +144,7 @@
                 </div>
             </nav>
         </header>
-        <!-- FIN NAVBAR-->
+        <!-- FIN NAVBAR DE LA PAGINA -->
 
         <!-- INICIO DEL CONTENIDO -->
         <main class="container-xxl">
@@ -107,6 +153,7 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="dashboard.html">Inicio</a></li>
+                        <li class="breadcrumb-item"><a href="">Facturación</a></li>
                         <li class="breadcrumb-item"><a href="venta.html">Venta</a></li>
                         <li class="breadcrumb-item"><a href="detalle_venta.html">Detalle de venta</a></li>
                         </li>
@@ -483,6 +530,7 @@
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <!-- SCRIPT PROPIO-->
         <script src="../../controllers/componentes.js"></script>
+        <script src="../../controllers/private/charge.js"></script>
         <script src="../../controllers/private/detalle_venta.js"></script>
         <script src="../../controllers/private/dashboard.js"></script>
 </body>
