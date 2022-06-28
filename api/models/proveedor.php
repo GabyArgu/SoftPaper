@@ -92,14 +92,6 @@ class Proveedor extends Validator
         return Database::getRow($sql, $params);
     }
 
-    public function readOneShow()
-    {
-        $sql = 'SELECT "nombreProveedor", "telefonoProveedor", "direccionProveedor", e.estado FROM proveedor p INNER JOIN estado as e on p.estado = e."idEstado" 
-		WHERE "idProveedor" = ?';
-        $params = array($this->id);
-        return Database::getRow($sql, $params);
-    }
-
     /*
     *   Métodos para realizar las operaciones SCRUD (search, create, read, update, delete).
     */

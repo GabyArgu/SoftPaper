@@ -1,10 +1,12 @@
 // Constante para establecer la ruta y parámetros de comunicación con la API.
-const API_MARCA = SERVER + 'private/marca.php?action=';
+const API_MUNICIPIO = SERVER + 'private/municipio.php?action=';
+
+const ENDPOINT_DEPA = SERVER + 'private/departamento.php?action=readAll';
 
 // Método manejador de eventos que se ejecuta cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', function () {
     // Se llama a la función que obtiene los registros para llenar la tabla. Se encuentra en el archivo components.js
-    readRows2(API_MARCA);
+    readRows4(API_MUNICIPIO);
     // Se define una variable para establecer las opciones del componente Modal.
     let options = {
         dismissible: false,
@@ -23,31 +25,29 @@ function fillTable2(dataset) {
         // Se crean y concatenan las filas de la tabla con los datos de cada registro.
         content += `
         <tr>
-            <td data-title="Marca" class="col-table ">
-                <img src="${SERVER}images/marcas/${row.imagen_marca}"
-                    class="imgMP me-3" alt="">${row.nombre_marca}</td>
-            <td data-title="Acciones" class="botones-table">
-                <div class="dropdown">
-                    <button
-                        class=" btn-acciones dropdown-toggle"
-                        type="button" id="dropdownMenuButton1"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Acciones
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end animate slideIn"
-                        aria-labelledby="dropdownMenuButton1">
-                        <li><a onclick="openUpdateMarca('${row.uuid_marca}')" class="dropdown-item"
-                                data-bs-toggle="modal"
-                                data-bs-target="#modal-agregarM">Editar</a>
-                        </li>
-                        <li><a onclick="openDeleteMarca('${row.uuid_marca}')" class="dropdown-item"
-                                data-bs-toggle="modal"
-                                data-bs-target="#modal-eliminar">Eliminar</a>
-                        </li>
-                    </ul>
-                </div>
-            </td>
+        <td data-title="Municipio" class="col-table ">${row.nombre_municipio}</td>
+        <td data-title="Municipio" class="col-table ">${row.nombre_departamento}</td>
+        <td data-title="Acciones" class="botones-table">
+            <div class="dropdown">
+                <button class=" btn-acciones dropdown-toggle"
+                    type="button" id="dropdownMenuButton1"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    Acciones
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end animate slideIn"
+                    aria-labelledby="dropdownMenuButton1">
+                    <li><a onclick="openUpdateMuni('${row.uuid_municipio}')" class="dropdown-item"
+                            data-bs-toggle="modal"
+                            data-bs-target="#modal-agregarM">Editar</a>
+                    </li>
+                    <li><a onclick="openDeleteMuni('${row.uuid_municipio}')" class="dropdown-item"
+                            data-bs-toggle="modal"
+                            data-bs-target="#modal-eliminar">Eliminar</a>
+                    </li>
+                </ul>
+            </div>
+        </td>
         </tr>
         `;
     });
@@ -56,7 +56,7 @@ function fillTable2(dataset) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    readRows(API_PROVEEDOR);
+    readRows4(API_MUNICIPIO);
     setTimeout(() => {
         /*Inicializando y configurando tabla*/
         let options = {
@@ -78,26 +78,20 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 300);
 });
 
-document.getElementById('buscar-marca').addEventListener('submit', function (event) {
-    // Se evita recargar la página web después de enviar el formulario.
-    event.preventDefault();
-    // Se llama a la función que realiza la búsqueda. Se encuentra en el archivo components.js
-    searchRows2(API_MARCA, 'buscar-marca');
-});
-
-function openCreateMarca() {
+function openCreateMuni() {
     // Se establece que el campo archivo sea obligatorio (input de subir imagen).
-    document.getElementById('modal-title2').innerText = 'Ingresar marca';
-    document.getElementById("nombre_marca").value = "";
+    document.getElementById('modal-title2').innerText = 'Ingresar Municipio';
+    document.getElementById("nombre_municipio").value = "";
+    fillSelect(ENDPOINT_DEPA, 'depa_muni', null);
 }
 
-function openUpdateMarca(id) {
-    document.getElementById('modal-title2').innerText = 'Actualizar marca';
+function openUpdateMuni(id) {
+    document.getElementById('modal-title2').innerText = 'Actualizar Municipio';
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData();
     data.append('id', id);
     // Petición para obtener los datos del registro solicitado.
-    fetch(API_MARCA + 'readOne', {
+    fetch(API_MUNICIPIO + 'readOne', {
         method: 'post',
         body: data
     }).then(function (request) {
@@ -109,7 +103,8 @@ function openUpdateMarca(id) {
                 if (response.status) {
                     // Se inicializan los campos del formulario con los datos del registro seleccionado.
                     document.getElementById('id1').value = (id);
-                    document.getElementById('nombre_marca').value = response.dataset.nombre_marca;
+                    document.getElementById('nombre_municipio').value = response.dataset.nombre_municipio;
+                    fillSelect(ENDPOINT_DEPA, 'depa_muni', response.dataset.uuid_departamento);
                     // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos.
                 } else {
                     sweetAlert(2, response.exception, null);
@@ -122,7 +117,7 @@ function openUpdateMarca(id) {
 }
 
 // Método manejador de eventos que se ejecuta cuando se envía el formulario de guardar.
-document.getElementById('agregar-marca').addEventListener('submit', function (event) {
+document.getElementById('agregar-muni').addEventListener('submit', function (event) {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
     // Se define una variable para establecer la acción a realizar en la API.
@@ -130,10 +125,10 @@ document.getElementById('agregar-marca').addEventListener('submit', function (ev
     // Se comprueba si el campo oculto del formulario esta seteado para actualizar, de lo contrario será para crear.
     (document.getElementById('id1').value) ? action = 'update' : action = 'create';
     // Se llama a la función para guardar el registro. Se encuentra en el archivo components.js
-    saveRow(API_MARCA, action, 'agregar-marca', 'modal-agregarM');
+    saveRow(API_MUNICIPIO, action, 'agregar-muni', 'modal-agregarM');
 });
 
-function openDeleteMarca(id) {
+function openDeleteMuni(id) {
     document.getElementById('id_delete').value = (id);
 }
 
@@ -142,5 +137,5 @@ document.getElementById('delete-form').addEventListener('submit', function (even
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
     //Llamamos al método que se encuentra en la api y le pasamos la ruta de la API y el id del formulario dentro de nuestro modal eliminar
-    confirmDelete(API_MARCA, 'delete-form');
+    confirmDelete(API_MUNICIPIO, 'delete-form');
 });

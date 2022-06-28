@@ -190,7 +190,7 @@ class Cliente extends Validator
 
     public function readOne()
     {
-        $sql = 'SELECT cc."uuid_cliente", "nombre_cliente", "direccion_cliente", cc."uuid_municipio", "nombre_municipio", "nrc_cliente", "nit_cliente", "dui_cliente", "telefono_cliente", "giro_cliente", "estado_cliente", (SELECT uuid_departamento FROM municipio WHERE uuid_municipio = (SELECT uuid_municipio FROM cliente WHERE uuid_cliente = ?))
+        $sql = 'SELECT cc."uuid_cliente", "nombre_cliente", "direccion_cliente", cc."uuid_municipio", "nombre_municipio", "nrc_cliente", "nit_cliente", "dui_cliente", "telefono_cliente", cc."uuid_giro_cliente", "giro_cliente", "estado_cliente", (SELECT uuid_departamento FROM municipio WHERE uuid_municipio = (SELECT uuid_municipio FROM cliente WHERE uuid_cliente = ?))
         FROM cliente as cc inner join "municipio" as m on cc."uuid_municipio" = m."uuid_municipio"
 		inner join "giro_cliente" as g on cc."uuid_giro_cliente" = g."uuid_giro_cliente"
         WHERE cc."uuid_cliente" = ?';
@@ -227,9 +227,9 @@ class Cliente extends Validator
     public function updateRow()
     {
         $sql = 'UPDATE cliente
-            SET "nombre_cliente" = ?, "direccion_cliente" = ?, "uuid_municipio"=?, "nrc_cliente"=?, "nit_cliente"=?, "dui_cliente"=?, "telefono_cliente"=?, "uuid_giro_cliente"=?
+            SET "nombre_cliente" = ?, "direccion_cliente" = ?, "uuid_municipio"=?, "nrc_cliente"=?, "nit_cliente"=?, "dui_cliente"=?, "telefono_cliente"=?, "uuid_giro_cliente"=?, "estado_cliente"=?
             WHERE "uuid_cliente"=?;';
-            $params = array($this->nombre, $this->direccion, $this->municipio, $this->nrc, $this->nit, $this->dui, $this->telefono, $this->giro, $this->id);
+            $params = array($this->nombre, $this->direccion, $this->municipio, $this->nrc, $this->nit, $this->dui, $this->telefono, $this->giro, $this->estado, $this->id);
         return Database::executeRow($sql, $params);
     }
 
