@@ -30,8 +30,26 @@ $(document).ready(function () {
     })
 
     // Se llama a la función que obtiene los registros para llenar la tabla. Se encuentra en el archivo components.js
-    readRows(API_USUARIOS);
+  
 });
+
+const reInitTable = () => {
+    table.destroy();
+    setTimeout(() => {
+        readRows(API_PRODUCTOS);
+    }, 100);
+
+    setTimeout(() => {
+        /*Inicializando y configurando tabla*/
+        table = new DataTable('#table', options);
+
+        /*Función para mostrar y ocultar campos de la tabla*/
+        document.getElementById('checkTabla').addEventListener('change', function () {
+            $('#table').DataTable().columns([4, 5, 6]).visible($(this).is(':checked'))
+        });
+
+    }, 300);
+}
 
 //Función para refrescar la tabla manualmente al darle click al botón refresh
 document.getElementById('refresh').addEventListener('click', function () {
@@ -175,11 +193,12 @@ function fillTable(dataset) {
         // Se crean y concatenan las filas de la tabla con los datos de cada registro.
         content += `
             <tr>
-                <td>${row.nombres_empleado}</td>
-                <td>${row.apellidos_empleado}</td>
-                <td>${row.alias_empleado}</td>
-                <td>${row.cargo_empleado}</td>
-                <td>${row.estado_empleado}</td>
+                <th>${row.nombres_empleado}</th>
+                <th>${row.apellidos_empleado}</th>
+                <th>${row.alias_empleado}</th>
+                <th>${row.correo_empleado}</th>
+                <th>${row.cargo_empleado}</th>
+                <th>${row.estado_empleado}</th>
                 <td class="botones-table">
                     <div class="acciones d-flex mx-auto">
                         <span onclick="openUpdate(${row.uuid_empleado})" class="accion-btn" type="button"
