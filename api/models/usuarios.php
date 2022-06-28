@@ -165,12 +165,15 @@ class Usuarios extends Validator
 
     public function checkUser($correo)
     {
-        $sql = 'SELECT uuid_empleado, estado_empleado FROM empleado WHERE correo_empleado = ? or alias_empleado = ?';
+        $sql = 'SELECT uuid_empleado, imagen_avatar, estado_empleado 
+        FROM empleado inner join avatar_empleado using (uuid_avatar) 
+        WHERE correo_empleado = ? or alias_empleado = ?';
         $params = array($correo, $correo);
         if ($data = Database::getRow($sql, $params)) {
             $this->id = $data['uuid_empleado'];
             $this->estado = $data['estado_empleado'];
             $this->correo = $correo;
+            $this->foto = $data['imagen_avatar'];
             return true;
         } else {
             return false;
@@ -226,7 +229,7 @@ class Usuarios extends Validator
     /* Método para obtener un empleado y mostrarlo en modal de visualizar*/
     public function readOneShow()
     {
-        $sql = 'SELECT "uuid_empleado", "nombres_empleado", "apellidos_empleado", "correo_empleado",  "alias_empleado", a."uuid_avatar", ce."uuid_cargo_empleado", ce."cargo_empleado", "estado_empleado"
+        $sql = 'SELECT "uuid_empleado", "nombres_empleado", "apellidos_empleado", "correo_empleado",  "alias_empleado", a."uuid_avatar", a."imagen_avatar", ce."uuid_cargo_empleado", ce."cargo_empleado", "estado_empleado"
         FROM empleado as e inner join "cargo_empleado" as ce on e."uuid_cargo_empleado" = ce."uuid_cargo_empleado"
 		inner join "avatar_empleado" as a on e."uuid_avatar" = a."uuid_avatar" 
         where "uuid_empleado" = ?';
@@ -287,4 +290,6 @@ class Usuarios extends Validator
         $params = array($this->id);
         return Database::executeRow($sql, $params);
     }
+
+    
 }

@@ -32,6 +32,8 @@ function cargarDatos(id) {
                     } else {
                         estado = 'Inactivo'
                     }
+                    const avatarImg = document.getElementById("avatar-info");
+                    avatarImg.src = `../../api/images/avatares/${response.dataset.imagen_avatar}`;
                     document.getElementById("estado_empleado").innerText = estado;
                     document.getElementById("correo_empleado").innerText = response.dataset.correo_empleado;
                     document.getElementById("nombre_emp").value = response.dataset.nombres_empleado;
