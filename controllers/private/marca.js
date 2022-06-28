@@ -123,7 +123,7 @@ document.getElementById('agregar-marca').addEventListener('submit', function (ev
 });
 
 function openDeleteMarca(id) {
-    document.getElementById('id_delete').value = (id);
+    document.getElementById('id_delete1').value = (id);
 }
 
 // Método manejador de eventos que se ejecuta cuando se envía el modal de eliminar.
@@ -132,5 +132,5 @@ document.getElementById('delete-form').addEventListener('submit', function (even
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
     //Llamamos al método que se encuentra en la api y le pasamos la ruta de la API y el id del formulario dentro de nuestro modal eliminar
-    confirmDelete(API_MARCA, 'delete-form');
+    confirmDelete2(API_MARCA, 'delete-form');
 });

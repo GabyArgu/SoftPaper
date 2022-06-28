@@ -102,7 +102,7 @@ if (isset($_GET['action'])) {
                 break;
             // Accion de desabilitar un elemento de toda la información------------------.      
             case 'delete':
-                if (!$marca->setId($_POST['id_delete'])) {
+                if (!$marca->setId($_POST['id_delete1'])) {
                     $result['exception'] = 'Marca incorrecta';
                 } elseif (!$marca->readOne()) {
                     $result['exception'] = 'Marca inexistente';
