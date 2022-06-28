@@ -227,7 +227,6 @@
 
                 <!-- INICIO TARJETA DETALLE-->
                 <div class="container content-card detalle d-flex">
-                    <div class="row">
                         <div class="col-12 p-4 col-flex-detalle">
                             <div class="row">
                                 <div class="col mb-3">
@@ -237,31 +236,23 @@
                             <div class="row">
                                 <div class="col-12 mt-3">
                                     <button class="btn-anadir-cliente btn-second" data-bs-toggle="modal"
-                                        data-bs-target="#modal-cliente">Añadir cliente</button>
+                                        data-bs-target="#modal-cliente" id="btn-add-client">Añadir cliente</button>
+                                        <form class="row" method="post" id="finalizar-venta">
+                                        <input type="hidden" id="dui-cliente" name="dui-cliente">
                                 </div>
                                 <div class="col-12 mt-3">
                                     <label for="">Tipo venta</label>
-                                    <select class="form-select mt-2" aria-label="Default select example" id="tipo-venta"
-                                        onChange="pagoOnChange(this)">
-                                        <option selected disabled>Seleccione una opción</option>
-                                        <option value="fiscal">Credito fiscal</option>
-                                        <option value="consumidor">Consumidor final</option>
+                                    <select class="form-select mt-2" aria-label="Default select example" id="tipo-venta" name="tipo-venta" onChange="pagoOnChange(this)">
+
                                     </select>
                                 </div>
-                                <div class="col-12 mt-3 hide-cmb" id="tipo-venta-div">
-                                    <label for="" value="2">Tipo consumidor</label>
+                                <div class="col-12 mt-3 " id="">
+                                    <label for="" value="2">Tipo factura</label>
                                     <!-- MOSTRAR SOLO EN CASO QUE SEA CONSUMIDOR FINAL -->
-                                    <select class="form-select mt-2" value="2" aria-label="Default select example">
-                                        <option selected disabled>Seleccione una opción</option>
-                                        <option value="1">Factura</option>
-                                        <option value="2">Ticket</option>
+                                    <select class="form-select mt-2" value="2" aria-label="Default select example" id="tipo-factura" name="tipo-factura">
                                     </select>
                                 </div>
-                                <div class="col-12 mt-3">
-                                    <label for="" class="d-block">Fecha</label>
-                                    <input type="text" id="calendar" placeholder="Seleccione una fecha"
-                                        class="filtro-fecha w-100 mt-2">
-                                </div>
+                                
                             </div>
                             <hr class="my-5">
                             <div class="row my-auto">
@@ -275,13 +266,13 @@
                                     <span>Subtotal</span>
                                 </div>
                                 <div class="col-12 col-md-6 text-end factura-info">
-                                    <h6 id="subtotal-detalle" name="subtotal-detalle">$200.00</h6>
+                                    <h6 id="subtotal-detalle" name="subtotal-detalle">$0</h6>
                                 </div>
                                 <div class="col-12 col-md-6 factura-info">
                                     <span>IVA</span>
                                 </div>
                                 <div class="col-12 col-md-6 text-end factura-info">
-                                    <h6 id="iva">$2</h6>
+                                    <h6 id="iva">$0</h6>
                                 </div>
                             </div>
                             <div class="row my-auto">
@@ -289,17 +280,17 @@
                                     <span>Total a pagar</span>
                                 </div>
                                 <div class="col-12 col-md-6 text-end factura-info">
-                                    <h4>$202.00</h4>
+                                    <h4 id="total-venta">$0</h4>
                                 </div>
                             </div>
                             <div class="row ">
                                 <div class="col col-6"><button class="btn btn-cancel" type="button">Cancelar</button>
                                 </div>
                                 <div class="col col-6 d-flex justify-content-end"><button class="btn btn-main"
-                                        type="button">Guardar</button></div>
+                                        type="button" onclick="finishOrder()">Guardar</button></div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
                 <!-- FIN TARJETA DETALLE-->
 
@@ -317,9 +308,6 @@
                             <div class="container p-3">
                                 <form class="row" method="post" id="item-form">
                                     <div class="col col-12">
-                                        <!-- Campo oculto para asignar el id del registro al momento de modificar -->
-                                        <input type="hidden" id="idDetalle" name="idDetalle">
-                                        <input type="hidden" id="idColorStock" name="idColorStock">
                                     </div>
 
                                     <div class="col-lg-6 d-flex flex-column justify-content-center">
@@ -340,7 +328,7 @@
                                                 name="input-stock" type="number" min="0"
                                                 class="form-control text-center" placeholder=""
                                                 aria-label="Example text with button addon"
-                                                aria-describedby="button-addon1" value="1">
+                                                aria-describedby="button-addon1" value="1" required>
                                             <button onclick="sumarStock()" class="btn btn-spinner-detalle" type="button"
                                                 id="sum-btn">+</button>
                                         </div>
@@ -354,9 +342,55 @@
                         <div class="modal-footer">
                             <div class="d-flex justify-content-end mt-2">
                                 <!-- Botón para enviar el formulario -->
-                                <button type="submit" class="btn btn-agregar-cantidad" data-bs-dismiss="modal">
+                                <button type="submit" form="item-form" class="btn btn-agregar-cantidad"
+                                    data-bs-dismiss="modal">
                                     Agregar
                                 </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="item-modal-update"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-l">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2>Editar cantidad</h2>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <form class="row" method="post" id="item-form-update">
+                                    <div class="col col-12">
+                                        <!-- Campo oculto para asignar el id del registro al momento de modificar -->
+                                        <input type="hidden" id="idDetalle" name="idDetalle">
+                                        <input type="hidden" id="idColorStock" name="idColorStock">
+                                        <h5>Cantidad:</h5>
+                                    </div>
+                                    <div class="col col-12 d-flex justify-content-center">
+                                        <div class="input-group ">
+                                            <button onclick="restarStockUpdate()" class="btn btn-spinner-detalle"
+                                                type="button" id="res-btn">-</button>
+                                            <input onchange="validacionInputStockUpdate()"
+                                                onkeypress="return valideKey(event);" id="input-stock-update"
+                                                name="input-stock-update" type="number" min="0"
+                                                class="form-control text-center" placeholder=""
+                                                aria-label="Example text with button addon"
+                                                aria-describedby="button-addon1" value="1">
+                                            <button onclick="sumarStockUpdate()" class="btn btn-spinner-detalle" type="button"
+                                                id="sum-btn">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="col col-12 d-flex justify-content-center mt-2">
+                                        <!-- Botón para enviar el formulario -->
+                                        <button type="submit" class="btn btn-main" data-bs-dismiss="modal">
+                                            Guardar
+                                        </button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -377,6 +411,7 @@
         </footer>
         <!-- FIN DEL FOOTER -->
 
+
         <!-- INICIO MODAL SELECCIONAR CLIENTE-->
         <div class="modal modal-agregar fade" id="modal-cliente" tabindex="-1" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
@@ -392,136 +427,16 @@
                                     <div class="row">
                                         <div class="col">
                                             <div class="table-responsive mt-3 scroll" id="no-more-tables">
-                                                <table class="table table-hover" id="example1">
+                                                <table class="table table-hover" id="table-clientes">
                                                     <thead>
                                                         <tr>
-                                                            <th></th>
                                                             <th>Nombre</th>
                                                             <th>Documento</th>
                                                             <th>Estado</th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td class="table-check-cliente"></td>
-                                                            <td class="col-table text-center">Herbert
-                                                                Cornejo</td>
-                                                            <td class="text-center">00000000-0</td>
-                                                            <td class="estado-stock"><span class="estado">Activo</span>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="table-check-cliente"></td>
-                                                            <td class="col-table text-center">Herbert
-                                                                Cornejo</td>
-                                                            <td class="text-center">00000000-0</td>
-                                                            <td class="estado-stock"><span class="estado">Activo</span>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="table-check-cliente"></td>
-                                                            <td class="col-table text-center">Herbert
-                                                                Cornejo</td>
-                                                            <td class="text-center">00000000-0</td>
-                                                            <td class="estado-stock"><span class="estado">Activo</span>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="table-check-cliente"></td>
-                                                            <td class="col-table text-center">Herbert
-                                                                Cornejo</td>
-                                                            <td class="text-center">00000000-0</td>
-                                                            <td class="estado-stock"><span class="estado">Activo</span>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="table-check-cliente"></td>
-                                                            <td class="col-table text-center">Herbert
-                                                                Cornejo</td>
-                                                            <td class="text-center">00000000-0</td>
-                                                            <td class="estado-stock"><span class="estado">Activo</span>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="table-check-cliente"></td>
-                                                            <td class="col-table text-center">Herbert
-                                                                Cornejo</td>
-                                                            <td class="text-center">00000000-0</td>
-                                                            <td class="estado-stock"><span class="estado">Activo</span>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="table-check-cliente"></td>
-                                                            <td class="col-table text-center">Herbert
-                                                                Cornejo</td>
-                                                            <td class="text-center">00000000-0</td>
-                                                            <td class="estado-stock"><span class="estado">Activo</span>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="table-check-cliente"></td>
-                                                            <td class="col-table text-center">Herbert
-                                                                Cornejo</td>
-                                                            <td class="text-center">00000000-0</td>
-                                                            <td class="estado-stock"><span class="estado">Activo</span>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="table-check-cliente"></td>
-                                                            <td class="col-table text-center">Herbert
-                                                                Cornejo</td>
-                                                            <td class="text-center">00000000-0</td>
-                                                            <td class="estado-stock"><span class="estado">Activo</span>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="table-check-cliente"></td>
-                                                            <td class="col-table text-center">Herbert
-                                                                Cornejo</td>
-                                                            <td class="text-center">00000000-0</td>
-                                                            <td class="estado-stock"><span class="estado">Activo</span>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="table-check-cliente"></td>
-                                                            <td class="col-table text-center">Herbert
-                                                                Cornejo</td>
-                                                            <td class="text-center">00000000-0</td>
-                                                            <td class="estado-stock"><span class="estado">Activo</span>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="table-check-cliente"></td>
-                                                            <td class="col-table text-center">Herbert
-                                                                Cornejo</td>
-                                                            <td class="text-center">00000000-0</td>
-                                                            <td class="estado-stock"><span class="estado">Activo</span>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="table-check-cliente"></td>
-                                                            <td class="col-table text-center">Herbert
-                                                                Cornejo</td>
-                                                            <td class="text-center">00000000-0</td>
-                                                            <td class="estado-stock"><span class="estado">Activo</span>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="table-check-cliente"></td>
-                                                            <td class="col-table text-center">Herbert
-                                                                Cornejo</td>
-                                                            <td class="text-center">00000000-0</td>
-                                                            <td class="estado-stock"><span class="estado">Activo</span>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="table-check-cliente"></td>
-                                                            <td class="col-table text-center">Herbert
-                                                                Cornejo</td>
-                                                            <td class="text-center">00000000-0</td>
-                                                            <td class="estado-stock"><span class="estado">Activo</span>
-                                                            </td>
-                                                        </tr>
+                                                    <tbody id="tbody_clientes">
+
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -536,8 +451,8 @@
                         <div class="modal-footer d-flex justify-content-between">
                             <button class="btn btn-cancel btn-second" type="button" data-bs-target=""
                                 data-bs-toggle="modal" data-bs-dismiss="modal">Cancelar</button>
-                            <button class="btn btn-guardar" type="button" data-bs-target="#modal-agregar2"
-                                data-bs-toggle="modal" data-bs-dismiss="modal">Seleccionar</button>
+                            <button class="btn btn-guardar" type="button" 
+                                data-bs-dismiss="modal" onclick="setCliente()">Seleccionar</button>
                         </div>
                     </div>
                 </div>
@@ -565,6 +480,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <!-- SCRIPT PROPIO-->
         <script src="../../controllers/componentes.js"></script>
         <script src="../../controllers/private/detalle_venta.js"></script>
@@ -572,3 +488,4 @@
 </body>
 
 </html>
+

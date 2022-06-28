@@ -70,11 +70,11 @@ class ColorProducto extends Validator
 
     public function readColorProducto()
     {
-        $sql = 'SELECT  cp."idColor", "colorProducto"
-        FROM "colorProducto" as cp inner join "colorStock" as cs on cp."idColor"  = cs."idColor"
-		inner join producto as p on cs."idProducto" = p."idProducto"
-		WHERE p."idProducto" = ?
-        ORDER BY "idColor"';
+        $sql = 'SELECT  uuid_color_producto, color_producto
+                FROM color_producto inner join color_stock using(uuid_color_producto)
+                inner join producto using(uuid_producto)
+                WHERE producto.uuid_producto = ?
+                ORDER BY color_producto';
         $params = array($this->id);
         return Database::getRows($sql, $params);
     }

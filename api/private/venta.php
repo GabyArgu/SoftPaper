@@ -40,10 +40,63 @@ if (isset($_GET['action'])) {
                 if ($ventas->startOrder()) {
                     $result['status'] = 1;
                     $result['message'] = 'Venta creada correctamente';
+                    $result['dataset'] = $ventas->readVentaId();
                 } else {
                     $result['exception'] = 'Ocurrió un problema al crear la venta';
                 }
                     break;
+            case 'createDetail':
+                $_POST = $ventas->validateForm($_POST);
+                if (!$ventas->setColor($_POST['color'])) {
+                    $result['message'] = 'Color inválido';
+                } elseif (!$ventas->setId($_POST['idVenta'])) {
+                    $result['exception'] = 'Venta incorrecta';
+                } elseif ($ventas->checkProducto($_POST['id'])) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Producto ya se encuentra en la venta';
+                } elseif (!$ventas->setProducto($_POST['id'])) {
+                    $result['exception'] = 'Producto incorrecto';
+                } elseif (!$ventas->setCantidad($_POST['input-stock'])) {
+                    $result['exception'] = 'Cantidad incorrecta';
+                } elseif ($ventas->createDetail()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Producto agregado correctamente';
+                } else {
+                    $result['exception'] = 'Ocurrió un problema al agregar el producto';
+                }
+                    break;
+            case 'updateDetail':
+                $_POST = $ventas->validateForm($_POST);
+                if (!$ventas->setIdDetalle($_POST['idDetalle'])) {
+                    $result['exception'] = 'Detalle incorrecto';
+                } elseif (!$ventas->setId($_POST['idVenta'])) {
+                    $result['exception'] = 'Venta incorrecta';
+                } elseif (!$ventas->setCantidad($_POST['input-stock-update'])) {
+                    $result['exception'] = 'Cantidad incorrecta';
+                } elseif ($ventas->updateDetail()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Cantidad modificada correctamente';
+                } else {
+                    $result['exception'] = 'Ocurrió un problema al modificar la cantidad';
+                }
+                break;
+            case 'finishOrder':
+                $_POST = $ventas->validateForm($_POST);
+                if (!$ventas->setId($_POST['idVenta'])) {
+                    $result['exception'] = 'Venta incorrecta';
+                } elseif (!$ventas->setCliente($_POST['dui-cliente'])) {
+                    $result['exception'] = 'Cliente incorrecto';
+                } elseif (!$ventas->setTipoVenta($_POST['tipo-venta'])) {
+                    $result['exception'] = 'Tipo de venta incorrecta';
+                } elseif (!$ventas->setTipoFactura($_POST['tipo-factura'])) {
+                    $result['exception'] = 'Tipo de factura incorrecta';
+                } elseif ($ventas->finishOrder($_POST['tipo-factura'], $_POST['tipo-venta'])) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Venta finalizada correctamente';
+                } else {
+                    $result['exception'] = 'Ocurrió un problema al finalizar la venta';
+                }
+                break;
             case 'search':
                 if ($result['dataset'] = $ventas->searchRows($_POST['search'])) {
                     $result['status'] = 1;
@@ -69,6 +122,18 @@ if (isset($_GET['action'])) {
                     $result['exception'] = Database::getException();
                 }else {
                     $result['exception'] = 'No hay coincidencias';
+                }
+                break;
+            case 'delete':
+                if (!$productos->setId($_POST['id-delete'])) {
+                    $result['exception'] = 'Producto incorrecto';
+                } elseif (!$productos->readOne()) {
+                    $result['exception'] = 'Venta inexistente';
+                } elseif ($productos->deleteRow()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Venta cancelada correctamente';
+                } else {
+                    $result['exception'] = Database::getException();
                 }
                 break;
             default:

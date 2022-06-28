@@ -30,7 +30,6 @@ const options = {
 };
 let table;
 
-
 flatpickr('#calendar-range', {
     "mode": "range",
     dateFormat: "Y-m-d",
@@ -123,6 +122,8 @@ function crearVenta() {
                 if (response.status) {
                     // sweetAlert(1, response.message, 'carrito.html');
                     console.log(response.message);
+                    console.log(response.dataset.uuid_venta);
+                    location.href = `detalle_venta.html?uuid_venta=${response.dataset.uuid_venta}`
                 } else {
                     console.log('Todo mal master: ' + response.message)
                 }

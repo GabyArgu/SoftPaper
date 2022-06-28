@@ -95,15 +95,14 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'readProductoColor':
-                if (!$colores->setId($_POST['id-delete'])) {
-                    $result['exception'] = 'Color incorrecta';
-                } elseif (!$data = $colores->readOne()) {
-                    $result['exception'] = 'Color inexistente';
-                } elseif ($colores->deleteRow()) {
+                if (!$colores->setId($_POST['idProducto'])) {
+                    $result['exception'] = 'Producto incorrecto';
+                } elseif ($result['dataset'] = $colores->readColorProducto()) {
                     $result['status'] = 1;
-                    $result['message'] = 'Color eliminado correctamente';
-                } else {
+                } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'No hay datos registrados';
                 }
                 break;
             default:

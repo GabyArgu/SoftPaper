@@ -382,6 +382,14 @@ class Productos extends Validator
         $params = array($this->id, $this->color);
         return Database::getRow($sql, $params);
     }
+    public function readProductStockUpdate()
+    {
+        $sql = 'SELECT 	stock
+        FROM color_stock 
+		WHERE uuid_color_stock = ?';
+        $params = array($this->color);
+        return Database::getRow($sql, $params);
+    }
 
     /* DELETE */
     /* Funciones para inhabilitar un producto ya que no los borraremos de la base*/
