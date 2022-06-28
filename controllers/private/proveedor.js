@@ -5,14 +5,25 @@ const API_PROVEEDOR = SERVER + 'private/proveedor.php?action=';
 document.addEventListener('DOMContentLoaded', function () {
     // Se llama a la función que obtiene los registros para llenar la tabla. Se encuentra en el archivo components.js
     readRows(API_PROVEEDOR);
-    // Se define una variable para establecer las opciones del componente Modal.
-    let options = {
-        dismissible: false,
-        onOpenStart: function () {
-            // Se restauran los elementos del formulario.
-            document.getElementById('modal-agregarP').reset();
-        }
-    }
+    setTimeout(() => {
+        /*Inicializando y configurando tabla------------------------------------*/
+        let options = {
+            "info": false,
+        "searching": false,
+        "dom":
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-5'l><'col-sm-1'><'col-sm-6'p>>",
+        "language": {
+            "lengthMenu": "Mostrando _MENU_ registros",
+            "paginate": {
+                "next": '<i class="bi bi-arrow-right-short"></i>',
+                "previous": '<i class="bi bi-arrow-left-short"></i>'
+            }
+        },
+        "lengthMenu": [[10, 15, 20, -1], [10, 15, 20, "Todos"]]
+        };
+        let table = new DataTable('#proveedor', options);
+    }, 300);
 });
 
 // Función para llenar la tabla con los datos de los registros. Se manda a llamar en la función readRows().
@@ -57,29 +68,6 @@ function fillTable(dataset) {
     // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
     document.getElementById('tbody-rows234').innerHTML = content;
 }
-
-document.addEventListener('DOMContentLoaded', function () {
-    readRows(API_PROVEEDOR);
-    setTimeout(() => {
-        /*Inicializando y configurando tabla------------------------------------*/
-        let options = {
-            "info": false,
-        "searching": false,
-        "dom":
-            "<'row'<'col-sm-12'tr>>" +
-            "<'row'<'col-sm-5'l><'col-sm-1'><'col-sm-6'p>>",
-        "language": {
-            "lengthMenu": "Mostrando _MENU_ registros",
-            "paginate": {
-                "next": '<i class="bi bi-arrow-right-short"></i>',
-                "previous": '<i class="bi bi-arrow-left-short"></i>'
-            }
-        },
-        "lengthMenu": [[10, 15, 20, -1], [10, 15, 20, "Todos"]]
-        };
-        let table = new DataTable('#proveedor', options);
-    }, 300);
-});
 
 document.getElementById('buscar-proveedor').addEventListener('submit', function (event) {
     // Se evita recargar la página web después de enviar el formulario.

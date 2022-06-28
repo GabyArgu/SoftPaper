@@ -5,14 +5,25 @@ const API_MARCA = SERVER + 'private/marca.php?action=';
 document.addEventListener('DOMContentLoaded', function () {
     // Se llama a la función que obtiene los registros para llenar la tabla. Se encuentra en el archivo components.js
     readRows2(API_MARCA);
-    // Se define una variable para establecer las opciones del componente Modal.
-    let options = {
-        dismissible: false,
-        onOpenStart: function () {
-            // Se restauran los elementos del formulario.
-            document.getElementById('save-form').reset();
-        }
-    }
+    setTimeout(() => {
+        /*Inicializando y configurando tabla-----------------*/
+        let options = {
+            "info": false,
+        "searching": false,
+        "dom":
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-5'l><'col-sm-1'><'col-sm-6'p>>",
+        "language": {
+            "lengthMenu": "Mostrando _MENU_ registros",
+            "paginate": {
+                "next": '<i class="bi bi-arrow-right-short"></i>',
+                "previous": '<i class="bi bi-arrow-left-short"></i>'
+            }
+        },
+        "lengthMenu": [[10, 15, 20, -1], [10, 15, 20, "Todos"]]
+        };
+        let table = new DataTable('#marca', options);
+    }, 300);
 });
 
 // Función para llenar la tabla con los datos de los registros. Se manda a llamar en la función readRows().
@@ -55,29 +66,6 @@ function fillTable2(dataset) {
     // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
     document.getElementById('tbody-rows').innerHTML = content;
 }
-
-document.addEventListener('DOMContentLoaded', function () {
-    readRows(API_PROVEEDOR);
-    setTimeout(() => {
-        /*Inicializando y configurando tabla-----------------*/
-        let options = {
-            "info": false,
-        "searching": false,
-        "dom":
-            "<'row'<'col-sm-12'tr>>" +
-            "<'row'<'col-sm-5'l><'col-sm-1'><'col-sm-6'p>>",
-        "language": {
-            "lengthMenu": "Mostrando _MENU_ registros",
-            "paginate": {
-                "next": '<i class="bi bi-arrow-right-short"></i>',
-                "previous": '<i class="bi bi-arrow-left-short"></i>'
-            }
-        },
-        "lengthMenu": [[10, 15, 20, -1], [10, 15, 20, "Todos"]]
-        };
-        let table = new DataTable('#marca', options);
-    }, 300);
-});
 
 document.getElementById('buscar-marca').addEventListener('submit', function (event) {
     // Se evita recargar la página web después de enviar el formulario.
@@ -131,7 +119,7 @@ document.getElementById('agregar-marca').addEventListener('submit', function (ev
     // Se comprueba si el campo oculto del formulario esta seteado para actualizar, de lo contrario será para crear.
     (document.getElementById('id1').value) ? action = 'update' : action = 'create';
     // Se llama a la función para guardar el registro. Se encuentra en el archivo components.js
-    saveRow(API_MARCA, action, 'agregar-marca', 'modal-agregarM');
+    saveRow2(API_MARCA, action, 'agregar-marca', 'modal-agregarM');
 });
 
 function openDeleteMarca(id) {
