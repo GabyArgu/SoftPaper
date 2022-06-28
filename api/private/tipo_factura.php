@@ -1,14 +1,14 @@
 <?php
 require_once('../helpers/database.php');
 require_once('../helpers/validaciones.php');
-require_once('../models/tipo_venta.php');
+require_once('../models/tipo_factura.php');
 
 // Se comprueba si existe una acción a realizar por medio de isset, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
     // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en el script.
     session_start();
     // Se instancia la clase correspondiente.
-    $tipoVenta = new TipoVenta;
+    $tipoFactura = new TipoFactura;
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'session' => 0, 'message' => null, 'exception' => null, 'dataset' => null, 'username' => null);
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
@@ -17,7 +17,7 @@ if (isset($_GET['action'])) {
         switch ($_GET['action']) {
                 // Accion de leer toda la información------------------.
             case 'readAll':
-                if ($result['dataset'] = $tipoVenta->readAll()) {
+                if ($result['dataset'] = $tipoFactura->readAll()) {
                     $result['status'] = 1;
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
@@ -26,54 +26,54 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'readOne':
-                if (!$tipoVenta->setId($_POST['id-tv'])) {
-                    $result['exception'] = 'Tipo de venta incorrecto';
-                } elseif ($result['dataset'] = $tipoVenta->readOne()) {
+                if (!$tipoFactura->setId($_POST['id-tf'])) {
+                    $result['exception'] = 'Tipo de factura incorrecto';
+                } elseif ($result['dataset'] = $tipoFactura->readOne()) {
                     $result['status'] = 1;
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
                 } else {
-                    $result['exception'] = 'Tipo de venta inexistente';
+                    $result['exception'] = 'Tipo de factura inexistente';
                 }
                 break;
             case 'create':
                 //Especificamos los inputs por medio de su atributo name, y los capturamos con el método post
-                $_POST = $tipoVenta->validateForm($_POST);
-                if (!$tipoVenta->setTipo($_POST['nombre_tipo_venta'])) {
-                    $result['exception'] = 'Tipo de venta inválido';
-                } elseif (!$tipoVenta->setEstado(1)) {
+                $_POST = $tipoFactura->validateForm($_POST);
+                if (!$tipoFactura->setTipo($_POST['nombre_tipo_factura'])) {
+                    $result['exception'] = 'Tipo de factura inválido';
+                } elseif (!$tipoFactura->setEstado(1)) {
                     $result['exception'] = 'Estado inválido';
-                } elseif ($tipoVenta->createRow()) {
+                } elseif ($tipoFactura->createRow()) {
                     $result['status'] = 1;
-                    $result['message'] = 'Tipo de venta creado correctamente';
+                    $result['message'] = 'Tipo de factura creado correctamente';
                 } else {
                     $result['exception'] = Database::getException();
                 }
                 break;
             case 'update':
                 //Especificamos los inputs por medio de su atributo name, y los capturamos con el método post
-                $_POST = $tipoVenta->validateForm($_POST);
-                if (!$tipoVenta->setId($_POST['id-tv'])) {
-                    $result['exception'] = 'Tipo de venta incorrecto';
-                } elseif (!$tipoVenta->setTipo($_POST['nombre_tipo_venta'])) {
-                    $result['exception'] = 'Nombre de tipo de venta inválido';
-                } elseif (!$tipoVenta->setEstado($_POST['estado_tipo_venta'])) {
+                $_POST = $tipoFactura->validateForm($_POST);
+                if (!$tipoFactura->setId($_POST['id-tf'])) {
+                    $result['exception'] = 'Tipo de factura incorrecto';
+                } elseif (!$tipoFactura->setTipo($_POST['nombre_tipo_factura'])) {
+                    $result['exception'] = 'Nombre de tipo de factura inválido';
+                } elseif (!$tipoFactura->setEstado($_POST['estado_tipo_factura'])) {
                     $result['exception'] = 'Estado inválido';
-                } elseif ($tipoVenta->updateRow()) {
+                } elseif ($tipoFactura->updateRow()) {
                     $result['status'] = 1;
-                    $result['message'] = 'Tipo de venta actualizado correctamente';
+                    $result['message'] = 'Tipo de factura actualizado correctamente';
                 } else {
                     $result['exception'] = Database::getException();
                 }
                 break;
             case 'delete':
-                if (!$tipoVenta->setId($_POST['id_delete'])) {
-                    $result['exception'] = 'Tipo de venta incorrecto';
-                } elseif (!$tipoVenta->readOne()) {
-                    $result['exception'] = 'Tipo de venta inexistente';
-                } elseif ($tipoVenta->deleteRow()) {
+                if (!$tipoFactura->setId($_POST['id_delete'])) {
+                    $result['exception'] = 'Tipo de factura incorrecto';
+                } elseif (!$tipoFactura->readOne()) {
+                    $result['exception'] = 'Tipo de factura inexistente';
+                } elseif ($tipoFactura->deleteRow()) {
                     $result['status'] = 1;
-                    $result['message'] = 'Tipo de venta inhabilitado correctamente';
+                    $result['message'] = 'Tipo de factura inhabilitado correctamente';
                 } else {
                     $result['exception'] = Database::getException();
                 }
