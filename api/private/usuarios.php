@@ -18,9 +18,9 @@ if (isset($_GET['action'])) {
         switch ($_GET['action']) {
             // Accion de leer la información en base al Correo ------------------.
             case 'getUser':
-                if (isset($_SESSION['correoEmpleado'])) {
+                if (isset($_SESSION['correo_empleado'])) {
                     $result['status'] = 1;
-                    $result['username'] = $_SESSION['correoEmpleado'];
+                    $result['username'] = $_SESSION['correo_empleado'];
                     $result['avatar'] = $_SESSION['avatar'];
                 } else {
                     $result['exception'] = 'Correo de usuario indefinido';

@@ -107,12 +107,12 @@ function openUpdate(id) {
                 if (response.status) {
                     // Se inicializan los campos del formulario con los datos del registro seleccionado.
                     document.getElementById('id').value = response.dataset.uuid_empleado;
+                     fillSelect(ENDPOINT_AVATAR, 'foto', response.dataset.fotoEmpleado);
                     document.getElementById('nombres').value = response.dataset.nombres_empleado;
                     document.getElementById('apellidos').value = response.dataset.apellidos_empleado;
+                    document.getElementById('alias').value = response.dataset.alias_empleado;
                     document.getElementById('correo').value = response.dataset.correo_empleado;
-                    document.getElementById('alias').value = response.dataset.aliasEmpleado;
                     fillSelect(ENDPOINT_CARGO, 'cargo', response.dataset.uuid_cargo_empleado);
-                    fillSelect(ENDPOINT_AVATAR, 'foto', response.dataset.fotoEmpleado);
                     fillSelect(ENDPOINT_ESTADO, 'estado', response.dataset.estado_empleado);
                     document.getElementById('imagen-avatar').src = `../../resources/img/avatares/avatar${response.dataset.fotoEmpleado}.jpg`
                     document.getElementById('imagen-avatar').style.display = 'inline-block'
