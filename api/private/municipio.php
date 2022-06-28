@@ -19,7 +19,16 @@ if (isset($_GET['action'])) {
             case 'readAll':
                 if (!$municipio->setDepartamento('depC')) {
                     $result['exception'] = 'Departamento inválido';
-                } elseif ($result['dataset'] = $municipio->readAll()) {
+                } elseif ($result['dataset'] = $municipio->readAll2()) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'No hay datos registrados';
+                }
+                break;
+            case 'readAllTable':
+                if ($result['dataset'] = $municipio->readAllTable()) {
                     $result['status'] = 1;
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
@@ -36,6 +45,64 @@ if (isset($_GET['action'])) {
                     $result['exception'] = Database::getException();
                 } else {
                     $result['exception'] = 'No hay datos registrados';
+                }
+                break;
+            case 'create':
+                //Especificamos los inputs por medio de su atributo name, y los capturamos con el método post
+                $_POST = $municipio->validateForm($_POST);
+                if (!$municipio->setMunicipio($_POST['nombre_municipio'])) {
+                    $result['exception'] = 'Nombre invalido';
+                } elseif (!$municipio->setDepartamento($_POST['depa_muni'])) {
+                    $result['exception'] = 'Departamento inválido';
+                } elseif ($municipio->createRow()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Municipio creado correctamente';
+                } else {
+                    $result['exception'] = Database::getException();
+                }
+                break;
+            // Accion leer un elemento de toda la información------------------.        
+            case 'readOne':
+                if (!$municipio->setId($_POST['id'])) {
+                    $result['exception'] = 'Municipio incorrecto';
+                } elseif ($result['dataset'] = $municipio->readOne()) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'Municipio inexistente';
+                }
+                break;
+            // Accion de actualizar un elemento de toda la información------------------.        
+            case 'update':
+                //Especificamos los inputs por medio de su atributo name, y los capturamos con el método post
+                $_POST = $municipio->validateForm($_POST);
+                if (!$municipio->setId($_POST['id1'])) {
+                    $result['exception'] = 'Municipio incorrecto';
+                } elseif (!$data = $municipio->readOne()) {
+                    $result['exception'] = 'Municipio inexistente';
+                } elseif (!$municipio->setMunicipio($_POST['nombre_municipio'])) {
+                    $result['exception'] = 'Municipio inválido';
+                } elseif (!$municipio->setDepartamento($_POST['depa_muni'])) {
+                    $result['exception'] = 'Departamento inválido';
+                } elseif ($municipio->updateRow()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Municipio actualizado correctamente';
+                } else {
+                    $result['exception'] = Database::getException();
+                }
+                break;
+            // Caso para eliminar el municipio
+            case 'delete':
+                if (!$municipio->setId($_POST['id_delete'])) {
+                    $result['exception'] = 'Municipio incorrecto';
+                } elseif (!$municipio->readOne()) {
+                    $result['exception'] = 'Municipio inexistente';
+                } elseif ($municipio->deleteRow()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Muncipio eliminado correctamente';
+                } else {
+                    $result['exception'] = Database::getException();
                 }
                 break;
             default:

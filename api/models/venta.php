@@ -238,13 +238,43 @@ class Ventas extends Validator
 
     public function searchRows($value)
     {
-        $sql = 'SELECT "idPedido", c."nombresCliente", c."apellidosCliente", "fechaPedido", ep."estadoPedido", "montoTotal", tp."tipoPago"
-                FROM pedido as p inner join "cliente" as c on p."idCliente" = c."idCliente"
-                inner join "estadoPedido" as ep on p."estadoPedido" = ep."idEstadoPedido"
-                inner join "tipoPago" as tp on p."tipoPago" = tp."idTipoPago"
-                where CAST("idPedido" AS TEXT) ILIKE ?
-                order by "idPedido"';
+        $sql = 'SELECT uuid_venta, nombres_empleado, apellidos_empleado, nombre_cliente, estado_venta, tipo_venta, tipo_factura, fecha_venta, correlativo_venta, monto_total
+                from venta inner join empleado using(uuid_empleado)
+                inner join cliente using(uuid_cliente)
+                inner join estado_venta using(uuid_estado_venta)
+                inner join tipo_venta using(uuid_tipo_venta)
+                inner join tipo_factura using (uuid_tipo_factura)
+                WHERE correlativo_venta::varchar(255) ILIKE ?';
         $params = array("%$value%");
+        return Database::getRows($sql, $params);
+    }
+
+    /* Método para filtrar tabla
+    *   Parámetros: categoria = categoria por la cual filtrar, estado = estado por el cual filtrar
+    */
+    public function readRowsFilter($tipo, $estado)
+    {
+        $sql = 'SELECT uuid_venta, nombres_empleado, apellidos_empleado, nombre_cliente, estado_venta, tipo_venta, tipo_factura, fecha_venta, correlativo_venta, monto_total
+        from venta inner join empleado using(uuid_empleado)
+        inner join cliente using(uuid_cliente)
+        inner join estado_venta using(uuid_estado_venta)
+        inner join tipo_venta using(uuid_tipo_venta)
+        inner join tipo_factura using (uuid_tipo_factura)
+        WHERE uuid_tipo_venta = ? AND uuid_estado_venta = ?';
+        $params = array($tipo, $estado);
+        return Database::getRows($sql, $params);
+    }
+
+    public function readRowsFilterDate($start, $end)
+    {
+        $sql = 'SELECT uuid_venta, nombres_empleado, apellidos_empleado, nombre_cliente, estado_venta, tipo_venta, tipo_factura, fecha_venta, correlativo_venta, monto_total
+        from venta inner join empleado using(uuid_empleado)
+        inner join cliente using(uuid_cliente)
+        inner join estado_venta using(uuid_estado_venta)
+        inner join tipo_venta using(uuid_tipo_venta)
+        inner join tipo_factura using (uuid_tipo_factura)
+        WHERE fecha_venta BETWEEN ? AND ?';
+        $params = array($start, $end);
         return Database::getRows($sql, $params);
     }
 

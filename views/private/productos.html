@@ -139,19 +139,19 @@
                             <div class="row my-5 row-estadisticas">
                                 <div class="col col-3 col-e col-e-1">
                                     <span class="d-block e-texto">Total de productos</span>
-                                    <span class="d-block n-estadistica" id="stadistic-total"></span>
+                                    <span class="d-block n-estadistica" id="stadistic-total">0</span>
                                 </div>
                                 <div class="col col-3 col-e col-e-1">
                                     <span class="d-block e-texto">Productos agotados</span>
-                                    <span class="n-estadistica" id="stadistic-agotados"></span>
+                                    <span class="n-estadistica" id="stadistic-agotados">0</span>
                                 </div>
                                 <div class="col col-3 col-e col-e-1">
                                     <span class="d-block e-texto">Total existencias</span>
-                                    <span class="n-estadistica" id="stadistic-existencias"></span>
+                                    <span class="n-estadistica" id="stadistic-existencias">0</span>
                                 </div>
                                 <div class="col col-3 col-e-1">
                                     <span class="d-block e-texto">Categorías</span>
-                                    <span class="n-estadistica" id="stadistic-categorias"></span>
+                                    <span class="n-estadistica" id="stadistic-categorias">0</span>
                                 </div>
                             </div>
                             <!-- FIN ESTADÍSTICAS-->
@@ -313,7 +313,7 @@
                                         <div class="col col-6 mt-3">
                                             <label for="cmb-precio">Precio</label>
                                             <input class="form-control w-100" type="number" placeholder="" id="precio"
-                                                name="precio" pattern="\d+" required>
+                                                name="precio" pattern="\d+" step=".01" required>
                                         </div>
                                         <div class="col col-6 mt-3">
                                             <label for="">Color</label>
@@ -371,7 +371,7 @@
                                             <div class="img-container">
                                                 <input id="archivo" class="form-control p-2 my-2" type="file"
                                                     name="archivo" accept=".jpg, .png" onchange="previewFile()">
-                                                <img src="" height="80" id="img-thumbnail">
+                                                <img class="mt-2" src="" height="80" id="img-thumbnail">
                                             </div>
                                         </div>
 

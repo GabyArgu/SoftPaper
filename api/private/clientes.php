@@ -33,6 +33,15 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No hay coincidencias';
                 }
                 break;
+            case 'filter':
+                if ($result['dataset'] = $clientes->searchRows($_POST['filtroC'])) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                }else {
+                    $result['exception'] = 'No hay coincidencias';
+                }
+                break;
             case 'create':
                 //Especificamos los inputs por medio de su atributo name, y los capturamos con el método post
                 $_POST = $clientes->validateForm($_POST);
@@ -107,6 +116,9 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Municipio inválido';
                 } elseif (!$clientes->setEstado($_POST['uestado_c'])) {
                     $result['exception'] = 'Estado inválido';
+                } elseif ($clientes->updateRow()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Cliente actualizado correctamente';
                 } else {
                     $result['exception'] = Database::getException();
                 }

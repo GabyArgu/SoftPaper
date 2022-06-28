@@ -181,6 +181,15 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['exception'] = Database::getException();
                 }
+                break;
+            case 'readProductosVentas':
+                if ($result['dataset'] = $productos->readProductosVentas()) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'No hay datos registrados';
+                }
                 break;   
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';

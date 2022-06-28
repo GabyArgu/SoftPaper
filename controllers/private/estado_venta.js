@@ -1,16 +1,15 @@
 // Constante para establecer la ruta y parámetros de comunicación con la API.
-const API_MARCA = SERVER + 'private/marca.php?action=';
+const API_ESTADO_VENTA = SERVER + 'private/estado_venta.php?action=';
 
-// Método manejador de eventos que se ejecuta cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', function () {
     // Se llama a la función que obtiene los registros para llenar la tabla. Se encuentra en el archivo components.js
-    readRows2(API_MARCA);
+    readRows2(API_ESTADO_VENTA);
     // Se define una variable para establecer las opciones del componente Modal.
     let options = {
         dismissible: false,
         onOpenStart: function () {
             // Se restauran los elementos del formulario.
-            document.getElementById('save-form').reset();
+            document.getElementById('modal-agregarEV').reset();
         }
     }
 });
@@ -20,16 +19,15 @@ function fillTable2(dataset) {
     let content = '';
     // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
     dataset.map(function (row) {
+        (row.estado_estado_venta) ? icon = '<span class="estado">Activo</span>' : icon = '<span class="estado3">Inactivo</span>';
         // Se crean y concatenan las filas de la tabla con los datos de cada registro.
         content += `
         <tr>
-            <td data-title="Marca" class="col-table ">
-                <img src="${SERVER}images/marcas/${row.imagen_marca}"
-                    class="imgMP me-3" alt="">${row.nombre_marca}</td>
+            <td data-title="Proveedor" class="col-table ">${row.estado_venta}</td>
+            <td data-title="estado" class="estado-stock">${icon}</td>
             <td data-title="Acciones" class="botones-table">
                 <div class="dropdown">
-                    <button
-                        class=" btn-acciones dropdown-toggle"
+                    <button class=" btn-acciones dropdown-toggle"
                         type="button" id="dropdownMenuButton1"
                         data-bs-toggle="dropdown"
                         aria-expanded="false">
@@ -37,11 +35,11 @@ function fillTable2(dataset) {
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end animate slideIn"
                         aria-labelledby="dropdownMenuButton1">
-                        <li><a onclick="openUpdateMarca('${row.uuid_marca}')" class="dropdown-item"
+                        <li><a onclick="openUpdateEV('${row.uuid_estado_venta}')" class="dropdown-item"
                                 data-bs-toggle="modal"
-                                data-bs-target="#modal-agregarM">Editar</a>
+                                data-bs-target="#modal-agregarEV">Editar</a>
                         </li>
-                        <li><a onclick="openDeleteMarca('${row.uuid_marca}')" class="dropdown-item"
+                        <li><a onclick="openDeleteEV('${row.uuid_estado_venta}')" class="dropdown-item"
                                 data-bs-toggle="modal"
                                 data-bs-target="#modal-eliminar">Eliminar</a>
                         </li>
@@ -56,7 +54,7 @@ function fillTable2(dataset) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    readRows(API_PROVEEDOR);
+    readRows2(API_ESTADO_VENTA);
     setTimeout(() => {
         /*Inicializando y configurando tabla*/
         let options = {
@@ -74,30 +72,71 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         "lengthMenu": [[10, 15, 20, -1], [10, 15, 20, "Todos"]]
         };
-        let table = new DataTable('#marca', options);
+        let table = new DataTable('#estado_venta', options);
     }, 300);
 });
 
-document.getElementById('buscar-marca').addEventListener('submit', function (event) {
-    // Se evita recargar la página web después de enviar el formulario.
-    event.preventDefault();
-    // Se llama a la función que realiza la búsqueda. Se encuentra en el archivo components.js
-    searchRows2(API_MARCA, 'buscar-marca');
-});
+// // Método manejador de eventos que se ejecuta cuando el documento ha cargado.
+// document.addEventListener('DOMContentLoaded', function () {
+//     // Se llama a la función que obtiene los registros para llenar la tabla. Se encuentra en el archivo components.js
+//     readRows2(API_ESTADO_VENTA);
+//     setTimeout(() => {
+//         /*Inicializando y configurando tabla*/
+//         table = new DataTable('#estado_venta', options);
+//     }, 250);
+// });
 
-function openCreateMarca() {
-    // Se establece que el campo archivo sea obligatorio (input de subir imagen).
-    document.getElementById('modal-title2').innerText = 'Ingresar marca';
-    document.getElementById("nombre_marca").value = "";
+// const reInitTable = () => {
+//     table.destroy();
+//     setTimeout(() => {
+//         readRows2(API_ESTADO_VENTA);
+//     }, 100);
+
+//     setTimeout(() => {
+//         /*Inicializando y configurando tabla*/
+//         table = new DataTable('#estado_venta', options);
+//     }, 300);
+// }
+
+// $(document).ready(function () {
+//     $('#proveedor').DataTable({
+//         "info": false,
+//         "searching": false,
+//         "dom":
+//             "<'row'<'col-sm-12'tr>>" +
+//             "<'row'<'col-sm-5'l><'col-sm-1'><'col-sm-6'p>>",
+//         "language": {
+//             "lengthMenu": "Mostrando _MENU_ registros",
+//             "paginate": {
+//                 "next": '<i class="bi bi-arrow-right-short"></i>',
+//                 "previous": '<i class="bi bi-arrow-left-short"></i>'
+//             }
+//         },
+//         "lengthMenu": [[10, 15, 10, -1], [10, 15, 20, "Todos"]]
+//     });
+// });
+
+// BUSCADOR
+// document.getElementById('buscar-proveedor').addEventListener('submit', function (event) {
+//     // Se evita recargar la página web después de enviar el formulario.
+//     event.preventDefault();
+//     // Se llama a la función que realiza la búsqueda. Se encuentra en el archivo components.js
+//     searchRows(API_PROVEEDOR, 'buscar-proveedor');
+// });
+
+function openCreateEV() {
+    document.getElementById("agregar-ev").reset();
+    document.getElementById("nombre_estado_venta").value = "";
+    document.getElementById("estado_estado_venta").disabled = true;
 }
 
-function openUpdateMarca(id) {
-    document.getElementById('modal-title2').innerText = 'Actualizar marca';
+function openUpdateEV(id) {
+    document.getElementById("estado_estado_venta").disabled = false;
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData();
-    data.append('id', id);
+    data.append('id-v', id);
     // Petición para obtener los datos del registro solicitado.
-    fetch(API_MARCA + 'readOne', {
+    fetch(API_ESTADO_VENTA + 'readOne', {
         method: 'post',
         body: data
     }).then(function (request) {
@@ -108,8 +147,13 @@ function openUpdateMarca(id) {
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
                     // Se inicializan los campos del formulario con los datos del registro seleccionado.
-                    document.getElementById('id1').value = (id);
-                    document.getElementById('nombre_marca').value = response.dataset.nombre_marca;
+                    document.getElementById('id-v').value = (id);
+                    document.getElementById('nombre_estado_venta').value = response.dataset.estado_venta;
+                    if (response.dataset.estado_estado_venta) {
+                        document.getElementById('estado_estado_venta').value = 1;
+                    } else {
+                        document.getElementById('estado_estado_venta').value = 0;
+                    }
                     // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos.
                 } else {
                     sweetAlert(2, response.exception, null);
@@ -122,18 +166,19 @@ function openUpdateMarca(id) {
 }
 
 // Método manejador de eventos que se ejecuta cuando se envía el formulario de guardar.
-document.getElementById('agregar-marca').addEventListener('submit', function (event) {
+document.getElementById('agregar-ev').addEventListener('submit', function (event) {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
     // Se define una variable para establecer la acción a realizar en la API.
     let action = '';
     // Se comprueba si el campo oculto del formulario esta seteado para actualizar, de lo contrario será para crear.
-    (document.getElementById('id1').value) ? action = 'update' : action = 'create';
+    (document.getElementById('id-v').value) ? action = 'update' : action = 'create';
     // Se llama a la función para guardar el registro. Se encuentra en el archivo components.js
-    saveRow(API_MARCA, action, 'agregar-marca', 'modal-agregarM');
+    saveRow(API_ESTADO_VENTA, action, 'agregar-ev', 'modal-agregarEV');
+    reInitTable();
 });
 
-function openDeleteMarca(id) {
+function openDeleteEV(id) {
     document.getElementById('id_delete').value = (id);
 }
 
@@ -142,5 +187,5 @@ document.getElementById('delete-form').addEventListener('submit', function (even
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
     //Llamamos al método que se encuentra en la api y le pasamos la ruta de la API y el id del formulario dentro de nuestro modal eliminar
-    confirmDelete(API_MARCA, 'delete-form');
+    confirmDelete(API_ESTADO_VENTA, 'delete-form');
 });

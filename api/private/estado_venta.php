@@ -1,14 +1,14 @@
 <?php
 require_once('../helpers/database.php');
 require_once('../helpers/validaciones.php');
-require_once('../models/estado_producto.php');
+require_once('../models/estado_venta.php');
 
 // Se comprueba si existe una acción a realizar por medio de isset, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
     // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en el script.
     session_start();
     // Se instancia la clase correspondiente.
-    $estadoProducto = new EstadoProducto;
+    $estadoVenta = new EstadoVenta;
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'session' => 0, 'message' => null, 'exception' => null, 'dataset' => null, 'username' => null);
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
@@ -17,7 +17,7 @@ if (isset($_GET['action'])) {
         switch ($_GET['action']) {
                 // Accion de leer toda la información------------------.
             case 'readAll':
-                if ($result['dataset'] = $estadoProducto->readAll()) {
+                if ($result['dataset'] = $estadoVenta->readAll()) {
                     $result['status'] = 1;
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
@@ -27,9 +27,9 @@ if (isset($_GET['action'])) {
                 break;
                 // Accion leer un elemento de toda la información------------------.       
             case 'readOne':
-                if (!$estadoProducto->setId($_POST['id'])) {
+                if (!$estadoVenta->setId($_POST['id-v'])) {
                     $result['exception'] = 'Estado de producto incorrecto';
-                } elseif ($result['dataset'] = $estadoProducto->readOne()) {
+                } elseif ($result['dataset'] = $estadoVenta->readOne()) {
                     $result['status'] = 1;
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
@@ -39,12 +39,12 @@ if (isset($_GET['action'])) {
                 break;
             case 'create':
                 //Especificamos los inputs por medio de su atributo name, y los capturamos con el método post
-                $_POST = $estadoProducto->validateForm($_POST);
-                if (!$estadoProducto->setEstado($_POST['nombre_estado_producto'])) {
+                $_POST = $estadoVenta->validateForm($_POST);
+                if (!$estadoVenta->setEstado($_POST['nombre_estado_venta'])) {
                     $result['exception'] = 'Nombre de estado inválido';
-                } elseif (!$estadoProducto->setEstadoEstado(1)) {
+                } elseif (!$estadoVenta->setEstadoEstado(1)) {
                     $result['exception'] = 'Estado de estado inválido';
-                } elseif ($estadoProducto->createRow()) {
+                } elseif ($estadoVenta->createRow()) {
                     $result['status'] = 1;
                     $result['message'] = 'Estado de producto creado correctamente';
                 } else {
@@ -53,14 +53,14 @@ if (isset($_GET['action'])) {
                 break;
             case 'update':
                 //Especificamos los inputs por medio de su atributo name, y los capturamos con el método post
-                $_POST = $estadoProducto->validateForm($_POST);
-                if (!$estadoProducto->setId($_POST['id'])) {
+                $_POST = $estadoVenta->validateForm($_POST);
+                if (!$estadoVenta->setId($_POST['id-v'])) {
                     $result['exception'] = 'Estado incorrecto';
-                } elseif (!$estadoProducto->setEstado($_POST['nombre_estado_producto'])) {
+                } elseif (!$estadoVenta->setEstado($_POST['nombre_estado_venta'])) {
                     $result['exception'] = 'Nombre de estado inválido';
-                } elseif (!$estadoProducto->setEstadoEstado($_POST['estado_estado_producto'])) {
+                } elseif (!$estadoVenta->setEstadoEstado($_POST['estado_estado_venta'])) {
                     $result['exception'] = 'Estado de estado inválido';
-                } elseif ($estadoProducto->updateRow()) {
+                } elseif ($estadoVenta->updateRow()) {
                     $result['status'] = 1;
                     $result['message'] = 'Estado de producto actualizado correctamente';
                 } else {
@@ -68,11 +68,11 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'delete':
-                if (!$estadoProducto->setId($_POST['id_delete'])) {
+                if (!$estadoVenta->setId($_POST['id_delete'])) {
                     $result['exception'] = 'Estado de producto incorrecto';
-                } elseif (!$estadoProducto->readOne()) {
+                } elseif (!$estadoVenta->readOne()) {
                     $result['exception'] = 'Estado de producto inexistente';
-                } elseif ($estadoProducto->deleteRow()) {
+                } elseif ($estadoVenta->deleteRow()) {
                     $result['status'] = 1;
                     $result['message'] = 'Estado de producto inhabilitado correctamente';
                 } else {

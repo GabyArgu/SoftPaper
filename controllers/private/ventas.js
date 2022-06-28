@@ -1,4 +1,6 @@
 const API_VENTAS = SERVER + 'private/venta.php?action=';
+const ENDPOINT_TIPOVENTA = SERVER + 'private/tipo_venta.php?action=readAll';
+const ENDPOINT_ESTADO = SERVER + 'private/estado_venta.php?action=readAll';
 
 const options = {
     "info": false,
@@ -30,7 +32,39 @@ let table;
 
 
 flatpickr('#calendar-range', {
-    "mode": "range"
+    "mode": "range",
+    dateFormat: "Y-m-d",
+    onChange: function (selectedDates, dateStr, instance) {
+        if (selectedDates.length == 2) {
+            var from = selectedDates[0].getFullYear() + "-" + numeroAdosCaracteres(selectedDates[0].getMonth() + 1) + "-" + numeroAdosCaracteres(selectedDates[0].getDate());
+
+            var to = selectedDates[1].getFullYear() + "-" + numeroAdosCaracteres(selectedDates[1].getMonth() + 1) + "-" + numeroAdosCaracteres(selectedDates[1].getDate());
+
+
+            console.log(from);
+            console.log(to);
+            
+            filterDate(from, to);
+            table.destroy();
+            setTimeout(() => {
+                /*Inicializando y configurando tabla*/
+                table = new DataTable('#table-ventas', options);
+
+                /*Función para mostrar y ocultar campos de la tabla*/
+                document.getElementById('checkTabla').addEventListener('change', function () {
+                    $('#table').DataTable().columns([4, 5, 6]).visible($(this).is(':checked'))
+                });
+
+            }, 300);
+            
+
+            // interact with selected dates here
+        }
+
+
+
+
+    }
 });
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -48,6 +82,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     }, 250);
 });
+
+function numeroAdosCaracteres(fecha) {
+    if (fecha > 9) {
+        return "" + fecha;
+    } else {
+        return "0" + fecha;
+    }
+}
 
 const reInitTable = () => {
     table.destroy();
@@ -106,4 +148,108 @@ function fillTable(dataset) {
     });
     // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
     document.getElementById('tbody_rows').innerHTML = content;
+}
+
+// Método manejador de eventos que se ejecuta cuando se envía el formulario de buscar.
+document.getElementById('search-form').addEventListener('submit', function (event) {
+    // Se evita recargar la página web después de enviar el formulario.
+    event.preventDefault();
+
+    if (document.getElementById('search').value == "") {
+        sweetAlert(3, 'Cambo de búsqueda vacío', null)
+    }
+    else {
+        table.destroy();
+        // Se llama a la función que realiza la búsqueda. Se encuentra en el archivo components.js
+        searchRows(API_VENTAS, 'search-form', 'search');
+        setTimeout(() => {
+            /*Inicializando y configurando tabla*/
+            table = new DataTable('#table-ventas', options);
+
+            /*Función para mostrar y ocultar campos de la tabla*/
+            document.getElementById('checkTabla').addEventListener('change', function () {
+                $('#table').DataTable().columns([4, 5, 6]).visible($(this).is(':checked'))
+            });
+
+        }, 150);
+    }
+});
+
+//Función para refrescar la tabla manualmente al darle click al botón refresh
+document.getElementById('limpiar').addEventListener('click', function () {
+    table.destroy();
+    readRows(API_VENTAS);
+    document.getElementById('search').value = "";
+    document.getElementById('calendar-range').value = "";
+    setTimeout(() => {
+        /*Inicializando y configurando tabla*/
+        table = new DataTable('#table-ventas', options);
+
+        /*Función para mostrar y ocultar campos de la tabla*/
+        document.getElementById('checkTabla').addEventListener('change', function () {
+            $('#table').DataTable().columns([4, 5, 6]).visible($(this).is(':checked'))
+        });
+
+    }, 250);
+});
+
+document.getElementById('filter-btn').addEventListener('click', function () {
+    fillSelect(ENDPOINT_TIPOVENTA, 'filter-tipo-venta', null);
+    fillSelect(ENDPOINT_ESTADO, 'filter-estado', null);
+});
+
+document.getElementById('filter-form').addEventListener('submit', function (event) {
+    event.preventDefault();
+    let valCategoria = document.getElementById('filter-tipo-venta').value;
+    let valEstado = document.getElementById('filter-estado').value;
+    if (valCategoria == "Seleccione una opción") {
+        sweetAlert(3, 'No se han seleccionado opciones para filtrar', null)
+    }
+    else if (valEstado == "Seleccione una opción") {
+        sweetAlert(3, 'No se han seleccionado opciones para filtrar', null)
+    }
+    else {
+        table.destroy();
+        readRowsFilter(API_VENTAS, 'filter-form');
+        setTimeout(() => {
+            /*Inicializando y configurando tabla*/
+            table = new DataTable('#table-ventas', options);
+
+            /*Función para mostrar y ocultar campos de la tabla*/
+            document.getElementById('checkTabla').addEventListener('change', function () {
+                $('#table').DataTable().columns([4, 5, 6]).visible($(this).is(':checked'))
+            });
+
+        }, 300);
+    }
+});
+
+function filterDate(start, end) {
+    const data = new FormData();
+    data.append('start-date', start);
+    data.append('end-date', end);
+    fetch(API_VENTAS + 'filterDate', {
+        method: 'post',
+        body: data
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            // Se obtiene la respuesta en formato JSON.
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Se envían los datos a la función del controlador para que llene la tabla en la vista y se muestra un mensaje de éxito.
+                    fillTable(response.dataset);
+                    //sweetAlert(1, response.message, null);
+                } else {
+                    /* En caso de no encontrar coincidencias, limpiara el campo y se recargará la tabla */
+                    sweetAlert(2, response.exception, null);
+                    readRows(API_VENTAS);
+                    document.getElementById('calendar-range').value = "";
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
 }

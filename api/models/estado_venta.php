@@ -3,7 +3,7 @@
 *	Clase para manejar la tabla catalogo de colores de la base de datos de la tienda.
 *   Es una clase hija de Validator.
 */
-class EstadoProducto extends Validator
+class EstadoVenta extends Validator
 {
     // Declaración de atributos (propiedades).
     private $id = null;
@@ -65,7 +65,7 @@ class EstadoProducto extends Validator
     // Método para leer toda la información de los estados existentes-------------------------.
     public function readAll()
     {
-        $sql = 'SELECT uuid_estado_producto, estado_producto, estado_estado_producto FROM estado_producto';
+        $sql = 'SELECT uuid_estado_venta, estado_venta, estado_estado_venta FROM estado_venta';
         $params = null;
         return Database::getRows($sql, $params);
     }
@@ -73,7 +73,7 @@ class EstadoProducto extends Validator
     // Método para un dato en especifico de los estados existentes-------------------------.
     public function readOne()
     {
-        $sql = 'SELECT uuid_estado_producto, estado_producto, estado_estado_producto FROM estado_producto where uuid_estado_producto = ?';
+        $sql = 'SELECT uuid_estado_venta, estado_venta, estado_estado_venta FROM estado_venta where uuid_estado_venta = ?';
         $params = array($this->id);
         return Database::getRow($sql, $params);
     }
@@ -81,8 +81,8 @@ class EstadoProducto extends Validator
     /* CREATE */
     public function createRow()
     {
-        $sql = 'INSERT INTO estado_producto(estado_producto, estado_estado_producto)
-            VALUES (?, ?)';
+        $sql = 'INSERT INTO estado_venta(estado_venta, estado_estado_venta)
+            VALUES (?, ?);';
         $params = array($this->estado, $this->estado_estado);
         return Database::executeRow($sql, $params);
     }
@@ -90,9 +90,9 @@ class EstadoProducto extends Validator
     /* UPDATE */
     public function updateRow()
     {
-        $sql = 'UPDATE estado_producto
-        SET estado_producto=?, estado_estado_producto=?
-        WHERE uuid_estado_producto = ?;';
+        $sql = 'UPDATE estado_venta
+        SET estado_venta=?, estado_estado_venta=?
+        WHERE uuid_estado_venta = ?;';
             $params = array($this->estado,$this->estado_estado,$this->id);
         return Database::executeRow($sql, $params);
     }
@@ -103,9 +103,9 @@ class EstadoProducto extends Validator
     {
         $this->estado = 0;
         //No eliminaremos registros, solo los inhabilitaremos-------------------------
-        $sql = 'UPDATE estado_producto
-                SET estado_estado_producto = ?
-                WHERE uuid_estado_producto = ?';
+        $sql = 'UPDATE estado_venta
+                SET estado_estado_venta = ?
+                WHERE uuid_estado_venta = ?';
         $params = array($this->estado, $this->id);
         return Database::executeRow($sql, $params);
     }
