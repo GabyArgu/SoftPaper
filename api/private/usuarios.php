@@ -156,16 +156,14 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Empleado incorrecto';
                 } elseif (!$usuario->readOne()) {
                     $result['exception'] = 'Empleado inexistente';
-                } if (!$usuario->setNombres($_POST['nombre_emp'])) {
+                } if (!$usuario->setNombres($_POST['nombres'])) {
                     $result['exception'] = 'Nombres inválidos';
-                } elseif (!$usuario->setApellidos($_POST['apellido_emp'])) {
+                } elseif (!$usuario->setApellidos($_POST['apellidos'])) {
                     $result['exception'] = 'Apellidos inválidos';
-                }elseif (!$usuario->setAlias($_POST['alias_emp'])) {
+                }elseif (!$usuario->setAlias($_POST['alias'])) {
                     $result['exception'] = 'Alias inválido';
-                } elseif (!$usuario->setCargo($_POST['cargo_emp'])){
+                } elseif (!$usuario->setCorreo($_POST['correo'])){
                     $result['exception'] = 'Cargo inválido';
-                } elseif (!$usuario->setEstado($_POST['estado_emp'])) {
-                    $result['exception'] = 'Estado inválido';
                 } elseif ($usuario->updatePerfil()) {
                     $result['status'] = 1;
                     $result['message'] = 'Empleado modificado correctamente';

@@ -226,7 +226,7 @@ class Usuarios extends Validator
     /* Método para obtener un empleado y mostrarlo en modal de visualizar*/
     public function readOneShow()
     {
-        $sql = 'SELECT "uuid_empleado", "nombres_empleado", "apellidos_empleado", "correo_empleado",  "alias_empleado", a."uuid_avatar", ce."uuid_cargo_empleado", "estado_empleado"
+        $sql = 'SELECT "uuid_empleado", "nombres_empleado", "apellidos_empleado", "correo_empleado",  "alias_empleado", a."uuid_avatar", ce."uuid_cargo_empleado", ce."cargo_empleado", "estado_empleado"
         FROM empleado as e inner join "cargo_empleado" as ce on e."uuid_cargo_empleado" = ce."uuid_cargo_empleado"
 		inner join "avatar_empleado" as a on e."uuid_avatar" = a."uuid_avatar" 
         where "uuid_empleado" = ?';
@@ -272,9 +272,9 @@ class Usuarios extends Validator
     public function updatePerfil()
     {
         $sql = 'UPDATE empleado
-                SET "nombres_empleado" = ?, "apellidos_empleado" = ?, "alias_empleado" = ?, "uuid_cargo_empleado" = ?, "estado_empleado" = ?
+                SET "nombres_empleado" = ?, "apellidos_empleado" = ?, "alias_empleado" = ?
                 WHERE "uuid_empleado" = ?';
-            $params = array($this->nombres, $this->apellidos, $this->alias, $this->cargo, $this->estado, $this->id);
+            $params = array($this->nombres, $this->apellidos, $this->alias, $this->id);
         return Database::executeRow($sql, $params);
     }
 
