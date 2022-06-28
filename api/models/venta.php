@@ -94,7 +94,7 @@ class Ventas extends Validator
     public function setTipoVenta($value)
     {
         if ($this->validateString($value, 1, 38)) {
-            $this->estado = $value;
+            $this->tipo_venta = $value;
             return true;
         } else {
             return false;
@@ -104,7 +104,7 @@ class Ventas extends Validator
     public function setTipoFactura($value)
     {
         if ($this->validateString($value, 1, 38)) {
-            $this->estado = $value;
+            $this->tipo_factura = $value;
             return true;
         } else {
             return false;
@@ -124,7 +124,7 @@ class Ventas extends Validator
     public function setCorrelativo($value)
     {
         if ($this->validateNaturalNumber($value)) {
-            $this->fecha = $value;
+            $this->correlativo = $value;
             return true;
         } else {
             return false;
@@ -165,7 +165,7 @@ class Ventas extends Validator
 
     public function readAll()
     {
-        $sql = 'SELECT uuid_venta, nombres_empleado, apellidos_empleado, nombre_cliente, estado_venta, tipo_venta, tipo_factura, fecha_venta, correlativo_venta, monto_total
+        $sql = 'SELECT uuid_venta, nombres_empleado, apellidos_empleado, nombre_cliente, estado_venta, tipo_venta, tipo_factura, fecha_venta, correlativo_venta
                 from venta inner join empleado using(uuid_empleado)
                 inner join cliente using(uuid_cliente)
                 inner join estado_venta using(uuid_estado_venta)
@@ -183,7 +183,8 @@ class Ventas extends Validator
                 inner join color_stock using (uuid_color_stock)
                 inner join producto using (uuid_producto)
                 inner join color_producto using (uuid_color_producto)
-                where uuid_venta = ?';
+                where uuid_venta = ?
+                order by color_producto';
         $params = array($this->id);
         return Database::getRows($sql, $params);
     }
@@ -196,38 +197,6 @@ class Ventas extends Validator
                 where "idPedido" = ?';
         $params = array($this->id);
         return Database::getRow($sql, $params);
-    }
-
-    /* 
-    *   Método para leer los datos del pedido seleccionado en el modal visualizar------------------------.
-    */
-
-    public function readOneShow()
-    {
-        $sql = 'SELECT "idPedido", c."nombresCliente", c."apellidosCliente", c."direccionCliente", c."telefonoCliente", "fechaPedido", ep."estadoPedido", "montoTotal", tp."tipoPago"
-                from pedido as p inner join "cliente" as c using ("idCliente")
-                inner join "estadoPedido" as ep on p."estadoPedido" = ep."idEstadoPedido"
-                inner join "tipoPago" as tp on p."tipoPago" = tp."idTipoPago"
-                where "idPedido" = ?';
-        $params = array($this->id);
-        return Database::getRow($sql, $params);
-    }
-
-    /* 
-    *   Método para leer el detalle del pedido seleccionado en el modal visualizar----------------------.
-    */
-
-    public function readOneDPShow()
-    {
-        $sql = 'SELECT "idDetallePedido", pr."imagenPrincipal", pr."nombreProducto", pr."precioProducto", "cantidadProducto", pr."precioProducto" * "cantidadProducto" as "subtotal"
-                from "detallePedido" as dp inner join "pedido" as p on dp."idPedido" = p."idPedido"
-                inner join "cliente" as cl on p."idCliente" = cl."idCliente"
-                inner join "estadoPedido" as ep on p."estadoPedido" = ep."idEstadoPedido"
-                inner join "colorStock" using ("idColorStock")
-                inner join "producto" as pr using ("idProducto")
-                where p."idPedido" = ?';
-        $params = array($this->id);
-        return Database::getRows($sql, $params);
     }
 
     /*
@@ -309,69 +278,50 @@ class Ventas extends Validator
         return Database::getRows($sql, $params);
     }
 
-    /* Método para verificar si existe un pedido en proceso para seguir comprando, de lo contrario se crea uno.----------------------.*/
+    /* Método para verificar si existe un pedido en proceso para seguir comprando, de lo contrario se crea uno.*/
     public function startOrder()
-    {
-        $this->estado = 2;
-
-        $sql = 'SELECT "idPedido"
-                    FROM pedido
-                    WHERE "estadoPedido" = ? AND "idCliente" = ?';
-        $params = array($this->estado, $_SESSION['idCliente']);
-        if ($data = Database::getRow($sql, $params)) {
-            $this->id = $data['idPedido'];
+    {           
+        $sql = "INSERT INTO venta(uuid_empleado, uuid_estado_venta)
+        VALUES(?, (select uuid_estado_venta from estado_venta where estado_venta = 'En proceso')) RETURNING uuid_venta;";
+        $params = array($_SESSION['uuid_empleado']);
+        if ($this->id = Database::getRowId($sql, $params)) {
             return true;
         } else {
-            $sql = 'INSERT INTO pedido("estadoPedido", "idCliente", "tipoPago")
-                        VALUES(?, ?, ?)';
-            $params = array($this->estado, $_SESSION['idCliente'], 1);
-            // Se obtiene el ultimo valor insertado en la llave primaria de la tabla pedidos--------------.
-            if ($this->id = Database::getLastRow($sql, $params)) {
-                return true;
-            } else {
-                return false;
-            }
+            return false;
         }
+        
     }
 
-    // Método para agregar un producto al carrito de compras--------------.
+
+     public function readVentaId()
+    {
+        $sql = 'SELECT uuid_venta FROM venta WHERE uuid_venta = ?;';
+        $params = array($this->id);
+        return Database::getRow($sql, $params);
+    }
+
+    // Método para agregar un producto al carrito de compras.
     public function createDetail()
     {
         // Se realiza una subconsulta para obtener el precio del producto.
-        $sql = 'INSERT INTO "detallePedido"("idColorStock", "precioUnitario", "cantidadProducto", "idPedido")
-            VALUES((SELECT "idColorStock" FROM "colorStock" WHERE "idProducto" = ? AND "idColor" = ?), (SELECT "precioProducto" FROM producto WHERE "idProducto" = ?), ?, ?)';
+        $sql = 'INSERT INTO detalle_venta(uuid_color_stock, precio_unitario, cantidad_producto, uuid_venta)
+        VALUES((SELECT uuid_color_stock FROM color_stock WHERE uuid_producto = ? AND uuid_color_producto = ?), (SELECT precio_producto FROM producto WHERE uuid_producto = ?), ?, ?);';
         $params = array($this->producto, $this->color, $this->producto, $this->cantidad, $this->id);
         return Database::executeRow($sql, $params);
     }
 
-    // Método para agregar un producto al carrito de compras.
-    public function createDetailInicio()
-    {
-        // Se realiza una subconsulta para obtener el precio del producto.
-        $sql = 'INSERT INTO "detallePedido"("idColorStock", "precioUnitario", "cantidadProducto", "idPedido")
-            VALUES(?, (SELECT "precioProducto" FROM producto INNER JOIN "colorStock" USING("idProducto") WHERE "idColorStock" = ?), ?, ?)';
-        $params = array($this->color, $this->color, 1, $this->id);
-        return Database::executeRow($sql, $params);
-    }
 
 
     public function checkProducto($idProducto)
     {
         $sql = 'SELECT COUNT(*) 
-            FROM "detallePedido" INNER JOIN "colorStock" USING ("idColorStock") INNER JOIN pedido USING ("idPedido")
-            WHERE "colorStock"."idProducto" = ? AND "colorStock"."idColor" = ? AND "estadoPedido" = 2 AND "idCliente" = ?';
-        $params = array($idProducto, $this->color, $_SESSION['idCliente']);
+        FROM detalle_venta INNER JOIN color_stock USING (uuid_color_stock) INNER JOIN venta USING (uuid_venta)
+        WHERE color_stock.uuid_producto = ? AND color_stock.uuid_color_producto = ? AND uuid_venta = ?;';
+        $params = array($idProducto, $this->color, $this->id);
         return Database::registerExist($sql, $params);
     }
 
-    public function checkProductoInicio()
-    {
-        $sql = 'SELECT COUNT(*) 
-            FROM "detallePedido" INNER JOIN "colorStock" USING ("idColorStock") INNER JOIN pedido USING ("idPedido")
-            WHERE "colorStock"."idColorStock" = ? AND "estadoPedido" = 2 AND "idCliente" = ?';
-        $params = array($this->color, $_SESSION['idCliente']);
-        return Database::registerExist($sql, $params);
-    }
+
 
     public function readProductStock()
     {
@@ -383,36 +333,68 @@ class Ventas extends Validator
     }
 
     // Método para finalizar un pedido por parte del cliente.
-    public function finishOrder()
+    public function finishOrder($tipoFactura, $tipoVenta)
     {
-        // Se establece la zona horaria local para obtener la fecha del servidor.
-        date_default_timezone_set('America/El_Salvador');
-        $date = date('Y-m-d');
-        $this->estado = 1;
-        $sql = 'UPDATE pedido
-                    SET "estadoPedido" = ?, "fechaPedido" = ?, "montoTotal" = ?
-                    WHERE "idPedido" = ?';
-        $params = array($this->estado, $date, $this->total, $_SESSION['idPedido']);
-        return Database::executeRow($sql, $params);
-    }
+        //Credito
+        if(strval($tipoFactura) == '44a24a3c-06c1-42c1-a0d8-2c229cba197e'){
+            if($tipoVenta == '6f2d2f0a-6134-4825-a9ff-978d156d5c49'){
+                $sql = "UPDATE venta
+                SET uuid_cliente = (SELECT uuid_cliente FROM cliente WHERE dui_cliente = ?), uuid_tipo_venta = ?, uuid_tipo_factura = ?, fecha_venta = CURRENT_DATE, correlativo_venta = (select nextval('seq_correlativo_credito')), uuid_estado_venta = 'f486f9a3-2083-4117-9342-804d5a3c3328'
+                WHERE uuid_venta = ?";
+                $params = array($this->cliente, $this->tipo_venta, $this->tipo_factura, $this->id);
+                return Database::executeRow($sql, $params);
+            } else {
+                $sql = "UPDATE venta
+                SET uuid_cliente = (SELECT uuid_cliente FROM cliente WHERE dui_cliente = ?), uuid_tipo_venta = ?, uuid_tipo_factura = ?, fecha_venta = CURRENT_DATE, correlativo_venta = (select nextval('seq_correlativo_credito')), uuid_estado_venta = 'afa22507-c0a0-42e0-b6ad-7b8da3ffddcb'
+                WHERE uuid_venta = ?";
+                $params = array($this->cliente, $this->tipo_venta, $this->tipo_factura, $this->id);
+                return Database::executeRow($sql, $params);
+            }
+            
+        //Consumidor
+        } elseif(strval($tipoFactura) == 'f53a9f03-d43b-41fb-8e00-cdc9dfd81e26') {
+            if($tipoVenta == '6f2d2f0a-6134-4825-a9ff-978d156d5c49'){
+                $sql = "UPDATE venta
+                SET uuid_cliente = (SELECT uuid_cliente FROM cliente WHERE dui_cliente = ?), uuid_tipo_venta = ?, uuid_tipo_factura = ?, fecha_venta = CURRENT_DATE, correlativo_venta = (select nextval('seq_correlativo_consumidor')), uuid_estado_venta = 'f486f9a3-2083-4117-9342-804d5a3c3328'
+                WHERE uuid_venta = ?";
+                $params = array($this->cliente, $this->tipo_venta, $this->tipo_factura, $this->id);
+                return Database::executeRow($sql, $params);
+            } else {
+                $sql = "UPDATE venta
+                SET uuid_cliente = (SELECT uuid_cliente FROM cliente WHERE dui_cliente = ?), uuid_tipo_venta = ?, uuid_tipo_factura = ?, fecha_venta = CURRENT_DATE, correlativo_venta = (select nextval('seq_correlativo_consumidor')), uuid_estado_venta = 'afa22507-c0a0-42e0-b6ad-7b8da3ffddcb'
+                WHERE uuid_venta = ?";
+                $params = array($this->cliente, $this->tipo_venta, $this->tipo_factura, $this->id);
+                return Database::executeRow($sql, $params);
+            }
+            
 
-    public function newStockProduct()
-    {
-        // Se establece la zona horaria local para obtener la fecha del servidor.
-        $sql = 'UPDATE pedido
-                    SET "estadoPedido" = ?, "fechaPedido" = ?, "montoTotal" = ?
-                    WHERE "idPedido" = ?';
-        $params = array($this->estado, $this->total, $_SESSION['idPedido']);
-        return Database::executeRow($sql, $params);
+        //Ticket
+        } else {
+            if($tipoVenta == '6f2d2f0a-6134-4825-a9ff-978d156d5c49'){
+                $sql = "UPDATE venta
+                SET uuid_cliente = (SELECT uuid_cliente FROM cliente WHERE dui_cliente = ?), uuid_tipo_venta = ?, uuid_tipo_factura = ?, fecha_venta = CURRENT_DATE, correlativo_venta = (select nextval('seq_correlativo_ticket')), uuid_estado_venta = 'f486f9a3-2083-4117-9342-804d5a3c3328'
+                WHERE uuid_venta = ?";
+                $params = array($this->cliente, $this->tipo_venta, $this->tipo_factura, $this->id);
+                return Database::executeRow($sql, $params);
+            } else {
+                $sql = "UPDATE venta
+                SET uuid_cliente = (SELECT uuid_cliente FROM cliente WHERE dui_cliente = ?), uuid_tipo_venta = ?, uuid_tipo_factura = ?, fecha_venta = CURRENT_DATE, correlativo_venta = (select nextval('seq_correlativo_ticket')), uuid_estado_venta = 'afa22507-c0a0-42e0-b6ad-7b8da3ffddcb'
+                WHERE uuid_venta = ?";
+                $params = array($this->cliente, $this->tipo_venta, $this->tipo_factura, $this->id);
+                return Database::executeRow($sql, $params);
+            }
+            
+        }
+        
     }
 
     // Método para actualizar la cantidad de un producto agregado al carrito de compras.
     public function updateDetail()
     {
-        $sql = 'UPDATE "detallePedido"
-                    SET "cantidadProducto" = ?
-                    WHERE "idDetallePedido" = ? AND "idPedido" = ?';
-        $params = array($this->cantidad, $this->idDetalle, $_SESSION['idPedido']);
+        $sql = 'UPDATE detalle_venta
+            SET cantidad_producto = ?
+            WHERE uuid_detalle_venta = ? AND uuid_venta = ?;';
+        $params = array($this->cantidad, $this->id_detalle, $this->id);
         return Database::executeRow($sql, $params);
     }
 
@@ -422,6 +404,16 @@ class Ventas extends Validator
         $sql = 'DELETE FROM "detallePedido"
                     WHERE "idDetallePedido" = ? AND "idPedido" = ?';
         $params = array($this->idDetalle, $_SESSION['idPedido']);
+        return Database::executeRow($sql, $params);
+    }
+
+    // Método para cancelar la venta.
+    public function deleteRow()
+    {
+        $sql = "UPDATE venta
+                SET  uuid_estado_venta = '2b735ff0-837e-4ad2-be13-6a6039640e3c'
+                WHERE uuid_venta = ?";
+        $params = array($this->id);
         return Database::executeRow($sql, $params);
     }
 }

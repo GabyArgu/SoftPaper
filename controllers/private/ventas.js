@@ -30,7 +30,6 @@ const options = {
 };
 let table;
 
-//Rango de el calendario-----------------------.
 flatpickr('#calendar-range', {
     "mode": "range",
     dateFormat: "Y-m-d",
@@ -50,7 +49,7 @@ flatpickr('#calendar-range', {
                 /*Inicializando y configurando tabla*/
                 table = new DataTable('#table-ventas', options);
 
-                /*Función para mostrar y ocultar campos de la tabla-------------*/
+                /*Función para mostrar y ocultar campos de la tabla*/
                 document.getElementById('checkTabla').addEventListener('change', function () {
                     $('#table').DataTable().columns([4, 5, 6]).visible($(this).is(':checked'))
                 });
@@ -60,6 +59,9 @@ flatpickr('#calendar-range', {
 
             // interact with selected dates here
         }
+
+
+
 
     }
 });
@@ -72,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function () {
         /*Inicializando y configurando tabla*/
         table = new DataTable('#table-ventas', options);
 
-        /*Función para mostrar y ocultar campos de la tabla-------------------*/
+        /*Función para mostrar y ocultar campos de la tabla*/
         document.getElementById('checkTabla').addEventListener('change', function () {
             $('#table-ventas').DataTable().columns([2, 6]).visible($(this).is(':checked'))
         });
@@ -80,8 +82,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 250);
 });
 
-
-//Metodo para numeros a caracteres de fecha-------------.
 function numeroAdosCaracteres(fecha) {
     if (fecha > 9) {
         return "" + fecha;
@@ -108,6 +108,32 @@ const reInitTable = () => {
     }, 300);
 }
 
+// Método manejador de eventos que se ejecuta cuando se envía el formulario de agregar un producto al carrito.
+function crearVenta() {
+    // Petición para agregar un producto al pedido.
+    fetch(API_VENTAS + 'startOrder', {
+        method: 'get'
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            // Se obtiene la respuesta en formato JSON.
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se constata si el cliente ha iniciado sesión.
+                if (response.status) {
+                    // sweetAlert(1, response.message, 'carrito.html');
+                    console.log(response.message);
+                    console.log(response.dataset.uuid_venta);
+                    location.href = `detalle_venta.html?uuid_venta=${response.dataset.uuid_venta}`
+                } else {
+                    console.log('Todo mal master: ' + response.message)
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    })
+}
+
 function fillTable(dataset) {
     let content = '';
     // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
@@ -120,7 +146,7 @@ function fillTable(dataset) {
                 <td class="tipo">${row.tipo_factura}</td>
                 <td class="cliente">${row.nombre_cliente}</td>
                 <td class="fecha">${row.fecha_venta}</td>
-                <td class="monto">$${row.monto_total}</td>
+                <td class="monto">$2</td>
                 <td class="empleado">${row.nombres_empleado} ${row.apellidos_empleado}</td>
                 <td class="estado-stock"><span class="estado">${row.estado_venta}</span></td>
                 <td class="botones-table">

@@ -190,6 +190,20 @@ class Cliente extends Validator
         return Database::getRows($sql, $params);
     }
 
+    public function readClientesVenta()
+    {
+        $sql = 'SELECT "uuid_cliente", "nombre_cliente", "direccion_cliente", m."nombre_municipio", "nrc_cliente", "nit_cliente", "dui_cliente", "telefono_cliente", g."giro_cliente", "estado_cliente"
+        FROM cliente as cc inner join "municipio" as m on cc."uuid_municipio" = m."uuid_municipio"
+		inner join "giro_cliente" as g on cc."uuid_giro_cliente" = g."uuid_giro_cliente" 
+		WHERE estado_cliente = true
+        ORDER BY "uuid_cliente";
+        ';
+        
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
+
+
     // Método para un dato en especifico de los clientes existentes-------------------------.
     public function readOne()
     {

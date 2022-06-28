@@ -1,5 +1,6 @@
 <?php
 /*
+
 *	Clase para manejar la tabla tipo factura de la base de datos de la tienda.
 *   Es una clase hija de Validator.
 */
@@ -9,6 +10,7 @@ class TipoFactura extends Validator
     private $id = null;
     private $tipo = null;
     private $estado = null;
+
 
     /*
     *   Métodos para validar y asignar valores de los atributos.
@@ -22,6 +24,8 @@ class TipoFactura extends Validator
             return false;
         }
     }
+
+
 
     public function setTipo($value)
     {
@@ -42,6 +46,7 @@ class TipoFactura extends Validator
             return false;
         }
     }
+
     /*
     *   Métodos para obtener valores de los atributos.
     */
