@@ -32,7 +32,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 const reInitTable = () => {
     table.destroy();
-    loadStadictics();
     setTimeout(() => {
         readRows(API_SUBCATEGORIA);
     }, 100);

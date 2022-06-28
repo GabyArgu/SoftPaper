@@ -108,7 +108,7 @@ if (isset($_GET['action'])) {
                     }
                 } elseif (!$subcategorias->setImagen($_FILES['archivo'])) {
                     $result['exception'] = $subcategorias->getFileError();
-                } elseif ($subcategorias->updateRow($data['imagenSubcategoria'])) {
+                } elseif ($subcategorias->updateRow($data['imagen_subcategoria'])) {
                     $result['status'] = 1;
                     if ($subcategorias->saveFile($_FILES['archivo'], $subcategorias->getRuta(), $subcategorias->getImagen())) {
                         $result['message'] = 'Subcategoría actualizada correctamente';
