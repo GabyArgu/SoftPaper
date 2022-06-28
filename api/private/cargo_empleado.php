@@ -1,11 +1,10 @@
-
-
 <?php
 require_once('../helpers/database.php');
 require_once('../helpers/validaciones.php');
 require_once('../models/cargo_empleado.php');
 
-// Se comprueba si existe una acción a realizar por medio de isset, de lo contrario se finaliza el script con un mensaje de error.
+
+// Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
     // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en el script.
     session_start();
@@ -30,6 +29,7 @@ if (isset($_GET['action'])) {
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }
+
     } else {
         print(json_encode('Acceso denegado'));
     }
@@ -40,3 +40,4 @@ if (isset($_GET['action'])) {
 } else {
     print(json_encode('Recurso no disponible'));
 }
+

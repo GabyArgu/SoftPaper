@@ -1,6 +1,7 @@
 <?php
 /*
 
+
 *	Clase para manejar la tabla tipo factura de la base de datos de la tienda.
 *   Es una clase hija de Validator.
 */
@@ -9,8 +10,8 @@ class CargoEmpleado extends Validator
     // Declaración de atributos (propiedades).
     private $id = null;
     private $cargo = null;
-    private $estado = null;
 
+    private $estado = null;
 
     /*
     *   Métodos para validar y asignar valores de los atributos.
@@ -24,6 +25,7 @@ class CargoEmpleado extends Validator
             return false;
         }
     }
+
 
 
 
@@ -56,9 +58,11 @@ class CargoEmpleado extends Validator
     }
 
     public function getCargo()
+
     {
         return $this->cargo;
     }
+
 
     public function getEstado()
     {

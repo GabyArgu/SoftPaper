@@ -79,7 +79,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
             default:
-                $result['exception'] = 'Acción no disponible dentro de la sesión';
+                $result['exception'] = 'Acción no disponible fuera de la sesión';
         }
     } else {
         print(json_encode('Acceso denegado'));
