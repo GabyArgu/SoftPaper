@@ -18,9 +18,9 @@ if (isset($_GET['action'])) {
         switch ($_GET['action']) {
             // Accion de leer la información en base al Correo ------------------.
             case 'getUser':
-                if (isset($_SESSION['correoEmpleado'])) {
+                if (isset($_SESSION['correo_empleado'])) {
                     $result['status'] = 1;
-                    $result['username'] = $_SESSION['correoEmpleado'];
+                    $result['username'] = $_SESSION['correo_empleado'];
                     $result['avatar'] = $_SESSION['avatar'];
                 } else {
                     $result['exception'] = 'Correo de usuario indefinido';
@@ -63,18 +63,14 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Nombres inválidos';
                 } elseif (!$usuario->setApellidos($_POST['apellidos'])) {
                     $result['exception'] = 'Apellidos inválidos';
-                } elseif (!$usuario->setCargo($_POST['cargo'])){
+                } elseif (!$usuario->setCargo('58a8b7aa-0e40-44e4-9409-0eab6bd23255')){
                     $result['exception'] = 'Cargo inválido';
                 } elseif (!$usuario->setCorreo($_POST['correo'])) {
                     $result['exception'] = 'Correo inválido';
-                } elseif (!$usuario->setDireccion($_POST['direccion'])) {
-                    $result['exception'] = 'Direccion inválida';
-                } elseif (!$usuario->setTelefono($_POST['telefono'])) {
-                    $result['exception'] = 'Teléfono inválido';
-                }elseif (!$usuario->setFoto($_POST['foto'])) {
-                    $result['exception'] = 'Foto inválida';
-                }elseif (!$usuario->setEstado(1)) {
+                }elseif (!$usuario->setEstado(true)) {
                     $result['exception'] = 'Estado inválido';
+                }elseif (!$usuario->setFoto('7875dbce-e16c-400f-94f0-acb86a329fb5')) {
+                    $result['exception'] = 'Avatar inválido';
                 }elseif (!$usuario->setAlias($_POST['alias'])) {
                     $result['exception'] = 'Alias inválido';
                 } elseif ($_POST['clave'] != $_POST['confirmar']) {
@@ -127,26 +123,24 @@ if (isset($_GET['action'])) {
             case 'update':
                 //Especificamos los inputs por medio de su atributo name, y los capturamos con el método post
                 $_POST = $usuario->validateForm($_POST);
-                if (!$usuario->setId($_POST['id'])) {
-                    $result['exception'] = 'Empleado incorrecto';
-                } elseif (!$usuario->readOne()) {
-                    $result['exception'] = 'Empleado inexistente';
-                } if (!$usuario->setNombres($_POST['nombres'])) {
+                if (!$usuario->setNombres($_POST['nombres'])) {
                     $result['exception'] = 'Nombres inválidos';
                 } elseif (!$usuario->setApellidos($_POST['apellidos'])) {
                     $result['exception'] = 'Apellidos inválidos';
-                } elseif (!$usuario->setCargo($_POST['cargo'])){
+                } elseif (!$usuario->setCargo('58a8b7aa-0e40-44e4-9409-0eab6bd23255')){
                     $result['exception'] = 'Cargo inválido';
                 } elseif (!$usuario->setCorreo($_POST['correo'])) {
                     $result['exception'] = 'Correo inválido';
-                } elseif (!$usuario->setDireccion($_POST['direccion'])) {
-                    $result['exception'] = 'Direccion inválida';
-                } elseif (!$usuario->setTelefono($_POST['telefono'])) {
-                    $result['exception'] = 'Teléfono inválido';
-                }elseif (!$usuario->setFoto($_POST['foto'])) {
-                    $result['exception'] = 'Foto inválida';
-                }elseif (!$usuario->setEstado($_POST['estado'])) {
+                }elseif (!$usuario->setEstado(true)) {
                     $result['exception'] = 'Estado inválido';
+                }elseif (!$usuario->setFoto('7875dbce-e16c-400f-94f0-acb86a329fb5')) {
+                    $result['exception'] = 'Avatar inválido';
+                }elseif (!$usuario->setAlias($_POST['alias'])) {
+                    $result['exception'] = 'Alias inválido';
+                } elseif ($_POST['clave'] != $_POST['confirmar']) {
+                    $result['exception'] = 'Claves diferentes';
+                } elseif (!$usuario->setClave($_POST['clave'])) {
+                    $result['exception'] = $usuario->getPasswordError();
                 }elseif ($usuario->updateRow()) {
                     $result['status'] = 1;
                     $result['message'] = 'Empleado modificado correctamente';

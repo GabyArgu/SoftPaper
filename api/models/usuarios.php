@@ -216,7 +216,7 @@ class Usuarios extends Validator
     // Método para un dato en especifico de los usuarios registrados-------------------------.
     public function readOne()
     {
-        $sql = 'SELECT "uuid_empleado", "nombres_empleado", "apellidos_empleado", "correo_empleado", "alias_empleado", "uuid_avatar", "uuid_cargo_empleado", "estado_empleado"
+        $sql = 'SELECT "uuid_empleado", "nombres_empleado", "apellidos_empleado", "correo_empleado", "alias_empleado", "uuid_avatar", "estado_empleado", "uuid_cargo_empleado"
         FROM empleado
         where "uuid_empleado" = ?';
         $params = array($this->id);
@@ -262,9 +262,9 @@ class Usuarios extends Validator
     public function updateRow()
     {
         $sql = 'UPDATE empleado
-                SET "nombresEmpleado" = ?, "apellidosEmpleado" = ?, "correoEmpleado" = ?, "direccionEmpleado" = ?, "telefonoEmpleado" = ?, "cargoEmpleado" = ?, "estadoEmpleado" = ?, "fotoEmpleado" = ?
-                WHERE "idEmpleado" = ?';
-            $params = array($this->nombres, $this->apellidos, $this->correo, $this->direccion, $this->telefono, $this->cargo, $this->estado, $this->foto, $this->id);
+                SET "nombres_empleado" = ?, "apellidos_empleado" = ?, "correo_empleado" = ?, "alias_empleado" = ?, "contrasena_empleado" = ?, "uuid_avatar" = ?, "uuid_cargo_empleado" = ?, "estado_empleado" = ?
+                WHERE "uuid_empleado" = ?';
+            $params = array($this->nombres, $this->apellidos, $this->correo, $this->alias, $this->clave, $this->foto, $this->cargo, $this->estado, $this->id);
         return Database::executeRow($sql, $params);
     }
 
@@ -283,7 +283,7 @@ class Usuarios extends Validator
     public function deleteRow()
     {
         //No eliminaremos registros, solo los inhabilitaremos-------------------------.
-        $sql = 'UPDATE empleado SET "estadoEmpleado" = 3 WHERE "idEmpleado" = ?'; //Delete from empleado where "idEmpleado" = ? -------------------------.
+        $sql = 'UPDATE empleado SET "estado_empleado" = 3 WHERE "uuid_empleado" = ?'; //Delete from empleado where "idEmpleado" = ? -------------------------.
         $params = array($this->id);
         return Database::executeRow($sql, $params);
     }
