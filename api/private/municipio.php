@@ -92,6 +92,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = Database::getException();
                 }
                 break;
+            // Caso para eliminar el municipio
             case 'delete':
                 if (!$municipio->setId($_POST['id_delete'])) {
                     $result['exception'] = 'Municipio incorrecto';
