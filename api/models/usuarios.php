@@ -268,7 +268,7 @@ class Usuarios extends Validator
         return Database::executeRow($sql, $params);
     }
 
-    // Update perfil
+    // Update perfil del empleado
     public function updatePerfil()
     {
         $sql = 'UPDATE empleado
