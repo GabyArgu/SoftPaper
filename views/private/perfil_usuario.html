@@ -130,7 +130,7 @@
                                 <ul class="dropdown-menu slideInNav1 slideInNav  animate"
                                     aria-labelledby="navbarDropdown">
                                     <li><a class="dropdown-item" href="perfil_usuario.html">Ir a perfil</a></li>
-                                    <li><a class="dropdown-item" href="index.html">Cerrar sesión</a></li>
+                                    <li><a class="dropdown-item" onclick="logOut()">Cerrar Sesión</a></li>
                                 </ul>
 
                             </li>
@@ -165,16 +165,16 @@
                                     <div class="row">
                                         <div class="col d-flex align-items-center justify-content-start">
                                             <img class="d-blockimg" src="../../resources/img/perfil/user.png" alt="">
-                                            <div class="e-texto ms-3">Empleado</div>
+                                            <div class="e-texto ms-3"><span id="cargo-empleado"></div>
                                         </div>
                                         <div class="col d-flex align-items-center justify-content-start">
-                                            <img class="d-blockimg" src="../../resources/img/perfil/information.png"
-                                                alt="">
-                                            <div class="e-texto ms-3">Activo</div>
+
+                                            <img class="d-blockimg" src="../../resources/img/perfil/information.png" alt="">
+                                            <div class="e-texto ms-3"><span id="estado-empleado"></div>
                                         </div>
                                         <div class="col d-flex align-items-center justify-content-start">
                                             <img class="d-blockimg" src="../../resources/img/perfil/email.png" alt="">
-                                            <div class="e-texto ms-3">Carla@gmail</div>
+                                            <div class="e-texto ms-3"><span id="correo-empleado"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -188,7 +188,8 @@
 
                                         </div>
                                         <div class="col d-flex justify-content-end align-items-center">
-                                            <a class="btn-editar btn-main" href="editar_perfil.html">Editar Perfil</a>
+                                            <a onclick="openUpdate()" class="btn-editar btn-main" data-bs-toggle="modal"
+                                            data-bs-target="#staticBackdrop" href="#staticBackdrop">Editar Perfil</a>  
                                         </div>
 
                                     </div>
@@ -202,21 +203,20 @@
                                         <div class="sept">
                                             <tr>
                                                 <td class=" move text1">Nombre</td>
-                                                <td class="text2 ">Carla</td>
+                                                <td class="text2 "></b><span id="nombres-empleado"></span></td>
                                                 <td class="text1">Cargo</td>
-                                                <td class="text2">Empleada</td>
+                                                <td class="text2"><span id="cargo-empleado"></span></td>
                                             </tr>
                                             <tr>
                                                 <td class=" move text1">Apellido</td>
-                                                <td class="text2 ">Santana</td>
+                                                <td class="text2 "><span id="apellidos-empleado"></td>
                                                 <td class="text1">Estado</td>
-                                                <td class="text2">Activo</td>
+                                                <td class="text2"><span id="estado-empleado"></td>
                                             </tr>
                                             <tr>
                                                 <td class=" move text1">Alias</td>
-                                                <td class="text2">Carlita</td>
-                                                <td class="text1">Contraseña</td>
-                                                <td class="text2 ">********</td>
+                                                <td class="text2"><span id="alias-empleado"></td>
+                                                
                                             </tr>
                                         </div>
                                     </table>
@@ -227,7 +227,90 @@
                         </div>
                     </div>
                     <!-- INFORMACION USUARIO PRINCIPAL FIN-->
-
+ <!-- Modal editar cuenta -->
+ <div class="modal modal-agregar modal-agregar-cliente fade" id="staticBackdrop" data-bs-backdrop="static"
+ data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+ <div class="modal-dialog modal-dialog-centered modal-xl">
+     <div class="modal-content">
+         <div class="modal-header">
+             <h5 class="modal-title" id="staticBackdropLabel">Editar información</h5>
+             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+         </div>
+         <div class="modal-body">
+             <div class="container">
+                 <div class="row agregar-content">
+                     <form class="row justify-content-center" id="save-form">
+                         <div class="col-10 mt-4 d-flex justify-content-around">
+                             <div class="input-group LlenarIG">
+                                 <div class="input-group-prepend">
+                                 </div>
+                                 <input type="text"  class="form-control Lcorreo" id="nombres"
+                                     name="nombres" placeholder="Escribe tus nombres"
+                                     aria-describedby="inputGroupPrepend2"  pattern="^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$" required >
+                             </div>
+                             <div class="input-group">
+                                 <div class="input-group-prepend">
+                                 </div>
+                                 <input type="text" class="form-control Lcorreo" id="apellidos"
+                                     name="apellidos" placeholder="Escribe tus apellidos"
+                                     aria-describedby="inputGroupPrepend2" pattern="^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$" required>
+                             </div>
+                         </div>
+                         <div class="col-10 mt-4 d-flex justify-content-around">
+                             <div class="input-group LlenarIG">
+                                 <div class="input-group-prepend">
+                                 </div>
+                                 <input type="text" class="form-control Lcorreo" id="alias" name="alias"
+                                     placeholder="Nombre de usuario"
+                                     aria-describedby="inputGroupPrepend2" required>
+                             </div>
+                             <div class="input-group">
+                                 <div class="input-group-prepend">
+                                 </div>
+                                 <input type="text" class="form-control Lcorreo" id="cargo" name="cargo"
+                                     placeholder="Cargo de usuario"
+                                     aria-describedby="inputGroupPrepend2" required>
+                             </div>
+                         </div>
+                         <div class="col-10 mt-4 d-flex justify-content-around">
+                             <div class="input-group LlenarIG">
+                                 <div class="input-group-prepend">
+                                 </div>
+                                 <input type="text" class="form-control Lcorreo" id="estado" name="estado"
+                                     placeholder="Estado de usuario"
+                                     aria-describedby="inputGroupPrepend2" required>
+                             </div>
+                             <div class="input-group">
+                                 <div class="input-group-prepend">
+                                 </div>
+                                 <input type="email" class="form-control Lcorreo" id="correo"
+                                     name="correo" placeholder="Escribe tu correo"
+                                     aria-describedby="inputGroupPrepend2" required>
+                             </div>
+                         </div>
+                         <div class="col-10 mt-4 d-flex justify-content-center">
+                                 <div class="row">
+                                     <div class="col col-10">
+                                         <select class="form-select form-controlcustom-form-select h-100 w-100"
+                                             aria-label="Default select example" id="foto" name="foto"
+                                             onchange="changeAvatar()">
+                                         </select>
+                                     </div>
+                                     <div class="col col-2" >
+                                         <img id="imagen-avatar" class="avatar-cliente-modal" src="" alt="">
+                                     </div>
+                                 </div>
+                         </div>
+                     </form>
+                 </div>
+             </div>
+         </div>
+         <div class="modal-footer d-flex justify-content-end" >
+             <button class="btn-editar1 btn-main ms-3" type="submit" form="save-form">Guardar</i></button>
+         </div>
+     </div>
+ </div>
+</div>
                     <!-- DETALLES DEL PERFIL-->
 
 
