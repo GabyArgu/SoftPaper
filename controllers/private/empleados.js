@@ -33,29 +33,7 @@ $(document).ready(function () {
   
 });
 
-const reInitTable = () => {
-    table.destroy();
-    setTimeout(() => {
-        readRows(API_PRODUCTOS);
-    }, 100);
 
-    setTimeout(() => {
-        /*Inicializando y configurando tabla*/
-        table = new DataTable('#table', options);
-
-        /*Función para mostrar y ocultar campos de la tabla*/
-        document.getElementById('checkTabla').addEventListener('change', function () {
-            $('#table').DataTable().columns([4, 5, 6]).visible($(this).is(':checked'))
-        });
-
-    }, 300);
-}
-
-//Función para refrescar la tabla manualmente al darle click al botón refresh
-document.getElementById('refresh').addEventListener('click', function () {
-    readRows(API_USUARIOS);
-    document.getElementById('search').value = "";
-});
 
 
 //Función que se ejecuta cada vez que apretamos una tecla dentro del input #search, sirve para buscador en tiempo real
@@ -77,15 +55,14 @@ function openCreate() {
     //Limpiamos los campos del modal
     document.getElementById('save-form').reset();
 
-    // Se asigna el título para la caja de diálogo (modal).
-    document.getElementById('modal-title').textContent = 'Agregar empleado';
+    
     // Se habilitan los campos de alias y contraseña.
     document.getElementById('alias').disabled = false;
     document.getElementById('clave').disabled = false;
     document.getElementById('confirmar').disabled = false;
 
     //Añadimos la clase que esconde el select estado ya que todos los usuarios ingresados, tendrán el valor de activo y este se manda automaticamente
-    document.getElementById('estado').classList.add('input-hide')
+    
     document.getElementById('estado-label').classList.add('input-hide')
 
     //Ocultamos la imagen del avatar ya que por defecto no aparecerá, solo hasta que se seleccione un avatar
@@ -102,7 +79,7 @@ function openUpdate(id) {
     //Limpiamos los campos del modal
     document.getElementById('save-form').reset();
     // Se asigna el título para la caja de diálogo (modal).
-    document.getElementById('modal-title').textContent = 'Actualizar empleado';
+   
     //Desactivamos campos que no se podrán modificar-------------------.
     document.getElementById('alias').disabled = true;
     document.getElementById('clave').disabled = true;
