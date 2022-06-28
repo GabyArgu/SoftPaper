@@ -130,7 +130,7 @@ function openDeleteMarca(id) {
 //No se borra se deshabilita--------------------------.
 document.getElementById('delete-form').addEventListener('submit', function (event) {
     // Se evita recargar la página web después de enviar el formulario.
-    event.preventDefault();
+    event.preventDefault();//yameestrese
     //Llamamos al método que se encuentra en la api y le pasamos la ruta de la API y el id del formulario dentro de nuestro modal eliminar
     confirmDelete2(API_MARCA, 'delete-form');
 });
