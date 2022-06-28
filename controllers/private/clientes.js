@@ -207,7 +207,7 @@ function openUpdate(id) {
                     } else {
                         document.getElementById('uestado_c').value = 0;
                     }
-                    fillSelect(ENDPOINT_GIROC, 'ugiro_c', response.dataset.giro_cliente);
+                    fillSelect(ENDPOINT_GIROC, 'ugiro_c', response.dataset.uuid_giro_cliente);
                     fillSelect(ENDPOINT_DEPAC, 'udepartamento_c', response.dataset.uuid_departamento);
                     fillSelectDependentM(ENDPOINT_MUNIC, 'umunicipio_c', response.dataset.uuid_municipio, response.dataset.uuid_departamento);
                 } else {

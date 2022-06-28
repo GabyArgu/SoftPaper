@@ -25,6 +25,59 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No hay datos registrados';
                 }
                 break;
+            case 'create':
+                //Especificamos los inputs por medio de su atributo name, y los capturamos con el método post
+                $_POST = $departamento->validateForm($_POST);
+                if (!$departamento->setNombre($_POST['nombre_depa'])) {
+                    $result['exception'] = 'Nombre invalido';
+                } elseif ($departamento->createRow()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Departamento creado correctamente';
+                } else {
+                    $result['exception'] = Database::getException();
+                }
+                break;
+            // Accion leer un elemento de toda la información------------------.        
+            case 'readOne':
+                if (!$departamento->setId($_POST['id'])) {
+                    $result['exception'] = 'Departamento incorrecto';
+                } elseif ($result['dataset'] = $departamento->readOne()) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'Departamento inexistente';
+                }
+                break;
+            // Accion de actualizar un elemento de toda la información------------------.        
+            case 'update':
+                //Especificamos los inputs por medio de su atributo name, y los capturamos con el método post
+                $_POST = $departamento->validateForm($_POST);
+                if (!$departamento->setId($_POST['id'])) {
+                    $result['exception'] = 'Departamento incorrecto';
+                } elseif (!$data = $departamento->readOne()) {
+                    $result['exception'] = 'Departamento inexistente';
+                } elseif (!$departamento->setNombre($_POST['nombre_depa'])) {
+                    $result['exception'] = 'Departamento inválido';
+                } elseif ($departamento->updateRow()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Departamento actualizado correctamente';
+                } else {
+                    $result['exception'] = Database::getException();
+                }
+                break;
+            case 'delete':
+                if (!$departamento->setId($_POST['id_delete'])) {
+                    $result['exception'] = 'Departamento incorrecto';
+                } elseif (!$departamento->readOne()) {
+                    $result['exception'] = 'Departamento inexistente';
+                } elseif ($departamento->deleteRow()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Departamento eliminado correctamente';
+                } else {
+                    $result['exception'] = Database::getException();
+                }
+                break;
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }

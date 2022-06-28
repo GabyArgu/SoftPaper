@@ -91,7 +91,6 @@ function readRows2(api) {
     });
 }
 
-
 function readRows3(api) {
     // Se promete devolver un valor (peticion al servidor)------------------------.
     fetch(api + 'readProductosVentas', {
@@ -110,6 +109,30 @@ function readRows3(api) {
                 }
                 // Se envían los datos a la función del controlador para llenar la tabla en la vista.
                 fillTable(data);
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
+}
+
+function readRows4(api) {
+    fetch(api + 'readAllTable', {
+        method: 'get'
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            // Se obtiene la respuesta en formato JSON.
+            request.json().then(function (response) {
+                let data = [];
+                // Se comprueba si la respuesta es satisfactoria para obtener los datos, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    data = response.dataset;
+                } else {
+                    sweetAlert(4, response.exception, null);
+                }
+                // Se envían los datos a la función del controlador para llenar la tabla en la vista.
+                fillTable2(data);
             });
         } else {
             console.log(request.status + ' ' + request.statusText);
@@ -172,33 +195,6 @@ function searchRows2(api, form, input) {
                     sweetAlert(2, response.exception, null);
                     document.getElementById(input).value = "";
                     readRows2(api);
-                }
-            });
-        } else {
-            console.log(request.status + ' ' + request.statusText);
-        }
-    });
-}
-
-function searchRows3(api, form, input) {
-    fetch(api + 'filter', {
-        method: 'post',
-        body: new FormData(document.getElementById(form))
-    }).then(function (request) {
-        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
-        if (request.ok) {
-            // Se obtiene la respuesta en formato JSON.
-            request.json().then(function (response) {
-                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-                if (response.status) {
-                    // Se envían los datos a la función del controlador para que llene la tabla en la vista y se muestra un mensaje de éxito.
-                    fillTable(response.dataset);
-                    //sweetAlert(1, response.message, null);
-                } else {
-                    /* En caso de no encontrar coincidencias, limpiara el campo y se recargará la tabla */
-                    sweetAlert(2, response.exception, null);
-                    document.getElementById(input).value = "";
-                    readRows(api);
                 }
             });
         } else {
