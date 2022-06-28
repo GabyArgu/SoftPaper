@@ -3,19 +3,6 @@ const API_MUNICIPIO = SERVER + 'private/municipio.php?action=';
 
 const ENDPOINT_DEPA = SERVER + 'private/departamento.php?action=readAll';
 
-// Método manejador de eventos que se ejecuta cuando el documento ha cargado.
-document.addEventListener('DOMContentLoaded', function () {
-    // Se llama a la función que obtiene los registros para llenar la tabla. Se encuentra en el archivo components.js
-    readRows4(API_MUNICIPIO);
-    // Se define una variable para establecer las opciones del componente Modal.
-    let options = {
-        dismissible: false,
-        onOpenStart: function () {
-            // Se restauran los elementos del formulario.
-            document.getElementById('save-form').reset();
-        }
-    }
-});
 
 // Función para llenar la tabla con los datos de los registros. Se manda a llamar en la función readRows().
 function fillTable2(dataset) {
@@ -56,7 +43,7 @@ function fillTable2(dataset) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    readRows4(API_MUNICIPIO);
+    readRows5(API_MUNICIPIO);
     setTimeout(() => {
         /*Inicializando y configurando tabla*/
         let options = {
