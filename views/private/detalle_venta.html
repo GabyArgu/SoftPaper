@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -29,7 +29,25 @@
 <body class="detalle-venta">
     <div class="wrapper">
 
-        <!-- INICIA NAVBAR -->
+        <!-- PANTALLA DE CARGA DE LA PAGINA  -->
+        <div id="contenedor_carga">
+            <div class="lds-spinner">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+
+        <!-- INICIA NAVBAR DE LA PAGINA -->
         <header>
             <nav class="navbar navbar-expand-lg " id="navbar-dashboard">
                 <div class="container">
@@ -54,37 +72,68 @@
                                 <a class="nav-link dropdown" id="navbarDropdownMenuLink" role="button"
                                     data-bs-toggle="dropdown" aria-expanded="false"> Inventario
                                 </a>
-                                <ul class="dropdown-menu dropdown-inventario slideInNav animate" aria-labelledby="navbarDropdown">
+                                <ul class="dropdown-menu dropdown-inventario slideInNav animate"
+                                    aria-labelledby="navbarDropdown">
                                     <li><a class="dropdown-item" href="productos.html">Productos</a></li>
+                                    <li><a class="dropdown-item" href="categoria.html">Categoria</a></li>
                                     <li><a class="dropdown-item" href="subcategoria.html">Subcategorías</a></li>
-                                    <li><a class="dropdown-item" href="marca_proveedor.html">Proveedores y marcas</a></li>
+                                    <li><a class="dropdown-item" href="marca_proveedor.html">Proveedores y
+                                            marcas</a></li>
                                 </ul>
 
                             </li>
-
                             <li class="active nav-item menu-item" type="button">
-                                <a class="nav-link active" aria-current="page" href="venta.html">Venta</a>
+
+                                <a class="nav-link dropdown" id="navbarDropdownMenuLink" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false"> Facturación
+                                </a>
+                                <ul class="dropdown-menu dropdown-inventario slideInNav animate"
+                                    aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="venta.html">Ventas</a></li>
+                                    <li><a class="dropdown-item" href="tipos.html">Tipo factura y venta</a></li>
+                                </ul>
+
                             </li>
-
                             <li class="active nav-item menu-item" type="button">
-                                <a class="nav-link active" aria-current="page" href="clientes.html">Clientes</a>
+
+                                <a class="nav-link dropdown" id="navbarDropdownMenuLink" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false"> Usuarios
+                                </a>
+                                <ul class="dropdown-menu dropdown-inventario slideInNav animate"
+                                    aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="clientes.html">Clientes</a></li>
+                                    <li><a class="dropdown-item" href="empleados.html">Empleados</a></li>
+                                </ul>
+
                             </li>
-
                             <li class="active nav-item menu-item" type="button">
-                                <a class="nav-link" href="empleados.html">Empleados</a>
+
+                                <a class="nav-link dropdown" id="navbarDropdownMenuLink" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false"> Catálogos
+                                </a>
+                                <ul class="dropdown-menu dropdown-inventario slideInNav animate"
+                                    aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="estados.html">Estado de producto y venta</a></li>
+                                    <li><a class="dropdown-item" href="subcategoria.html">Departamentos y municipios</a>
+                                    </li>
+                                     
+                                    <li><a class="dropdown-item" href="color.html">Colores</a></li>
+                                </ul>
+
                             </li>
                         </ul>
                         <div class="nav-options d-flex">
-                            <a href="" class="nav-item"><i class="bi bi-search"  type="button"></i></a>
+                            <a href="" class="nav-item"><i class="bi bi-search" type="button"></i></a>
 
-                            <li class="active nav-item menu-item"  type="button">
+                            <li class="active nav-item menu-item" type="button">
 
                                 <a class="nav-link dropdown" id="navbarDropdownMenuLink" role="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">
                                     <img src="../../api/images/avatares/a2.png" alt=""
                                         class="d-inline-block align-text-top user">
                                 </a>
-                                <ul class="dropdown-menu slideInNav1 slideInNav  animate" aria-labelledby="navbarDropdown">
+                                <ul class="dropdown-menu slideInNav1 slideInNav  animate"
+                                    aria-labelledby="navbarDropdown">
                                     <li><a class="dropdown-item" href="perfil_usuario.html">Ir a perfil</a></li>
                                     <li><a class="dropdown-item" onclick="logOut()">Cerrar Sesión</a></li>
                                 </ul>
@@ -95,89 +144,70 @@
                 </div>
             </nav>
         </header>
-        <!-- FIN NAVBAR-->
+        <!-- FIN NAVBAR DE LA PAGINA -->
 
         <!-- INICIO DEL CONTENIDO -->
         <main class="container-xxl">
             <div class="header-content my-5">
-                <h1>Añadir venta</h1>
+                <h1>Detalle de venta</h1>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="dashboard.html">Inicio</a></li>
-                        <li class="breadcrumb-item"><a href="consumidor.html">Venta</a></li>
-                        <li class="breadcrumb-item"><a href="productos.html">Añadir venta</a></li>
+                        <li class="breadcrumb-item"><a href="">Facturación</a></li>
+                        <li class="breadcrumb-item"><a href="venta.html">Venta</a></li>
+                        <li class="breadcrumb-item"><a href="detalle_venta.html">Detalle de venta</a></li>
                         </li>
                     </ol>
                 </nav>
             </div>
-            <div class="content content-detalle">
+            <div class="content-detalle">
                 <!-- INICIO TARJETA SELECCIONAR PRODUCTOS -->
                 <div class="container content-card">
                     <div class="row">
                         <div class="col p-4">
                             <div class="row">
                                 <div class="col mb-3">
-                                    <h2>Seleccionar productos</h2>
-                                    <span>Añade productos a la venta</span>
+                                    <h2>Productos agregados</h2>
                                 </div>
                             </div>
                             <!-- INICIO ESPACIO PARA PRODUCTOS-->
                             <div class="row">
                                 <div class="col">
-                                    <div
-                                        class="row row-cols-1 row-cols-lg-2 border border-dashed rounded pt-2 pb-2 mb-5 productos-detalle">
-                                        <div class="col my-2">
+                                    <div class="row row-cols-1 row-cols-lg-2 border border-dashed rounded pt-2 pb-2 mb-5 productos-detalle"
+                                        id="productos-detalle">
+
+                                        <!-- <div class="col my-2 producto-card">
                                             <div
-                                                class="d-flex p-2 border border-dashed rounded justify-content-between producto-card">
-                                                <div class="imagen-producto d-flex align-items-center">
-                                                    <img src="../../api/images/productos/lapicero.png" alt="">
+                                                class="d-flex p-2 border border-dashed rounded justify-content-between producto-card-content">
+                                                <div class="imagen-producto">
+                                                    <img src="../../api/images/productos/lapicero.png" alt=""
+                                                        class="mt-3">
                                                 </div>
                                                 <div class="info-producto">
+                                                    <h5>Rojo</h5>
                                                     <h5>Lapicero Faber Castell</h5>
                                                     <span>$29.74</span>
                                                 </div>
-                                                <div class="controls-producto d-flex flex-nowrap">
+                                                <div class="controls-producto d-flex flex-nowrap flex-column">
+                                                    <h5 class="text-center">Cantidad</h5>
                                                     <input type="number" value="1" min="1" max="100" step="1" />
                                                 </div>
                                                 <i class="bi bi-x"></i>
                                             </div>
-                                        </div>
-                                        <div class="col my-2">
-                                            <div
-                                                class="d-flex p-2 border border-dashed rounded justify-content-between producto-card">
-                                                <div class="imagen-producto d-flex align-items-center">
-                                                    <img src="../../api/images/productos/lapicero.png" alt="">
-                                                </div>
-                                                <div class="info-producto">
-                                                    <h5>Lapicero Faber Castell</h5>
-                                                    <span>$29.74</span>
-                                                </div>
-                                                <div class="controls-producto d-flex ">
-                                                    <input type="number" value="1" min="1" max="100" step="1" />
-                                                </div>
-                                                <i class="bi bi-x"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col my-2">
-                                            <div
-                                                class="d-flex p-2 border border-dashed rounded justify-content-between producto-card">
-                                                <div class="imagen-producto d-flex align-items-center">
-                                                    <img src="../../api/images/productos/lapicero.png" alt="">
-                                                </div>
-                                                <div class="info-producto">
-                                                    <h5>Lapicero Faber Castell</h5>
-                                                    <span>$29.74</span>
-                                                </div>
-                                                <div class="controls-producto d-flex">
-                                                    <input type="number" value="1" min="1" max="100" step="1" />
-                                                </div>
-                                                <i class="bi bi-x"></i>
-                                            </div>
-                                        </div>
+                                        </div> -->
+
                                     </div>
                                 </div>
                             </div>
                             <!-- FIN ESPACIO PARA PRODUCTOS-->
+
+                            <div class="row">
+                                <div class="col mb-3">
+                                    <h2>Seleccionar productos</h2>
+                                    <span>Añade productos a la venta</span>
+                                </div>
+                            </div>
+
                             <div class="row">
                                 <div class="col-12 col-lg-10 col-buscador">
                                     <div class="buscador">
@@ -223,325 +253,15 @@
                             <!-- INICIO TABLA PRODUCTOS-->
                             <div class="row mt-3">
                                 <div class="col">
-                                    <div class="table-responsive mt-3 " id="no-more-tables">
-                                        <table class="table table-hover" id="example">
+                                    <div class="table-responsive mt-3 scroll" id="no-more-tables">
+                                        <table class="table table-hover" id="table-productos">
                                             <thead>
                                                 <tr>
-                                                    <th class="table-check"></th>
-                                                    <th class="th-1">Producto</th>
-                                                    <th>Stock</th>
+                                                    <th>Producto</th>
+                                                    <th></th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <input class="form-check-input" type="checkbox" value=""
-                                                            id="flexCheckChecked">
-                                                    </td>
-                                                    <td data-title="PRODUCTO" class="col-table">
-                                                        <div class="nombre-producto"><img
-                                                                src="../../api/images/productos/lapicero.png"
-                                                                alt="">Lapicero
-                                                            Faber Castell
-                                                        </div>
-                                                    </td>
-                                                    <td data-title="INVENTARIO" class="inventario">55</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <input class="form-check-input" type="checkbox" value=""
-                                                            id="flexCheckChecked">
-                                                    </td>
-                                                    <td data-title="PRODUCTO" class="col-table">
-                                                        <div class="nombre-producto"><img
-                                                                src="../../api/images/productos/lapicero.png"
-                                                                alt="">Lapicero
-                                                            Faber Castell
-                                                        </div>
-                                                    </td>
-                                                    <td data-title="INVENTARIO" class="inventario">55</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <input class="form-check-input" type="checkbox" value=""
-                                                            id="flexCheckChecked">
-                                                    </td>
-                                                    <td data-title="PRODUCTO" class="col-table">
-                                                        <div class="nombre-producto"><img
-                                                                src="../../api/images/productos/lapicero.png"
-                                                                alt="">Lapicero
-                                                            Faber Castell
-                                                        </div>
-                                                    </td>
-                                                    <td data-title="INVENTARIO" class="inventario">55</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <input class="form-check-input" type="checkbox" value=""
-                                                            id="flexCheckChecked">
-                                                    </td>
-                                                    <td data-title="PRODUCTO" class="col-table">
-                                                        <div class="nombre-producto"><img
-                                                                src="../../api/images/productos/lapicero.png"
-                                                                alt="">Lapicero
-                                                            Faber Castell
-                                                        </div>
-                                                    </td>
-                                                    <td data-title="INVENTARIO" class="inventario">55</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <input class="form-check-input" type="checkbox" value=""
-                                                            id="flexCheckChecked">
-                                                    </td>
-                                                    <td data-title="PRODUCTO" class="col-table">
-                                                        <div class="nombre-producto"><img
-                                                                src="../../api/images/productos/lapicero.png"
-                                                                alt="">Lapicero
-                                                            Faber Castell
-                                                        </div>
-                                                    </td>
-                                                    <td data-title="INVENTARIO" class="inventario">55</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <input class="form-check-input" type="checkbox" value=""
-                                                            id="flexCheckChecked">
-                                                    </td>
-                                                    <td data-title="PRODUCTO" class="col-table">
-                                                        <div class="nombre-producto"><img
-                                                                src="../../api/images/productos/lapicero.png"
-                                                                alt="">Lapicero
-                                                            Faber Castell
-                                                        </div>
-                                                    </td>
-                                                    <td data-title="INVENTARIO" class="inventario">55</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <input class="form-check-input" type="checkbox" value=""
-                                                            id="flexCheckChecked">
-                                                    </td>
-                                                    <td data-title="PRODUCTO" class="col-table">
-                                                        <div class="nombre-producto"><img
-                                                                src="../../api/images/productos/lapicero.png"
-                                                                alt="">Lapicero
-                                                            Faber Castell
-                                                        </div>
-                                                    </td>
-                                                    <td data-title="INVENTARIO" class="inventario">55</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <input class="form-check-input" type="checkbox" value=""
-                                                            id="flexCheckChecked">
-                                                    </td>
-                                                    <td data-title="PRODUCTO" class="col-table">
-                                                        <div class="nombre-producto"><img
-                                                                src="../../api/images/productos/lapicero.png"
-                                                                alt="">Lapicero
-                                                            Faber Castell
-                                                        </div>
-                                                    </td>
-                                                    <td data-title="INVENTARIO" class="inventario">55</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <input class="form-check-input" type="checkbox" value=""
-                                                            id="flexCheckChecked">
-                                                    </td>
-                                                    <td data-title="PRODUCTO" class="col-table">
-                                                        <div class="nombre-producto"><img
-                                                                src="../../api/images/productos/lapicero.png"
-                                                                alt="">Lapicero
-                                                            Faber Castell
-                                                        </div>
-                                                    </td>
-                                                    <td data-title="INVENTARIO" class="inventario">55</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <input class="form-check-input" type="checkbox" value=""
-                                                            id="flexCheckChecked">
-                                                    </td>
-                                                    <td data-title="PRODUCTO" class="col-table">
-                                                        <div class="nombre-producto"><img
-                                                                src="../../api/images/productos/lapicero.png"
-                                                                alt="">Lapicero
-                                                            Faber Castell
-                                                        </div>
-                                                    </td>
-                                                    <td data-title="INVENTARIO" class="inventario">55</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <input class="form-check-input" type="checkbox" value=""
-                                                            id="flexCheckChecked">
-                                                    </td>
-                                                    <td data-title="PRODUCTO" class="col-table">
-                                                        <div class="nombre-producto"><img
-                                                                src="../../api/images/productos/lapicero.png"
-                                                                alt="">Lapicero
-                                                            Faber Castell
-                                                        </div>
-                                                    </td>
-                                                    <td data-title="INVENTARIO" class="inventario">55</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <input class="form-check-input" type="checkbox" value=""
-                                                            id="flexCheckChecked">
-                                                    </td>
-                                                    <td data-title="PRODUCTO" class="col-table">
-                                                        <div class="nombre-producto"><img
-                                                                src="../../api/images/productos/lapicero.png"
-                                                                alt="">Lapicero
-                                                            Faber Castell
-                                                        </div>
-                                                    </td>
-                                                    <td data-title="INVENTARIO" class="inventario">55</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <input class="form-check-input" type="checkbox" value=""
-                                                            id="flexCheckChecked">
-                                                    </td>
-                                                    <td data-title="PRODUCTO" class="col-table">
-                                                        <div class="nombre-producto"><img
-                                                                src="../../api/images/productos/lapicero.png"
-                                                                alt="">Lapicero
-                                                            Faber Castell
-                                                        </div>
-                                                    </td>
-                                                    <td data-title="INVENTARIO" class="inventario">55</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <input class="form-check-input" type="checkbox" value=""
-                                                            id="flexCheckChecked">
-                                                    </td>
-                                                    <td data-title="PRODUCTO" class="col-table">
-                                                        <div class="nombre-producto"><img
-                                                                src="../../api/images/productos/lapicero.png"
-                                                                alt="">Lapicero
-                                                            Faber Castell
-                                                        </div>
-                                                    </td>
-                                                    <td data-title="INVENTARIO" class="inventario">55</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <input class="form-check-input" type="checkbox" value=""
-                                                            id="flexCheckChecked">
-                                                    </td>
-                                                    <td data-title="PRODUCTO" class="col-table">
-                                                        <div class="nombre-producto"><img
-                                                                src="../../api/images/productos/lapicero.png"
-                                                                alt="">Lapicero
-                                                            Faber Castell
-                                                        </div>
-                                                    </td>
-                                                    <td data-title="INVENTARIO" class="inventario">55</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <input class="form-check-input" type="checkbox" value=""
-                                                            id="flexCheckChecked">
-                                                    </td>
-                                                    <td data-title="PRODUCTO" class="col-table">
-                                                        <div class="nombre-producto"><img
-                                                                src="../../api/images/productos/lapicero.png"
-                                                                alt="">Lapicero
-                                                            Faber Castell
-                                                        </div>
-                                                    </td>
-                                                    <td data-title="INVENTARIO" class="inventario">55</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <input class="form-check-input" type="checkbox" value=""
-                                                            id="flexCheckChecked">
-                                                    </td>
-                                                    <td data-title="PRODUCTO" class="col-table">
-                                                        <div class="nombre-producto"><img
-                                                                src="../../api/images/productos/lapicero.png"
-                                                                alt="">Lapicero
-                                                            Faber Castell
-                                                        </div>
-                                                    </td>
-                                                    <td data-title="INVENTARIO" class="inventario">55</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <input class="form-check-input" type="checkbox" value=""
-                                                            id="flexCheckChecked">
-                                                    </td>
-                                                    <td data-title="PRODUCTO" class="col-table">
-                                                        <div class="nombre-producto"><img
-                                                                src="../../api/images/productos/lapicero.png"
-                                                                alt="">Lapicero
-                                                            Faber Castell
-                                                        </div>
-                                                    </td>
-                                                    <td data-title="INVENTARIO" class="inventario">55</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <input class="form-check-input" type="checkbox" value=""
-                                                            id="flexCheckChecked">
-                                                    </td>
-                                                    <td data-title="PRODUCTO" class="col-table">
-                                                        <div class="nombre-producto"><img
-                                                                src="../../api/images/productos/lapicero.png"
-                                                                alt="">Lapicero
-                                                            Faber Castell
-                                                        </div>
-                                                    </td>
-                                                    <td data-title="INVENTARIO" class="inventario">55</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <input class="form-check-input" type="checkbox" value=""
-                                                            id="flexCheckChecked">
-                                                    </td>
-                                                    <td data-title="PRODUCTO" class="col-table">
-                                                        <div class="nombre-producto"><img
-                                                                src="../../api/images/productos/lapicero.png"
-                                                                alt="">Lapicero
-                                                            Faber Castell
-                                                        </div>
-                                                    </td>
-                                                    <td data-title="INVENTARIO" class="inventario">55</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <input class="form-check-input" type="checkbox" value=""
-                                                            id="flexCheckChecked">
-                                                    </td>
-                                                    <td data-title="PRODUCTO" class="col-table">
-                                                        <div class="nombre-producto"><img
-                                                                src="../../api/images/productos/lapicero.png"
-                                                                alt="">Lapicero
-                                                            Faber Castell
-                                                        </div>
-                                                    </td>
-                                                    <td data-title="INVENTARIO" class="inventario">55</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <input class="form-check-input" type="checkbox" value=""
-                                                            id="flexCheckChecked">
-                                                    </td>
-                                                    <td data-title="PRODUCTO" class="col-table">
-                                                        <div class="nombre-producto"><img
-                                                                src="../../api/images/productos/lapicero.png"
-                                                                alt="">Lapicero
-                                                            Faber Castell
-                                                        </div>
-                                                    </td>
-                                                    <td data-title="INVENTARIO" class="inventario">55</td>
-                                                </tr>
-                                            </tbody>
+                                            <tbody id="tbody_rows"></tbody>
                                         </table>
                                     </div>
                                 </div>
@@ -551,9 +271,9 @@
                     </div>
                 </div>
                 <!-- FIN TARJETA SELECCIONAR PRODUCTOS -->
+
                 <!-- INICIO TARJETA DETALLE-->
                 <div class="container content-card detalle d-flex">
-                    <div class="row">
                         <div class="col-12 p-4 col-flex-detalle">
                             <div class="row">
                                 <div class="col mb-3">
@@ -563,74 +283,169 @@
                             <div class="row">
                                 <div class="col-12 mt-3">
                                     <button class="btn-anadir-cliente btn-second" data-bs-toggle="modal"
-                                        data-bs-target="#modal-cliente">Añadir cliente</button>
+                                        data-bs-target="#modal-cliente" id="btn-add-client">Añadir cliente</button>
+                                        <form class="row" method="post" id="finalizar-venta">
+                                        <input type="hidden" id="dui-cliente" name="dui-cliente">
                                 </div>
                                 <div class="col-12 mt-3">
                                     <label for="">Tipo venta</label>
-                                    <select class="form-select mt-2" aria-label="Default select example" id="tipo-venta"
-                                        onChange="pagoOnChange(this)">
-                                        <option selected disabled>Seleccione una opción</option>
-                                        <option value="fiscal">Credito fiscal</option>
-                                        <option value="consumidor">Consumidor final</option>
+                                    <select class="form-select mt-2" aria-label="Default select example" id="tipo-venta" name="tipo-venta" onChange="pagoOnChange(this)">
+
                                     </select>
                                 </div>
-                                <div class="col-12 mt-3 hide-cmb" id="tipo-venta-div">
-                                    <label for="" value="2">Tipo consumidor</label>
+                                <div class="col-12 mt-3 " id="">
+                                    <label for="" value="2">Tipo factura</label>
                                     <!-- MOSTRAR SOLO EN CASO QUE SEA CONSUMIDOR FINAL -->
-                                    <select class="form-select mt-2" value="2" aria-label="Default select example">
-                                        <option selected disabled>Seleccione una opción</option>
-                                        <option value="1">Factura</option>
-                                        <option value="2">Ticket</option>
+                                    <select class="form-select mt-2" value="2" aria-label="Default select example" id="tipo-factura" name="tipo-factura">
                                     </select>
                                 </div>
-                                <div class="col-12 mt-3">
-                                    <label for="" class="d-block">Fecha</label>
-                                    <input type="text" id="calendar" placeholder="Seleccione una fecha"
-                                        class="filtro-fecha w-100 mt-2">
-                                </div>
+                                
                             </div>
                             <hr class="my-5">
                             <div class="row my-auto">
                                 <div class="col-12 col-md-6 factura-info">
-                                    <span>ID</span>
+                                    <span>Correlativo</span>
                                 </div>
                                 <div class="col-12 col-md-6 text-end factura-info">
-                                    <h6>0452</h6>
+                                    <h6 id="correlativo" name="correlativo"></h6>
                                 </div>
                                 <div class="col-12 col-md-6 factura-info">
-                                    <span>Sub total</span>
+                                    <span>Subtotal</span>
                                 </div>
                                 <div class="col-12 col-md-6 text-end factura-info">
-                                    <h6>$200.00</h6>
+                                    <h6 id="subtotal-detalle" name="subtotal-detalle">$0</h6>
                                 </div>
                                 <div class="col-12 col-md-6 factura-info">
                                     <span>IVA</span>
                                 </div>
                                 <div class="col-12 col-md-6 text-end factura-info">
-                                    <h6 id="iva">$2</h6>
+                                    <h6 id="iva">$0</h6>
                                 </div>
                             </div>
                             <div class="row my-auto">
                                 <div class="col-12 col-md-6 factura-info">
-                                    <span>Total</span>
+                                    <span>Total a pagar</span>
                                 </div>
                                 <div class="col-12 col-md-6 text-end factura-info">
-                                    <h4>$202.00</h4>
+                                    <h4 id="total-venta">$0</h4>
                                 </div>
                             </div>
                             <div class="row ">
                                 <div class="col col-6"><button class="btn btn-cancel" type="button">Cancelar</button>
                                 </div>
                                 <div class="col col-6 d-flex justify-content-end"><button class="btn btn-main"
-                                        type="button">Guardar</button></div>
+                                        type="button" onclick="finishOrder()">Guardar</button></div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- FIN TARJETA DETALLE-->
+
+            </div>
+
+            <div class="modal fade" id="item-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header border-0">
+                            <h2>Añadir a la venta</h2>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container p-3">
+                                <form class="row" method="post" id="item-form">
+                                    <div class="col col-12">
+                                    </div>
+
+                                    <div class="col-lg-6 d-flex flex-column justify-content-center">
+                                        <label for="">Color</label>
+                                        <select class="form-select" aria-label="Default select example" id="color"
+                                            name="color" required>
+                                        </select>
+                                    </div>
+
+                                    <div
+                                        class="col-lg-6 d-flex flex-column justify-content-center cantidad-agregar-detalle">
+                                        <label for="">Cantidad</label>
+                                        <div class="input-group">
+                                            <button onclick="restarStock()" class="btn btn-spinner-detalle"
+                                                type="button" id="res-btn">-</button>
+                                            <input onchange="validacionInputStock()"
+                                                onkeypress="return valideKey(event);" id="input-stock"
+                                                name="input-stock" type="number" min="0"
+                                                class="form-control text-center" placeholder=""
+                                                aria-label="Example text with button addon"
+                                                aria-describedby="button-addon1" value="1" required>
+                                            <button onclick="sumarStock()" class="btn btn-spinner-detalle" type="button"
+                                                id="sum-btn">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="col col-6 mt-3">
+                                        <input class="form-control input-hide" type="text" id="id" name="id">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="d-flex justify-content-end mt-2">
+                                <!-- Botón para enviar el formulario -->
+                                <button type="submit" form="item-form" class="btn btn-agregar-cantidad"
+                                    data-bs-dismiss="modal">
+                                    Agregar
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- FIN TARJETA DETALLE-->
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="item-modal-update"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-l">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2>Editar cantidad</h2>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <form class="row" method="post" id="item-form-update">
+                                    <div class="col col-12">
+                                        <!-- Campo oculto para asignar el id del registro al momento de modificar -->
+                                        <input type="hidden" id="idDetalle" name="idDetalle">
+                                        <input type="hidden" id="idColorStock" name="idColorStock">
+                                        <h5>Cantidad:</h5>
+                                    </div>
+                                    <div class="col col-12 d-flex justify-content-center">
+                                        <div class="input-group ">
+                                            <button onclick="restarStockUpdate()" class="btn btn-spinner-detalle"
+                                                type="button" id="res-btn">-</button>
+                                            <input onchange="validacionInputStockUpdate()"
+                                                onkeypress="return valideKey(event);" id="input-stock-update"
+                                                name="input-stock-update" type="number" min="0"
+                                                class="form-control text-center" placeholder=""
+                                                aria-label="Example text with button addon"
+                                                aria-describedby="button-addon1" value="1">
+                                            <button onclick="sumarStockUpdate()" class="btn btn-spinner-detalle" type="button"
+                                                id="sum-btn">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="col col-12 d-flex justify-content-center mt-2">
+                                        <!-- Botón para enviar el formulario -->
+                                        <button type="submit" class="btn btn-main" data-bs-dismiss="modal">
+                                            Guardar
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </main>
         <!-- FIN DEL CONTENIDO -->
+
         <!-- INICIO DEL FOOTER -->
         <footer class='footerSP'>
             <div class="section">
@@ -642,6 +457,7 @@
             </div>
         </footer>
         <!-- FIN DEL FOOTER -->
+
 
         <!-- INICIO MODAL SELECCIONAR CLIENTE-->
         <div class="modal modal-agregar fade" id="modal-cliente" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -658,136 +474,16 @@
                                     <div class="row">
                                         <div class="col">
                                             <div class="table-responsive mt-3 scroll" id="no-more-tables">
-                                                <table class="table table-hover" id="example1">
+                                                <table class="table table-hover" id="table-clientes">
                                                     <thead>
                                                         <tr>
-                                                            <th></th>
                                                             <th>Nombre</th>
                                                             <th>Documento</th>
                                                             <th>Estado</th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td class="table-check-cliente"></td>
-                                                            <td class="col-table text-center">Herbert
-                                                                Cornejo</td>
-                                                            <td class="text-center">00000000-0</td>
-                                                            <td class="estado-stock"><span class="estado">Activo</span>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="table-check-cliente"></td>
-                                                            <td class="col-table text-center">Herbert
-                                                                Cornejo</td>
-                                                            <td class="text-center">00000000-0</td>
-                                                            <td class="estado-stock"><span class="estado">Activo</span>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="table-check-cliente"></td>
-                                                            <td class="col-table text-center">Herbert
-                                                                Cornejo</td>
-                                                            <td class="text-center">00000000-0</td>
-                                                            <td class="estado-stock"><span class="estado">Activo</span>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="table-check-cliente"></td>
-                                                            <td class="col-table text-center">Herbert
-                                                                Cornejo</td>
-                                                            <td class="text-center">00000000-0</td>
-                                                            <td class="estado-stock"><span class="estado">Activo</span>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="table-check-cliente"></td>
-                                                            <td class="col-table text-center">Herbert
-                                                                Cornejo</td>
-                                                            <td class="text-center">00000000-0</td>
-                                                            <td class="estado-stock"><span class="estado">Activo</span>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="table-check-cliente"></td>
-                                                            <td class="col-table text-center">Herbert
-                                                                Cornejo</td>
-                                                            <td class="text-center">00000000-0</td>
-                                                            <td class="estado-stock"><span class="estado">Activo</span>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="table-check-cliente"></td>
-                                                            <td class="col-table text-center">Herbert
-                                                                Cornejo</td>
-                                                            <td class="text-center">00000000-0</td>
-                                                            <td class="estado-stock"><span class="estado">Activo</span>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="table-check-cliente"></td>
-                                                            <td class="col-table text-center">Herbert
-                                                                Cornejo</td>
-                                                            <td class="text-center">00000000-0</td>
-                                                            <td class="estado-stock"><span class="estado">Activo</span>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="table-check-cliente"></td>
-                                                            <td class="col-table text-center">Herbert
-                                                                Cornejo</td>
-                                                            <td class="text-center">00000000-0</td>
-                                                            <td class="estado-stock"><span class="estado">Activo</span>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="table-check-cliente"></td>
-                                                            <td class="col-table text-center">Herbert
-                                                                Cornejo</td>
-                                                            <td class="text-center">00000000-0</td>
-                                                            <td class="estado-stock"><span class="estado">Activo</span>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="table-check-cliente"></td>
-                                                            <td class="col-table text-center">Herbert
-                                                                Cornejo</td>
-                                                            <td class="text-center">00000000-0</td>
-                                                            <td class="estado-stock"><span class="estado">Activo</span>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="table-check-cliente"></td>
-                                                            <td class="col-table text-center">Herbert
-                                                                Cornejo</td>
-                                                            <td class="text-center">00000000-0</td>
-                                                            <td class="estado-stock"><span class="estado">Activo</span>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="table-check-cliente"></td>
-                                                            <td class="col-table text-center">Herbert
-                                                                Cornejo</td>
-                                                            <td class="text-center">00000000-0</td>
-                                                            <td class="estado-stock"><span class="estado">Activo</span>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="table-check-cliente"></td>
-                                                            <td class="col-table text-center">Herbert
-                                                                Cornejo</td>
-                                                            <td class="text-center">00000000-0</td>
-                                                            <td class="estado-stock"><span class="estado">Activo</span>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="table-check-cliente"></td>
-                                                            <td class="col-table text-center">Herbert
-                                                                Cornejo</td>
-                                                            <td class="text-center">00000000-0</td>
-                                                            <td class="estado-stock"><span class="estado">Activo</span>
-                                                            </td>
-                                                        </tr>
+                                                    <tbody id="tbody_clientes">
+
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -802,8 +498,8 @@
                         <div class="modal-footer d-flex justify-content-between">
                             <button class="btn btn-cancel btn-second" type="button" data-bs-target=""
                                 data-bs-toggle="modal" data-bs-dismiss="modal">Cancelar</button>
-                            <button class="btn btn-guardar" type="button" data-bs-target="#modal-agregar2"
-                                data-bs-toggle="modal" data-bs-dismiss="modal">Seleccionar</button>
+                            <button class="btn btn-guardar" type="button" 
+                                data-bs-dismiss="modal" onclick="setCliente()">Seleccionar</button>
                         </div>
                     </div>
                 </div>
@@ -831,10 +527,13 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <!-- SCRIPT PROPIO-->
-        <script src="../../controllers/private/detalle_venta.js">
-        </script>
+        <script src="../../controllers/componentes.js"></script>
+        <script src="../../controllers/private/charge.js"></script>
+        <script src="../../controllers/private/detalle_venta.js"></script>
         <script src="../../controllers/private/dashboard.js"></script>
 </body>
 
 </html>
+

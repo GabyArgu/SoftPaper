@@ -19,8 +19,6 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('save-form').reset();
         }
     }
-    // Se inicializa el componente Modal para que funcionen las cajas de diálogo.
-    //M.Modal.init(document.querySelectorAll('.modal'), options);
 });
 
 // Función para llenar la tabla con los datos de los registros. Se manda a llamar en la función readRows().
@@ -120,7 +118,7 @@ document.getElementById('buscar-cliente').addEventListener('submit', function (e
     searchRows(API_CLIENTES, 'buscar-cliente');
 });
 
-/*Función para mostrar y ocultar cmbs según departamento seleccionado*/
+/*Función para mostrar y ocultar cmbs según departamento seleccionado---------*/
 function pagoOnChange(sel) {
     if (sel.value == "") {
         divC = document.getElementById("municipio");
@@ -133,6 +131,18 @@ function pagoOnChange(sel) {
     }
 }
 
+function openFilter() {
+    fillSelect(ENDPOINT_GIROC, 'filtroC', null);
+}
+
+document.getElementById('filter-form').addEventListener('submit', function (event) {
+    // Se evita recargar la página web después de enviar el formulario.
+    event.preventDefault();
+    console.log('filtroC'.value);
+    // Se llama a la función que realiza la búsqueda. Se encuentra en el archivo components.js
+    searchRows3(API_CLIENTES, 'filter-form');
+});
+
 function openCreate() {
     document.getElementById("nombre_c").value = "";
     document.getElementById("dui_c").value = "";
@@ -141,7 +151,7 @@ function openCreate() {
     document.getElementById("telefono_c").value = "";
     document.getElementById("nrc_c").value = "";
     document.getElementById("estado_c").disabled = true;
-    // Se llama a la función para cargar los select.
+    // Se llama a la función para cargar los select---------------------------.
     fillSelect(ENDPOINT_GIROC, 'giro_c', null);
     fillSelect(ENDPOINT_DEPAC, 'departamento_c', null);
     divC = document.getElementById("municipio");
@@ -153,7 +163,12 @@ document.getElementById("departamento_c").addEventListener("change", function ()
     fillSelectDependentM(ENDPOINT_MUNIC, 'municipio_c', null, selectValue);
 });
 
-// Función para crear usuario
+document.getElementById("udepartamento_c").addEventListener("change", function () {
+    var selectValue = document.getElementById('udepartamento_c').value;
+    fillSelectDependentM(ENDPOINT_MUNIC, 'umunicipio_c', null, selectValue);
+});
+
+// Función para crear cliente-------------------.
 document.getElementById('agregar-cliente').addEventListener('submit', function (event) {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
@@ -178,7 +193,8 @@ function openUpdate(id) {
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
                     // Se inicializan los campos del formulario con los datos del registro seleccionado.
-                    console.log(response.dataset.nombre_departamento)
+                    divC = document.getElementById("municipio2");
+                    divC.style.display = "block";
                     document.getElementById('id').value = (id);
                     document.getElementById('unombre_c').value = response.dataset.nombre_cliente;
                     document.getElementById('udui_c').value = response.dataset.dui_cliente;
@@ -191,8 +207,8 @@ function openUpdate(id) {
                     } else {
                         document.getElementById('uestado_c').value = 0;
                     }
-                    fillSelect(ENDPOINT_GIROC, 'ugiro_c', response.dataset.giro_cliente);
-                    fillSelect(ENDPOINT_DEPAC, 'udepartamento_c', response.dataset.nombre_departamento);
+                    fillSelect(ENDPOINT_GIROC, 'ugiro_c', response.dataset.uuid_giro_cliente);
+                    fillSelect(ENDPOINT_DEPAC, 'udepartamento_c', response.dataset.uuid_departamento);
                     fillSelectDependentM(ENDPOINT_MUNIC, 'umunicipio_c', response.dataset.uuid_municipio, response.dataset.uuid_departamento);
                 } else {
                     sweetAlert(2, response.exception, null);

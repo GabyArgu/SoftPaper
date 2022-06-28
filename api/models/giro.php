@@ -1,6 +1,6 @@
 <?php
 /*
-*	Clase para manejar la tabla catalogo de colores de la base de datos de la tienda.
+*	Clase para manejar la tabla giro clientes de la base de datos de la tienda.
 *   Es una clase hija de Validator.
 */
 class Giro_Cliente extends Validator

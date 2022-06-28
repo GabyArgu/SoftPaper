@@ -12,7 +12,7 @@ class Categoria extends Validator
     private $estado = null;
 
     /*
-    *   Métodos para validar y asignar valores de los atributos.
+    *   Métodos para validar y asignar valores de los atributos de categoria.
     */
     public function setId($value)
     {
@@ -44,7 +44,6 @@ class Categoria extends Validator
         }
         
     }
-
 
     public function setEstado($value)
     {
@@ -81,10 +80,10 @@ class Categoria extends Validator
 
 
     /* 
-    *   Método para comprobar que existen subcategorias registradas en nuestra base de datos
+    *   Método para comprobar que existen categorias registradas en nuestra base de datos
     */
 
-    // Método para leer toda la información de las subcategorias existentes-------------------------.
+    // Método para leer toda la información de las categorias existentes-------------------------.
     public function readAll()
     {
         $sql = 'SELECT uuid_categoria_p, nombre_categoria_p FROM categoria_producto WHERE estado_categoria_p = true;';
@@ -93,7 +92,7 @@ class Categoria extends Validator
         return Database::getRows($sql, $params);
     }
     
-    // Método para un dato en especifico de las subcategorias existentes-------------------------.
+    // Método para un dato en especifico de las categorias existentes-------------------------.
     public function readOne()
     {
         $sql = 'SELECT "idSubCategoriaP", "nombreSubCategoriaP", "descripcionSubCategoriaP", "imagenSubcategoria", "idCategoriaP", estado
@@ -141,17 +140,17 @@ class Categoria extends Validator
     }
 
     /* DELETE */
-    /* Función para inhabilitar una subcategoria ya que no los borraremos de la base -------------------------.*/
+    /* Función para inhabilitar una categoria ya que no los borraremos de la base -------------------------.*/
     public function deleteRow()
     {
-        //No eliminaremos registros, solo los inhabilitaremos-------------------------.
+        //No eliminaremos registros, solo los inhabilitaremos UwU-------------------------.
         $sql = 'UPDATE "subcategoriaProducto" SET estado = 3 WHERE "idSubCategoriaP" = ?';
         $params = array($this->id);
         return Database::executeRow($sql, $params);
     }
 
     /*  */
-    public function readSubcategoriasCategoria()
+    public function readcategoriasCategoria()
     {
         $sql = 'SELECT "idSubCategoriaP", "imagenSubcategoria", "nombreSubCategoriaP", "descripcionSubCategoriaP"
         FROM "subcategoriaProducto"

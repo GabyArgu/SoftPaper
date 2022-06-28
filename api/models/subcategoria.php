@@ -12,7 +12,7 @@ class Subcategoria extends Validator
     private $imagen = null;
     private $estado = null;
     //Variable para un campo con imagen -------------------------.
-    private $ruta = '../images/subcategoriaspd/';
+    private $ruta = '../images/subcategoria/';
 
     /*
     *   Métodos para validar y asignar valores de los atributos.
@@ -42,7 +42,6 @@ class Subcategoria extends Validator
         $this->categoria = $value;
         return true;
     }
-
 
     public function setImagen($file)
     {
@@ -104,7 +103,8 @@ class Subcategoria extends Validator
     // Método para leer toda la información de las subcategorias existentes-------------------------.
     public function readAll()
     {
-        $sql = 'SELECT uuid_subcategoria_p, nombre_subcategoria_p FROM subcategoria_producto WHERE estado_subcategoria_p = true;';
+        $sql = 'SELECT uuid_subcategoria_p, nombre_subcategoria_p, cp.nombre_categoria_p, "imagen_subcategoria", estado_subcategoria_p
+        FROM "subcategoria_producto" as sc inner join "categoria_producto" as cp on sc."uuid_categoria_p" = cp."uuid_categoria_p"';
         
         $params = null;
         return Database::getRows($sql, $params);
@@ -122,9 +122,9 @@ class Subcategoria extends Validator
     // Método para un dato en especifico de las subcategorias existentes-------------------------.
     public function readOne()
     {
-        $sql = 'SELECT "idSubCategoriaP", "nombreSubCategoriaP", "descripcionSubCategoriaP", "imagenSubcategoria", "idCategoriaP", estado
-        FROM "subcategoriaProducto"
-        WHERE "idSubCategoriaP" = ?';
+        $sql = 'SELECT "uuid_subcategoria_p", "nombre_subcategoria_p", "imagen_subcategoria", "uuid_categoria_p", estado_subcategoria_p
+        FROM "subcategoria_producto"
+        WHERE "uuid_subcategoria_p" = ?';
         $params = array($this->id);
         return Database::getRow($sql, $params);
     }
@@ -134,21 +134,20 @@ class Subcategoria extends Validator
     /* SEARCH */
     public function searchRows($value)
     {
-        $sql = 'SELECT "idSubCategoriaP", "nombreSubCategoriaP", sc."descripcionSubCategoriaP", "imagenSubcategoria", cp."nombreCategoriaP", e.estado
-                FROM "subcategoriaProducto" as sc inner join "categoriaProducto" as cp on sc."idCategoriaP" = cp."idCategoria"
-                inner join estado e on sc.estado = e."idEstado"
-                WHERE "nombreSubCategoriaP" ILIKE ? OR cp."nombreCategoriaP" ILIKE ?
-                ORDER BY "idSubCategoriaP"';
-        $params = array("%$value%", "%$value%");
+        $sql = 'SELECT uuid_subcategoria_p, nombre_subcategoria_p, cp.nombre_categoria_p, "imagen_subcategoria", estado_subcategoria_p
+                FROM "subcategoria_producto" as sc inner join "categoria_producto" as cp on sc."uuid_categoria_p" = cp."uuid_categoria_p"
+                WHERE "nombre_subcategoria_p" ILIKE ?
+                ORDER BY "uuid_subcategoria_p"';
+        $params = array("%$value%");
         return Database::getRows($sql, $params);
     }
 
     /* CREATE */
     public function createRow()
     {
-        $sql = 'INSERT INTO "subcategoriaProducto"("idCategoriaP", "nombreSubCategoriaP", "descripcionSubCategoriaP", "imagenSubcategoria", "estado")
-        VALUES (?, ?, ?, ?, ?);';
-        $params = array($this->categoria, $this->nombre, $this->descripcion, $this->imagen, $this->estado);
+        $sql = 'INSERT INTO "subcategoria_producto"("uuid_categoria_p", "nombre_subcategoria_p", "imagen_subcategoria", "estado_subcategoria_p")
+        VALUES (?, ?, ?, ?);';
+        $params = array($this->categoria, $this->nombre, $this->imagen, $this->estado);
         return Database::executeRow($sql, $params);
     }
 
@@ -159,10 +158,10 @@ class Subcategoria extends Validator
         // Se verifica si existe una nueva imagen para borrar la actual, de lo contrario se mantiene la actual.
         ($this->imagen) ? $this->deleteFile($this->getRuta(), $current_image) : $this->imagen = $current_image;
 
-        $sql = 'UPDATE "subcategoriaProducto"
-                SET "idCategoriaP"=?, "nombreSubCategoriaP"=?, "descripcionSubCategoriaP"=?, "imagenSubcategoria"=?, estado=?
-                WHERE "idSubCategoriaP" = ?;';
-            $params = array($this->categoria, $this->nombre, $this->descripcion, $this->imagen, $this->estado, $this->id);
+        $sql = 'UPDATE "subcategoria_producto"
+                SET "uuid_categoria_p"=?, "nombre_subcategoria_p"=?, "imagen_subcategoria"=?, estado_subcategoria_p=?
+                WHERE "uuid_subcategoria_p" = ?;';
+            $params = array($this->categoria, $this->nombre, $this->imagen, $this->estado, $this->id);
         return Database::executeRow($sql, $params);
     }
 
@@ -170,20 +169,13 @@ class Subcategoria extends Validator
     /* Función para inhabilitar una subcategoria ya que no los borraremos de la base -------------------------.*/
     public function deleteRow()
     {
-        //No eliminaremos registros, solo los inhabilitaremos-------------------------.
-        $sql = 'UPDATE "subcategoriaProducto" SET estado = 3 WHERE "idSubCategoriaP" = ?';
-        $params = array($this->id);
+        $this->estado = 0;
+        //No eliminaremos registros, solo los inhabilitaremos----------------------------
+        $sql = 'UPDATE "subcategoria_producto" SET estado_subcategoria_p = ? WHERE "uuid_subcategoria_p" = ?';
+        $params = array($this->estado, $this->id);
         return Database::executeRow($sql, $params);
     }
 
     /*  */
-    public function readSubcategoriasCategoria()
-    {
-        $sql = 'SELECT "idSubCategoriaP", "imagenSubcategoria", "nombreSubCategoriaP", "descripcionSubCategoriaP"
-        FROM "subcategoriaProducto"
-        WHERE "idCategoriaP" =  ?
-        ORDER BY "idSubCategoriaP"';
-        $params = array($this->id);
-        return Database::getRows($sql, $params);
-    }
+
 }

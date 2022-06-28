@@ -20,7 +20,8 @@ function fillTable2(dataset) {
     let content = '';
     // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
     dataset.map(function (row) {
-        // Se crean y concatenan las filas de la tabla con los datos de cada registro.
+        // Se crean y concatenan las filas de la tabla con los datos de cada registro.}
+        // Se coloca el nombre de la columna de la tabla---------------.
         content += `
         <tr>
             <td data-title="Marca" class="col-table ">
@@ -58,7 +59,7 @@ function fillTable2(dataset) {
 document.addEventListener('DOMContentLoaded', function () {
     readRows(API_PROVEEDOR);
     setTimeout(() => {
-        /*Inicializando y configurando tabla*/
+        /*Inicializando y configurando tabla-----------------*/
         let options = {
             "info": false,
         "searching": false,
@@ -81,16 +82,18 @@ document.addEventListener('DOMContentLoaded', function () {
 document.getElementById('buscar-marca').addEventListener('submit', function (event) {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
-    // Se llama a la función que realiza la búsqueda. Se encuentra en el archivo components.js
+    // Se llama a la función que realiza la búsqueda. Se encuentra en el archivo components.js------------------
     searchRows2(API_MARCA, 'buscar-marca');
 });
 
 function openCreateMarca() {
     // Se establece que el campo archivo sea obligatorio (input de subir imagen).
+    document.getElementById('modal-title2').innerText = 'Ingresar marca';
     document.getElementById("nombre_marca").value = "";
 }
 
 function openUpdateMarca(id) {
+    document.getElementById('modal-title2').innerText = 'Actualizar marca';
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData();
     data.append('id', id);
@@ -136,6 +139,7 @@ function openDeleteMarca(id) {
 }
 
 // Método manejador de eventos que se ejecuta cuando se envía el modal de eliminar.
+//No se borra se deshabilita--------------------------.
 document.getElementById('delete-form').addEventListener('submit', function (event) {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();

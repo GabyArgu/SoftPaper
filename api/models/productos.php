@@ -1,6 +1,6 @@
 <?php
 /*
-*	Clase para manejar la tabla usuarios de la base de datos.
+*	Clase para manejar la tabla productos de la base de datos.
 *   Es clase hija de Validator.
 */
 class Productos extends Validator
@@ -215,6 +215,8 @@ class Productos extends Validator
     /* 
     *   Método para comprobar que existen subcategorias registradas en nuestra base de datos
     */
+
+    // Método para leer toda la información de los productos existentes-------------------------.
     public function readAll()
     {
         $sql = "SELECT Distinct on (nombre_producto) nombre_producto, uuid_producto, imagen_producto, nombre_subcategoria_p, precio_producto, uuid_color_producto, uuid_color_stock, stock, nombre_marca, nombre_proveedor, descripcion_producto, estado_producto
@@ -230,6 +232,7 @@ class Productos extends Validator
         return Database::getRows($sql, $params);
     }
 
+    // Método para un dato en especifico de los productos existentes-------------------------.
     public function readOne()
     {
         $sql = 'SELECT Distinct on (nombre_producto) nombre_producto, descripcion_producto, imagen_producto, precio_producto, uuid_subcategoria_p, uuid_marca, uuid_estado_producto,  uuid_proveedor, uuid_color_producto, stock, (SELECT uuid_categoria_p FROM subcategoria_producto WHERE uuid_subcategoria_p = (SELECT uuid_subcategoria_p FROM producto WHERE uuid_producto = ?))
@@ -240,7 +243,23 @@ class Productos extends Validator
         return Database::getRow($sql, $params);
     }
 
+    
 
+    /*
+    *   Métodos para obtener estadísticas de productos------------------------.
+    */
+
+    public function readStadistics()
+    {
+        $sql = "SELECT (SELECT COUNT(*) FROM producto) as total, 
+        (SELECT COUNT(*) FROM producto WHERE uuid_estado_producto = (SELECT uuid_estado_producto FROM estado_producto WHERE estado_producto = 'Sin existencias')) as agotados,
+        (SELECT SUM(stock) FROM color_stock) as existencias, 
+        (SELECT COUNT(*) FROM categoria_producto WHERE estado_categoria_p = true) as categorias  
+        FROM producto, color_stock, categoria_producto
+        GROUP BY total;";
+        $params = null;
+        return Database::getRow($sql, $params);
+    }
 
     /*
     *   Métodos para realizar las operaciones SCRUD (search, create, read, update, delete).
@@ -261,15 +280,25 @@ class Productos extends Validator
         return Database::getRows($sql, $params);
     }
 
-    public function filterPrecio($min, $max)
+    /* Método para filtrar tabla
+    *   Parámetros: categoria = categoria por la cual filtrar, estado = estado por el cual filtrar---------------------------.
+    */
+    public function readRowsFilter($categoria, $estado)
     {
-        $sql = 'SELECT Distinct on ("idProducto") "idProducto", "imagenPrincipal", "nombreProducto", "descripcionProducto", "precioProducto", descuento, "estadoProducto", "idColorStock", "idColor", p."idSubCategoriaP"
-        FROM producto as p INNER JOIN "marca" USING("idMarca") INNER JOIN "colorStock" USING("idProducto")
-		WHERE  "idSubCategoriaP" = ? AND "estadoProducto" = 1 AND "precioProducto" BETWEEN ? AND ?
-		ORDER BY "idProducto"';
-        $params = array($this->id, $min, $max);
+        $sql = 'SELECT Distinct on (nombre_producto) nombre_producto, uuid_producto, imagen_producto, nombre_subcategoria_p, precio_producto, uuid_color_producto, uuid_color_stock, stock, nombre_marca, nombre_proveedor, descripcion_producto, estado_producto
+        FROM producto INNER JOIN estado_producto USING(uuid_estado_producto)
+		INNER JOIN subcategoria_producto USING(uuid_subcategoria_p)
+		INNER JOIN categoria_producto USING(uuid_categoria_p)
+		INNER JOIN color_stock USING(uuid_producto)
+		INNER JOIN marca USING(uuid_marca)
+		INNER JOIN detalle_producto USING(uuid_producto)
+		INNER JOIN proveedor USING(uuid_proveedor)
+        WHERE "uuid_categoria_p" = ? AND uuid_estado_producto = ?
+        ORDER BY  nombre_producto, stock DESC';
+        $params = array($categoria, $estado);
         return Database::getRows($sql, $params);
     }
+
 
     /* CREATE */
     public function createRow()
@@ -286,7 +315,7 @@ class Productos extends Validator
         }
     }
 
-    /*FUNCIONES PARA INSERTAR EN TABLAS FORANEAS INFORMACIÓN DEL PRODUCTO */
+    /*FUNCIONES PARA INSERTAR EN TABLAS FORANEAS INFORMACIÓN DEL PRODUCTO -------------------------------------.*/
     public function insertStock()
     {
         $sql = 'INSERT INTO color_stock(uuid_producto, uuid_color_producto, stock) VALUES(?, ?, ?)';
@@ -356,10 +385,18 @@ class Productos extends Validator
         $params = array($this->id, $this->color);
         return Database::getRow($sql, $params);
     }
+    public function readProductStockUpdate()
+    {
+        $sql = 'SELECT 	stock
+        FROM color_stock 
+		WHERE uuid_color_stock = ?';
+        $params = array($this->color);
+        return Database::getRow($sql, $params);
+    }
 
     /* DELETE */
     /* Funciones para inhabilitar un producto ya que no los borraremos de la base*/
-    /* Función que actualiza el estado del producto a sin existencias*/
+    /* Función que actualiza el estado del producto a sin existencias--------------------------------------*/
     public function deleteRow()
     {
         //No eliminaremos registros, solo los inhabilitaremos, borraremos el stock, y borraremos sus registros en tablas foraneas, dejando uno para que se pueda mostrar en la tabla
@@ -368,7 +405,7 @@ class Productos extends Validator
         return Database::executeRow($sql, $params);
     }
 
-    /* Función que borra todos los registros del producto en la tabla color_stock dejando uno para que se muestre en el readRows*/
+    /* Función que borra todos los registros del producto en la tabla color_stock dejando uno para que se muestre en el readRows-------------------------------------.*/
     public function deleteColorStock()
     {
         $sql = 'DELETE FROM color_stock
@@ -381,7 +418,7 @@ class Productos extends Validator
         $params = array($this->id);
         return Database::executeRow($sql, $params);
     }
-    /* Función que borra todos los registros del producto en la tabla detalle_producto dejando uno para que se muestre en el readRows*/
+    /* Función que borra todos los registros del producto en la tabla detalle_producto dejando uno para que se muestre en el readRows------------------------.*/
     public function deleteProvider()
     {
         $sql = 'DELETE FROM detalle_producto
@@ -394,11 +431,22 @@ class Productos extends Validator
         $params = array($this->id);
         return Database::executeRow($sql, $params);
     }
-    /* Función que actualiza el stock del producto después de vaciar las tablas necesarias*/
+    /* Función que actualiza el stock del producto después de vaciar las tablas necesarias------------------------.*/
     public function colorAfterDelete()
     {
         $sql = 'UPDATE color_stock SET stock = 0 WHERE uuid_producto = ?;';
         $params = array($this->id);
         return Database::executeRow($sql, $params);
     }
+
+    public function readProductosVentas(){
+        $sql = "SELECT DISTINCT on (nombre_producto) nombre_producto, uuid_producto, color_producto, stock
+                from color_stock inner join producto using(uuid_producto)
+                inner join color_producto using (uuid_color_producto)
+                inner join detalle_producto using (uuid_producto)
+                ORDER BY  nombre_producto, stock DESC;";
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
+
 }

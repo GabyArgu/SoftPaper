@@ -22,6 +22,7 @@ function fillTable(dataset) {
     dataset.map(function (row) {
         (row.estado_proveedor) ? icon = '<span class="estado">Activo</span>' : icon = '<span class="estado3">Inactivo</span>';
         // Se crean y concatenan las filas de la tabla con los datos de cada registro.
+        // Se coloca el nombre de la columna de la tabla---------------.
         content += `
         <tr>
             <td data-title="Proveedor" class="col-table ">${row.nombre_proveedor}</td>
@@ -60,7 +61,7 @@ function fillTable(dataset) {
 document.addEventListener('DOMContentLoaded', function () {
     readRows(API_PROVEEDOR);
     setTimeout(() => {
-        /*Inicializando y configurando tabla*/
+        /*Inicializando y configurando tabla------------------------------------*/
         let options = {
             "info": false,
         "searching": false,
@@ -80,24 +81,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 300);
 });
 
-// $(document).ready(function () {
-//     $('#proveedor').DataTable({
-//         "info": false,
-//         "searching": false,
-//         "dom":
-//             "<'row'<'col-sm-12'tr>>" +
-//             "<'row'<'col-sm-5'l><'col-sm-1'><'col-sm-6'p>>",
-//         "language": {
-//             "lengthMenu": "Mostrando _MENU_ registros",
-//             "paginate": {
-//                 "next": '<i class="bi bi-arrow-right-short"></i>',
-//                 "previous": '<i class="bi bi-arrow-left-short"></i>'
-//             }
-//         },
-//         "lengthMenu": [[10, 15, 10, -1], [10, 15, 20, "Todos"]]
-//     });
-// });
-
 document.getElementById('buscar-proveedor').addEventListener('submit', function (event) {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
@@ -106,13 +89,15 @@ document.getElementById('buscar-proveedor').addEventListener('submit', function 
 });
 
 function openCreateProv() {
-    // Se establece que el campo archivo sea obligatorio (input de subir imagen).
+    // Se limpian los campos, se deshabilita el campo de estado y se cambia el título del modal-----------------.
     document.getElementById("nombre_prov").value = "";
     document.getElementById("tele_prov").value = "";
     document.getElementById("estado_prov").disabled = true;
+    document.getElementById('modal-title').innerText = 'Ingresar proveedor';
 }
 
 function openUpdateProv(id) {
+    document.getElementById('modal-title').innerText = 'Actualizar proveedor';
     document.getElementById("estado_prov").disabled = false;
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData();
@@ -132,10 +117,10 @@ function openUpdateProv(id) {
                     document.getElementById('id').value = (id);
                     document.getElementById('nombre_prov').value = response.dataset.nombre_proveedor;
                     document.getElementById('tele_prov').value = response.dataset.telefono_proveedor;
-                    if (response.dataset.estado_cliente) {
-                        document.getElementById('estado_prov').value = 0;
-                    } else {
+                    if (response.dataset.estado_proveedor) {
                         document.getElementById('estado_prov').value = 1;
+                    } else {
+                        document.getElementById('estado_prov').value = 0;
                     }
                     // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos.
                 } else {
@@ -158,8 +143,10 @@ document.getElementById('agregar-prov').addEventListener('submit', function (eve
     (document.getElementById('id').value) ? action = 'update' : action = 'create';
     // Se llama a la función para guardar el registro. Se encuentra en el archivo components.js
     saveRow(API_PROVEEDOR, action, 'agregar-prov', 'modal-agregarP');
+    readRows(API_PROVEEDOR);
 });
 
+// Función para cargar el id a eliminar
 function openDeleteProv(id) {
     document.getElementById('id_delete').value = (id);
 }

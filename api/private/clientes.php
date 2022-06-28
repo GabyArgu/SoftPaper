@@ -24,8 +24,26 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No hay clientes registrados';
                 }
                 break;
+            case 'readClientesVenta':
+                if ($result['dataset'] = $clientes->readClientesVenta()) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'No hay clientes registrados';
+                }
+                break;
             case 'search':
                 if ($result['dataset'] = $clientes->searchRows($_POST['search'])) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                }else {
+                    $result['exception'] = 'No hay coincidencias';
+                }
+                break;
+            case 'filter':
+                if ($result['dataset'] = $clientes->searchRows($_POST['filtroC'])) {
                     $result['status'] = 1;
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
@@ -107,6 +125,9 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Municipio inválido';
                 } elseif (!$clientes->setEstado($_POST['uestado_c'])) {
                     $result['exception'] = 'Estado inválido';
+                } elseif ($clientes->updateRow()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Cliente actualizado correctamente';
                 } else {
                     $result['exception'] = Database::getException();
                 }
