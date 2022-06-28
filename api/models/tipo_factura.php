@@ -3,7 +3,7 @@
 *	Clase para manejar la tabla catalogo de colores de la base de datos de la tienda.
 *   Es una clase hija de Validator.
 */
-class TipoVenta extends Validator
+class TipoFactura extends Validator
 {
     // Declaración de atributos (propiedades).
     private $id = null;
@@ -63,14 +63,14 @@ class TipoVenta extends Validator
     // Método para leer toda la información de los colores existentes-------------------------.
     public function readAll()
     {
-        $sql = 'SELECT uuid_tipo_venta, tipo_venta, estado_tipo_venta FROM tipo_venta';
+        $sql = 'SELECT uuid_tipo_factura, tipo_factura, estado_tipo_factura FROM tipo_factura';
         $params = null;
         return Database::getRows($sql, $params);
     }
 
     public function readOne()
     {
-        $sql = 'SELECT uuid_tipo_venta, tipo_venta, estado_tipo_venta FROM tipo_venta where uuid_tipo_venta = ?';
+        $sql = 'SELECT uuid_tipo_factura, tipo_factura, estado_tipo_factura FROM tipo_factura where uuid_tipo_factura = ?';
         $params = array($this->id);
         return Database::getRow($sql, $params);
     }
@@ -78,7 +78,7 @@ class TipoVenta extends Validator
     /* CREATE */
     public function createRow()
     {
-        $sql = 'INSERT INTO tipo_venta(tipo_venta, estado_tipo_venta)
+        $sql = 'INSERT INTO tipo_factura(tipo_factura, estado_tipo_factura)
             VALUES (?, ?)';
         $params = array($this->tipo, $this->estado);
         return Database::executeRow($sql, $params);
@@ -87,9 +87,9 @@ class TipoVenta extends Validator
     /* UPDATE */
     public function updateRow()
     {
-        $sql = 'UPDATE tipo_venta
-        SET tipo_venta=?, estado_tipo_venta=?
-        WHERE uuid_tipo_venta = ?;';
+        $sql = 'UPDATE tipo_factura
+        SET tipo_factura=?, estado_tipo_factura=?
+        WHERE uuid_tipo_factura = ?;';
             $params = array($this->tipo,$this->estado,$this->id);
         return Database::executeRow($sql, $params);
     }
@@ -100,9 +100,9 @@ class TipoVenta extends Validator
     {
         $this->estado = 0;
         //No eliminaremos registros, solo los inhabilitaremos-------------------------
-        $sql = 'UPDATE tipo_venta
-                SET estado_tipo_venta = ?
-                WHERE uuid_tipo_venta = ?';
+        $sql = 'UPDATE tipo_factura
+                SET estado_tipo_factura = ?
+                WHERE uuid_tipo_factura = ?';
         $params = array($this->estado, $this->id);
         return Database::executeRow($sql, $params);
     }

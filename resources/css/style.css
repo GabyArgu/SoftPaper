@@ -1705,7 +1705,13 @@ tbody .imgMP {
 #modal-agregarP .modal-header,
 #modal-agregarP .modal-footer,
 #modal-agregarEP .modal-header,
-#modal-agregarEP .modal-footer {
+#modal-agregarEP .modal-footer,
+#modal-agregarEV .modal-header,
+#modal-agregarEV .modal-footer,
+#modal-agregarTV .modal-header, 
+#modal-agregarTV .modal-footer, 
+#modal-agregarTF .modal-header,
+#modal-agregarTF .modal-footer {
   border: none;
 }
 
@@ -1716,9 +1722,12 @@ tbody .imgMP {
 
 #modal-agregarP select,
 #modal-agregarSub select,
-#modal-agregarEP select {
+#modal-agregarEP select,
+#modal-agregarEV select,
+#modal-agregarTV select,
+#modal-agregarTF select {
   border-radius: 15px;
-  border-color: var(--azulModal);
+  border-color: var(--azulMain);
 }
 
 .cpicker{
@@ -1732,7 +1741,10 @@ tbody .imgMP {
 #modal-agregarP h2,
 #modal-agregarM h2,
 #modal-agregarSub h2,
-#modal-agregarEP h2 {
+#modal-agregarEP h2,
+#modal-agregarEV h2,
+#modal-agregarTV h2,
+#modal-agregarTF h2 {
   color: var(--azulOscuro);
   text-align: center !important;
 }
