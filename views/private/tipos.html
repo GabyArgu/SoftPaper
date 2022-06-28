@@ -120,42 +120,42 @@
 
         <main class="container-xxl">
             <div class="header-content my-5">
-                <h1>Estados</h1>
+                <h1>Tipos de venta y facturación</h1>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                        <li class="breadcrumb-item"><a href="">Catálogo</a></li>
-                        <li class="breadcrumb-item active" aria-current="page"><a href="">Estados</a></li>
+                        <li class="breadcrumb-item"><a href="dashboard.html">Inicio</a></li>
+                        <li class="breadcrumb-item"><a href="">Facturación</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"><a href="tipos.html">Tipos de venta y facturación</a></li>
                     </ol>
                 </nav>
             </div>
             <div class="content content-productos">
                 <div class="container">
                     <div class="row">
-                        <!-- CONTENEDOR DE ESTADOS DE PRODUCTO -->
+                        <!-- CONTENEDOR DE TIPOS DE VENTA -->
                         <div class="col col-lg-12 col-xl-6">
                             <div class="content content-prov mh-100">
                                 <div class="container content-card">
                                     <div class="row">
                                         <div class="col proveedor">
                                             <div class="row">
-                                                <div class="col mt-3"><b class="tituloMP">Estado Producto</b></div>
+                                                <div class="col mt-3"><b class="tituloMP">Tipos de venta</b></div>
                                             </div>
                                             <div class="row my-4">
                                                 <div class="col d-flex justify-content-end btn-agregar-estado">
-                                                    <button onclick="openCreateEP()" class="btn-añadirMP" type="button"
-                                                        data-bs-toggle="modal" data-bs-target="#modal-agregarEP"><i
-                                                            class="bi bi-plus"></i>Añadir estado</button>
+                                                    <button onclick="openCreateTV()" class="btn-añadirMP" type="button"
+                                                        data-bs-toggle="modal" data-bs-target="#modal-agregarTV"><i
+                                                            class="bi bi-plus"></i>Añadir tipo</button>
                                                 </div>
                                             </div>
-                                            <!-- LISTA DE ESTADOS DE PRODUCTO -->
+                                            <!-- LISTA DE TIPOS DE VENTA -->
                                             <div class="row my-3">
                                                 <div class="col">
                                                     <div class="table-responsive mt-3 scroll" id="no-more-tables">
-                                                        <table class="table table-hover" id="estado_producto">
+                                                        <table class="table table-hover" id="tipo_venta">
                                                             <thead>
                                                                 <tr>
-                                                                    <th>Nombre Estado</th>
+                                                                    <th>Tipo de venta</th>
                                                                     <th>Estado</th>
                                                                     <th>Acciones</th>
                                                                 </tr>
@@ -171,31 +171,31 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- CONTENEDOR DE ESTADOS DE VENTA -->
+                        <!-- CONTENEDOR DE TIPOS DE FACTURA -->
                         <div class="col col-lg-12 col-xl-6">
                             <div class="content content-marca">
                                 <div class="container content-card">
                                     <div class="row">
                                         <div class="col marca">
                                             <div class="row">
-                                                <div class="col mt-3"><b class="tituloMP">Estado Venta</b></div>
+                                                <div class="col mt-3"><b class="tituloMP">Tipos de factura</b></div>
                                             </div>
                                             <div class="row my-4">
                                                 <div class="col d-flex justify-content-end btn-agregar-estado">
-                                                    <button onclick="openCreateEV()" class="btn-añadirMP"
+                                                    <button onclick="openCreateTF()" class="btn-añadirMP"
                                                         type="button" data-bs-toggle="modal"
-                                                        data-bs-target="#modal-agregarEV"><i
-                                                            class="bi bi-plus"></i>Añadir estado</button>
+                                                        data-bs-target="#modal-agregarTF"><i
+                                                            class="bi bi-plus"></i>Añadir tipo</button>
                                                 </div>
                                             </div>
-                                            <!-- LISTA DE ESTADOS DE VENTA -->
+                                            <!-- LISTA DE TIPOS DE FACTURA -->
                                             <div class="row my-3">
                                                 <div class="col">
                                                     <div class="table-responsive mt-3 scroll" id="no-more-tables">
-                                                        <table class="table table-hover" id="estado_venta">
+                                                        <table class="table table-hover" id="tipo_factura">
                                                             <thead>
                                                                 <tr>
-                                                                    <th>Nombre Estado</th>
+                                                                    <th>Tipo de factura</th>
                                                                     <th>Estado</th>
                                                                     <th>Acciones</th>
                                                                 </tr>
@@ -228,37 +228,37 @@
         <!-- FIN FOOTER -->
     </div>
 
-    <!-- INICIO MODAL AGREGAR ESTADO DE PRODUCTO -->
-    <div class="modal fade" id="modal-agregarEP" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- INICIO MODAL AGREGAR TIPO DE VENTA -->
+    <div class="modal fade" id="modal-agregarTV" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2 class="ps-3 pt-2">Ingresar estado de producto</h2>
+                    <h2 class="ps-3 pt-2">Ingresar tipo de venta</h2>
                     <button type="button" class="btn-close mb-3" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form method="post" id="agregar-ep">
+                <form method="post" id="agregar-tv">
                     <div class="modal-body pt-0">
                         <div class="container">
                             <div class="row">
                                 <div class="col">
-                                    <input type="hidden" id="id" name="id">
+                                    <input type="hidden" id="id-tv" name="id-tv">
                                 </div>
                             </div>
                             <div class="row agregar-content">
                                 <div class="col">
                                     <div class="row justify-content-center">
                                         <div class="col-lg-6 my-4">
-                                            <label>Nombre del estado:</label>
+                                            <label>Nombre del tipo:</label>
                                             <input class="form-control input-ep" type="text"
-                                                aria-label=".form-control example" id="nombre_estado_producto"
-                                                name="nombre_estado_producto" required>
+                                                aria-label=".form-control example" id="nombre_tipo_venta"
+                                                name="nombre_tipo_venta" required>
                                         </div>
                                         <div class="col-lg-6 mb-4">
                                             <div class="text-start">
                                                 <label for="validationDefault02" class="form-label py-2">Estado</label>
                                             </div>
-                                            <select class="form-select custom-form-select" id="estado_estado_producto"
-                                                name="estado_estado_producto" aria-label="Default select proveedor"
+                                            <select class="form-select custom-form-select" id="estado_tipo_venta"
+                                                name="estado_tipo_venta" aria-label="Default select proveedor"
                                                 required disabled>
                                                 <option value="1" selected>Activo</option>
                                                 <option value="0">Inactivo</option>
@@ -277,22 +277,22 @@
             </div>
         </div>
     </div>
-    <!-- FIN MODAL AGREGAR PROVEEDOR -->
+    <!-- FIN MODAL AGREGAR TIPO DE VENTA -->
 
-    <!-- INICIO MODAL AGREGAR ESTADO DE VENTA -->
-    <div class="modal fade" id="modal-agregarEV" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- INICIO MODAL AGREGAR TIPO DE FACTURA -->
+    <div class="modal fade" id="modal-agregarTF" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2 class="ps-3 pt-2">Ingresar estado de venta</h2>
+                    <h2 class="ps-3 pt-2">Ingresar tipo de factura</h2>
                     <button type="button" class="btn-close mb-3" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form method="post" id="agregar-ev">
+                <form method="post" id="agregar-tf">
                     <div class="modal-body pt-0">
                         <div class="container">
                             <div class="row">
                                 <div class="col">
-                                    <input type="hidden" id="id-v" name="id-v">
+                                    <input type="hidden" id="id-tf" name="id-tf">
                                 </div>
                             </div>
                             <div class="row agregar-content">
@@ -301,15 +301,15 @@
                                         <div class="col-lg-6 my-4">
                                             <label>Nombre del estado:</label>
                                             <input class="form-control input-ep" type="text"
-                                                aria-label=".form-control example" id="nombre_estado_venta"
-                                                name="nombre_estado_venta" required>
+                                                aria-label=".form-control example" id="nombre_tipo_factura"
+                                                name="nombre_tipo_factura" required>
                                         </div>
                                         <div class="col-lg-6 mb-4">
                                             <div class="text-start">
                                                 <label for="validationDefault02" class="form-label py-2">Estado</label>
                                             </div>
-                                            <select class="form-select custom-form-select" id="estado_estado_venta"
-                                                name="estado_estado_venta" aria-label="Default select proveedor"
+                                            <select class="form-select custom-form-select" id="estado_tipo_factura"
+                                                name="estado_tipo_factura" aria-label="Default select proveedor"
                                                 required disabled>
                                                 <option value="1" selected>Activo</option>
                                                 <option value="0">Inactivo</option>
@@ -328,7 +328,7 @@
             </div>
         </div>
     </div>
-    <!-- FIN MODAL AGREGAR ESTADO DE VENTA -->
+    <!-- FIN MODAL AGREGAR TIPO DE FACTURA -->
 
     <!-- INICIO MODAL DELETE -->
     <div class="modal modal-eliminar fade" id="modal-eliminar" tabindex="-1" aria-hidden="true" aria-labelledby="exampleModal">
@@ -375,8 +375,8 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../../controllers/componentes.js"></script>
     <script src="../../controllers/private/charge.js"></script>
-    <script src="../../controllers/private/estado_producto.js"></script>
-    <script src="../../controllers/private/estado_venta.js"></script>
+    <script src="../../controllers/private/tipo_venta.js"></script>
+    <script src="../../controllers/private/tipo_factura.js"></script>
     <script src="../../controllers/private/dashboard.js"></script>
 
 </body>
