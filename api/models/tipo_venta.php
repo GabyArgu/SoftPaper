@@ -60,7 +60,7 @@ class TipoVenta extends Validator
         return $this->estado;
     }
 
-    // Método para leer toda la información de los colores existentes-------------------------.
+    // Método para leer toda la información de tipo factura existentes-------------------------.
     public function readAll()
     {
         $sql = 'SELECT uuid_tipo_venta, tipo_venta, estado_tipo_venta FROM tipo_venta';
@@ -68,6 +68,7 @@ class TipoVenta extends Validator
         return Database::getRows($sql, $params);
     }
 
+    // Método para un dato en especifico de tipo factura existentes-------------------------.
     public function readOne()
     {
         $sql = 'SELECT uuid_tipo_venta, tipo_venta, estado_tipo_venta FROM tipo_venta where uuid_tipo_venta = ?';

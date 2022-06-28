@@ -21,6 +21,7 @@ function fillTable(dataset) {
     dataset.map(function (row) {
         (row.estado_tipo_venta) ? icon = '<span class="estado">Activo</span>' : icon = '<span class="estado3">Inactivo</span>';
         // Se crean y concatenan las filas de la tabla con los datos de cada registro.
+        // Se coloca el nombre de la columna de la tabla---------------.
         content += `
         <tr>
             <td data-title="Proveedor" class="col-table ">${row.tipo_venta}</td>
@@ -56,7 +57,7 @@ function fillTable(dataset) {
 document.addEventListener('DOMContentLoaded', function () {
     readRows(API_TIPO_VENTA);
     setTimeout(() => {
-        /*Inicializando y configurando tabla*/
+        /*Inicializando y configurando tabla---------*/
         let options = {
             "info": false,
         "searching": false,
@@ -134,6 +135,7 @@ function openDeleteTV(id) {
 }
 
 // Método manejador de eventos que se ejecuta cuando se envía el modal de eliminar.
+//No se borra se deshabilita-----------------------------.
 document.getElementById('delete-form').addEventListener('submit', function (event) {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();

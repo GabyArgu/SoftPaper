@@ -7,7 +7,7 @@ const ENDPOINT_PROVEEDOR = SERVER + 'private/proveedor.php?action=readAll';
 const ENDPOINT_COLOR = SERVER + 'private/color.php?action=readAll';
 const ENDPOINT_ESTADO = SERVER + 'private/estado_producto.php?action=readAll';
 
-//Configuración de la tabla
+//Configuración de la tabla-------------------.
 const options = {
     "info": false,
     "columnDefs": [
@@ -92,6 +92,7 @@ function fillTable(dataset) {
             } 
         
         // Se crean y concatenan las filas de la tabla con los datos de cada registro.
+        // Se coloca el nombre de la columna de la tabla---------------.
         content += `
             <tr>
                 <td data-title="PRODUCTO" class="col-table">
@@ -230,7 +231,7 @@ document.getElementById('save-form').addEventListener('submit', function (event)
     reInitTable();
 });
 
-//Función para general thumbnail de imagen en el input file
+//Función para general thumbnail de imagen en el input file------------------.
 function previewFile() {
     var preview = document.getElementById('img-thumbnail');
     var file = document.querySelector('input[type=file]').files[0];
@@ -252,7 +253,7 @@ function previewFile() {
 }
 
 
-//Función para cambiar el stock al cambiar de color en el select
+//Función para cambiar el stock al cambiar de color en el select-----------------------.
 document.getElementById("color").addEventListener("change", function () {
     if (!document.getElementById("id").value.length == 0) {
         let selectValue = document.getElementById('color').value;
@@ -261,7 +262,7 @@ document.getElementById("color").addEventListener("change", function () {
     }
 });
 
-//Funcion para asignar el atributo max del input max dinámicamente
+//Funcion para asignar el atributo max del input max dinámicamente----------------------------------.
 function setStock() {
     let input = document.getElementById("stock");
     // Petición para obtener los datos del producto solicitado.
@@ -290,6 +291,7 @@ function setStock() {
     });
 }
 
+//Funcion para suma el stock al producto--------------------.
 let sumarStock = () => {
     let nuevo = parseInt(document.getElementById("stock-nuevo").value);
     let stock = parseInt(document.getElementById("stock").value);
@@ -303,6 +305,7 @@ let sumarStock = () => {
 
 }
 
+//Funcion para restar stock al producto---------------------.
 let restarStock = () => {
     let nuevo = parseInt(document.getElementById("stock-nuevo").value);
     let stock = parseInt(document.getElementById("stock").value);
@@ -338,7 +341,7 @@ document.getElementById('delete-form').addEventListener('submit', function (even
 });
 
 
-// Método manejador de eventos que se ejecuta cuando se envía el formulario de buscar.
+// Método manejador de eventos que se ejecuta cuando se envía el formulario de buscar-----------------------.
 document.getElementById('search-form').addEventListener('submit', function (event) {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
@@ -443,9 +446,6 @@ function loadStadictics() {
 document.getElementById('nombre').addEventListener('keypress', function (event) {
 
 });
-
-
-
 
 
 document.getElementById('nombre').addEventListener("blur", (e) => validateEmptyField(e));

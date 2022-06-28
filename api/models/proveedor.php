@@ -1,6 +1,6 @@
 <?php
 /*
-*	Clase para manejar la tabla categorias de la base de datos.
+*	Clase para manejar la tabla proveedores de la base de datos.
 *   Es clase hija de Validator.
 */
 class Proveedor extends Validator
@@ -76,7 +76,7 @@ class Proveedor extends Validator
         return $this->estado;
     }
 
-    // Método para leer toda la información de los colores existentes-------------------------.
+    // Método para leer toda la información de los proveedores existentes-------------------------.
     public function readAll()
     {
         $sql = 'SELECT uuid_proveedor, nombre_proveedor, telefono_proveedor, estado_proveedor FROM proveedor;';
@@ -84,7 +84,7 @@ class Proveedor extends Validator
         return Database::getRows($sql, $params);
     }
 
-    // Método para un dato en especifico de los colores existentes-------------------------.
+    // Método para un dato en especifico de los proveedores existentes-------------------------.
     public function readOne()
     {
         $sql = 'SELECT "nombre_proveedor", "telefono_proveedor", "estado_proveedor" FROM proveedor WHERE "uuid_proveedor" = ?';
