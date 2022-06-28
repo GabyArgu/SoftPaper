@@ -21,6 +21,7 @@ function fillTable2(dataset) {
     dataset.map(function (row) {
         (row.estado_estado_venta) ? icon = '<span class="estado">Activo</span>' : icon = '<span class="estado3">Inactivo</span>';
         // Se crean y concatenan las filas de la tabla con los datos de cada registro.
+        // Se coloca el nombre de la columna de la tabla---------------.
         content += `
         <tr>
             <td data-title="Proveedor" class="col-table ">${row.estado_venta}</td>
@@ -56,7 +57,7 @@ function fillTable2(dataset) {
 document.addEventListener('DOMContentLoaded', function () {
     readRows2(API_ESTADO_VENTA);
     setTimeout(() => {
-        /*Inicializando y configurando tabla*/
+        /*Inicializando y configurando tabla-----------------*/
         let options = {
             "info": false,
         "searching": false,
@@ -76,53 +77,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 300);
 });
 
-// // Método manejador de eventos que se ejecuta cuando el documento ha cargado.
-// document.addEventListener('DOMContentLoaded', function () {
-//     // Se llama a la función que obtiene los registros para llenar la tabla. Se encuentra en el archivo components.js
-//     readRows2(API_ESTADO_VENTA);
-//     setTimeout(() => {
-//         /*Inicializando y configurando tabla*/
-//         table = new DataTable('#estado_venta', options);
-//     }, 250);
-// });
-
-// const reInitTable = () => {
-//     table.destroy();
-//     setTimeout(() => {
-//         readRows2(API_ESTADO_VENTA);
-//     }, 100);
-
-//     setTimeout(() => {
-//         /*Inicializando y configurando tabla*/
-//         table = new DataTable('#estado_venta', options);
-//     }, 300);
-// }
-
-// $(document).ready(function () {
-//     $('#proveedor').DataTable({
-//         "info": false,
-//         "searching": false,
-//         "dom":
-//             "<'row'<'col-sm-12'tr>>" +
-//             "<'row'<'col-sm-5'l><'col-sm-1'><'col-sm-6'p>>",
-//         "language": {
-//             "lengthMenu": "Mostrando _MENU_ registros",
-//             "paginate": {
-//                 "next": '<i class="bi bi-arrow-right-short"></i>',
-//                 "previous": '<i class="bi bi-arrow-left-short"></i>'
-//             }
-//         },
-//         "lengthMenu": [[10, 15, 10, -1], [10, 15, 20, "Todos"]]
-//     });
-// });
-
-// BUSCADOR
-// document.getElementById('buscar-proveedor').addEventListener('submit', function (event) {
-//     // Se evita recargar la página web después de enviar el formulario.
-//     event.preventDefault();
-//     // Se llama a la función que realiza la búsqueda. Se encuentra en el archivo components.js
-//     searchRows(API_PROVEEDOR, 'buscar-proveedor');
-// });
 
 function openCreateEV() {
     document.getElementById("agregar-ev").reset();
@@ -154,7 +108,7 @@ function openUpdateEV(id) {
                     } else {
                         document.getElementById('estado_estado_venta').value = 0;
                     }
-                    // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos.
+                    // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos--------------.
                 } else {
                     sweetAlert(2, response.exception, null);
                 }

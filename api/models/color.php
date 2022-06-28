@@ -69,6 +69,18 @@ class ColorProducto extends Validator
     }
 
 
+    public function readColorProducto()
+    {
+        $sql = 'SELECT  uuid_color_producto, color_producto
+                FROM color_producto inner join color_stock using(uuid_color_producto)
+                inner join producto using(uuid_producto)
+                WHERE producto.uuid_producto = ?
+                ORDER BY color_producto';
+        $params = array($this->id);
+        return Database::getRows($sql, $params);
+    }
+
+
     // Método para un dato en especifico de los colores existentes-------------------------.
     public function readOne()
     {

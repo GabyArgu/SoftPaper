@@ -1738,6 +1738,7 @@ tbody .imgMP {
   height: 26px !important;
 }
 
+
 #modal-agregarP h2,
 #modal-agregarM h2,
 #modal-agregarSub h2,
@@ -1745,13 +1746,16 @@ tbody .imgMP {
 #modal-agregarEV h2,
 #modal-agregarTV h2,
 #modal-agregarTF h2 {
+
   color: var(--azulOscuro);
   text-align: center !important;
 }
 
-#nombre_sub {
+
+#nombre_sub{
   font-size: 25px !important;
 }
+
 
 /* MARCA_PROVEEDOR FIN */
 

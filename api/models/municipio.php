@@ -1,6 +1,6 @@
 <?php
 /*
-*	Clase para manejar la tabla catalogo de colores de la base de datos de la tienda.
+*	Clase para manejar la tabla catalogo de municipios de la base de datos de la tienda.
 *   Es una clase hija de Validator.
 */
 class Municipio extends Validator
@@ -59,7 +59,7 @@ class Municipio extends Validator
         return $this->departamento;
     }
 
-    // Método para leer toda la información de los colores existentes-------------------------.
+    // Método para leer toda la información de los municipios existentes-------------------------.
     public function readAll()
     {
         $sql = 'SELECT uuid_municipio, nombre_municipio, d.uuid_departamento
@@ -85,6 +85,7 @@ class Municipio extends Validator
         return Database::getRows($sql, $params);
     }
 
+    // Método para leer toda la información de los municipios existentes 2-------------------------.
     public function readAll2()
     {
         $sql = 'SELECT uuid_municipio, nombre_municipio, m.uuid_departamento, d.nombre_departamento
@@ -93,7 +94,7 @@ class Municipio extends Validator
         return Database::getRows($sql, $params);
     }
 
-    // Función para leer uno específico
+    // Función para leer uno específico de municipios-------------------.
     public function readOne()
     {
         $sql = 'SELECT "uuid_municipio", "nombre_municipio", m."uuid_departamento", d."nombre_departamento"

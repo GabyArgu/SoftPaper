@@ -1,6 +1,7 @@
 <?php
 /*
-*	Clase para manejar la tabla catalogo de colores de la base de datos de la tienda.
+
+*	Clase para manejar la tabla tipo factura de la base de datos de la tienda.
 *   Es una clase hija de Validator.
 */
 class TipoFactura extends Validator
@@ -9,6 +10,7 @@ class TipoFactura extends Validator
     private $id = null;
     private $tipo = null;
     private $estado = null;
+
 
     /*
     *   Métodos para validar y asignar valores de los atributos.
@@ -22,6 +24,8 @@ class TipoFactura extends Validator
             return false;
         }
     }
+
+
 
     public function setTipo($value)
     {
@@ -42,6 +46,7 @@ class TipoFactura extends Validator
             return false;
         }
     }
+
     /*
     *   Métodos para obtener valores de los atributos.
     */
@@ -60,7 +65,7 @@ class TipoFactura extends Validator
         return $this->estado;
     }
 
-    // Método para leer toda la información de los colores existentes-------------------------.
+    // Método para leer toda la información de tipo factura existentes-------------------------.
     public function readAll()
     {
         $sql = 'SELECT uuid_tipo_factura, tipo_factura, estado_tipo_factura FROM tipo_factura';
@@ -68,6 +73,7 @@ class TipoFactura extends Validator
         return Database::getRows($sql, $params);
     }
 
+    // Método para un dato en especifico de tipo factura existentes-------------------------.
     public function readOne()
     {
         $sql = 'SELECT uuid_tipo_factura, tipo_factura, estado_tipo_factura FROM tipo_factura where uuid_tipo_factura = ?';

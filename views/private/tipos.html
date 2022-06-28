@@ -29,7 +29,7 @@
 <body>
     <div class="wrapper">
 
-        <!-- Pantalla de cargar -->
+        <!-- PANTALLA DE CARGA DE LA PAGINA  -->
         <div id="contenedor_carga">
             <div class="lds-spinner">
                 <div></div>
@@ -47,7 +47,7 @@
             </div>
         </div>
 
-        <!-- INICIA NAVBAR -->
+        <!-- INICIA NAVBAR DE LA PAGINA -->
         <header>
             <nav class="navbar navbar-expand-lg " id="navbar-dashboard">
                 <div class="container">
@@ -76,22 +76,48 @@
                                     aria-labelledby="navbarDropdown">
                                     <li><a class="dropdown-item" href="productos.html">Productos</a></li>
                                     <li><a class="dropdown-item" href="subcategoria.html">Subcategorías</a></li>
-                                    <li><a class="dropdown-item" href="marca_proveedor.html">Proveedores y marcas</a>
-                                    </li>
+                                    <li><a class="dropdown-item" href="marca_proveedor.html">Proveedores y
+                                            marcas</a></li>
                                 </ul>
 
                             </li>
-
                             <li class="active nav-item menu-item" type="button">
-                                <a class="nav-link active" aria-current="page" href="venta.html">Venta</a>
+
+                                <a class="nav-link dropdown" id="navbarDropdownMenuLink" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false"> Facturación
+                                </a>
+                                <ul class="dropdown-menu dropdown-inventario slideInNav animate"
+                                    aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="venta.html">Ventas</a></li>
+                                    <li><a class="dropdown-item" href="tipos.html">Tipo factura y venta</a></li>
+                                </ul>
+
                             </li>
-
                             <li class="active nav-item menu-item" type="button">
-                                <a class="nav-link active" aria-current="page" href="clientes.html">Clientes</a>
+
+                                <a class="nav-link dropdown" id="navbarDropdownMenuLink" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false"> Usuarios
+                                </a>
+                                <ul class="dropdown-menu dropdown-inventario slideInNav animate"
+                                    aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="clientes.html">Clientes</a></li>
+                                    <li><a class="dropdown-item" href="empleados.html">Empleados</a></li>
+                                </ul>
+
                             </li>
-
                             <li class="active nav-item menu-item" type="button">
-                                <a class="nav-link" href="empleados.html">Empleados</a>
+
+                                <a class="nav-link dropdown" id="navbarDropdownMenuLink" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false"> Catálogos
+                                </a>
+                                <ul class="dropdown-menu dropdown-inventario slideInNav animate"
+                                    aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="estados.html">Estado de producto y venta</a></li>
+                                    <li><a class="dropdown-item" href="departamentos_municipios.html">Departamentos y municipios</a>
+                                    </li>                                   
+                                    <li><a class="dropdown-item" href="color.html">Colores</a></li>
+                                </ul>
+
                             </li>
                         </ul>
                         <div class="nav-options d-flex">
@@ -116,7 +142,7 @@
                 </div>
             </nav>
         </header>
-        <!-- FIN NAVBAR-->
+        <!-- FIN NAVBAR DE LA PAGINA -->
 
         <main class="container-xxl">
             <div class="header-content my-5">
@@ -125,7 +151,8 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="dashboard.html">Inicio</a></li>
                         <li class="breadcrumb-item"><a href="">Facturación</a></li>
-                        <li class="breadcrumb-item active" aria-current="page"><a href="tipos.html">Tipos de venta y facturación</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"><a href="tipos.html">Tipos de venta y
+                                facturación</a></li>
                     </ol>
                 </nav>
             </div>
@@ -182,9 +209,8 @@
                                             </div>
                                             <div class="row my-4">
                                                 <div class="col d-flex justify-content-end btn-agregar-estado">
-                                                    <button onclick="openCreateTF()" class="btn-añadirMP"
-                                                        type="button" data-bs-toggle="modal"
-                                                        data-bs-target="#modal-agregarTF"><i
+                                                    <button onclick="openCreateTF()" class="btn-añadirMP" type="button"
+                                                        data-bs-toggle="modal" data-bs-target="#modal-agregarTF"><i
                                                             class="bi bi-plus"></i>Añadir tipo</button>
                                                 </div>
                                             </div>
@@ -258,8 +284,8 @@
                                                 <label for="validationDefault02" class="form-label py-2">Estado</label>
                                             </div>
                                             <select class="form-select custom-form-select" id="estado_tipo_venta"
-                                                name="estado_tipo_venta" aria-label="Default select proveedor"
-                                                required disabled>
+                                                name="estado_tipo_venta" aria-label="Default select proveedor" required
+                                                disabled>
                                                 <option value="1" selected>Activo</option>
                                                 <option value="0">Inactivo</option>
                                             </select>
@@ -331,7 +357,8 @@
     <!-- FIN MODAL AGREGAR TIPO DE FACTURA -->
 
     <!-- INICIO MODAL DELETE -->
-    <div class="modal modal-eliminar fade" id="modal-eliminar" tabindex="-1" aria-hidden="true" aria-labelledby="exampleModal">
+    <div class="modal modal-eliminar fade" id="modal-eliminar" tabindex="-1" aria-hidden="true"
+        aria-labelledby="exampleModal">
         <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content">
                 <div class="modal-header">

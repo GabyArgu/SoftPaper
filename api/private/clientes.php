@@ -24,6 +24,15 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No hay clientes registrados';
                 }
                 break;
+            case 'readClientesVenta':
+                if ($result['dataset'] = $clientes->readClientesVenta()) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'No hay clientes registrados';
+                }
+                break;
             case 'search':
                 if ($result['dataset'] = $clientes->searchRows($_POST['search'])) {
                     $result['status'] = 1;

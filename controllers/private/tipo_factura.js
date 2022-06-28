@@ -17,10 +17,11 @@ document.addEventListener('DOMContentLoaded', function () {
 // Función para llenar la tabla con los datos de los registros. Se manda a llamar en la función readRows().
 function fillTable2(dataset) {
     let content = '';
-    // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
+    // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.-------------
     dataset.map(function (row) {
         (row.estado_tipo_factura) ? icon = '<span class="estado">Activo</span>' : icon = '<span class="estado3">Inactivo</span>';
         // Se crean y concatenan las filas de la tabla con los datos de cada registro.
+        // Se coloca el nombre de la columna de la tabla---------------.
         content += `
         <tr>
             <td data-title="Proveedor" class="col-table ">${row.tipo_factura}</td>
@@ -49,7 +50,7 @@ function fillTable2(dataset) {
         </tr>
         `;
     });
-    // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
+    // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros-------------.
     document.getElementById('tbody-rows').innerHTML = content;
 }
 
@@ -106,7 +107,7 @@ function openUpdateTF(id) {
                     } else {
                         document.getElementById('estado_tipo_factura').value = 0;
                     }
-                    // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos.
+                    // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos-------------.
                 } else {
                     sweetAlert(2, response.exception, null);
                 }

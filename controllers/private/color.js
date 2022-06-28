@@ -163,13 +163,14 @@ document.getElementById('delete-form').addEventListener('submit', function (even
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
     //Llamamos al método que se encuentra en la api y le pasamos la ruta de la API y el id del formulario dentro de nuestro modal eliminar
+    //No eliminamos solo deshabilita------------------.
     confirmDelete(API_COLOR, 'delete-form');
     setTimeout(() => {
         reInitTable();
     }, 100);
 });
 
-//Función para refrescar la tabla manualmente al darle click al botón refresh
+//Función para refrescar la tabla manualmente al darle click al botón refresh----------------------------------.
 document.getElementById('limpiar').addEventListener('click', function () {
     table.destroy();
     readRows(API_COLOR);

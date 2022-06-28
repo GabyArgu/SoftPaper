@@ -116,6 +116,17 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Stock del producto en ese color inexistente';
                 }
                 break;
+            case 'readStockUpdate':
+                if (!$productos->setColor($_POST['idColorStock'])) {
+                    $result['exception'] = 'Producto incorrecto';
+                } elseif ($result['dataset'] = $productos->readProductStockUpdate()) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'Stock del producto inexistente';
+                }
+                break;
             case 'update':
                 //Especificamos los inputs por medio de su atributo name, y los capturamos con el método post
                 $_POST = $productos->validateForm($_POST);
@@ -190,7 +201,7 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['exception'] = 'No hay datos registrados';
                 }
-                break;   
+                break;
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }

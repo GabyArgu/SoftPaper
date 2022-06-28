@@ -52,7 +52,7 @@ class Departamento extends Validator
         return Database::getRows($sql, $params);
     }
 
-    // Función para leer uno específico
+    // Función para leer uno específico de departamento------------------------.
     public function readOne()
     {
         $sql = 'SELECT "nombre_departamento" FROM departamento WHERE "uuid_departamento" = ?';
@@ -84,7 +84,7 @@ class Departamento extends Validator
     /* Función para eliminar departamento de la base---------------------------*/
     public function deleteRow()
     {
-        //Eliminamos el departamento----------------------------
+        //Eliminamos el departamento >.< ----------------------------
         $sql = 'DELETE FROM departamento WHERE "uuid_departamento" = ?';
         $params = array($this->id);
         return Database::executeRow($sql, $params);

@@ -177,6 +177,7 @@ class Usuarios extends Validator
         }
     }
 
+    // Método para verificar la contraseña-------------------------.
     public function checkPassword($password)
     {
         $sql = "SELECT contrasena_empleado FROM empleado WHERE uuid_empleado = ?";
@@ -190,6 +191,7 @@ class Usuarios extends Validator
         }
     }
 
+    // Método para cambiar la contraseña-------------------------.
     public function changePassword()
     {
         $sql = 'UPDATE empleado SET claveEmpleado = ? WHERE idEmpleado = ?';
@@ -214,24 +216,13 @@ class Usuarios extends Validator
     // Método para un dato en especifico de los usuarios registrados-------------------------.
     public function readOne()
     {
-        $sql = 'SELECT "idEmpleado", "nombresEmpleado", "apellidosEmpleado", "correoEmpleado", "aliasEmpleado", "fotoEmpleado", "cargoEmpleado", "estadoEmpleado"
+        $sql = 'SELECT "uuid_empleado", "nombres_empleado", "apellidos_empleado", "correo_empleado", "alias_empleado", "uuid_avatar", "estado_empleado", "uuid_cargo_empleado"
         FROM empleado
-        where "idEmpleado" = ?';
+        where "uuid_empleado" = ?';
         $params = array($this->id);
         return Database::getRow($sql, $params);
     }
 
-    /* Método para obtener un empleado y mostrarlo en modal de visualizar*/
-    public function readOneShow()
-    {
-        $sql = 'SELECT "idEmpleado", "nombresEmpleado", "apellidosEmpleado", "correoEmpleado",  "aliasEmpleado", a.avatar, ce."cargoEmpleado", ee."estadoEmpleado"
-        FROM empleado as e inner join "cargoEmpleado" as ce on e."cargoEmpleado" = ce."idCargoEmpleado"
-        inner join "estadoEmpleado" as ee on e."estadoEmpleado" = ee."idEstadoEmpleado"
-		inner join "avatar" as a on e."fotoEmpleado" = a."idAvatar" 
-        where "idEmpleado" = ?';
-        $params = array($this->id);
-        return Database::getRow($sql, $params);
-    }
     /*
     *   Métodos para realizar las operaciones SCRUD (search, create, read, update, delete).
     */
@@ -261,9 +252,9 @@ class Usuarios extends Validator
     public function updateRow()
     {
         $sql = 'UPDATE empleado
-                SET "nombresEmpleado" = ?, "apellidosEmpleado" = ?, "correoEmpleado" = ?, "direccionEmpleado" = ?, "telefonoEmpleado" = ?, "cargoEmpleado" = ?, "estadoEmpleado" = ?, "fotoEmpleado" = ?
-                WHERE "idEmpleado" = ?';
-            $params = array($this->nombres, $this->apellidos, $this->correo, $this->direccion, $this->telefono, $this->cargo, $this->estado, $this->foto, $this->id);
+                SET "nombres_empleado" = ?, "apellidos_empleado" = ?, "correo_empleado" = ?, "alias_empleado" = ?, "contrasena_empleado" = ?, "uuid_avatar" = ?, "uuid_cargo_empleado" = ?, "estado_empleado" = ?
+                WHERE "uuid_empleado" = ?';
+            $params = array($this->nombres, $this->apellidos, $this->correo, $this->alias, $this->clave, $this->foto, $this->cargo, $this->estado, $this->id);
         return Database::executeRow($sql, $params);
     }
 
@@ -272,7 +263,7 @@ class Usuarios extends Validator
     public function deleteRow()
     {
         //No eliminaremos registros, solo los inhabilitaremos-------------------------.
-        $sql = 'UPDATE empleado SET "estadoEmpleado" = 3 WHERE "idEmpleado" = ?'; //Delete from empleado where "idEmpleado" = ? -------------------------.
+        $sql = 'UPDATE empleado SET "estado_empleado" = 3 WHERE "uuid_empleado" = ?'; //Delete from empleado where "idEmpleado" = ? -------------------------.
         $params = array($this->id);
         return Database::executeRow($sql, $params);
     }
