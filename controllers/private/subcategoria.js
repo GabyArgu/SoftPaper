@@ -155,6 +155,7 @@ function openUpdate(id) {
 document.getElementById('agregar-sub').addEventListener('submit', function (event) {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
+    console.log('ayuda')
     // Se define una variable para establecer la acción a realizar en la API.
     let action = '';
     // Se comprueba si el campo oculto del formulario esta seteado para actualizar, de lo contrario será para crear.
